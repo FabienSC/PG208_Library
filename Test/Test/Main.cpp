@@ -1,6 +1,6 @@
 // my first program in C++
 
-#include "stdafx.h"
+#include "stdafx.h"//Fabien's useless comment
 
 using namespace std;
 
