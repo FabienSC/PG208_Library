@@ -4,7 +4,10 @@
 //
 
 #pragma once
-#include "C:\Users\Fabien\Documents\Git\PG208_Library\PG208_Library\Article.h"
+//#include "C:\Users\Fabien\Documents\Git\PG208_Library\PG208_Library\Article.h"
+
+#include "C:\projetC++biblio\git_alex\PG208_Library\PG208_Library\Article.h"
+
 #include "targetver.h"
 
 #include <stdio.h>
