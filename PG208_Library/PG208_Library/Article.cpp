@@ -1,12 +1,4 @@
 #include "StdAfx.h"
-#include "Article.h"
-
-
-Article::Article(void)
-{
-}
-
-/*
 #include <iostream>
 #include <string>
 #include <assert.h>
@@ -85,6 +77,3 @@ void Article::getGeneralData()
 }
 
 	
-
-
-*/

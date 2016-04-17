@@ -1,11 +1,3 @@
-#pragma once
-ref class Article
-{
-public:
-	Article(void);
-};
-
-/*
 #ifndef ARTICLES_H
 #define ARTICLES_H
 #include<string>
@@ -46,4 +38,3 @@ private:
 
 
 #endif // ARTICLES_H
-*/
