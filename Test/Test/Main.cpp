@@ -2,7 +2,7 @@
 
 #include "stdafx.h"
 
-using namespace std;
+using namespace std; //ALEX COMMENTS FOR ALL NIGGAS AVAILABLE AT THE AIRPORT BECAUSE it iS COOL!
 
 int _tmain(int argc, _TCHAR* argv[])
 {
