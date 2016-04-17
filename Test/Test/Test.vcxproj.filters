@@ -24,7 +24,7 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Documents\Git\PG208_Library\PG208_Library\Article.h">
+    <ClInclude Include="..\..\PG208_Library\PG208_Library\Article.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,7 +35,7 @@
     <ClCompile Include="Test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Documents\Git\PG208_Library\PG208_Library\Article.cpp">
+    <ClCompile Include="..\..\PG208_Library\PG208_Library\Article.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

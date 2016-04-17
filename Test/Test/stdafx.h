@@ -4,12 +4,12 @@
 //
 
 #pragma once
-#include "C:\Users\Fabien\Documents\Git\PG208_Library\PG208_Library\Article.h"
 #include "targetver.h"
 
 #include <stdio.h>
 #include <tchar.h>
 #include <iostream>
 
+#include "..\..\PG208_Library\PG208_Library\Article.h"
 
 // TODO: reference additional headers your program requires here
