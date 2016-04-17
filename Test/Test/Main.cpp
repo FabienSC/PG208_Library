@@ -1,6 +1,6 @@
 // my first program in C++
 
-#include "stdafx.h"
+#include "stdafx.h"//Fabien's useless comment
 
 using namespace std; //ALEX COMMENTS FOR ALL NIGGAS AVAILABLE AT THE AIRPORT BECAUSE it iS COOL!
 
