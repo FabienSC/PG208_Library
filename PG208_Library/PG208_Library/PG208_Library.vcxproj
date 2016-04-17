@@ -88,6 +88,8 @@
   <ItemGroup>
     <ClCompile Include="Article.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="Book.cpp" />
+    <ClCompile Include="CD.cpp" />
     <ClCompile Include="PG208_Library.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -96,6 +98,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Article.h" />
+    <ClInclude Include="Book.h" />
+    <ClInclude Include="CD.h" />
     <ClInclude Include="Form1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
