@@ -1,12 +1,13 @@
-﻿Build started 17-Apr-16 4:14:34 PM.
+﻿Build started 17-Apr-16 11:31:09 PM.
      1>Project "C:\Users\Fabien\Documents\Git\PG208_Library\PG208_Library\PG208_Library.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "Debug\PG208_Library.unsuccessfulbuild".
+         Creating "Debug\PG208_Library.unsuccessfulbuild" because "AlwaysCreate" was specified.
        GenerateTargetFrameworkMonikerAttribute:
        Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
        ClCompile:
          All outputs are up-to-date.
-         All outputs are up-to-date.
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\PG208_Library.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt PG208_Library.cpp /clr:nostdlib 
+         PG208_Library.cpp
          All outputs are up-to-date.
        CoreResGen:
          No resources are out of date with respect to their source files. Skipping resource generation.
@@ -18,16 +19,17 @@
          Debug\AssemblyInfo.obj
          Debug\Book.obj
          Debug\CD.obj
-         Debug\main.obj
          Debug\PG208_Library.obj
          Debug\stdafx.obj
          "Debug\.NETFramework,Version=v4.0.AssemblyAttributes.obj"
-     1>LINK : warning LNK4022: cannot find unique match for symbol 'main'
-     1>LINK : warning LNK4002: "int __clrcall main(int,char * * const)" (?main@@$$HYMHHQAPAD@Z) defined in Debug\main.obj
-     1>LINK : warning LNK4002: "int __clrcall main(cli::array<class System::String ^ >^)" (?main@@$$HYMHP$01AP$AAVString@System@@@Z) defined in Debug\PG208_Library.obj
-     1>LINK : fatal error LNK1152: cannot resolve one or more undecorated symbols
-     1>Done Building Project "C:\Users\Fabien\Documents\Git\PG208_Library\PG208_Library\PG208_Library.vcxproj" (build target(s)) -- FAILED.
+         PG208_Library.vcxproj -> C:\Users\Fabien\Documents\Git\PG208_Library\Debug\PG208_Library.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\Fabien\Documents\Git\PG208_Library\Debug\PG208_Library.exe;#1" /manifest Debug\PG208_Library.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Debug\PG208_Library.unsuccessfulbuild".
+         Touching "Debug\PG208_Library.lastbuildstate".
+     1>Done Building Project "C:\Users\Fabien\Documents\Git\PG208_Library\PG208_Library\PG208_Library.vcxproj" (build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:00.77
+Time Elapsed 00:00:01.39
