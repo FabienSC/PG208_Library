@@ -1,4 +1,5 @@
 #pragma once
+#include <string.h>
 
 namespace PG208_Library {
 
@@ -8,6 +9,7 @@ namespace PG208_Library {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Runtime::InteropServices;
 
 	/// <summary>
 	/// Summary for Form1
@@ -171,8 +173,41 @@ namespace PG208_Library {
 
 		}
 #pragma endregion
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-			 }
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)//login
+		{
+			
+			String ^ strUsername = textBoxUsername->Text;
+			String ^ strPassword = textBoxPassword->Text;
+			char *enteredUsername = (char*)Marshal::StringToHGlobalAnsi(strUsername).ToPointer();
+			char *enteredPassword = (char*)Marshal::StringToHGlobalAnsi(strPassword).ToPointer();
+
+			
+/*			char message[100] = "Hello "; //Unmanaged type
+			String ^ tbstr = textBoxUsername->Text;
+			char *name = (char*)Marshal::StringToHGlobalAnsi(tbstr).ToPointer();
+			strcat(message,name); //Combine "Hello " with name	
+			String^ Mmge=Marshal::PtrToStringAnsi((IntPtr)message);
+			String^ title = "Welcome";
+			MessageBox::Show(Mmge,title,MessageBoxButtons::OK);
+			Marshal::FreeHGlobal((IntPtr)name); // just like delete
+*/
+
+
+
+			if((strcmp(enteredUsername,"Mr.Fab") == 0) && (strcmp(enteredPassword,"1234") == 0))//if username and password match, login
+			{
+				String^ message = "Welcome"; // ^ specifies a tracking handle
+				String^ title = "Login Successful"; // String is a managed class
+				MessageBox::Show(message, title, MessageBoxButtons::OK);
+			}
+			else//invalid username/password
+			{
+				String^ message = "Invalid username or password. If problem persists, contact the 2 idiots who made this program."; // ^ specifies a tracking handle
+				String^ title = "Login Failed"; // String is a managed class
+				MessageBox::Show(message, title, MessageBoxButtons::OK);
+			}
+
+		}
 	private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 			 }
 private: System::Void linkLabelForgotPassword_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e)
