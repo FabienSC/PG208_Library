@@ -1,26 +1,11 @@
-<<<<<<< HEAD
-﻿Build started 17-Apr-16 3:57:08 PM.
-     1>Project "C:\Users\Fabien\Documents\Git\PG208_Library\PG208_Library\PG208_Library.vcxproj" on node 2 (ClCompile target(s)).
-     1>GenerateTargetFrameworkMonikerAttribute:
-=======
-﻿Build started 17/04/2016 15:58:00.
-     1>Project "C:\Users\Alex Anderson\Desktop\projetC++biblio\git_files\PG208_Library\PG208_Library\PG208_Library.vcxproj" on node 2 (build target(s)).
+﻿Build started 17-Apr-16 4:14:34 PM.
+     1>Project "C:\Users\Fabien\Documents\Git\PG208_Library\PG208_Library\PG208_Library.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Creating "Debug\PG208_Library.unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\PG208_Library.unsuccessfulbuild".
        GenerateTargetFrameworkMonikerAttribute:
->>>>>>> Origin/master
        Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
        ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\PG208_Library.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt Article.cpp /clr:nostdlib 
-         Article.cpp
          All outputs are up-to-date.
-<<<<<<< HEAD
-     1>Done Building Project "C:\Users\Fabien\Documents\Git\PG208_Library\PG208_Library\PG208_Library.vcxproj" (ClCompile target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:00.68
-=======
          All outputs are up-to-date.
          All outputs are up-to-date.
        CoreResGen:
@@ -28,14 +13,21 @@ Time Elapsed 00:00:00.68
        ResourceCompile:
          All outputs are up-to-date.
        Link:
-         All outputs are up-to-date.
-         PG208_Library.vcxproj -> C:\Users\Alex Anderson\Desktop\projetC++biblio\git_files\PG208_Library\Debug\PG208_Library.exe
-       FinalizeBuildStatus:
-         Deleting file "Debug\PG208_Library.unsuccessfulbuild".
-         Touching "Debug\PG208_Library.lastbuildstate".
-     1>Done Building Project "C:\Users\Alex Anderson\Desktop\projetC++biblio\git_files\PG208_Library\PG208_Library\PG208_Library.vcxproj" (build target(s)).
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Fabien\Documents\Git\PG208_Library\Debug\PG208_Library.exe" /INCREMENTAL /NOLOGO /ASSEMBLYRESOURCE:Debug\PG208_Library.Form1.resources /MANIFEST /ManifestFile:"Debug\PG208_Library.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Fabien\Documents\Git\PG208_Library\Debug\PG208_Library.pdb" /ASSEMBLYDEBUG /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"main" /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\app.res
+         Debug\Article.obj
+         Debug\AssemblyInfo.obj
+         Debug\Book.obj
+         Debug\CD.obj
+         Debug\main.obj
+         Debug\PG208_Library.obj
+         Debug\stdafx.obj
+         "Debug\.NETFramework,Version=v4.0.AssemblyAttributes.obj"
+     1>LINK : warning LNK4022: cannot find unique match for symbol 'main'
+     1>LINK : warning LNK4002: "int __clrcall main(int,char * * const)" (?main@@$$HYMHHQAPAD@Z) defined in Debug\main.obj
+     1>LINK : warning LNK4002: "int __clrcall main(cli::array<class System::String ^ >^)" (?main@@$$HYMHP$01AP$AAVString@System@@@Z) defined in Debug\PG208_Library.obj
+     1>LINK : fatal error LNK1152: cannot resolve one or more undecorated symbols
+     1>Done Building Project "C:\Users\Fabien\Documents\Git\PG208_Library\PG208_Library\PG208_Library.vcxproj" (build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:00.11
->>>>>>> Origin/master
+Time Elapsed 00:00:00.77
