@@ -90,6 +90,8 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Book.cpp" />
     <ClCompile Include="CD.cpp" />
+    <ClCompile Include="cipher.cpp" />
+    <ClCompile Include="FormNewUser.cpp" />
     <ClCompile Include="PG208_Library.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -100,7 +102,11 @@
     <ClInclude Include="Article.h" />
     <ClInclude Include="Book.h" />
     <ClInclude Include="CD.h" />
-    <ClInclude Include="Form1.h">
+    <ClInclude Include="cipher.h" />
+    <ClInclude Include="FormLogOn.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="FormNewUser.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="resource.h" />
@@ -110,9 +116,12 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resX">
-      <DependentUpon>Form1.h</DependentUpon>
+    <EmbeddedResource Include="FormLogOn.resX">
+      <DependentUpon>FormLogOn.h</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNewUser.resx">
+      <DependentUpon>FormNewUser.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

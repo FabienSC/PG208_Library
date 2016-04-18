@@ -1,6 +1,7 @@
 #ifndef ARTICLES_H
 #define ARTICLES_H
-#include<string>
+
+#include <string>
 
 
 class Article

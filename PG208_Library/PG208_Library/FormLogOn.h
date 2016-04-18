@@ -1,5 +1,7 @@
 #pragma once
-#include <string.h>
+#include "stdafx.h"
+#include "FormNewUser.h"
+
 
 namespace PG208_Library {
 
@@ -10,6 +12,7 @@ namespace PG208_Library {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace System::Runtime::InteropServices;
+	using namespace std;
 
 	/// <summary>
 	/// Summary for Form1
@@ -36,7 +39,7 @@ namespace PG208_Library {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Button^  buttonLogOn;
+	private: System::Windows::Forms::Button^  buttonRegister;
 	protected: 
 
 	private: System::Windows::Forms::TextBox^  textBoxUsername;
@@ -66,7 +69,7 @@ namespace PG208_Library {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->buttonLogOn = (gcnew System::Windows::Forms::Button());
+			this->buttonRegister = (gcnew System::Windows::Forms::Button());
 			this->textBoxUsername = (gcnew System::Windows::Forms::TextBox());
 			this->labelUsername = (gcnew System::Windows::Forms::Label());
 			this->labelPassword = (gcnew System::Windows::Forms::Label());
@@ -75,16 +78,16 @@ namespace PG208_Library {
 			this->linkLabelForgotPassword = (gcnew System::Windows::Forms::LinkLabel());
 			this->SuspendLayout();
 			// 
-			// buttonLogOn
+			// buttonRegister
 			// 
-			this->buttonLogOn->Anchor = System::Windows::Forms::AnchorStyles::None;
-			this->buttonLogOn->Location = System::Drawing::Point(108, 143);
-			this->buttonLogOn->Name = L"buttonLogOn";
-			this->buttonLogOn->Size = System::Drawing::Size(75, 29);
-			this->buttonLogOn->TabIndex = 0;
-			this->buttonLogOn->Text = L"Log on";
-			this->buttonLogOn->UseVisualStyleBackColor = true;
-			this->buttonLogOn->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
+			this->buttonRegister->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->buttonRegister->Location = System::Drawing::Point(108, 143);
+			this->buttonRegister->Name = L"buttonRegister";
+			this->buttonRegister->Size = System::Drawing::Size(75, 29);
+			this->buttonRegister->TabIndex = 0;
+			this->buttonRegister->Text = L"Log on";
+			this->buttonRegister->UseVisualStyleBackColor = true;
+			this->buttonRegister->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
 			// 
 			// textBoxUsername
 			// 
@@ -106,6 +109,7 @@ namespace PG208_Library {
 			this->labelUsername->Size = System::Drawing::Size(77, 17);
 			this->labelUsername->TabIndex = 2;
 			this->labelUsername->Text = L"Username:";
+			this->labelUsername->Click += gcnew System::EventHandler(this, &Form1::labelUsername_Click);
 			// 
 			// labelPassword
 			// 
@@ -116,6 +120,7 @@ namespace PG208_Library {
 			this->labelPassword->Size = System::Drawing::Size(73, 17);
 			this->labelPassword->TabIndex = 4;
 			this->labelPassword->Text = L"Password:";
+			this->labelPassword->Click += gcnew System::EventHandler(this, &Form1::labelPassword_Click);
 			// 
 			// textBoxPassword
 			// 
@@ -127,6 +132,7 @@ namespace PG208_Library {
 			this->textBoxPassword->TabIndex = 3;
 			this->textBoxPassword->Text = L"1234";
 			this->textBoxPassword->UseSystemPasswordChar = true;
+			this->textBoxPassword->TextChanged += gcnew System::EventHandler(this, &Form1::textBoxPassword_TextChanged);
 			// 
 			// linkLabelNewUser
 			// 
@@ -138,6 +144,7 @@ namespace PG208_Library {
 			this->linkLabelNewUser->TabIndex = 5;
 			this->linkLabelNewUser->TabStop = true;
 			this->linkLabelNewUser->Text = L"New user";
+			this->linkLabelNewUser->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &Form1::linkLabelNewUser_LinkClicked);
 			// 
 			// linkLabelForgotPassword
 			// 
@@ -163,7 +170,7 @@ namespace PG208_Library {
 			this->Controls->Add(this->textBoxPassword);
 			this->Controls->Add(this->labelUsername);
 			this->Controls->Add(this->textBoxUsername);
-			this->Controls->Add(this->buttonLogOn);
+			this->Controls->Add(this->buttonRegister);
 			this->MaximumSize = System::Drawing::Size(350, 250);
 			this->MinimumSize = System::Drawing::Size(350, 250);
 			this->Name = L"Form1";
@@ -175,26 +182,22 @@ namespace PG208_Library {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)//login
 		{
-			
-			String ^ strUsername = textBoxUsername->Text;
-			String ^ strPassword = textBoxPassword->Text;
-			char *enteredUsername = (char*)Marshal::StringToHGlobalAnsi(strUsername).ToPointer();
+			String ^ strUsername = textBoxUsername->Text;//typed in username
+			String ^ strPassword = textBoxPassword->Text;//typed in password
+			strUsername="People/"+strUsername+".txt";//change username to filepath
+			char *enteredUsername = (char*)Marshal::StringToHGlobalAnsi(strUsername).ToPointer();//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
 			char *enteredPassword = (char*)Marshal::StringToHGlobalAnsi(strPassword).ToPointer();
 
-			
-/*			char message[100] = "Hello "; //Unmanaged type
-			String ^ tbstr = textBoxUsername->Text;
-			char *name = (char*)Marshal::StringToHGlobalAnsi(tbstr).ToPointer();
-			strcat(message,name); //Combine "Hello " with name	
-			String^ Mmge=Marshal::PtrToStringAnsi((IntPtr)message);
-			String^ title = "Welcome";
-			MessageBox::Show(Mmge,title,MessageBoxButtons::OK);
-			Marshal::FreeHGlobal((IntPtr)name); // just like delete
-*/
+			ifstream input(enteredUsername);
+			string line;
+			getline( input, line );
+			int sizePassword = line.size();
+			char* filePassword = (char*)line.c_str();
+
+			char* decryptedPassword = decrypt(filePassword,sizePassword);
 
 
-
-			if((strcmp(enteredUsername,"Mr.Fab") == 0) && (strcmp(enteredPassword,"1234") == 0))//if username and password match, login
+			if((strcmp(enteredPassword,decryptedPassword) == 0) && (sizePassword > 3))//if username and password match AND password on file is longer than 3
 			{
 				String^ message = "Welcome"; // ^ specifies a tracking handle
 				String^ title = "Login Successful"; // String is a managed class
@@ -216,6 +219,17 @@ private: System::Void linkLabelForgotPassword_LinkClicked(System::Object^  sende
 			String^ title = "Forgot Password"; // String is a managed class
 			MessageBox::Show(message, title, MessageBoxButtons::OK);
 		}
+private: System::Void linkLabelNewUser_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e)
+		 {//clicked on "New User" link
+			FormNewUser ^ F2 = gcnew FormNewUser(); //Form2 defined in Form2.h
+			F2->ShowDialog();
+		 }
+private: System::Void labelPassword_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void textBoxPassword_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void labelUsername_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
 };
 }
 
