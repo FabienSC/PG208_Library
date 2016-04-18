@@ -57,6 +57,9 @@
     <ClCompile Include="FormHome.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="FormNewArticle.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -87,6 +90,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FormHomeAdmin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FormNewArticle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

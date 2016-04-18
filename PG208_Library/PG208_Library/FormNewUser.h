@@ -70,7 +70,7 @@ namespace PG208_Library {
 			// 
 			this->labelPassword->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->labelPassword->AutoSize = true;
-			this->labelPassword->Location = System::Drawing::Point(39, 102);
+			this->labelPassword->Location = System::Drawing::Point(31, 76);
 			this->labelPassword->Name = L"labelPassword";
 			this->labelPassword->Size = System::Drawing::Size(73, 17);
 			this->labelPassword->TabIndex = 11;
@@ -79,7 +79,7 @@ namespace PG208_Library {
 			// textBoxPassword
 			// 
 			this->textBoxPassword->Anchor = System::Windows::Forms::AnchorStyles::None;
-			this->textBoxPassword->Location = System::Drawing::Point(118, 98);
+			this->textBoxPassword->Location = System::Drawing::Point(110, 72);
 			this->textBoxPassword->MaxLength = 63;
 			this->textBoxPassword->Name = L"textBoxPassword";
 			this->textBoxPassword->Size = System::Drawing::Size(192, 22);
@@ -90,7 +90,7 @@ namespace PG208_Library {
 			// 
 			this->labelUsername->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->labelUsername->AutoSize = true;
-			this->labelUsername->Location = System::Drawing::Point(39, 60);
+			this->labelUsername->Location = System::Drawing::Point(31, 34);
 			this->labelUsername->Name = L"labelUsername";
 			this->labelUsername->Size = System::Drawing::Size(77, 17);
 			this->labelUsername->TabIndex = 9;
@@ -99,7 +99,7 @@ namespace PG208_Library {
 			// textBoxUsername
 			// 
 			this->textBoxUsername->Anchor = System::Windows::Forms::AnchorStyles::None;
-			this->textBoxUsername->Location = System::Drawing::Point(118, 56);
+			this->textBoxUsername->Location = System::Drawing::Point(110, 30);
 			this->textBoxUsername->MaxLength = 255;
 			this->textBoxUsername->Name = L"textBoxUsername";
 			this->textBoxUsername->Size = System::Drawing::Size(192, 22);
@@ -108,9 +108,9 @@ namespace PG208_Library {
 			// buttonRegister
 			// 
 			this->buttonRegister->Anchor = System::Windows::Forms::AnchorStyles::None;
-			this->buttonRegister->Location = System::Drawing::Point(118, 139);
+			this->buttonRegister->Location = System::Drawing::Point(110, 113);
 			this->buttonRegister->Name = L"buttonRegister";
-			this->buttonRegister->Size = System::Drawing::Size(75, 29);
+			this->buttonRegister->Size = System::Drawing::Size(89, 36);
 			this->buttonRegister->TabIndex = 7;
 			this->buttonRegister->Text = L"Register";
 			this->buttonRegister->UseVisualStyleBackColor = true;
@@ -120,12 +120,14 @@ namespace PG208_Library {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(348, 240);
+			this->ClientSize = System::Drawing::Size(332, 173);
 			this->Controls->Add(this->labelPassword);
 			this->Controls->Add(this->textBoxPassword);
 			this->Controls->Add(this->labelUsername);
 			this->Controls->Add(this->textBoxUsername);
 			this->Controls->Add(this->buttonRegister);
+			this->MaximumSize = System::Drawing::Size(350, 220);
+			this->MinimumSize = System::Drawing::Size(350, 220);
 			this->Name = L"FormNewUser";
 			this->Text = L"FormNewUser";
 			this->ResumeLayout(false);
