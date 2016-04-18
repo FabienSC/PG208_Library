@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "FormNewUser.h"
+#include "FormHome.h"
 
 
 namespace PG208_Library {
@@ -98,7 +99,6 @@ namespace PG208_Library {
 			this->textBoxUsername->Size = System::Drawing::Size(192, 22);
 			this->textBoxUsername->TabIndex = 1;
 			this->textBoxUsername->Text = L"Mr.Fab";
-			this->textBoxUsername->TextChanged += gcnew System::EventHandler(this, &Form1::textBox1_TextChanged);
 			// 
 			// labelUsername
 			// 
@@ -109,7 +109,6 @@ namespace PG208_Library {
 			this->labelUsername->Size = System::Drawing::Size(77, 17);
 			this->labelUsername->TabIndex = 2;
 			this->labelUsername->Text = L"Username:";
-			this->labelUsername->Click += gcnew System::EventHandler(this, &Form1::labelUsername_Click);
 			// 
 			// labelPassword
 			// 
@@ -120,7 +119,6 @@ namespace PG208_Library {
 			this->labelPassword->Size = System::Drawing::Size(73, 17);
 			this->labelPassword->TabIndex = 4;
 			this->labelPassword->Text = L"Password:";
-			this->labelPassword->Click += gcnew System::EventHandler(this, &Form1::labelPassword_Click);
 			// 
 			// textBoxPassword
 			// 
@@ -132,7 +130,6 @@ namespace PG208_Library {
 			this->textBoxPassword->TabIndex = 3;
 			this->textBoxPassword->Text = L"1234";
 			this->textBoxPassword->UseSystemPasswordChar = true;
-			this->textBoxPassword->TextChanged += gcnew System::EventHandler(this, &Form1::textBoxPassword_TextChanged);
 			// 
 			// linkLabelNewUser
 			// 
@@ -162,7 +159,7 @@ namespace PG208_Library {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::SystemColors::WindowFrame;
+			this->BackColor = System::Drawing::SystemColors::ActiveBorder;
 			this->ClientSize = System::Drawing::Size(332, 203);
 			this->Controls->Add(this->linkLabelForgotPassword);
 			this->Controls->Add(this->linkLabelNewUser);
@@ -184,51 +181,40 @@ namespace PG208_Library {
 		{
 			String ^ strUsername = textBoxUsername->Text;//typed in username
 			String ^ strPassword = textBoxPassword->Text;//typed in password
+			char *enteredUsername = (char*)Marshal::StringToHGlobalAnsi(strUsername).ToPointer();
 			strUsername="People/"+strUsername+".txt";//change username to filepath
-			char *enteredUsername = (char*)Marshal::StringToHGlobalAnsi(strUsername).ToPointer();//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
+			char *userFilePath = (char*)Marshal::StringToHGlobalAnsi(strUsername).ToPointer();//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
 			char *enteredPassword = (char*)Marshal::StringToHGlobalAnsi(strPassword).ToPointer();
 
-			ifstream input(enteredUsername);
+			ifstream input(userFilePath);
 			string line;
 			getline( input, line );
 			int sizePassword = line.size();
 			char* filePassword = (char*)line.c_str();
 
-			char* decryptedPassword = decrypt(filePassword,sizePassword);
+			char* decryptedPassword = decrypt(enteredUsername,filePassword);
 
 
 			if((strcmp(enteredPassword,decryptedPassword) == 0) && (sizePassword > 3))//if username and password match AND password on file is longer than 3
 			{
-				String^ message = "Welcome"; // ^ specifies a tracking handle
-				String^ title = "Login Successful"; // String is a managed class
-				MessageBox::Show(message, title, MessageBoxButtons::OK);
+				popup("Login Successful", "Welcome!");
+				this->Hide();
+				FormHome ^ F3 = gcnew FormHome(enteredUsername); //FormHome defined in FormHome.h
+				F3->ShowDialog();
+				this->Show();
 			}
 			else//invalid username/password
-			{
-				String^ message = "Invalid username or password. If problem persists, contact the 2 idiots who made this program."; // ^ specifies a tracking handle
-				String^ title = "Login Failed"; // String is a managed class
-				MessageBox::Show(message, title, MessageBoxButtons::OK);
-			}
+				popup("Login Failed", "Invalid username or password. If problem persists, contact the 2 idiots who made this program.");
 
 		}
-	private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-			 }
 private: System::Void linkLabelForgotPassword_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e)
 		{
-			String^ message = "Try very hard to remember it."; // ^ specifies a tracking handle
-			String^ title = "Forgot Password"; // String is a managed class
-			MessageBox::Show(message, title, MessageBoxButtons::OK);
+			popup("Forgot Password", "Try very hard to remember it.");
 		}
 private: System::Void linkLabelNewUser_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e)
 		 {//clicked on "New User" link
-			FormNewUser ^ F2 = gcnew FormNewUser(); //Form2 defined in Form2.h
+			FormNewUser ^ F2 = gcnew FormNewUser(); //FormNewUser defined in FormNewUser.h
 			F2->ShowDialog();
-		 }
-private: System::Void labelPassword_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void textBoxPassword_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void labelUsername_Click(System::Object^  sender, System::EventArgs^  e) {
 		 }
 };
 }

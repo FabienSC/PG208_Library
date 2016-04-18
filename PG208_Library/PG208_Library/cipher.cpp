@@ -1,22 +1,54 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "cipher.h"
 
 
-char* decrypt(char* filePassword,int sizePassword)
+char* encrypt(char* cipherKey,char* cipherText)//encrypts the password using a vignere cipher
 {
-	for(int i = 0; i < sizePassword; i++)
+	int sizeKey = strlen(cipherKey);
+	int sizeText = strlen(cipherText);
+
+	int j = 0;
+
+	for(int i = 0; i < sizeText; i++)
 	{
-		filePassword[i] = filePassword[i]+1;
+		int tmpInt = cipherText[i] + cipherKey[j] - 32;
+		j++;
+		if(j == sizeKey)
+			j = 0;
+
+		if(tmpInt > 126)
+			tmpInt -= 95;//loop back to bottom
+		else if(tmpInt < 32)
+			tmpInt += 95;//loop back to top
+
+		cipherText[i] = tmpInt;
 	}
-	return filePassword;
+	return cipherText;
 }
 
 
-char* encrypt(char* enteredPassword,int sizePassword)
+char* decrypt(char* cipherKey,char* cipherText)//decrypts the password using a vignere cipher
 {
-	for(int i = 0; i < sizePassword; i++)
+	int sizeKey = strlen(cipherKey);
+	int sizeText = strlen(cipherText);
+	
+	int j = 0;
+
+	for(int i = 0; i < sizeText; i++)
 	{
-		enteredPassword[i] = enteredPassword[i]-1;
+		int tmpInt = cipherText[i] - cipherKey[j] + 32;
+		j++;
+		if(j == sizeKey)
+			j = 0;
+
+		if(tmpInt > 126)
+			tmpInt -= 95;//loop back to bottom
+		else if(tmpInt < 32)
+			tmpInt += 95;//loop back to top
+
+		cipherText[i] = tmpInt;
 	}
-	return enteredPassword;
+	return cipherText;
 }
+
+

@@ -7,5 +7,6 @@
 #include <fstream>
 #include <sstream>
 #include "cipher.h"
+#include "popups.h"
 
 // TODO: reference additional headers your program requires here

@@ -108,7 +108,6 @@ namespace PG208_Library {
 			// buttonRegister
 			// 
 			this->buttonRegister->Anchor = System::Windows::Forms::AnchorStyles::None;
-			this->buttonRegister->DialogResult = System::Windows::Forms::DialogResult::OK;
 			this->buttonRegister->Location = System::Drawing::Point(118, 139);
 			this->buttonRegister->Name = L"buttonRegister";
 			this->buttonRegister->Size = System::Drawing::Size(75, 29);
@@ -138,18 +137,30 @@ namespace PG208_Library {
 			{
 				String ^ strUsername = textBoxUsername->Text;//typed in username
 				String ^ strPassword = textBoxPassword->Text;//typed in password
+
+				char *enteredUsername = (char*)Marshal::StringToHGlobalAnsi(strUsername).ToPointer();
 				strUsername="People/"+strUsername+".txt";//change username to filepath
-				char *enteredUsername = (char*)Marshal::StringToHGlobalAnsi(strUsername).ToPointer();//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
+				char *userFilePath = (char*)Marshal::StringToHGlobalAnsi(strUsername).ToPointer();//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
 				char *enteredPassword = (char*)Marshal::StringToHGlobalAnsi(strPassword).ToPointer();
 				
+				int sizeUsername = strlen(enteredUsername);
 				int sizePassword = strlen(enteredPassword);
 
-				char* encryptedPassword = encrypt(enteredPassword,sizePassword);
+				if((sizeUsername > 0) && (sizePassword > 3))
+				{
+					char* encryptedPassword = encrypt(enteredUsername,enteredPassword);
 
-				ofstream myfile;
-				myfile.open (enteredUsername);
-				myfile << encryptedPassword;
-				myfile.close();
+					ofstream myfile;
+					myfile.open (userFilePath);
+					myfile << encryptedPassword;
+					myfile.close();
+					popup("Success", "New user registered.");
+					this->Close();
+				}
+				else
+				{
+					popup("3P1C FA1L L0LZ", "Username must contain at least one character.\nPassword must contain at least 4 characters.");
+				}
 			}
 };
 }
