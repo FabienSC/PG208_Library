@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.ico" />
+    <None Include="Article.datasource" />
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -105,7 +106,7 @@
     <ClInclude Include="Book.h" />
     <ClInclude Include="CD.h" />
     <ClInclude Include="cipher.h" />
-    <ClInclude Include="FormHome.h">
+    <ClInclude Include="FormHomeAdmin.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="FormLogOn.h">
@@ -122,8 +123,8 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FormHome.resx">
-      <DependentUpon>FormHome.h</DependentUpon>
+    <EmbeddedResource Include="FormHomeAdmin.resx">
+      <DependentUpon>FormHomeAdmin.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogOn.resX">
       <DependentUpon>FormLogOn.h</DependentUpon>

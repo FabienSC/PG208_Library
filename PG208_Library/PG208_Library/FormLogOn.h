@@ -1,7 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "FormNewUser.h"
-#include "FormHome.h"
+#include "FormHomeAdmin.h"
 
 
 namespace PG208_Library {
@@ -53,6 +53,7 @@ namespace PG208_Library {
 	private: System::Windows::Forms::TextBox^  textBoxPassword;
 	private: System::Windows::Forms::LinkLabel^  linkLabelNewUser;
 	private: System::Windows::Forms::LinkLabel^  linkLabelForgotPassword;
+	private: System::Windows::Forms::Button^  buttonExit;
 
 
 
@@ -77,17 +78,19 @@ namespace PG208_Library {
 			this->textBoxPassword = (gcnew System::Windows::Forms::TextBox());
 			this->linkLabelNewUser = (gcnew System::Windows::Forms::LinkLabel());
 			this->linkLabelForgotPassword = (gcnew System::Windows::Forms::LinkLabel());
+			this->buttonExit = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// buttonRegister
 			// 
 			this->buttonRegister->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->buttonRegister->BackColor = System::Drawing::SystemColors::ButtonFace;
 			this->buttonRegister->Location = System::Drawing::Point(108, 143);
 			this->buttonRegister->Name = L"buttonRegister";
 			this->buttonRegister->Size = System::Drawing::Size(75, 29);
 			this->buttonRegister->TabIndex = 0;
 			this->buttonRegister->Text = L"Log on";
-			this->buttonRegister->UseVisualStyleBackColor = true;
+			this->buttonRegister->UseVisualStyleBackColor = false;
 			this->buttonRegister->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
 			// 
 			// textBoxUsername
@@ -155,12 +158,25 @@ namespace PG208_Library {
 			this->linkLabelForgotPassword->Text = L"Forgot Password\?";
 			this->linkLabelForgotPassword->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &Form1::linkLabelForgotPassword_LinkClicked);
 			// 
+			// buttonExit
+			// 
+			this->buttonExit->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->buttonExit->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->buttonExit->Location = System::Drawing::Point(245, 143);
+			this->buttonExit->Name = L"buttonExit";
+			this->buttonExit->Size = System::Drawing::Size(55, 29);
+			this->buttonExit->TabIndex = 7;
+			this->buttonExit->Text = L"Exit";
+			this->buttonExit->UseVisualStyleBackColor = false;
+			this->buttonExit->Click += gcnew System::EventHandler(this, &Form1::buttonExit_Click);
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveBorder;
 			this->ClientSize = System::Drawing::Size(332, 203);
+			this->Controls->Add(this->buttonExit);
 			this->Controls->Add(this->linkLabelForgotPassword);
 			this->Controls->Add(this->linkLabelNewUser);
 			this->Controls->Add(this->labelPassword);
@@ -199,7 +215,7 @@ namespace PG208_Library {
 			{
 				popup("Login Successful", "Welcome!");
 				this->Hide();
-				FormHome ^ F3 = gcnew FormHome(enteredUsername); //FormHome defined in FormHome.h
+				FormHomeAdmin ^ F3 = gcnew FormHomeAdmin(enteredUsername); //FormHomeAdmin defined in FormHomeAdmin.h
 				F3->ShowDialog();
 				this->Show();
 			}
@@ -215,6 +231,10 @@ private: System::Void linkLabelNewUser_LinkClicked(System::Object^  sender, Syst
 		 {//clicked on "New User" link
 			FormNewUser ^ F2 = gcnew FormNewUser(); //FormNewUser defined in FormNewUser.h
 			F2->ShowDialog();
+		 }
+private: System::Void buttonExit_Click(System::Object^  sender, System::EventArgs^  e)
+		 {
+			 this->Close();
 		 }
 };
 }

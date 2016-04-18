@@ -13,11 +13,17 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="DataSources">
+      <UniqueIdentifier>{fdb0b956-7281-4c85-9607-9fc7552e7b67}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
     <None Include="app.ico">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Article.datasource">
+      <Filter>DataSources</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -80,7 +86,7 @@
     <ClInclude Include="popups.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FormHome.h">
+    <ClInclude Include="FormHomeAdmin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -94,6 +100,9 @@
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="FormNewUser.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHomeAdmin.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>
