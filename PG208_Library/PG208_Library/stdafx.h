@@ -10,3 +10,4 @@
 #include "popups.h"
 
 // TODO: reference additional headers your program requires here
+#define BASE_BOOK_ID 1000

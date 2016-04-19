@@ -1,0 +1,5 @@
+3
+0
+
+//first line is number of books
+//second line is number of CDs
