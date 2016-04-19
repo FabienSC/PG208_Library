@@ -18,7 +18,10 @@ public:
 
     int 		getPages();
     void 		setPages(int newPages);
-    
+
+    std::string getIsMagazine();
+    void 		setIsMagazine(bool newIsMagazine);
+
     void 		getData();
 
 //title, author, publisher, editor, number of pages
@@ -27,6 +30,7 @@ private:
     std::string _author;
     std::string _publisher;
     int 		_pages;
+	bool		_isMagazine;
 };
 
 #endif // paperCopy_H

@@ -22,8 +22,8 @@ public:
     std::string getMainActor();
     void 		setMainActor(std::string newMainActor);
 
-	std::string getSupport();
-    void 		setSupport(std::string newSupport);
+	std::string getIsDVD();
+    void 		setIsDVD(bool newIsDVD);
 
 
     int 		getLength();
@@ -38,7 +38,7 @@ private:
     std::string _director;
     std::string _producer;
     std::string _mainActor;
-    std::string _support;
+    bool		_isDVD;
     int 		_ageLimit;
     int 		_length;
 };

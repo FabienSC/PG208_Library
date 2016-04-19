@@ -13,6 +13,7 @@ paperCopy::paperCopy()
     _author = "NA";
     _publisher = "NA";
     _pages = 0;
+	_isMagazine = 0;
 }
 
 paperCopy::~paperCopy()
@@ -40,6 +41,17 @@ int paperCopy::getPages()
 void paperCopy::setPages(int newPages)
 {_pages = newPages;}
 
+
+string paperCopy::getIsMagazine()
+{if (_isMagazine)
+	return"Magazine";
+else
+	return"Book";}
+
+void paperCopy::setIsMagazine(bool newIsMagazine)
+{_isMagazine = newIsMagazine;}
+
+
 void paperCopy::getData()
 {
 	getGeneralData();
@@ -47,6 +59,7 @@ void paperCopy::getData()
 	cout << "Author: " << getAuthor() << endl;
 	cout << "Publisher: " << getPublisher() << endl;
 	cout << "Pages: " << getPages() << endl;
+	cout << "Type: " << getIsMagazine() << endl;
 		
 	cout << "----------------------------------------" << endl;
 }

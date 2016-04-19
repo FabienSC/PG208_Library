@@ -14,17 +14,15 @@ video::video()
     _director = "NA";
     _producer = "NA";
     _mainActor = "NA";
-    _support = "NA";
+    _isDVD = "NA";
     _ageLimit = 0;
     _length = 0;
-
+	_isDVD = 1;
 }
-
 
 video::~video()
 {
 }
-
 
 std::string video::getDirector()
 {return _director;}
@@ -47,11 +45,14 @@ void video::setMainActor(std::string newMainActor)
 {_mainActor = newMainActor;}
 
 
-std::string video::getSupport()
-{return _support;}
+std::string video::getIsDVD()
+{if(_isDVD)
+	return "DVD";
+else
+	return "VHS";}
 
-void video::setSupport(std::string newSupport)
-{_support = newSupport;}
+void video::setIsDVD(bool newIsDVD)
+{_isDVD = newIsDVD;}
 
 
 int video::getLength()
@@ -77,7 +78,7 @@ void video::getData()
 	cout << "Main Actor: " << getMainActor() << endl;
 	cout << "Length: " << getLength() << endl;
 	cout << "Age Limit: " << getAgeLimit() << endl;
-	cout << "Support: " << getSupport() << endl;
+	cout << "IsDVD: " << getIsDVD() << endl;
 
 	cout << "----------------------------------------" << endl;
 }

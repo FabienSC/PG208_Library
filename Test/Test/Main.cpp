@@ -6,7 +6,7 @@ using namespace std; //ALEX COMMENTS FOR ALL NIGGAS AVAILABLE AT THE AIRPORT BEC
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	Book myArt;
+	paperCopy myArt;
     
     myArt.setID(5);
     cout << myArt.getID() << endl;
