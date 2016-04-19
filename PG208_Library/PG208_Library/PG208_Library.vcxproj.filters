@@ -39,9 +39,6 @@
     <ClCompile Include="Article.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Book.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CD.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -60,7 +57,14 @@
     <ClCompile Include="FormNewArticle.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Library.cpp">
+=======
+    <ClCompile Include="video.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PaperCopy.cpp">
+>>>>>>> Origin/master
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -72,9 +76,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Article.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Book.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CD.h">
@@ -98,7 +99,14 @@
     <ClInclude Include="FormNewArticle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Library.h">
+=======
+    <ClInclude Include="video.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PaperCopy.h">
+>>>>>>> Origin/master
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
