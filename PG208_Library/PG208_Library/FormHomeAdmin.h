@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "FormNewArticle.h"
+#include "Library.h"
 
 namespace PG208_Library {
 
@@ -43,8 +44,8 @@ namespace PG208_Library {
 	private: System::Windows::Forms::LinkLabel^  linkLabelLogOut;
 	private: System::Windows::Forms::Label^  labelUsername;
 	private: System::Windows::Forms::ListBox^  listBoxDisplay;
-	private: System::Windows::Forms::CheckBox^  checkBoxBooks;
-	private: System::Windows::Forms::CheckBox^  checkBoxCDs;
+
+
 	private: System::Windows::Forms::Button^  buttonSelect;
 	private: System::Windows::Forms::Button^  buttonNewItem;
 	private: System::Windows::Forms::Button^  buttonDelete;
@@ -56,6 +57,9 @@ namespace PG208_Library {
 	private: System::Windows::Forms::Label^  labelNumberOfItemsLabel;
 	private: System::Windows::Forms::Label^  labelNumberOfItems;
 	private: System::Windows::Forms::Label^  labelArticleID;
+	private: System::Windows::Forms::RadioButton^  radioButtonAll;
+	private: System::Windows::Forms::RadioButton^  radioButtonBooks;
+	private: System::Windows::Forms::RadioButton^  radioButtonCDs;
 
 
 
@@ -80,8 +84,6 @@ namespace PG208_Library {
 			this->linkLabelLogOut = (gcnew System::Windows::Forms::LinkLabel());
 			this->labelUsername = (gcnew System::Windows::Forms::Label());
 			this->listBoxDisplay = (gcnew System::Windows::Forms::ListBox());
-			this->checkBoxBooks = (gcnew System::Windows::Forms::CheckBox());
-			this->checkBoxCDs = (gcnew System::Windows::Forms::CheckBox());
 			this->buttonSelect = (gcnew System::Windows::Forms::Button());
 			this->buttonNewItem = (gcnew System::Windows::Forms::Button());
 			this->buttonDelete = (gcnew System::Windows::Forms::Button());
@@ -93,6 +95,9 @@ namespace PG208_Library {
 			this->labelNumberOfItemsLabel = (gcnew System::Windows::Forms::Label());
 			this->labelNumberOfItems = (gcnew System::Windows::Forms::Label());
 			this->labelArticleID = (gcnew System::Windows::Forms::Label());
+			this->radioButtonAll = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButtonBooks = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButtonCDs = (gcnew System::Windows::Forms::RadioButton());
 			this->SuspendLayout();
 			// 
 			// labelWelcome
@@ -118,9 +123,11 @@ namespace PG208_Library {
 			// labelUsername
 			// 
 			this->labelUsername->AutoSize = true;
+			this->labelUsername->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(0)));
 			this->labelUsername->Location = System::Drawing::Point(85, 9);
 			this->labelUsername->Name = L"labelUsername";
-			this->labelUsername->Size = System::Drawing::Size(46, 17);
+			this->labelUsername->Size = System::Drawing::Size(50, 17);
 			this->labelUsername->TabIndex = 2;
 			this->labelUsername->Text = L"USER";
 			// 
@@ -132,27 +139,6 @@ namespace PG208_Library {
 			this->listBoxDisplay->Name = L"listBoxDisplay";
 			this->listBoxDisplay->Size = System::Drawing::Size(188, 260);
 			this->listBoxDisplay->TabIndex = 4;
-			// 
-			// checkBoxBooks
-			// 
-			this->checkBoxBooks->AutoSize = true;
-			this->checkBoxBooks->Location = System::Drawing::Point(15, 153);
-			this->checkBoxBooks->Name = L"checkBoxBooks";
-			this->checkBoxBooks->Size = System::Drawing::Size(69, 21);
-			this->checkBoxBooks->TabIndex = 5;
-			this->checkBoxBooks->Text = L"Books";
-			this->checkBoxBooks->UseVisualStyleBackColor = true;
-			this->checkBoxBooks->CheckedChanged += gcnew System::EventHandler(this, &FormHomeAdmin::checkBoxBooks_CheckedChanged);
-			// 
-			// checkBoxCDs
-			// 
-			this->checkBoxCDs->AutoSize = true;
-			this->checkBoxCDs->Location = System::Drawing::Point(15, 180);
-			this->checkBoxCDs->Name = L"checkBoxCDs";
-			this->checkBoxCDs->Size = System::Drawing::Size(56, 21);
-			this->checkBoxCDs->TabIndex = 6;
-			this->checkBoxCDs->Text = L"CDs";
-			this->checkBoxCDs->UseVisualStyleBackColor = true;
 			// 
 			// buttonSelect
 			// 
@@ -253,11 +239,47 @@ namespace PG208_Library {
 			this->labelArticleID->TabIndex = 17;
 			this->labelArticleID->Text = L"Search by ID:";
 			// 
+			// radioButtonAll
+			// 
+			this->radioButtonAll->AutoSize = true;
+			this->radioButtonAll->Checked = true;
+			this->radioButtonAll->Location = System::Drawing::Point(15, 153);
+			this->radioButtonAll->Name = L"radioButtonAll";
+			this->radioButtonAll->Size = System::Drawing::Size(44, 21);
+			this->radioButtonAll->TabIndex = 18;
+			this->radioButtonAll->TabStop = true;
+			this->radioButtonAll->Text = L"All";
+			this->radioButtonAll->UseVisualStyleBackColor = true;
+			// 
+			// radioButtonBooks
+			// 
+			this->radioButtonBooks->AutoSize = true;
+			this->radioButtonBooks->Location = System::Drawing::Point(15, 180);
+			this->radioButtonBooks->Name = L"radioButtonBooks";
+			this->radioButtonBooks->Size = System::Drawing::Size(68, 21);
+			this->radioButtonBooks->TabIndex = 19;
+			this->radioButtonBooks->Text = L"Books";
+			this->radioButtonBooks->UseVisualStyleBackColor = true;
+			this->radioButtonBooks->CheckedChanged += gcnew System::EventHandler(this, &FormHomeAdmin::radioButtonBooks_CheckedChanged);
+			// 
+			// radioButtonCDs
+			// 
+			this->radioButtonCDs->AutoSize = true;
+			this->radioButtonCDs->Location = System::Drawing::Point(15, 207);
+			this->radioButtonCDs->Name = L"radioButtonCDs";
+			this->radioButtonCDs->Size = System::Drawing::Size(55, 21);
+			this->radioButtonCDs->TabIndex = 20;
+			this->radioButtonCDs->Text = L"CDs";
+			this->radioButtonCDs->UseVisualStyleBackColor = true;
+			// 
 			// FormHomeAdmin
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(726, 482);
+			this->Controls->Add(this->radioButtonCDs);
+			this->Controls->Add(this->radioButtonBooks);
+			this->Controls->Add(this->radioButtonAll);
 			this->Controls->Add(this->labelArticleID);
 			this->Controls->Add(this->labelNumberOfItems);
 			this->Controls->Add(this->labelNumberOfItemsLabel);
@@ -267,8 +289,6 @@ namespace PG208_Library {
 			this->Controls->Add(this->buttonDelete);
 			this->Controls->Add(this->buttonNewItem);
 			this->Controls->Add(this->buttonSelect);
-			this->Controls->Add(this->checkBoxCDs);
-			this->Controls->Add(this->checkBoxBooks);
 			this->Controls->Add(this->listBoxDisplay);
 			this->Controls->Add(this->labelUsername);
 			this->Controls->Add(this->linkLabelLogOut);
@@ -287,21 +307,37 @@ namespace PG208_Library {
 			 }
 	private: System::Void checkBoxBooks_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
-				 int fileID = 1000;
-				 String ^ strIDFilePath = "Articles/Books/" + fileID + ".txt";//change username to filepath
-				 char *filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
+				 
 
-				 ifstream input(filePath);
-				 string line;
-				 getline( input, line );
-				 //char* title1 = (char*)line.c_str();
-
-				 this->listBoxDisplay->Items->Add(gcnew String((char*)line.c_str()));
 			 }
 	private: System::Void buttonNewItem_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 FormNewArticle ^ F3 = gcnew FormNewArticle();
 				 F3->ShowDialog();
 			 }
-	};
+	private: System::Void radioButtonBooks_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 int fileID = 1000;
+				 String ^ strIDFilePath = "Articles/Books/" + fileID + ".txt";//change username to filepath
+				 char *filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
+				 ifstream myfile;
+				 string line;
+
+				 Library myLibrary;
+				 int countBooks = 0;
+				 for(int i = 0; countBooks < myLibrary.getNumberOfBooks(); i++)
+				 {
+					 fileID = BASE_BOOK_ID + i;//update file ID
+					 strIDFilePath = "Articles/Books/" + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
+					 filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
+					 myfile.open(filePath);//open file
+					 if(getline( myfile, line ))//get 1st line and check if line exists
+					 {
+						 this->listBoxDisplay->Items->Add(gcnew String((char*)line.c_str()));
+						 countBooks++;
+					 }
+					 myfile.close();//close file so it can be opened again with a new path
+				 }
+			 }
+};
 }

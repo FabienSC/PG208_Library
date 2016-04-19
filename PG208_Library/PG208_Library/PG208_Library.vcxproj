@@ -101,6 +101,7 @@
     <ClCompile Include="FormHome.cpp" />
     <ClCompile Include="FormNewArticle.cpp" />
     <ClCompile Include="FormNewUser.cpp" />
+    <ClCompile Include="Library.cpp" />
     <ClCompile Include="PG208_Library.cpp" />
     <ClCompile Include="popups.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -125,6 +126,7 @@
     <ClInclude Include="FormNewUser.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Library.h" />
     <ClInclude Include="popups.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
