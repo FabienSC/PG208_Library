@@ -8,6 +8,8 @@ namespace PG208_Library {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Runtime::InteropServices;
+	using namespace std;
 
 	/// <summary>
 	/// Summary for FormNewArticle
@@ -224,12 +226,20 @@ namespace PG208_Library {
 #pragma endregion
 	private: System::Void buttonCreate_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
-				 bool aButtonIsChecked = (this->radioButtonBook->Checked = true) || (this->radioButtonCD->Checked = true);
+				 bool aButtonIsChecked = (this->radioButtonBook->Checked == true) || (this->radioButtonCD->Checked == true);
+
+				 int fileID = 1000;
+				 String ^ strIDFilePath = fileID + ".txt";//change username to filepath
+				 char *filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
+
+
+				 ifstream input(filePath);
+
 				 if(aButtonIsChecked)
 				 {
-					//
+					 this->Close();
 				 }
 
 			 }
-};
+	};
 }

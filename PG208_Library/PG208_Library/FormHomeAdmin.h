@@ -285,7 +285,18 @@ namespace PG208_Library {
 			 {
 				 this->Close();
 			 }
-	private: System::Void checkBoxBooks_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void checkBoxBooks_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 int fileID = 1000;
+				 String ^ strIDFilePath = "Articles/Books/" + fileID + ".txt";//change username to filepath
+				 char *filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
+
+				 ifstream input(filePath);
+				 string line;
+				 getline( input, line );
+				 //char* title1 = (char*)line.c_str();
+
+				 this->listBoxDisplay->Items->Add(gcnew String((char*)line.c_str()));
 			 }
 	private: System::Void buttonNewItem_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
