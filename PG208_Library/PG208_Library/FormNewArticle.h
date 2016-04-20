@@ -1,4 +1,5 @@
 #pragma once
+#include "stdafx.h"
 
 namespace PG208_Library {
 
@@ -58,6 +59,7 @@ namespace PG208_Library {
 	private:
 		/// <summary>
 		/// Required designer variable.
+		Article * newArticle;
 		/// </summary>
 		System::ComponentModel::Container ^components;
 

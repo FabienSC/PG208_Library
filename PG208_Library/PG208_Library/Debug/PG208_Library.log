@@ -1,4 +1,4 @@
-﻿Build started 20-Apr-16 2:56:13 PM.
+﻿Build started 20-Apr-16 4:44:01 PM.
      1>Project "C:\Users\Fabien\Documents\Git\PG208_Library\PG208_Library\PG208_Library.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\PG208_Library.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -11,12 +11,26 @@
        CoreResGen:
          No resources are out of date with respect to their source files. Skipping resource generation.
        ResourceCompile:
-         All outputs are up-to-date.
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Debug\app.res" app.rc 
        Link:
-         All outputs are up-to-date.
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Fabien\Documents\Git\PG208_Library\Debug\PG208_Library.exe" /INCREMENTAL /NOLOGO /ASSEMBLYRESOURCE:Debug\PG208_Library.FormHomeAdmin.resources /ASSEMBLYRESOURCE:Debug\PG208_Library.FormLogOn.resources /ASSEMBLYRESOURCE:Debug\PG208_Library.FormNewArticle.resources /ASSEMBLYRESOURCE:Debug\PG208_Library.FormNewUser.resources /MANIFEST /ManifestFile:"Debug\PG208_Library.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Fabien\Documents\Git\PG208_Library\Debug\PG208_Library.pdb" /ASSEMBLYDEBUG /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"main" /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\app.res
+         Debug\Article.obj
+         Debug\AssemblyInfo.obj
+         Debug\PaperCopy.obj
+         Debug\CD.obj
+         Debug\cipher.obj
+         Debug\video.obj
+         Debug\FormHome.obj
+         Debug\FormNewArticle.obj
+         Debug\FormNewUser.obj
+         Debug\Library.obj
+         Debug\PG208_Library.obj
+         Debug\popups.obj
+         Debug\stdafx.obj
+         "Debug\.NETFramework,Version=v4.0.AssemblyAttributes.obj"
          PG208_Library.vcxproj -> C:\Users\Fabien\Documents\Git\PG208_Library\Debug\PG208_Library.exe
-       MetaGen:
-       Skipping target "MetaGen" because all output files are up-to-date with respect to the input files.
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\Fabien\Documents\Git\PG208_Library\Debug\PG208_Library.exe;#1" /manifest Debug\PG208_Library.exe.intermediate.manifest
        FinalizeBuildStatus:
          Deleting file "Debug\PG208_Library.unsuccessfulbuild".
          Touching "Debug\PG208_Library.lastbuildstate".
@@ -24,4 +38,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.21
+Time Elapsed 00:00:01.79

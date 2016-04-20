@@ -1,80 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="DataSources">
-      <UniqueIdentifier>{fdb0b956-7281-4c85-9607-9fc7552e7b67}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ReadMe.txt" />
-    <None Include="app.ico">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Article.datasource">
-      <Filter>DataSources</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="PG208_Library.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AssemblyInfo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Article.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Code</Filter>
     </ClCompile>
     <ClCompile Include="CD.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Code</Filter>
     </ClCompile>
     <ClCompile Include="cipher.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Code</Filter>
     </ClCompile>
-    <ClCompile Include="FormNewUser.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="popups.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FormHome.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FormNewArticle.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="Library.cpp">
-=======
-    <ClCompile Include="video.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Code</Filter>
     </ClCompile>
     <ClCompile Include="PaperCopy.cpp">
->>>>>>> Origin/master
-      <Filter>Source Files</Filter>
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="PG208_Library.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="popups.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="video.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="FormHome.cpp">
+      <Filter>Other Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="AssemblyInfo.cpp">
+      <Filter>Other Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="FormNewArticle.cpp">
+      <Filter>Other Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Other Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="FormNewUser.cpp">
+      <Filter>Other Stuff</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="FormHomeAdmin.h" />
+    <ClInclude Include="FormLogOn.h" />
+    <ClInclude Include="FormNewArticle.h" />
+    <ClInclude Include="FormNewUser.h" />
     <ClInclude Include="Article.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -84,49 +55,56 @@
     <ClInclude Include="cipher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FormNewUser.h">
+    <ClInclude Include="Library.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FormLogOn.h">
+    <ClInclude Include="PaperCopy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="popups.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FormHomeAdmin.h">
+    <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FormNewArticle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="Library.h">
-=======
     <ClInclude Include="video.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PaperCopy.h">
->>>>>>> Origin/master
-      <Filter>Header Files</Filter>
+    <ClInclude Include="resource.h">
+      <Filter>Other Stuff</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="app.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
+    <EmbeddedResource Include="FormHomeAdmin.resx" />
+    <EmbeddedResource Include="FormLogOn.resX" />
+    <EmbeddedResource Include="FormNewArticle.resx" />
+    <EmbeddedResource Include="FormNewUser.resx" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FormLogOn.resX">
-      <Filter>Resource Files</Filter>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormNewUser.resx">
-      <Filter>Resource Files</Filter>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormHomeAdmin.resx">
-      <Filter>Resource Files</Filter>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormNewArticle.resx">
-      <Filter>Resource Files</Filter>
-    </EmbeddedResource>
+    <None Include="app.ico">
+      <Filter>Other Stuff</Filter>
+    </None>
+    <None Include="Article.datasource">
+      <Filter>Other Stuff</Filter>
+    </None>
+    <None Include="ReadMe.txt">
+      <Filter>Other Stuff</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{74b786dd-ded6-463a-a0b1-dbebb393cbb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code">
+      <UniqueIdentifier>{6e3bb9b6-f64f-4874-a8ee-740c9ee7c7be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Other Stuff">
+      <UniqueIdentifier>{ff2a771c-b562-4c41-90cc-f2772fd8997f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="app.rc">
+      <Filter>Other Stuff</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
