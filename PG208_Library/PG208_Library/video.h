@@ -24,6 +24,7 @@ public:
 
 	std::string getIsDVD();
     void 		setIsDVD(bool newIsDVD);
+    void 		setIsDVD(std::string newIsDVD);
 
 
     int 		getLength();

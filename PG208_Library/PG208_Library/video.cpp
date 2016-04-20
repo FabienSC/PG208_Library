@@ -24,28 +24,28 @@ video::~video()
 {
 }
 
-std::string video::getDirector()
+string video::getDirector()
 {return _director;}
 
-void video::setDirector(std::string newDirector)
+void video::setDirector(string newDirector)
 {_director = newDirector;}
 
 
-std::string video::getProducer()
+string video::getProducer()
 {return _producer;}
 
-void video::setProducer(std::string newProducer)
+void video::setProducer(string newProducer)
 {_producer = newProducer;}
 
 
-std::string video::getMainActor()
+string video::getMainActor()
 {return _mainActor;}
 
-void video::setMainActor(std::string newMainActor)
+void video::setMainActor(string newMainActor)
 {_mainActor = newMainActor;}
 
 
-std::string video::getIsDVD()
+string video::getIsDVD()
 {if(_isDVD)
 	return "DVD";
 else
@@ -53,6 +53,17 @@ else
 
 void video::setIsDVD(bool newIsDVD)
 {_isDVD = newIsDVD;}
+
+void video::setIsDVD(string newIsDVD)
+{if (newIsDVD == "DVD")
+	_isDVD = 1;
+else if (newIsDVD == "VHS")
+	_isDVD = 0;
+else 
+	cout << "error, please specify type DVD or VHS" << endl; 
+}
+
+
 
 
 int video::getLength()
@@ -78,7 +89,7 @@ void video::getData()
 	cout << "Main Actor: " << getMainActor() << endl;
 	cout << "Length: " << getLength() << endl;
 	cout << "Age Limit: " << getAgeLimit() << endl;
-	cout << "IsDVD: " << getIsDVD() << endl;
+	cout << "Support Type: " << getIsDVD() << endl;
 
 	cout << "----------------------------------------" << endl;
 }

@@ -24,14 +24,14 @@ paperCopy::~paperCopy()
 string paperCopy::getAuthor()
 {return _author;}
 
-void paperCopy::setAuthor(std::string newAuthor)
+void paperCopy::setAuthor(string newAuthor)
 {_author = newAuthor;}
 
 
-std::string paperCopy::getPublisher()
+string paperCopy::getPublisher()
 {return _publisher;}
 
-void paperCopy::setPublisher(std::string newPublisher)
+void paperCopy::setPublisher(string newPublisher)
 {_publisher = newPublisher;}
 
 
@@ -46,10 +46,20 @@ string paperCopy::getIsMagazine()
 {if (_isMagazine)
 	return"Magazine";
 else
-	return"Book";}
+	return"Book";
+}
 
 void paperCopy::setIsMagazine(bool newIsMagazine)
 {_isMagazine = newIsMagazine;}
+
+void paperCopy::setIsMagazine(string newIsMagazine)
+{if (newIsMagazine == "Magazine")
+	_isMagazine = 1;
+else if (newIsMagazine == "Book")
+	_isMagazine = 0;
+else
+	cout << "error, please specify type Magazine or Book" << endl;
+}
 
 
 void paperCopy::getData()

@@ -6,6 +6,8 @@ using namespace std; //ALEX COMMENTS FOR ALL NIGGAS AVAILABLE AT THE AIRPORT BEC
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	const char* LOAD_FILE = "loadFile.txt";
+	const char* SAVE_FILE = "saveFile.txt";
 	paperCopy myArt;
     
     myArt.setID(5);
@@ -23,7 +25,15 @@ int _tmain(int argc, _TCHAR* argv[])
     
     myArt.getData();
 
-	while(1)
+	//save this info
+	myArt.saveToFile(SAVE_FILE);
+	
+	//read data from file
+	myArt.loadFromFile(LOAD_FILE);
+
+	myArt.getData();
+
+	while(1) //so terminal stays displayed
 		;
     return 0; 
 }

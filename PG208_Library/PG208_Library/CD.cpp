@@ -23,24 +23,24 @@ CD::~CD()
 }
 
 
-std::string CD::getArtist()
+string CD::getArtist()
 {return _artist;}
 
-void CD::setArtist(std::string newArtist)
+void CD::setArtist(string newArtist)
 {_artist = newArtist;}
 
 
-std::string CD::getRecordCompany()
+string CD::getRecordCompany()
 {return _recordCompany;}
 
-void CD::setRecordCompany(std::string newRecordCompany)
+void CD::setRecordCompany(string newRecordCompany)
 {_recordCompany = newRecordCompany;}
 
 
-std::string CD::getMusicStyle()
+string CD::getMusicStyle()
 {return _musicStyle;}
 
-void CD::setMusicStyle(std::string newMusicStyle)
+void CD::setMusicStyle(string newMusicStyle)
 {_musicStyle = newMusicStyle;}
 
 

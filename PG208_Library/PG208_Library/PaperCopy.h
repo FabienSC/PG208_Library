@@ -21,6 +21,7 @@ public:
 
     std::string getIsMagazine();
     void 		setIsMagazine(bool newIsMagazine);
+	void 		setIsMagazine(std::string newIsMagazine);
 
     void 		getData();
 
