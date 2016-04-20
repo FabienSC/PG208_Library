@@ -316,26 +316,29 @@ namespace PG208_Library {
 			 }
 	private: System::Void radioButtonBooks_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
-				 int fileID;
-				 String ^ strIDFilePath;
-				 char *filePath;
-				 ifstream myfile;
-				 string line;
-
-				 Library myLibrary;
-				 int countBooks = 0;
-				 for(int i = 0; countBooks < myLibrary.getNumberOfBooks(); i++)
+				 if(this->radioButtonBooks->Checked)//if button is checked
 				 {
-					 fileID = BASE_BOOK_ID + i;//update file ID
-					 strIDFilePath = "Articles/Books/" + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
-					 filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
-					 myfile.open(filePath);//open file
-					 if(getline(myfile, line))//get 1st line and check if line exists
+					 int fileID;
+					 String ^ strIDFilePath;
+					 char *filePath;
+					 ifstream myfile;
+					 string line;
+
+					 Library myLibrary;
+					 int countBooks = 0;
+					 for(int i = 0; countBooks < myLibrary.getNumberOfBooks(); i++)
 					 {
-						 this->listBoxDisplay->Items->Add(gcnew String((char*)line.c_str()));
-						 countBooks++;
+						 fileID = BASE_BOOK_ID + i;//update file ID
+						 strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
+						 filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
+						 myfile.open(filePath);//open file
+						 if(getline(myfile, line))//get 1st line and check if line exists
+						 {
+							 this->listBoxDisplay->Items->Add(gcnew String((char*)line.c_str()));
+							 countBooks++;
+						 }
+						 myfile.close();//close file so it can be opened again with a new path
 					 }
-					 myfile.close();//close file so it can be opened again with a new path
 				 }
 			 }
 };

@@ -51,6 +51,8 @@ namespace PG208_Library {
 
 	private: System::Windows::Forms::TextBox^  textBox3;
 	private: System::Windows::Forms::Label^  label3;
+
+
 	private: System::Windows::Forms::TextBox^  textBox4;
 	private: System::Windows::Forms::Label^  label4;
 	private: System::Windows::Forms::TextBox^  textBox5;
@@ -60,7 +62,9 @@ namespace PG208_Library {
 		/// <summary>
 		/// Required designer variable.
 		Article * newArticle;
-		/// </summary>
+	private: System::Windows::Forms::MonthCalendar^  monthCalendar;
+	private: System::Windows::Forms::Label^  labelReleaseDate;
+			 /// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
@@ -83,13 +87,15 @@ namespace PG208_Library {
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
 			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->monthCalendar = (gcnew System::Windows::Forms::MonthCalendar());
+			this->labelReleaseDate = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// radioButtonBook
 			// 
 			this->radioButtonBook->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->radioButtonBook->AutoSize = true;
-			this->radioButtonBook->Location = System::Drawing::Point(197, 37);
+			this->radioButtonBook->Location = System::Drawing::Point(306, 37);
 			this->radioButtonBook->Name = L"radioButtonBook";
 			this->radioButtonBook->Size = System::Drawing::Size(61, 21);
 			this->radioButtonBook->TabIndex = 0;
@@ -101,7 +107,7 @@ namespace PG208_Library {
 			// 
 			this->radioButtonCD->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->radioButtonCD->AutoSize = true;
-			this->radioButtonCD->Location = System::Drawing::Point(264, 37);
+			this->radioButtonCD->Location = System::Drawing::Point(373, 37);
 			this->radioButtonCD->Name = L"radioButtonCD";
 			this->radioButtonCD->Size = System::Drawing::Size(48, 21);
 			this->radioButtonCD->TabIndex = 1;
@@ -112,7 +118,7 @@ namespace PG208_Library {
 			// buttonCreate
 			// 
 			this->buttonCreate->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
-			this->buttonCreate->Location = System::Drawing::Point(219, 402);
+			this->buttonCreate->Location = System::Drawing::Point(328, 458);
 			this->buttonCreate->Name = L"buttonCreate";
 			this->buttonCreate->Size = System::Drawing::Size(80, 30);
 			this->buttonCreate->TabIndex = 2;
@@ -144,7 +150,6 @@ namespace PG208_Library {
 			this->textBoxTitle->Name = L"textBoxTitle";
 			this->textBoxTitle->Size = System::Drawing::Size(291, 22);
 			this->textBoxTitle->TabIndex = 6;
-			this->textBoxTitle->Text = L"a";
 			// 
 			// labelTitle
 			// 
@@ -203,11 +208,28 @@ namespace PG208_Library {
 			this->label5->TabIndex = 11;
 			this->label5->Text = L"label5";
 			// 
+			// monthCalendar
+			// 
+			this->monthCalendar->Location = System::Drawing::Point(447, 90);
+			this->monthCalendar->Name = L"monthCalendar";
+			this->monthCalendar->TabIndex = 13;
+			// 
+			// labelReleaseDate
+			// 
+			this->labelReleaseDate->AutoSize = true;
+			this->labelReleaseDate->Location = System::Drawing::Point(483, 64);
+			this->labelReleaseDate->Name = L"labelReleaseDate";
+			this->labelReleaseDate->Size = System::Drawing::Size(90, 17);
+			this->labelReleaseDate->TabIndex = 14;
+			this->labelReleaseDate->Text = L"Relese Date:";
+			// 
 			// FormNewArticle
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(521, 459);
+			this->ClientSize = System::Drawing::Size(738, 515);
+			this->Controls->Add(this->labelReleaseDate);
+			this->Controls->Add(this->monthCalendar);
 			this->Controls->Add(this->textBox5);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->textBox4);
@@ -265,7 +287,7 @@ namespace PG208_Library {
 				 for(int i = 0; loopFlag; i++)
 				 {
 					 fileID = BASE_BOOK_ID + i;//update file ID
-					 strIDFilePath = "Articles/Books/" + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
+					 strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
 					 filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
 					 myfile.open(filePath, ios::in);//open file to write
 					 if(myfile.is_open() == 0)//file doesn't exist
@@ -291,7 +313,7 @@ namespace PG208_Library {
 				 for(int i = 0; loopFlag; i++)
 				 {
 					 fileID = BASE_CD_ID + i;//update file ID
-					 strIDFilePath = "Articles/CDs/" + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
+					 strIDFilePath = FILEPATH_CD + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
 					 filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
 					 myfile.open(filePath, ios::in);//open file to write
 					 if(myfile.is_open() == 0)//file doesn't exist
