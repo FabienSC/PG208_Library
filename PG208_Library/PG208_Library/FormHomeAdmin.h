@@ -1,7 +1,6 @@
 #pragma once
 #include "stdafx.h"
 #include "FormNewArticle.h"
-#include "Library.h"
 
 namespace PG208_Library {
 
@@ -317,9 +316,9 @@ namespace PG208_Library {
 			 }
 	private: System::Void radioButtonBooks_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
-				 int fileID = 1000;
-				 String ^ strIDFilePath = "Articles/Books/" + fileID + ".txt";//change username to filepath
-				 char *filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
+				 int fileID;
+				 String ^ strIDFilePath;
+				 char *filePath;
 				 ifstream myfile;
 				 string line;
 
@@ -331,7 +330,7 @@ namespace PG208_Library {
 					 strIDFilePath = "Articles/Books/" + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
 					 filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
 					 myfile.open(filePath);//open file
-					 if(getline( myfile, line ))//get 1st line and check if line exists
+					 if(getline(myfile, line))//get 1st line and check if line exists
 					 {
 						 this->listBoxDisplay->Items->Add(gcnew String((char*)line.c_str()));
 						 countBooks++;

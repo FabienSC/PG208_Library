@@ -95,6 +95,7 @@ namespace PG208_Library {
 			this->radioButtonBook->TabIndex = 0;
 			this->radioButtonBook->Text = L"Book";
 			this->radioButtonBook->UseVisualStyleBackColor = true;
+			this->radioButtonBook->CheckedChanged += gcnew System::EventHandler(this, &FormNewArticle::radioButtonBook_CheckedChanged);
 			// 
 			// radioButtonCD
 			// 
@@ -106,6 +107,7 @@ namespace PG208_Library {
 			this->radioButtonCD->TabIndex = 1;
 			this->radioButtonCD->Text = L"CD";
 			this->radioButtonCD->UseVisualStyleBackColor = true;
+			this->radioButtonCD->CheckedChanged += gcnew System::EventHandler(this, &FormNewArticle::radioButtonCD_CheckedChanged);
 			// 
 			// buttonCreate
 			// 
@@ -242,6 +244,62 @@ namespace PG208_Library {
 					 this->Close();
 				 }
 
+			 }
+	private: System::Void radioButtonBook_CheckedChanged(System::Object^  sender, System::EventArgs^  e)//automatically sets smallest available ID
+			 {
+				 int fileID;
+				 String ^ strIDFilePath;
+				 char *filePath;
+				 fstream myfile;
+				 string line;
+
+				 bool loopFlag = 1;
+				 for(int i = 0; loopFlag; i++)
+				 {
+					 fileID = BASE_BOOK_ID + i;//update file ID
+					 strIDFilePath = "Articles/Books/" + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
+					 filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
+					 myfile.open(filePath, ios::in);//open file to write
+					 if(myfile.is_open() == 0)//file doesn't exist
+					 {
+						 loopFlag = 0;//exit loop
+					 }
+					 if(fileID == BASE_CD_ID)//all available Book IDs have been used
+					 {
+						 popup("Error","All available IDs are in use. Please burn books to free IDs.");
+						 this->Close();//close form
+					 }
+					 myfile.close();//close file so it can be opened again with a new path
+				 }
+				 this->textBoxID->Text = ""+fileID;//convert int to managed string and write to File ID text box
+			 }
+	private: System::Void radioButtonCD_CheckedChanged(System::Object^  sender, System::EventArgs^  e)//automatically sets smallest available ID
+			 {
+				 int fileID;
+				 String ^ strIDFilePath;
+				 char *filePath;
+				 fstream myfile;
+				 string line;
+
+				 bool loopFlag = 1;
+				 for(int i = 0; loopFlag; i++)
+				 {
+					 fileID = BASE_CD_ID + i;//update file ID
+					 strIDFilePath = "Articles/CDs/" + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
+					 filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
+					 myfile.open(filePath, ios::in);//open file to write
+					 if(myfile.is_open() == 0)//file doesn't exist
+					 {
+						 loopFlag = 0;//exit loop
+					 }
+					 if(fileID == BASE_BOOK_ID)//all available Book IDs have been used//#### change to whatever is after CDs
+					 {
+						 popup("Error","All available IDs are in use. Please burn books to free IDs.");
+						 this->Close();//close form
+					 }
+					 myfile.close();//close file so it can be opened again with a new path
+				 }
+				 this->textBoxID->Text = ""+fileID;//convert int to managed string and write to File ID text box
 			 }
 	};
 }
