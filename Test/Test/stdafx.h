@@ -11,7 +11,7 @@
 #include <iostream>
 
 #include "..\..\PG208_Library\PG208_Library\Article.h"
-#include "..\..\PG208_Library\PG208_Library\Book.h"
-#include "..\..\PG208_Library\PG208_Library\CD.h"
+#include "..\..\PG208_Library\PG208_Library\PaperCopy.h"
+#include "..\..\PG208_Library\PG208_Library\video.h"
 
 // TODO: reference additional headers your program requires here
