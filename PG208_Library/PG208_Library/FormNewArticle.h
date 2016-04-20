@@ -144,6 +144,7 @@ namespace PG208_Library {
 			this->textBoxTitle->Name = L"textBoxTitle";
 			this->textBoxTitle->Size = System::Drawing::Size(291, 22);
 			this->textBoxTitle->TabIndex = 6;
+			this->textBoxTitle->Text = L"a";
 			// 
 			// labelTitle
 			// 
@@ -228,19 +229,26 @@ namespace PG208_Library {
 
 		}
 #pragma endregion
-	private: System::Void buttonCreate_Click(System::Object^  sender, System::EventArgs^  e)
+	private: System::Void buttonCreate_Click(System::Object^  sender, System::EventArgs^  e)//create the new article
 			 {
 				 bool aButtonIsChecked = (this->radioButtonBook->Checked == true) || (this->radioButtonCD->Checked == true);
+				 bool dataIsOK = (this->textBoxTitle->Text->Length != 0);
 
-				 int fileID = 1000;
-				 String ^ strIDFilePath = fileID + ".txt";//change username to filepath
-				 char *filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
+				 String ^ strFilePath;
+				 if(this->radioButtonBook->Checked == true)//new article is a book
+					strFilePath = "Articles/Books/";
+				 else if(this->radioButtonCD->Checked == true)//new article is a CD
+					strFilePath = "Articles/CDs/";
 
-
-				 ifstream input(filePath);
-
-				 if(aButtonIsChecked)
+				 if(aButtonIsChecked && dataIsOK)
 				 {
+					 strFilePath = strFilePath + this->textBoxID->Text + ".txt";
+					 char *filePath = (char*)Marshal::StringToHGlobalAnsi(strFilePath).ToPointer();//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
+					 ofstream myfile(filePath);
+
+					 myfile << (char*)Marshal::StringToHGlobalAnsi(this->textBoxTitle->Text).ToPointer();
+					 myfile.close();
+					 
 					 this->Close();
 				 }
 
@@ -261,9 +269,7 @@ namespace PG208_Library {
 					 filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
 					 myfile.open(filePath, ios::in);//open file to write
 					 if(myfile.is_open() == 0)//file doesn't exist
-					 {
 						 loopFlag = 0;//exit loop
-					 }
 					 if(fileID == BASE_CD_ID)//all available Book IDs have been used
 					 {
 						 popup("Error","All available IDs are in use. Please burn books to free IDs.");
@@ -289,9 +295,7 @@ namespace PG208_Library {
 					 filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
 					 myfile.open(filePath, ios::in);//open file to write
 					 if(myfile.is_open() == 0)//file doesn't exist
-					 {
 						 loopFlag = 0;//exit loop
-					 }
 					 if(fileID == BASE_BOOK_ID)//all available Book IDs have been used//#### change to whatever is after CDs
 					 {
 						 popup("Error","All available IDs are in use. Please burn books to free IDs.");
