@@ -1,4 +1,5 @@
 #pragma once
+#include "stdafx.h"
 
 namespace PG208_Library {
 
@@ -50,6 +51,8 @@ namespace PG208_Library {
 
 	private: System::Windows::Forms::TextBox^  textBox3;
 	private: System::Windows::Forms::Label^  label3;
+
+
 	private: System::Windows::Forms::TextBox^  textBox4;
 	private: System::Windows::Forms::Label^  label4;
 	private: System::Windows::Forms::TextBox^  textBox5;
@@ -58,7 +61,10 @@ namespace PG208_Library {
 	private:
 		/// <summary>
 		/// Required designer variable.
-		/// </summary>
+		Article * newArticle;
+	private: System::Windows::Forms::MonthCalendar^  monthCalendar;
+	private: System::Windows::Forms::Label^  labelReleaseDate;
+			 /// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
@@ -81,34 +87,38 @@ namespace PG208_Library {
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
 			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->monthCalendar = (gcnew System::Windows::Forms::MonthCalendar());
+			this->labelReleaseDate = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// radioButtonBook
 			// 
 			this->radioButtonBook->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->radioButtonBook->AutoSize = true;
-			this->radioButtonBook->Location = System::Drawing::Point(197, 37);
+			this->radioButtonBook->Location = System::Drawing::Point(306, 37);
 			this->radioButtonBook->Name = L"radioButtonBook";
 			this->radioButtonBook->Size = System::Drawing::Size(61, 21);
 			this->radioButtonBook->TabIndex = 0;
 			this->radioButtonBook->Text = L"Book";
 			this->radioButtonBook->UseVisualStyleBackColor = true;
+			this->radioButtonBook->CheckedChanged += gcnew System::EventHandler(this, &FormNewArticle::radioButtonBook_CheckedChanged);
 			// 
 			// radioButtonCD
 			// 
 			this->radioButtonCD->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->radioButtonCD->AutoSize = true;
-			this->radioButtonCD->Location = System::Drawing::Point(264, 37);
+			this->radioButtonCD->Location = System::Drawing::Point(373, 37);
 			this->radioButtonCD->Name = L"radioButtonCD";
 			this->radioButtonCD->Size = System::Drawing::Size(48, 21);
 			this->radioButtonCD->TabIndex = 1;
 			this->radioButtonCD->Text = L"CD";
 			this->radioButtonCD->UseVisualStyleBackColor = true;
+			this->radioButtonCD->CheckedChanged += gcnew System::EventHandler(this, &FormNewArticle::radioButtonCD_CheckedChanged);
 			// 
 			// buttonCreate
 			// 
 			this->buttonCreate->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
-			this->buttonCreate->Location = System::Drawing::Point(219, 402);
+			this->buttonCreate->Location = System::Drawing::Point(328, 458);
 			this->buttonCreate->Name = L"buttonCreate";
 			this->buttonCreate->Size = System::Drawing::Size(80, 30);
 			this->buttonCreate->TabIndex = 2;
@@ -198,11 +208,28 @@ namespace PG208_Library {
 			this->label5->TabIndex = 11;
 			this->label5->Text = L"label5";
 			// 
+			// monthCalendar
+			// 
+			this->monthCalendar->Location = System::Drawing::Point(447, 90);
+			this->monthCalendar->Name = L"monthCalendar";
+			this->monthCalendar->TabIndex = 13;
+			// 
+			// labelReleaseDate
+			// 
+			this->labelReleaseDate->AutoSize = true;
+			this->labelReleaseDate->Location = System::Drawing::Point(483, 64);
+			this->labelReleaseDate->Name = L"labelReleaseDate";
+			this->labelReleaseDate->Size = System::Drawing::Size(90, 17);
+			this->labelReleaseDate->TabIndex = 14;
+			this->labelReleaseDate->Text = L"Relese Date:";
+			// 
 			// FormNewArticle
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(521, 459);
+			this->ClientSize = System::Drawing::Size(738, 515);
+			this->Controls->Add(this->labelReleaseDate);
+			this->Controls->Add(this->monthCalendar);
 			this->Controls->Add(this->textBox5);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->textBox4);
@@ -224,22 +251,81 @@ namespace PG208_Library {
 
 		}
 #pragma endregion
-	private: System::Void buttonCreate_Click(System::Object^  sender, System::EventArgs^  e)
+	private: System::Void buttonCreate_Click(System::Object^  sender, System::EventArgs^  e)//create the new article
 			 {
 				 bool aButtonIsChecked = (this->radioButtonBook->Checked == true) || (this->radioButtonCD->Checked == true);
+				 bool dataIsOK = (this->textBoxTitle->Text->Length != 0);
 
-				 int fileID = 1000;
-				 String ^ strIDFilePath = fileID + ".txt";//change username to filepath
-				 char *filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
+				 String ^ strFilePath;
+				 if(this->radioButtonBook->Checked == true)//new article is a book
+					strFilePath = "Articles/Books/";
+				 else if(this->radioButtonCD->Checked == true)//new article is a CD
+					strFilePath = "Articles/CDs/";
 
-
-				 ifstream input(filePath);
-
-				 if(aButtonIsChecked)
+				 if(aButtonIsChecked && dataIsOK)
 				 {
+					 strFilePath = strFilePath + this->textBoxID->Text + ".txt";
+					 char *filePath = (char*)Marshal::StringToHGlobalAnsi(strFilePath).ToPointer();//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
+					 ofstream myfile(filePath);
+
+					 myfile << (char*)Marshal::StringToHGlobalAnsi(this->textBoxTitle->Text).ToPointer();
+					 myfile.close();
+					 
 					 this->Close();
 				 }
 
+			 }
+	private: System::Void radioButtonBook_CheckedChanged(System::Object^  sender, System::EventArgs^  e)//automatically sets smallest available ID
+			 {
+				 int fileID;
+				 String ^ strIDFilePath;
+				 char *filePath;
+				 fstream myfile;
+				 string line;
+
+				 bool loopFlag = 1;
+				 for(int i = 0; loopFlag; i++)
+				 {
+					 fileID = BASE_BOOK_ID + i;//update file ID
+					 strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
+					 filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
+					 myfile.open(filePath, ios::in);//open file to write
+					 if(myfile.is_open() == 0)//file doesn't exist
+						 loopFlag = 0;//exit loop
+					 if(fileID == BASE_CD_ID)//all available Book IDs have been used
+					 {
+						 popup("Error","All available IDs are in use. Please burn books to free IDs.");
+						 this->Close();//close form
+					 }
+					 myfile.close();//close file so it can be opened again with a new path
+				 }
+				 this->textBoxID->Text = ""+fileID;//convert int to managed string and write to File ID text box
+			 }
+	private: System::Void radioButtonCD_CheckedChanged(System::Object^  sender, System::EventArgs^  e)//automatically sets smallest available ID
+			 {
+				 int fileID;
+				 String ^ strIDFilePath;
+				 char *filePath;
+				 fstream myfile;
+				 string line;
+
+				 bool loopFlag = 1;
+				 for(int i = 0; loopFlag; i++)
+				 {
+					 fileID = BASE_CD_ID + i;//update file ID
+					 strIDFilePath = FILEPATH_CD + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
+					 filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
+					 myfile.open(filePath, ios::in);//open file to write
+					 if(myfile.is_open() == 0)//file doesn't exist
+						 loopFlag = 0;//exit loop
+					 if(fileID == BASE_BOOK_ID)//all available Book IDs have been used//#### change to whatever is after CDs
+					 {
+						 popup("Error","All available IDs are in use. Please burn books to free IDs.");
+						 this->Close();//close form
+					 }
+					 myfile.close();//close file so it can be opened again with a new path
+				 }
+				 this->textBoxID->Text = ""+fileID;//convert int to managed string and write to File ID text box
 			 }
 	};
 }

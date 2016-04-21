@@ -8,6 +8,11 @@
 #include <sstream>
 #include "cipher.h"
 #include "popups.h"
+#include "Article.h"
+#include "Library.h"
 
 // TODO: reference additional headers your program requires here
-#define BASE_BOOK_ID 1000
+#define BASE_BOOK_ID 1000//1000~3000 reserved for books
+#define BASE_CD_ID 3000
+#define FILEPATH_BOOK "Articles/Books/"
+#define FILEPATH_CD "Articles/CDs/"
