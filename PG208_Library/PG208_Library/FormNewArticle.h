@@ -211,6 +211,7 @@ namespace PG208_Library {
 				 // monthCalendar
 				 // 
 				 this->monthCalendar->Location = System::Drawing::Point(447, 90);
+				 this->monthCalendar->MaxDate = System::DateTime(2016, 12, 31, 0, 0, 0, 0);
 				 this->monthCalendar->Name = L"monthCalendar";
 				 this->monthCalendar->TabIndex = 13;
 				 // 

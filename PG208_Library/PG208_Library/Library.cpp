@@ -40,6 +40,11 @@ Library::Library(void)
 	saveData();//save data to data.txt needed? jst for reference?
 }
 
+int Library::getNumberOfAll()
+{
+	return (_numberOfBooks + _numberOfCDs);
+}
+
 int Library::getNumberOfBooks()
 {
 	return _numberOfBooks;

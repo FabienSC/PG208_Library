@@ -4,17 +4,18 @@ class Library
 {
 public:
 	Library(void);
-	int getNumberOfBooks();
-	int getNumberOfCDs();
+	int getNumberOfAll();//returns the total number of articles
+	int getNumberOfBooks();//returns the number of books
+	int getNumberOfCDs();//returns the number of CDs
 
-	void addBook();
-	void removeBook();
-	void addCD();
-	void removeCD();
+	void addBook();//increments the number of books
+	void removeBook();//decrements the number of books
+	void addCD();//increments the number of CDs
+	void removeCD();//decrements the number of CDs
 
 private:
-	int _numberOfBooks;
-	int _numberOfCDs;
-	void saveData();
+	int _numberOfBooks;//number of books
+	int _numberOfCDs;//number of CDs
+	void saveData();//write data to file (Library/data.txt) useless?
 };
 
