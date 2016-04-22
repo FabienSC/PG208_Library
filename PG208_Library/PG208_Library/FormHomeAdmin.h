@@ -306,7 +306,7 @@ namespace PG208_Library {
 			 }
 	private: System::Void checkBoxBooks_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
-				 
+
 
 			 }
 	private: System::Void buttonNewItem_Click(System::Object^  sender, System::EventArgs^  e)
@@ -341,5 +341,5 @@ namespace PG208_Library {
 					 }
 				 }
 			 }
-};
+	};
 }
