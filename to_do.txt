@@ -11,7 +11,8 @@ delete button: only admin can access, erases all data, WARNING messages upon cli
 add user screen: admin can add new users, decide if they are admin (new user button on login automatically makes normal users) and add articles...
 users can only borrow and give back articles, and browse through
 
-why is Article class not used afgted declaration?
+why is Article class not used after declaration?
+>>pass it through functions (edit, delete, select buttons ...)
 
 update Library class (book/CD >> papercopy/vide/CD)
 rewrite UML (video, papercopy) and shit
