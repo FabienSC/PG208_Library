@@ -454,13 +454,14 @@ namespace PG208_Library {
 					 }
 				 }
 			 }
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
 	private: System::Void buttonTerminalMode_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
-
-				 popup("Login Successful", "Welcome!");
 				 popup("Error", "This is the 21st century, nobody uses terminals anymore!");
 			 }
+			 
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
+			 {
+				 popup("Login Successful", "Welcome!");
 				 this->Hide();//hides the current form window (so two users can't login at the same time)
 				 FormEditArticle ^ myForm = gcnew FormEditArticle(); //FormEditArticle defined in FormEditArticle.h
 				 myForm->ShowDialog(); //blocks modifications on previous form (not visible anyway) 
@@ -468,6 +469,5 @@ namespace PG208_Library {
 				 this->Show();//redisplays previous form once F3 is shut
 
 			 }
-	};
 	};
 }
