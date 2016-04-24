@@ -1,0 +1,21 @@
+fort the different articles: go through descriptions in sujet1
+add "ressources numériques" (and special class for board games ?)
+go over the commands in cahier des charges to check
+
+add a boolean in user file (second line: 1 for admin, 0 for others)
+
+admin can see who borrowed such article through select button
+edit button: for existing articles, to modify title, author, quantity...
+delete button: only admin can access, erases all data, WARNING messages upon click on delete and when you say I wanna delete "are you sure" + options: cancel, delete(definite), move to storage(no display, only data kept, can be recovered) 
+
+add user screen: admin can add new users, decide if they are admin (new user button on login automatically makes normal users) and add articles...
+users can only borrow and give back articles, and browse through
+
+why is Article class not used afgted declaration?
+
+update Library class (book/CD >> papercopy/vide/CD)
+rewrite UML (video, papercopy) and shit
+
+ASK TEACHER : must we have a single file for the library content, or is one file for each article ok ?
+
+ASK TEACHER : do we REALLY need to do it on terminal, or can we just finish what we started...?
