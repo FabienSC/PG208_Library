@@ -265,12 +265,12 @@ namespace PG208_Library {
 					 myLibrary.addBook();
 					 if(this->radioButtonBook->Checked == true)//new article is a book
 					 {
-						 strFilePath = "Articles/Books/";
+						 strFilePath = FILEPATH_BOOK;
 						 myLibrary.addBook();
 					 }
 					 else if(this->radioButtonCD->Checked == true)//new article is a CD
 					 {
-						 strFilePath = "Articles/CDs/";
+						 strFilePath = FILEPATH_CD;
 						 myLibrary.addCD();
 					 }
 
