@@ -38,32 +38,32 @@ namespace PG208_Library {
 			}
 		}
 	private: System::Windows::Forms::RadioButton^  radioButtonBook;
-	protected: 
-	private: System::Windows::Forms::RadioButton^  radioButtonCD;
-	private: System::Windows::Forms::Button^  buttonCreate;
-	private: System::Windows::Forms::Label^  labelID;
-	private: System::Windows::Forms::TextBox^  textBoxID;
-	private: System::Windows::Forms::TextBox^  textBoxTitle;
+
+			 System::Windows::Forms::RadioButton^  radioButtonCD;
+			 System::Windows::Forms::Button^  buttonCreate;
+			 System::Windows::Forms::Label^  labelID;
+			 System::Windows::Forms::TextBox^  textBoxID;
+			 System::Windows::Forms::TextBox^  textBoxTitle;
 
 
 
-	private: System::Windows::Forms::Label^  labelTitle;
+			 System::Windows::Forms::Label^  labelTitle;
 
-	private: System::Windows::Forms::TextBox^  textBox3;
-	private: System::Windows::Forms::Label^  label3;
+			 System::Windows::Forms::TextBox^  textBox3;
+			 System::Windows::Forms::Label^  label3;
 
 
-	private: System::Windows::Forms::TextBox^  textBox4;
-	private: System::Windows::Forms::Label^  label4;
-	private: System::Windows::Forms::TextBox^  textBox5;
-	private: System::Windows::Forms::Label^  label5;
+			 System::Windows::Forms::TextBox^  textBox4;
+			 System::Windows::Forms::Label^  label4;
+			 System::Windows::Forms::TextBox^  textBox5;
+			 System::Windows::Forms::Label^  label5;
 
-	private:
-		/// <summary>
-		/// Required designer variable.
-		Article * newArticle;
-	private: System::Windows::Forms::MonthCalendar^  monthCalendar;
-	private: System::Windows::Forms::Label^  labelReleaseDate;
+
+			 /// <summary>
+			 /// Required designer variable.
+			 Article * newArticle;
+			 System::Windows::Forms::MonthCalendar^  monthCalendar;
+			 System::Windows::Forms::Label^  labelReleaseDate;
 			 /// </summary>
 			 System::ComponentModel::Container ^components;
 

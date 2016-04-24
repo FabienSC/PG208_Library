@@ -1,39 +1,34 @@
-﻿Build started 24-Apr-16 7:42:31 PM.
-     1>Project "C:\Users\Fabien\Documents\Git\PG208_Library\PG208_Library\PG208_Library.vcxproj" on node 2 (build target(s)).
+﻿Build started 24/04/2016 20:22:08.
+     1>Project "C:\projetC++biblio\git_alex\PG208_Library\PG208_Library\PG208_Library.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "Debug\PG208_Library.unsuccessfulbuild".
+         Creating "Debug\PG208_Library.unsuccessfulbuild" because "AlwaysCreate" was specified.
        GenerateTargetFrameworkMonikerAttribute:
        Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
        ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"StdAfx.h" /Fp"Debug\PG208_Library.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Microsoft.VisualBasic.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\VBPowerPacks\v10.0\Microsoft.VisualBasic.PowerPacks.Vs.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt stdafx.cpp /clr:nostdlib 
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"StdAfx.h" /Fp"Debug\PG208_Library.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Microsoft.VisualBasic.dll" /FU"c:\Program Files (x86)\Reference Assemblies\Microsoft\VBPowerPacks\v10.0\Microsoft.VisualBasic.PowerPacks.Vs.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt stdafx.cpp /clr:nostdlib 
          stdafx.cpp
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\PG208_Library.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Microsoft.VisualBasic.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\VBPowerPacks\v10.0\Microsoft.VisualBasic.PowerPacks.Vs.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt Article.cpp AssemblyInfo.cpp FormEditArticle.cpp PaperCopy.cpp CD.cpp cipher.cpp video.cpp FormHome.cpp FormNewArticle.cpp FormNewUser.cpp Library.cpp PG208_Library.cpp popups.cpp /clr:nostdlib 
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\PG208_Library.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Microsoft.VisualBasic.dll" /FU"c:\Program Files (x86)\Reference Assemblies\Microsoft\VBPowerPacks\v10.0\Microsoft.VisualBasic.PowerPacks.Vs.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt Article.cpp AssemblyInfo.cpp CD.cpp FormEditArticle.cpp FormHome.cpp FormNewArticle.cpp FormNewUser.cpp Library.cpp PG208_Library.cpp PaperCopy.cpp cipher.cpp popups.cpp video.cpp /clr:nostdlib 
          Article.cpp
          AssemblyInfo.cpp
-         FormEditArticle.cpp
-         PaperCopy.cpp
          CD.cpp
-         cipher.cpp
-         video.cpp
+         FormEditArticle.cpp
          FormHome.cpp
          FormNewArticle.cpp
          FormNewUser.cpp
          Library.cpp
          PG208_Library.cpp
+         PaperCopy.cpp
+         cipher.cpp
          popups.cpp
+         video.cpp
          Generating Code...
          All outputs are up-to-date.
        CoreResGen:
-         "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\NETFX 4.0 Tools\resgen.exe" /useSourcePath /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Microsoft.VisualBasic.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\VBPowerPacks\v10.0\Microsoft.VisualBasic.PowerPacks.Vs.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /compile FormEditArticle.resx,Debug\PG208_Library.FormEditArticle.resources FormHomeAdmin.resx,Debug\PG208_Library.FormHomeAdmin.resources FormLogOn.resX,Debug\PG208_Library.FormLogOn.resources FormNewArticle.resx,Debug\PG208_Library.FormNewArticle.resources FormNewUser.resx,Debug\PG208_Library.FormNewUser.resources
-         Processing resource file "FormEditArticle.resx" into "Debug\PG208_Library.FormEditArticle.resources".
-         Processing resource file "FormHomeAdmin.resx" into "Debug\PG208_Library.FormHomeAdmin.resources".
-         Processing resource file "FormLogOn.resX" into "Debug\PG208_Library.FormLogOn.resources".
-         Processing resource file "FormNewArticle.resx" into "Debug\PG208_Library.FormNewArticle.resources".
-         Processing resource file "FormNewUser.resx" into "Debug\PG208_Library.FormNewUser.resources".
+         No resources are out of date with respect to their source files. Skipping resource generation.
        ResourceCompile:
          All outputs are up-to-date.
        Link:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Fabien\Documents\Git\PG208_Library\Debug\PG208_Library.exe" /INCREMENTAL /NOLOGO /ASSEMBLYRESOURCE:Debug\PG208_Library.FormEditArticle.resources /ASSEMBLYRESOURCE:Debug\PG208_Library.FormHomeAdmin.resources /ASSEMBLYRESOURCE:Debug\PG208_Library.FormLogOn.resources /ASSEMBLYRESOURCE:Debug\PG208_Library.FormNewArticle.resources /ASSEMBLYRESOURCE:Debug\PG208_Library.FormNewUser.resources /MANIFEST /ManifestFile:"Debug\PG208_Library.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Fabien\Documents\Git\PG208_Library\Debug\PG208_Library.pdb" /ASSEMBLYDEBUG /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"main" /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\app.res
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\projetC++biblio\git_alex\PG208_Library\Debug\PG208_Library.exe" /INCREMENTAL /NOLOGO /ASSEMBLYRESOURCE:Debug\PG208_Library.FormEditArticle.resources /ASSEMBLYRESOURCE:Debug\PG208_Library.FormHomeAdmin.resources /ASSEMBLYRESOURCE:Debug\PG208_Library.FormLogOn.resources /ASSEMBLYRESOURCE:Debug\PG208_Library.FormNewArticle.resources /ASSEMBLYRESOURCE:Debug\PG208_Library.FormNewUser.resources /MANIFEST /ManifestFile:"Debug\PG208_Library.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\projetC++biblio\git_alex\PG208_Library\Debug\PG208_Library.pdb" /ASSEMBLYDEBUG /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"main" /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\app.res
          Debug\Article.obj
          Debug\AssemblyInfo.obj
          Debug\FormEditArticle.obj
@@ -49,14 +44,14 @@
          Debug\popups.obj
          Debug\stdafx.obj
          "Debug\.NETFramework,Version=v4.0.AssemblyAttributes.obj"
-         PG208_Library.vcxproj -> C:\Users\Fabien\Documents\Git\PG208_Library\Debug\PG208_Library.exe
+         PG208_Library.vcxproj -> C:\projetC++biblio\git_alex\PG208_Library\Debug\PG208_Library.exe
        Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\Fabien\Documents\Git\PG208_Library\Debug\PG208_Library.exe;#1" /manifest Debug\PG208_Library.exe.intermediate.manifest
+         c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\projetC++biblio\git_alex\PG208_Library\Debug\PG208_Library.exe;#1" /manifest Debug\PG208_Library.exe.intermediate.manifest
        FinalizeBuildStatus:
          Deleting file "Debug\PG208_Library.unsuccessfulbuild".
          Touching "Debug\PG208_Library.lastbuildstate".
-     1>Done Building Project "C:\Users\Fabien\Documents\Git\PG208_Library\PG208_Library\PG208_Library.vcxproj" (build target(s)).
+     1>Done Building Project "C:\projetC++biblio\git_alex\PG208_Library\PG208_Library\PG208_Library.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:06.64
+Time Elapsed 00:00:04.80
