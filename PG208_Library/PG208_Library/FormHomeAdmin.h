@@ -59,6 +59,7 @@ namespace PG208_Library {
 	private: System::Windows::Forms::RadioButton^  radioButtonAll;
 	private: System::Windows::Forms::RadioButton^  radioButtonBooks;
 	private: System::Windows::Forms::RadioButton^  radioButtonCDs;
+	private: System::Windows::Forms::Button^  buttonTerminalMode;
 
 
 
@@ -97,6 +98,7 @@ namespace PG208_Library {
 			this->radioButtonAll = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButtonBooks = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButtonCDs = (gcnew System::Windows::Forms::RadioButton());
+			this->buttonTerminalMode = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// labelWelcome
@@ -273,11 +275,22 @@ namespace PG208_Library {
 			this->radioButtonCDs->UseVisualStyleBackColor = true;
 			this->radioButtonCDs->CheckedChanged += gcnew System::EventHandler(this, &FormHomeAdmin::radioButtonCDs_CheckedChanged);
 			// 
+			// buttonTerminalMode
+			// 
+			this->buttonTerminalMode->Location = System::Drawing::Point(245, 28);
+			this->buttonTerminalMode->Name = L"buttonTerminalMode";
+			this->buttonTerminalMode->Size = System::Drawing::Size(181, 26);
+			this->buttonTerminalMode->TabIndex = 21;
+			this->buttonTerminalMode->Text = L"Switch to terminal mode";
+			this->buttonTerminalMode->UseVisualStyleBackColor = true;
+			this->buttonTerminalMode->Click += gcnew System::EventHandler(this, &FormHomeAdmin::buttonTerminalMode_Click);
+			// 
 			// FormHomeAdmin
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(726, 482);
+			this->Controls->Add(this->buttonTerminalMode);
 			this->Controls->Add(this->radioButtonCDs);
 			this->Controls->Add(this->radioButtonBooks);
 			this->Controls->Add(this->radioButtonAll);
@@ -378,9 +391,9 @@ namespace PG208_Library {
 					 }
 				 }
 			 }
-private: System::Void radioButtonAll_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
-		 {
-			 if(this->radioButtonAll->Checked)//if button is checked
+	private: System::Void radioButtonAll_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(this->radioButtonAll->Checked)//if button is checked
 				 {
 					 int fileID;
 					 String ^ strIDFilePath;
@@ -410,7 +423,7 @@ private: System::Void radioButtonAll_CheckedChanged(System::Object^  sender, Sys
 
 						 this->labelNumberOfItems->Text = "" + countBooks;//myLibrary.getNumberOfBooks()?
 					 }
-					 
+
 					 for(int i = 0; countCDs < myLibrary.getNumberOfCDs(); i++)
 					 {
 						 fileID = BASE_CD_ID + i;//update file ID
@@ -427,6 +440,10 @@ private: System::Void radioButtonAll_CheckedChanged(System::Object^  sender, Sys
 						 this->labelNumberOfItems->Text = "" + myLibrary.getNumberOfAll();//myLibrary.getNumberOfBooks()?
 					 }
 				 }
-		 }
-};
+			 }
+	private: System::Void buttonTerminalMode_Click(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 popup("Error", "This is the 21st century, nobody uses terminals anymore!");
+			 }
+	};
 }

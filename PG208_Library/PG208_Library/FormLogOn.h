@@ -197,19 +197,18 @@ namespace PG208_Library {
 		{
 			String ^ strUsername = textBoxUsername->Text;//typed in username
 			String ^ strPassword = textBoxPassword->Text;//typed in password
-			char *enteredUsername = (char*)Marshal::StringToHGlobalAnsi(strUsername).ToPointer();
+			char *enteredUsername = (char*)Marshal::StringToHGlobalAnsi(strUsername).ToPointer();//mnaged string to char array
 			strUsername = FILEPATH_USERS + strUsername + ".txt";//change username to filepath
 			char *userFilePath = (char*)Marshal::StringToHGlobalAnsi(strUsername).ToPointer();//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
 			char *enteredPassword = (char*)Marshal::StringToHGlobalAnsi(strPassword).ToPointer();
 
-			ifstream input(userFilePath);
+			ifstream myFile(userFilePath);
 			string line;
-			getline( input, line );
+			getline( myFile, line );
 			int sizePassword = line.size();
 			char* filePassword = (char*)line.c_str();
 
 			char* decryptedPassword = decrypt(enteredUsername,filePassword);
-
 
 			if((strcmp(enteredPassword,decryptedPassword) == 0) && (sizePassword > 3))//if username and password match AND password on file is longer than 3
 			{

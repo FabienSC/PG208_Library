@@ -142,7 +142,7 @@ namespace PG208_Library {
 				 this->textBoxID->Name = L"textBoxID";
 				 this->textBoxID->Size = System::Drawing::Size(291, 22);
 				 this->textBoxID->TabIndex = 4;
-				 this->textBoxID->Text = L"hello";
+				 this->textBoxID->Text = L"0000";
 				 // 
 				 // textBoxTitle
 				 // 
