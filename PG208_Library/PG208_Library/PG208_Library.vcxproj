@@ -95,6 +95,7 @@
   <ItemGroup>
     <ClCompile Include="Article.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="FormEditArticle.cpp" />
     <ClCompile Include="PaperCopy.cpp" />
     <ClCompile Include="CD.cpp" />
     <ClCompile Include="cipher.cpp" />
@@ -112,6 +113,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Article.h" />
+    <ClInclude Include="FormEditArticle.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="PaperCopy.h" />
     <ClInclude Include="CD.h" />
     <ClInclude Include="cipher.h" />
@@ -137,6 +141,9 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormEditArticle.resx">
+      <DependentUpon>FormEditArticle.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormHomeAdmin.resx">
       <DependentUpon>FormHomeAdmin.h</DependentUpon>
     </EmbeddedResource>

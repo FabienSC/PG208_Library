@@ -59,6 +59,7 @@ namespace PG208_Library {
 	private: System::Windows::Forms::RadioButton^  radioButtonAll;
 	private: System::Windows::Forms::RadioButton^  radioButtonBooks;
 	private: System::Windows::Forms::RadioButton^  radioButtonCDs;
+	private: System::Windows::Forms::Button^  button1;
 
 
 
@@ -97,6 +98,7 @@ namespace PG208_Library {
 			this->radioButtonAll = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButtonBooks = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButtonCDs = (gcnew System::Windows::Forms::RadioButton());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// labelWelcome
@@ -273,11 +275,22 @@ namespace PG208_Library {
 			this->radioButtonCDs->UseVisualStyleBackColor = true;
 			this->radioButtonCDs->CheckedChanged += gcnew System::EventHandler(this, &FormHomeAdmin::radioButtonCDs_CheckedChanged);
 			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(482, 370);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(80, 27);
+			this->button1->TabIndex = 21;
+			this->button1->Text = L"Editing";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &FormHomeAdmin::button1_Click);
+			// 
 			// FormHomeAdmin
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(726, 482);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->radioButtonCDs);
 			this->Controls->Add(this->radioButtonBooks);
 			this->Controls->Add(this->radioButtonAll);
@@ -378,9 +391,9 @@ namespace PG208_Library {
 					 }
 				 }
 			 }
-private: System::Void radioButtonAll_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
-		 {
-			 if(this->radioButtonAll->Checked)//if button is checked
+	private: System::Void radioButtonAll_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(this->radioButtonAll->Checked)//if button is checked
 				 {
 					 int fileID;
 					 String ^ strIDFilePath;
@@ -410,7 +423,7 @@ private: System::Void radioButtonAll_CheckedChanged(System::Object^  sender, Sys
 
 						 this->labelNumberOfItems->Text = "" + countBooks;//myLibrary.getNumberOfBooks()?
 					 }
-					 
+
 					 for(int i = 0; countCDs < myLibrary.getNumberOfCDs(); i++)
 					 {
 						 fileID = BASE_CD_ID + i;//update file ID
@@ -427,6 +440,17 @@ private: System::Void radioButtonAll_CheckedChanged(System::Object^  sender, Sys
 						 this->labelNumberOfItems->Text = "" + myLibrary.getNumberOfAll();//myLibrary.getNumberOfBooks()?
 					 }
 				 }
-		 }
-};
+			 }
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
+			 {
+
+				 popup("Login Successful", "Welcome!");
+				 this->Hide();//hides the current form window (so two users can't login at the same time)
+				 FormEditArticle ^ myForm = gcnew FormEditArticle(); //FormEditArticle defined in FormEditArticle.h
+				 myForm->ShowDialog(); //blocks modifications on previous form (not visible anyway) 
+				 //stays on F3 for most of the program execution time
+				 this->Show();//redisplays previous form once F3 is shut
+
+			 }
+	};
 }
