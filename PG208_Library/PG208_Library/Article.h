@@ -14,7 +14,9 @@ public:
     int 		getID();						    
 	
 	void 		setTitle(std::string newTitle);		
-    std::string getTitle();						
+    std::string getTitle();	
+
+	void		setQuantity(int newQuantity);
     
 	void 		setReleaseDate(int newReleaseDate);		
     int 		getReleaseDate();						
@@ -36,6 +38,7 @@ private:
     std::string _title;
     bool _isAvailable;
     int _releaseDate;//YYYYMMDD
+	std::string _genre;
 };
 
 #endif // ARTICLES_H

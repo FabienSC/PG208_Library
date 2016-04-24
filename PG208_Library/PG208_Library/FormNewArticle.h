@@ -64,6 +64,9 @@ namespace PG208_Library {
 		Article * newArticle;
 	private: System::Windows::Forms::MonthCalendar^  monthCalendar;
 	private: System::Windows::Forms::Label^  labelReleaseDate;
+	private: System::Windows::Forms::Button^  boutone;
+
+	private: System::Windows::Forms::CheckBox^  checkBox1;
 			 /// </summary>
 		System::ComponentModel::Container ^components;
 
@@ -89,6 +92,8 @@ namespace PG208_Library {
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->monthCalendar = (gcnew System::Windows::Forms::MonthCalendar());
 			this->labelReleaseDate = (gcnew System::Windows::Forms::Label());
+			this->boutone = (gcnew System::Windows::Forms::Button());
+			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
 			this->SuspendLayout();
 			// 
 			// radioButtonBook
@@ -142,7 +147,7 @@ namespace PG208_Library {
 			this->textBoxID->Name = L"textBoxID";
 			this->textBoxID->Size = System::Drawing::Size(291, 22);
 			this->textBoxID->TabIndex = 4;
-			this->textBoxID->Text = L"hello";
+			this->textBoxID->Text = L"oh hell no!";
 			// 
 			// textBoxTitle
 			// 
@@ -223,11 +228,33 @@ namespace PG208_Library {
 			this->labelReleaseDate->TabIndex = 14;
 			this->labelReleaseDate->Text = L"Relese Date:";
 			// 
+			// boutone
+			// 
+			this->boutone->Location = System::Drawing::Point(586, 326);
+			this->boutone->Name = L"boutone";
+			this->boutone->Size = System::Drawing::Size(75, 23);
+			this->boutone->TabIndex = 15;
+			this->boutone->Text = L"boutone";
+			this->boutone->UseVisualStyleBackColor = true;
+			this->boutone->Click += gcnew System::EventHandler(this, &FormNewArticle::boutone_Click);
+			// 
+			// checkBox1
+			// 
+			this->checkBox1->AutoSize = true;
+			this->checkBox1->Location = System::Drawing::Point(447, 406);
+			this->checkBox1->Name = L"checkBox1";
+			this->checkBox1->Size = System::Drawing::Size(98, 21);
+			this->checkBox1->TabIndex = 16;
+			this->checkBox1->Text = L"checkBox1";
+			this->checkBox1->UseVisualStyleBackColor = true;
+			// 
 			// FormNewArticle
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(738, 515);
+			this->Controls->Add(this->checkBox1);
+			this->Controls->Add(this->boutone);
 			this->Controls->Add(this->labelReleaseDate);
 			this->Controls->Add(this->monthCalendar);
 			this->Controls->Add(this->textBox5);
@@ -283,6 +310,8 @@ namespace PG208_Library {
 				 fstream myfile;
 				 string line;
 
+				 this->textBoxID->Text = L"book? oh hell no!";
+			
 				 bool loopFlag = 1;
 				 for(int i = 0; loopFlag; i++)
 				 {
@@ -299,7 +328,7 @@ namespace PG208_Library {
 					 }
 					 myfile.close();//close file so it can be opened again with a new path
 				 }
-				 this->textBoxID->Text = ""+fileID;//convert int to managed string and write to File ID text box
+				 //this->textBoxID->Text = ""+fileID;//convert int to managed string and write to File ID text box
 			 }
 	private: System::Void radioButtonCD_CheckedChanged(System::Object^  sender, System::EventArgs^  e)//automatically sets smallest available ID
 			 {
@@ -327,5 +356,7 @@ namespace PG208_Library {
 				 }
 				 this->textBoxID->Text = ""+fileID;//convert int to managed string and write to File ID text box
 			 }
-	};
+	private: System::Void boutone_Click(System::Object^  sender, System::EventArgs^  e) {
+			 }
+};
 }

@@ -264,7 +264,7 @@ namespace PG208_Library {
 			// radioButtonCDs
 			// 
 			this->radioButtonCDs->AutoSize = true;
-			this->radioButtonCDs->Location = System::Drawing::Point(15, 207);
+			this->radioButtonCDs->Location = System::Drawing::Point(14, 207);
 			this->radioButtonCDs->Name = L"radioButtonCDs";
 			this->radioButtonCDs->Size = System::Drawing::Size(55, 21);
 			this->radioButtonCDs->TabIndex = 20;
@@ -324,9 +324,11 @@ namespace PG208_Library {
 					 ifstream myfile;
 					 string line;
 
+					 this->listBoxDisplay->Items->Clear(); //empty da box before rewriting stuff
+
 					 Library myLibrary;
 					 int countBooks = 0;
-					 for(int i = 0; countBooks < myLibrary.getNumberOfBooks(); i++)
+					 for(int i = 0; (countBooks < myLibrary.getNumberOfBooks())&&(i < BASE_CD_ID); i++)
 					 {
 						 fileID = BASE_BOOK_ID + i;//update file ID
 						 strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
