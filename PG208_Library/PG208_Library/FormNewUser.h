@@ -141,7 +141,7 @@ namespace PG208_Library {
 				String ^ strPassword = textBoxPassword->Text;//typed in password
 
 				char *enteredUsername = (char*)Marshal::StringToHGlobalAnsi(strUsername).ToPointer();
-				strUsername="People/"+strUsername+".txt";//change username to filepath
+				strUsername = FILEPATH_USERS + strUsername + ".txt";//change username to filepath
 				char *userFilePath = (char*)Marshal::StringToHGlobalAnsi(strUsername).ToPointer();//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
 				char *enteredPassword = (char*)Marshal::StringToHGlobalAnsi(strPassword).ToPointer();
 				
