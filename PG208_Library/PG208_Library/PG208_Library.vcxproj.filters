@@ -40,6 +40,7 @@
     <ClCompile Include="FormNewUser.cpp">
       <Filter>Other Stuff</Filter>
     </ClCompile>
+    <ClCompile Include="FormEditArticle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FormHomeAdmin.h" />
@@ -73,6 +74,7 @@
     <ClInclude Include="resource.h">
       <Filter>Other Stuff</Filter>
     </ClInclude>
+    <ClInclude Include="FormEditArticle.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormHomeAdmin.resx" />

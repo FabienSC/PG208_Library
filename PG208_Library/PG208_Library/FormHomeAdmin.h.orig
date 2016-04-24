@@ -59,8 +59,11 @@ namespace PG208_Library {
 	private: System::Windows::Forms::RadioButton^  radioButtonAll;
 	private: System::Windows::Forms::RadioButton^  radioButtonBooks;
 	private: System::Windows::Forms::RadioButton^  radioButtonCDs;
-	private: System::Windows::Forms::Button^  button1;
+<<<<<<< HEAD
 	private: System::Windows::Forms::Button^  buttonTerminalMode;
+=======
+	private: System::Windows::Forms::Button^  button1;
+>>>>>>> Origin/master
 
 
 
@@ -99,8 +102,11 @@ namespace PG208_Library {
 			this->radioButtonAll = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButtonBooks = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButtonCDs = (gcnew System::Windows::Forms::RadioButton());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+<<<<<<< HEAD
 			this->buttonTerminalMode = (gcnew System::Windows::Forms::Button());
+=======
+			this->button1 = (gcnew System::Windows::Forms::Button());
+>>>>>>> Origin/master
 			this->SuspendLayout();
 			// 
 			// labelWelcome
@@ -277,6 +283,17 @@ namespace PG208_Library {
 			this->radioButtonCDs->UseVisualStyleBackColor = true;
 			this->radioButtonCDs->CheckedChanged += gcnew System::EventHandler(this, &FormHomeAdmin::radioButtonCDs_CheckedChanged);
 			// 
+<<<<<<< HEAD
+			// buttonTerminalMode
+			// 
+			this->buttonTerminalMode->Location = System::Drawing::Point(245, 28);
+			this->buttonTerminalMode->Name = L"buttonTerminalMode";
+			this->buttonTerminalMode->Size = System::Drawing::Size(181, 26);
+			this->buttonTerminalMode->TabIndex = 21;
+			this->buttonTerminalMode->Text = L"Switch to terminal mode";
+			this->buttonTerminalMode->UseVisualStyleBackColor = true;
+			this->buttonTerminalMode->Click += gcnew System::EventHandler(this, &FormHomeAdmin::buttonTerminalMode_Click);
+=======
 			// button1
 			// 
 			this->button1->Location = System::Drawing::Point(482, 370);
@@ -286,24 +303,18 @@ namespace PG208_Library {
 			this->button1->Text = L"Editing";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &FormHomeAdmin::button1_Click);
-					
-			//button Terminal Mode
-			
-			this->buttonTerminalMode->Location = System::Drawing::Point(245, 28);
-			this->buttonTerminalMode->Name = L"buttonTerminalMode";
-			this->buttonTerminalMode->Size = System::Drawing::Size(181, 26);
-			this->buttonTerminalMode->TabIndex = 21;
-			this->buttonTerminalMode->Text = L"Switch to terminal mode";
-			this->buttonTerminalMode->UseVisualStyleBackColor = true;
-			this->buttonTerminalMode->Click += gcnew System::EventHandler(this, &FormHomeAdmin::buttonTerminalMode_Click);
+>>>>>>> Origin/master
 			// 
 			// FormHomeAdmin
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(726, 482);
-			this->Controls->Add(this->button1);
+<<<<<<< HEAD
 			this->Controls->Add(this->buttonTerminalMode);
+=======
+			this->Controls->Add(this->button1);
+>>>>>>> Origin/master
 			this->Controls->Add(this->radioButtonCDs);
 			this->Controls->Add(this->radioButtonBooks);
 			this->Controls->Add(this->radioButtonAll);
@@ -454,20 +465,22 @@ namespace PG208_Library {
 					 }
 				 }
 			 }
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
+<<<<<<< HEAD
 	private: System::Void buttonTerminalMode_Click(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 popup("Error", "This is the 21st century, nobody uses terminals anymore!");
+=======
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
 
 				 popup("Login Successful", "Welcome!");
-				 popup("Error", "This is the 21st century, nobody uses terminals anymore!");
-			 }
 				 this->Hide();//hides the current form window (so two users can't login at the same time)
 				 FormEditArticle ^ myForm = gcnew FormEditArticle(); //FormEditArticle defined in FormEditArticle.h
 				 myForm->ShowDialog(); //blocks modifications on previous form (not visible anyway) 
 				 //stays on F3 for most of the program execution time
 				 this->Show();//redisplays previous form once F3 is shut
 
+>>>>>>> Origin/master
 			 }
-	};
 	};
 }
