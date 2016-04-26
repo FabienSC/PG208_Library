@@ -1,27 +1,34 @@
-﻿Build started 26-Apr-16 4:27:27 PM.
-     1>Project "C:\Users\Fabien\Documents\Git\PG208_Library\PG208_Library\PG208_Library.vcxproj" on node 2 (build target(s)).
-     1>InitializeBuildStatus:
-         Creating "Debug\PG208_Library.unsuccessfulbuild" because "AlwaysCreate" was specified.
+﻿Build started 26/04/2016 17:28:59.
+     1>Project "C:\projetC++biblio\git_alex\PG208_Library\PG208_Library\PG208_Library.vcxproj" on node 2 (rebuild target(s)).
+     1>_PrepareForClean:
+         Deleting file "Debug\PG208_Library.lastbuildstate".
+       InitializeBuildStatus:
+         Touching "Debug\PG208_Library.unsuccessfulbuild".
        GenerateTargetFrameworkMonikerAttribute:
        Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
        ClCompile:
-         All outputs are up-to-date.
-         All outputs are up-to-date.
-         All outputs are up-to-date.
-       CoreResGen:
-         No resources are out of date with respect to their source files. Skipping resource generation.
-       ResourceCompile:
-         All outputs are up-to-date.
-       Link:
-         All outputs are up-to-date.
-         PG208_Library.vcxproj -> C:\Users\Fabien\Documents\Git\PG208_Library\Debug\PG208_Library.exe
-       MetaGen:
-       Skipping target "MetaGen" because all output files are up-to-date with respect to the input files.
-       FinalizeBuildStatus:
-         Deleting file "Debug\PG208_Library.unsuccessfulbuild".
-         Touching "Debug\PG208_Library.lastbuildstate".
-     1>Done Building Project "C:\Users\Fabien\Documents\Git\PG208_Library\PG208_Library\PG208_Library.vcxproj" (build target(s)).
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"StdAfx.h" /Fp"Debug\PG208_Library.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Microsoft.VisualBasic.dll" /FU"c:\Program Files (x86)\Reference Assemblies\Microsoft\VBPowerPacks\v10.0\Microsoft.VisualBasic.PowerPacks.Vs.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt stdafx.cpp /clr:nostdlib 
+         stdafx.cpp
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\PG208_Library.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Microsoft.VisualBasic.dll" /FU"c:\Program Files (x86)\Reference Assemblies\Microsoft\VBPowerPacks\v10.0\Microsoft.VisualBasic.PowerPacks.Vs.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt Article.cpp AssemblyInfo.cpp FormEditArticle.cpp Magazine.cpp NumericRes.cpp Book.cpp CD.cpp cipher.cpp video.cpp FormHome.cpp FormNewArticle.cpp FormNewUser.cpp Library.cpp PG208_Library.cpp popups.cpp /clr:nostdlib 
+         Article.cpp
+         AssemblyInfo.cpp
+         FormEditArticle.cpp
+         Magazine.cpp
+         NumericRes.cpp
+         Book.cpp
+         CD.cpp
+         cipher.cpp
+         video.cpp
+         FormHome.cpp
+         FormNewArticle.cpp
+         FormNewUser.cpp
+         Library.cpp
+         PG208_Library.cpp
+     1>PG208_Library.cpp(15): error C2061: syntax error : identifier 'Form1'
+         popups.cpp
+         Generating Code...
+     1>Done Building Project "C:\projetC++biblio\git_alex\PG208_Library\PG208_Library\PG208_Library.vcxproj" (rebuild target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:00.07
+Time Elapsed 00:00:03.46

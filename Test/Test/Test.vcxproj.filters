@@ -30,13 +30,16 @@
     <ClInclude Include="..\..\PG208_Library\PG208_Library\CD.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\PG208_Library\PG208_Library\PaperCopy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\PG208_Library\PG208_Library\video.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\PG208_Library\PG208_Library\NumericRes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\PG208_Library\PG208_Library\Book.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\PG208_Library\PG208_Library\Magazine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -56,10 +59,13 @@
     <ClCompile Include="..\..\PG208_Library\PG208_Library\video.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\PG208_Library\PG208_Library\PaperCopy.cpp">
+    <ClCompile Include="..\..\PG208_Library\PG208_Library\NumericRes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\PG208_Library\PG208_Library\NumericRes.cpp">
+    <ClCompile Include="..\..\PG208_Library\PG208_Library\Book.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\PG208_Library\PG208_Library\Magazine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

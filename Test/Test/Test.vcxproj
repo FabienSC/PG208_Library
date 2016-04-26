@@ -76,18 +76,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\PG208_Library\PG208_Library\Article.h" />
+    <ClInclude Include="..\..\PG208_Library\PG208_Library\Book.h" />
     <ClInclude Include="..\..\PG208_Library\PG208_Library\CD.h" />
+    <ClInclude Include="..\..\PG208_Library\PG208_Library\Magazine.h" />
     <ClInclude Include="..\..\PG208_Library\PG208_Library\NumericRes.h" />
-    <ClInclude Include="..\..\PG208_Library\PG208_Library\PaperCopy.h" />
     <ClInclude Include="..\..\PG208_Library\PG208_Library\video.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\PG208_Library\PG208_Library\Article.cpp" />
+    <ClCompile Include="..\..\PG208_Library\PG208_Library\Book.cpp" />
     <ClCompile Include="..\..\PG208_Library\PG208_Library\CD.cpp" />
+    <ClCompile Include="..\..\PG208_Library\PG208_Library\Magazine.cpp" />
     <ClCompile Include="..\..\PG208_Library\PG208_Library\NumericRes.cpp" />
-    <ClCompile Include="..\..\PG208_Library\PG208_Library\PaperCopy.cpp" />
     <ClCompile Include="..\..\PG208_Library\PG208_Library\video.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

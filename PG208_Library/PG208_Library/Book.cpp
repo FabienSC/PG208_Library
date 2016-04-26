@@ -1,10 +1,4 @@
 #include "StdAfx.h"
-#include <iostream>
-#include <string>
-#include <assert.h>
-#include <fstream>
-
-#include "Book.h"
 
 using namespace std;
 
@@ -13,7 +7,7 @@ Book::Book()
     _author = "NA";
     _publisher = "NA";
     _pages = 0;
-	_isMagazine = 0;
+//	_isMagazine = 0;
 	_synopsis = "Nothing special about this book so far...";
 }
 
@@ -42,7 +36,7 @@ int Book::getPages()
 void Book::setPages(int newPages)
 {_pages = newPages;}
 
-
+/*
 string Book::getIsMagazine()
 {if (_isMagazine)
 	return"Magazine";
@@ -61,7 +55,7 @@ else if (newIsMagazine == "Book")
 else
 	cout << "error, please specify type Magazine or Book" << endl;
 }
-
+*/
 
 string Book::getSynopsis()
 {return _synopsis;}
@@ -77,7 +71,7 @@ void Book::getData()
 	cout << "Author: " << getAuthor() << endl;
 	cout << "Publisher: " << getPublisher() << endl;
 	cout << "Pages: " << getPages() << endl;
-	cout << "Type: " << getIsMagazine() << endl;
+	//cout << "Type: " << getIsMagazine() << endl;
 		
 	cout << "----------------------------------------" << endl;
 }
