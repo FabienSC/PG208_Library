@@ -157,6 +157,7 @@ namespace PG208_Library {
 			this->buttonSelect->TabIndex = 7;
 			this->buttonSelect->Text = L"Select";
 			this->buttonSelect->UseVisualStyleBackColor = true;
+			this->buttonSelect->Click += gcnew System::EventHandler(this, &FormHomeAdmin::buttonSelect_Click);
 			// 
 			// buttonNewItem
 			// 
@@ -538,5 +539,10 @@ namespace PG208_Library {
 				 listArticles = new Article[listArticleSize];
 				 listArticleCount = 0;
 			 }
-	};
+	private: System::Void buttonSelect_Click(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 int selectedIndex = this->listBoxDisplay->SelectedIndex;
+				 popup("Selected", (char*)listArticles[selectedIndex].getTitle().c_str());
+			 }
+};
 }

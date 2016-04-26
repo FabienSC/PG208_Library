@@ -189,8 +189,15 @@ bool Article::saveToFile(const char* fileName)
 }
 
 
-	void Article::deleteFile()
-	{
-		if(BASE_BOOK_ID <= _ID < BASE_CD_ID)
+void Article::deleteFile()
+{
+		if((BASE_BOOK_ID <= _ID) && (_ID < BASE_CD_ID))
 			remove((char*)Marshal::StringToHGlobalAnsi(FILEPATH_BOOK + _ID + ".txt").ToPointer());
-	}
+		if((BASE_CD_ID <= _ID) && (_ID < 4000))
+			remove((char*)Marshal::StringToHGlobalAnsi(FILEPATH_CD + _ID + ".txt").ToPointer());
+}
+
+/*virtual void Article::load(fstream myFile)//to do
+{
+
+}*/
