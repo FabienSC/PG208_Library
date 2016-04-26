@@ -1,6 +1,5 @@
 #pragma once
 #include "stdafx.h"
-#include "FormNewArticle.h"
 
 namespace PG208_Library {
 
@@ -10,6 +9,8 @@ namespace PG208_Library {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+
+	using namespace std;
 
 	/// <summary>
 	/// Summary for FormHomeAdmin
@@ -24,6 +25,9 @@ namespace PG208_Library {
 			//TODO: Add the constructor code here
 
 			this->labelUsername->Text = gcnew String(username);
+			listArticleSize = 100;
+			listArticles = new Article[listArticleSize];
+			listArticleCount = 0;
 			//
 		}
 
@@ -63,15 +67,17 @@ namespace PG208_Library {
 	private: System::Windows::Forms::Button^  buttonTerminalMode;
 
 
-
-
-
-
-
 	private:
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
+
+
+		int listArticleSize;
+		Article * listArticles;//will point to a dynamic array of Articles. Start off with 100 articles
+		int listArticleCount;//number of articles in the list
+
+
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
@@ -170,6 +176,7 @@ namespace PG208_Library {
 			this->buttonDelete->TabIndex = 9;
 			this->buttonDelete->Text = L"Delete";
 			this->buttonDelete->UseVisualStyleBackColor = true;
+			this->buttonDelete->Click += gcnew System::EventHandler(this, &FormHomeAdmin::buttonDelete_Click);
 			// 
 			// labelSortBy
 			// 
@@ -245,7 +252,6 @@ namespace PG208_Library {
 			// radioButtonAll
 			// 
 			this->radioButtonAll->AutoSize = true;
-			this->radioButtonAll->Checked = true;
 			this->radioButtonAll->Location = System::Drawing::Point(15, 153);
 			this->radioButtonAll->Name = L"radioButtonAll";
 			this->radioButtonAll->Size = System::Drawing::Size(44, 21);
@@ -286,9 +292,9 @@ namespace PG208_Library {
 			this->button1->Text = L"Editing";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &FormHomeAdmin::button1_Click);
-					
-			//button Terminal Mode
-			
+			// 
+			// buttonTerminalMode
+			// 
 			this->buttonTerminalMode->Location = System::Drawing::Point(245, 28);
 			this->buttonTerminalMode->Name = L"buttonTerminalMode";
 			this->buttonTerminalMode->Size = System::Drawing::Size(181, 26);
@@ -360,18 +366,24 @@ namespace PG208_Library {
 					 {
 						 fileID = BASE_BOOK_ID + i;//update file ID
 						 strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
+
 						 filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
 						 myfile.open(filePath);//open file
+
 						 if(getline(myfile, line))//get 1st line and check if line exists
 						 {
-							 this->listBoxDisplay->Items->Add(gcnew String((char*)line.c_str()));
-							 countBooks++;
+							 listArticles[listArticleCount].setTitle((char*)line.c_str());
+							 listArticleCount++;
+							 countBooks++;//to stop when all of the books are found
 						 }
 						 myfile.close();//close file so it can be opened again with a new path
 
-						 this->labelNumberOfItems->Text = "" + countBooks;//myLibrary.getNumberOfBooks()?
+						 updateListBox();//empty listbox and add all articles in the article list to it
+
 					 }
 				 }
+
+
 			 }
 	private: System::Void radioButtonCDs_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
@@ -458,7 +470,7 @@ namespace PG208_Library {
 			 {
 				 popup("Error", "This is the 21st century, nobody uses terminals anymore!");
 			 }
-			 
+
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
 				 popup("Login Successful", "Welcome!");
@@ -468,6 +480,24 @@ namespace PG208_Library {
 				 //stays on F3 for most of the program execution time
 				 this->Show();//redisplays previous form once F3 is shut
 
+			 }
+	private: System::Void buttonDelete_Click(System::Object^  sender, System::EventArgs^  e) 
+			 {
+				 //DELETE selected article
+
+				 int selectedIndex = this->listBoxDisplay->SelectedIndex;
+				 // char *enteredUsername = (char*)Marshal::StringToHGlobalAnsi(strUsername).ToPointer();
+				 popup("Login Successful", (char*)Marshal::StringToHGlobalAnsi("" + selectedIndex).ToPointer());
+			 }
+
+			 void updateListBox()//empty listbox and add all articles in the article list to it
+			 {
+				 this->listBoxDisplay->Items->Clear();
+
+				 for(int i = 0; i < listArticleCount; i++)
+					this->listBoxDisplay->Items->Add(gcnew String(listArticles[i].getTitle().c_str()));
+
+				 this->labelNumberOfItems->Text = "" + listArticleCount;//myLibrary.getNumberOfBooks()?
 			 }
 	};
 }
