@@ -25,7 +25,7 @@ public:
     bool 		borrowArticle();						// if already borrowed, can't borrow it...
     bool 		returnArticle();						// if in library, can't return...
 
-	void 		getGeneralData();
+	void 		getData();
 
 	bool		loadFromFile(const char* fileName);
 	bool		saveToFile(const char* fileName, Article myArticle);	

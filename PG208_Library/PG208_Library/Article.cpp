@@ -83,7 +83,7 @@ bool Article::returnArticle()
 }
 
 
-void Article::getGeneralData()
+void Article::getData()
 {
 	cout << "--------------Info diplay ---------------" << endl;
 	

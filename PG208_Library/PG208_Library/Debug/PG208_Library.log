@@ -1,4 +1,4 @@
-﻿Build started 26/04/2016 14:46:42.
+﻿Build started 26/04/2016 15:56:59.
      1>Project "C:\projetC++biblio\git_alex\PG208_Library\PG208_Library\PG208_Library.vcxproj" on node 2 (rebuild target(s)).
      1>_PrepareForClean:
          Deleting file "Debug\PG208_Library.lastbuildstate".
@@ -64,4 +64,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:07.27
+Time Elapsed 00:00:05.07

@@ -18,6 +18,7 @@ video::video()
     _ageLimit = 0;
     _length = 0;
 	_isDVD = 1;
+	_chapters = 0;
 }
 
 video::~video()
@@ -64,8 +65,6 @@ else
 }
 
 
-
-
 int video::getLength()
 {return _length;}
 
@@ -80,9 +79,27 @@ void video::setAgeLimit(int newAgeLimit)
 {_ageLimit = newAgeLimit;}
 
 
+int video::getChapters()
+{if (_isDVD)
+	return _chapters;
+else
+	{	
+		cout << "VHS do not have chapters..." << endl;
+		return 0;
+	}
+}
+
+void video::setChapters(int newChapters)
+{if (_isDVD)
+	_chapters = newChapters;
+else
+	cout << "VHS do not have chapters..." << endl;
+}
+
+
 void video::getData()
 {
-	getGeneralData();
+	Article::getData();
 	
 	cout << "Director: " << getDirector() << endl;
 	cout << "Producer: " << getProducer() << endl;
@@ -90,6 +107,8 @@ void video::getData()
 	cout << "Length: " << getLength() << endl;
 	cout << "Age Limit: " << getAgeLimit() << endl;
 	cout << "Support Type: " << getIsDVD() << endl;
-
+	if(_isDVD)
+		cout << "Chapters: " << getChapters() << endl;
+	
 	cout << "----------------------------------------" << endl;
 }

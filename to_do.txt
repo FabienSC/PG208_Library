@@ -1,6 +1,8 @@
 sort the different articles: go through descriptions in sujet1
-add "ressources numériques" (and special class for board games ?)
+
 go over the commands in cahier des charges to check
+
+seperate books from magazines (book synopsis, mag editor + articles indexing and titles)
 
 add a boolean in user file (second line: 1 for admin, 0 for others)
 
@@ -16,3 +18,7 @@ why is Article class not used after declaration?
 
 update Library class (book/CD >> papercopy/vide/CD)
 rewrite UML (video, papercopy) and shit
+
+IDs : make them three digit only (100 199 : books 200 299 : Cdds...
+
+add special class for board games (?)

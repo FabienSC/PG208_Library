@@ -60,7 +60,7 @@ void NumericRes::setByteSize(int newByteSize)
 
 void NumericRes::getData()
 {
-getGeneralData();
+Article::getData();
 
 cout << "File author: " << getAuthor() << endl;
 cout << "File type: " << getFileType() << endl;
