@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+#include "popups.h"
 
 	using namespace System;
 	using namespace System::ComponentModel;

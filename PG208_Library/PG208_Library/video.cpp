@@ -1,6 +1,13 @@
 #include "StdAfx.h"
+#include <iostream>
+#include <string>
+#include <assert.h>
+#include <fstream>
+
+#include "video.h"
 
 using namespace std;
+
 
 video::video()
 {

@@ -186,7 +186,6 @@ bool Article::saveToFile(const char* fileName)
         else
             cerr << "Failed to open file!" << endl;
         return false;
-<<<<<<< HEAD
 }
 
 
@@ -195,6 +194,3 @@ bool Article::saveToFile(const char* fileName)
 		if(BASE_BOOK_ID <= _ID < BASE_CD_ID)
 			remove((char*)Marshal::StringToHGlobalAnsi(FILEPATH_BOOK + _ID + ".txt").ToPointer());
 	}
-=======
-}
->>>>>>> Origin/master
