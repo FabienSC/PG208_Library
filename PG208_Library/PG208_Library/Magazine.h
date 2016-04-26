@@ -9,7 +9,7 @@ class Magazine:
 public:
 	Magazine(void);
 	~Magazine(void);
-
+/*
 	getEditor
 	setEditor
 
@@ -21,5 +21,5 @@ public:
 private:
 	std::string _editor;
     vector std::string _reviewTitles
-	int			_reviews;
+	int			_reviews;*/
 };

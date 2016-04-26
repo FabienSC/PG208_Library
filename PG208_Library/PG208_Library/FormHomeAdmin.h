@@ -372,6 +372,8 @@ namespace PG208_Library {
 
 						 if(getline(myfile, line))//get 1st line and check if line exists
 						 {
+							 Book myBook;
+							 listArticles[listArticleCount] = myBook;
 							 listArticles[listArticleCount].setTitle((char*)line.c_str());//add to dynamic article array
 							 listArticles[listArticleCount].setID(fileID);//add to dynamic article array
 							 listArticleCount++;
@@ -500,10 +502,9 @@ namespace PG208_Library {
 	private: System::Void buttonDelete_Click(System::Object^  sender, System::EventArgs^  e) //DELETE Article
 			 {
 				 //DELETE selected article
-
 				 int selectedIndex = this->listBoxDisplay->SelectedIndex;
-				 // char *enteredUsername = (char*)Marshal::StringToHGlobalAnsi(strUsername).ToPointer();
-				 popup("Login Successful", (char*)Marshal::StringToHGlobalAnsi("" + selectedIndex).ToPointer());
+				 listArticles[selectedIndex].deleteFile();
+				// popup("Login Successful", (char*)Marshal::StringToHGlobalAnsi("" + selectedIndex).ToPointer());
 			 }
 
 			 void updateListBox()//empty listbox and add all articles in the article list to it

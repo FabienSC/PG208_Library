@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include <iostream>
 #include <string>
 #include <assert.h>
@@ -10,9 +10,9 @@ using namespace std;
 
 Book::Book()
 {
-    _author = "NA";
-    _publisher = "NA";
-    _pages = 0;
+	_author = "NA";
+	_publisher = "NA";
+	_pages = 0;
 	_isMagazine = 0;
 	_synopsis = "Nothing special about this book so far...";
 }
@@ -45,7 +45,7 @@ void Book::setPages(int newPages)
 
 string Book::getIsMagazine()
 {if (_isMagazine)
-	return"Magazine";
+return"Magazine";
 else
 	return"Book";
 }
@@ -55,7 +55,7 @@ void Book::setIsMagazine(bool newIsMagazine)
 
 void Book::setIsMagazine(string newIsMagazine)
 {if (newIsMagazine == "Magazine")
-	_isMagazine = 1;
+_isMagazine = 1;
 else if (newIsMagazine == "Book")
 	_isMagazine = 0;
 else
@@ -73,12 +73,11 @@ void Book::setSynopsis(string newSynopsis)
 void Book::getData()
 {
 	Article::getData();
-	
+
 	cout << "Author: " << getAuthor() << endl;
 	cout << "Publisher: " << getPublisher() << endl;
 	cout << "Pages: " << getPages() << endl;
 	cout << "Type: " << getIsMagazine() << endl;
-		
+
 	cout << "----------------------------------------" << endl;
 }
-
