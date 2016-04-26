@@ -18,10 +18,10 @@ public:
     int 		getPages();
     void 		setPages(int newPages);
 
-    std::string getIsMagazine();
+  /*  std::string getIsMagazine();
     void 		setIsMagazine(bool newIsMagazine);
 	void 		setIsMagazine(std::string newIsMagazine);
-
+*/
 	std::string getSynopsis();
     void 		setSynopsis(std::string newSynopsis);
 
@@ -29,11 +29,11 @@ public:
 
 //title, author, publisher, editor, number of pages
 
-private:
+protected: //allow acces for subclass
     std::string _author;
     std::string _publisher;
     int 		_pages;
-	bool		_isMagazine;
+//	bool		_isMagazine;
     std::string _synopsis;
 };
 

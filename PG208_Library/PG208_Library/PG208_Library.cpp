@@ -1,7 +1,6 @@
 // PG208_Library.cpp : main project file.
 
 #include "stdafx.h"
-#include "FormLogOn.h"
 
 using namespace PG208_Library;
 

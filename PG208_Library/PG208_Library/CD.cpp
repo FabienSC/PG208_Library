@@ -1,12 +1,5 @@
 #include "StdAfx.h"
 
-#include <iostream>
-#include <string>
-#include <assert.h>
-#include <fstream>
-
-#include "CD.h"
-
 using namespace std;
 
 

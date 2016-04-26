@@ -148,6 +148,7 @@ namespace PG208_Library {
 			this->listBoxDisplay->Name = L"listBoxDisplay";
 			this->listBoxDisplay->Size = System::Drawing::Size(188, 260);
 			this->listBoxDisplay->TabIndex = 4;
+			this->listBoxDisplay->SelectedIndexChanged += gcnew System::EventHandler(this, &FormHomeAdmin::listBoxDisplay_SelectedIndexChanged);
 			// 
 			// buttonSelect
 			// 
@@ -538,5 +539,7 @@ namespace PG208_Library {
 				 listArticles = new Article[listArticleSize];
 				 listArticleCount = 0;
 			 }
-	};
+	private: System::Void listBoxDisplay_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+			 }
+};
 }
