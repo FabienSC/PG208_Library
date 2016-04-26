@@ -45,13 +45,10 @@ namespace PG208_Library {
 			 System::Windows::Forms::TextBox^  textBoxID;
 			 System::Windows::Forms::TextBox^  textBoxTitle;
 
-
-
 			 System::Windows::Forms::Label^  labelTitle;
 
 			 System::Windows::Forms::TextBox^  textBox3;
 			 System::Windows::Forms::Label^  label3;
-
 
 			 System::Windows::Forms::TextBox^  textBox4;
 			 System::Windows::Forms::Label^  label4;
@@ -150,6 +147,7 @@ namespace PG208_Library {
 				 this->textBoxTitle->Name = L"textBoxTitle";
 				 this->textBoxTitle->Size = System::Drawing::Size(291, 22);
 				 this->textBoxTitle->TabIndex = 6;
+				 this->textBoxTitle->TextChanged += gcnew System::EventHandler(this, &FormNewArticle::textBoxTitle_TextChanged);
 				 // 
 				 // labelTitle
 				 // 
@@ -337,5 +335,7 @@ namespace PG208_Library {
 				 }
 				 this->textBoxID->Text = ""+fileID;//convert int to managed string and write to File ID text box
 			 }
-	};
+	private: System::Void textBoxTitle_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+			 }
+};
 }
