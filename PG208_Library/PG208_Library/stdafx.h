@@ -9,6 +9,11 @@
 #include "cipher.h"
 #include "popups.h"
 #include "Article.h"
+#include "Book.h"
+#include "Magazine.h"
+#include "CD.h"
+#include "video.h"
+#include "NumericRes.h"
 #include "Library.h"
 
 

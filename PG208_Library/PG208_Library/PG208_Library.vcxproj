@@ -96,8 +96,9 @@
     <ClCompile Include="Article.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="FormEditArticle.cpp" />
+    <ClCompile Include="Magazine.cpp" />
     <ClCompile Include="NumericRes.cpp" />
-    <ClCompile Include="PaperCopy.cpp" />
+    <ClCompile Include="Book.cpp" />
     <ClCompile Include="CD.cpp" />
     <ClCompile Include="cipher.cpp" />
     <ClCompile Include="video.cpp" />
@@ -117,8 +118,9 @@
     <ClInclude Include="FormEditArticle.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Magazine.h" />
     <ClInclude Include="NumericRes.h" />
-    <ClInclude Include="PaperCopy.h" />
+    <ClInclude Include="Book.h" />
     <ClInclude Include="CD.h" />
     <ClInclude Include="cipher.h" />
     <ClInclude Include="video.h" />
