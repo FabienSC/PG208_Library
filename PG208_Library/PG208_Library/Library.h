@@ -14,8 +14,8 @@ public:
 	void removeCD();//decrements the number of CDs
 
 private:
-	int _numberOfBooks;//number of books
-	int _numberOfCDs;//number of CDs
+	int _numberOfBooks;//number of separate books
+	int _numberOfCDs;//number of separate CDs
 	void saveData();//write data to file (Library/data.txt) useless?
 };
 
