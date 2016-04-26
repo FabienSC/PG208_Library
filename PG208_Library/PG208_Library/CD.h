@@ -1,6 +1,4 @@
 #pragma once
-#ifndef CD_H
-#define CD_H
 #include "Article.h"
 
 
@@ -31,5 +29,3 @@ private:
     std::string _musicStyle;
     int 		_duration;//in seconds
 };
-
-#endif // CD_H

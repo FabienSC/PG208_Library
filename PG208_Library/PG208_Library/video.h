@@ -1,6 +1,5 @@
 #pragma once
-#ifndef video_H
-#define video_H
+
 #include "Article.h"
 
 
@@ -43,5 +42,3 @@ private:
     int 		_ageLimit;
     int 		_length;
 };
-
-#endif // video_H

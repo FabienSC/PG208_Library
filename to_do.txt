@@ -1,4 +1,4 @@
-fort the different articles: go through descriptions in sujet1
+sort the different articles: go through descriptions in sujet1
 add "ressources numériques" (and special class for board games ?)
 go over the commands in cahier des charges to check
 
@@ -16,7 +16,3 @@ why is Article class not used after declaration?
 
 update Library class (book/CD >> papercopy/vide/CD)
 rewrite UML (video, papercopy) and shit
-
-ASK TEACHER : must we have a single file for the library content, or is one file for each article ok ?
-
-ASK TEACHER : do we REALLY need to do it on terminal, or can we just finish what we started...?

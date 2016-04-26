@@ -1,4 +1,3 @@
-#pragma once
 #ifndef paperCopy_H
 #define paperCopy_H
 #include "Article.h"

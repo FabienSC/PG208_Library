@@ -77,6 +77,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\PG208_Library\PG208_Library\Article.h" />
     <ClInclude Include="..\..\PG208_Library\PG208_Library\CD.h" />
+    <ClInclude Include="..\..\PG208_Library\PG208_Library\NumericRes.h" />
     <ClInclude Include="..\..\PG208_Library\PG208_Library\PaperCopy.h" />
     <ClInclude Include="..\..\PG208_Library\PG208_Library\video.h" />
     <ClInclude Include="stdafx.h" />
@@ -85,6 +86,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\PG208_Library\PG208_Library\Article.cpp" />
     <ClCompile Include="..\..\PG208_Library\PG208_Library\CD.cpp" />
+    <ClCompile Include="..\..\PG208_Library\PG208_Library\NumericRes.cpp" />
     <ClCompile Include="..\..\PG208_Library\PG208_Library\PaperCopy.cpp" />
     <ClCompile Include="..\..\PG208_Library\PG208_Library\video.cpp" />
     <ClCompile Include="stdafx.cpp">
