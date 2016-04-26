@@ -25,7 +25,7 @@ namespace PG208_Library {
 			//TODO: Add the constructor code here
 
 			this->labelUsername->Text = gcnew String(username);
-			listArticleSize = 100;
+			listArticleSize = 10;
 			listArticles = new Article[listArticleSize];
 			listArticleCount = 0;
 			//
@@ -358,7 +358,7 @@ namespace PG208_Library {
 					 ifstream myfile;
 					 string line;
 
-					 this->listBoxDisplay->Items->Clear();
+					 listArticlesClear();
 
 					 Library myLibrary;
 					 int countBooks = 0;
@@ -372,8 +372,11 @@ namespace PG208_Library {
 
 						 if(getline(myfile, line))//get 1st line and check if line exists
 						 {
-							 listArticles[listArticleCount].setTitle((char*)line.c_str());
+							 listArticles[listArticleCount].setTitle((char*)line.c_str());//add to dynamic article array
+							 listArticles[listArticleCount].setID(fileID);//add to dynamic article array
 							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)
+								 increaseListArticleSize();
 							 countBooks++;//to stop when all of the books are found
 						 }
 						 myfile.close();//close file so it can be opened again with a new path
@@ -395,7 +398,7 @@ namespace PG208_Library {
 					 ifstream myfile;
 					 string line;
 
-					 this->listBoxDisplay->Items->Clear();
+					 listArticlesClear();
 
 					 Library myLibrary;
 					 int countCDs = 0;
@@ -407,12 +410,16 @@ namespace PG208_Library {
 						 myfile.open(filePath);//open file
 						 if(getline(myfile, line))//get 1st line and check if line exists
 						 {
-							 this->listBoxDisplay->Items->Add(gcnew String((char*)line.c_str()));
+							 listArticles[listArticleCount].setTitle((char*)line.c_str());//add to dynamic article array
+							 listArticles[listArticleCount].setID(fileID);//add to dynamic article array
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)
+								 increaseListArticleSize();
 							 countCDs++;
 						 }
 						 myfile.close();//close file so it can be opened again with a new path
 
-						 this->labelNumberOfItems->Text = "" + countCDs;//myLibrary.getNumberOfBooks()?
+						 updateListBox();//empty listbox and add all articles in the article list to it
 					 }
 				 }
 			 }
@@ -426,7 +433,7 @@ namespace PG208_Library {
 					 ifstream myfile;
 					 string line;
 
-					 this->listBoxDisplay->Items->Clear();
+					 listArticlesClear();
 
 					 Library myLibrary;
 
@@ -441,7 +448,11 @@ namespace PG208_Library {
 						 myfile.open(filePath);//open file
 						 if(getline(myfile, line))//get 1st line and check if line exists
 						 {
-							 this->listBoxDisplay->Items->Add(gcnew String((char*)line.c_str()));
+							 listArticles[listArticleCount].setTitle((char*)line.c_str());//add to dynamic article array
+							 listArticles[listArticleCount].setID(fileID);//add to dynamic article array
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)
+								 increaseListArticleSize();
 							 countBooks++;
 						 }
 						 myfile.close();//close file so it can be opened again with a new path
@@ -457,12 +468,17 @@ namespace PG208_Library {
 						 myfile.open(filePath);//open file
 						 if(getline(myfile, line))//get 1st line and check if line exists
 						 {
-							 this->listBoxDisplay->Items->Add(gcnew String((char*)line.c_str()));
+							 
+							 listArticles[listArticleCount].setTitle((char*)line.c_str());//add to dynamic article array
+							 listArticles[listArticleCount].setID(fileID);//add to dynamic article array
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)
+								 increaseListArticleSize();
 							 countCDs++;
 						 }
 						 myfile.close();//close file so it can be opened again with a new path
 
-						 this->labelNumberOfItems->Text = "" + myLibrary.getNumberOfAll();//myLibrary.getNumberOfBooks()?
+						 updateListBox();//empty listbox and add all articles in the article list to it
 					 }
 				 }
 			 }
@@ -481,7 +497,7 @@ namespace PG208_Library {
 				 this->Show();//redisplays previous form once F3 is shut
 
 			 }
-	private: System::Void buttonDelete_Click(System::Object^  sender, System::EventArgs^  e) 
+	private: System::Void buttonDelete_Click(System::Object^  sender, System::EventArgs^  e) //DELETE Article
 			 {
 				 //DELETE selected article
 
@@ -495,9 +511,31 @@ namespace PG208_Library {
 				 this->listBoxDisplay->Items->Clear();
 
 				 for(int i = 0; i < listArticleCount; i++)
-					this->listBoxDisplay->Items->Add(gcnew String(listArticles[i].getTitle().c_str()));
+					 this->listBoxDisplay->Items->Add(gcnew String(listArticles[i].getTitle().c_str()));
 
 				 this->labelNumberOfItems->Text = "" + listArticleCount;//myLibrary.getNumberOfBooks()?
+			 }
+
+			 void increaseListArticleSize()//empty listbox and add all articles in the article list to it
+			 {
+				 int n = listArticleSize;
+				 listArticleSize = 2 * listArticleSize;
+
+				 Article* temp = new Article[listArticleSize]; // create new bigger, better, faster, stronger array.
+				 for (int i=0; i<n; i++)
+				 {
+					 temp[i] = listArticles[i];       // copy values to new array.
+				 }
+				 delete [] listArticles;              // free old array memory.
+				 listArticles = temp;         
+			 }
+
+			 void listArticlesClear()
+			 {
+				 delete [] listArticles;              // free old array memory.
+				 listArticleSize = 10;
+				 listArticles = new Article[listArticleSize];
+				 listArticleCount = 0;
 			 }
 	};
 }
