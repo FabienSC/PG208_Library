@@ -35,9 +35,7 @@ namespace PG208_Library {
 			}
 		}
 	private: System::Windows::Forms::Button^  button1;
-	protected: 
 
-	private:
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
