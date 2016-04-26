@@ -1,6 +1,4 @@
 #pragma once
-#ifndef CD_H
-#define CD_H
 #include "Article.h"
 
 
@@ -20,7 +18,10 @@ class CD : public Article//ref class CD?
 
     int 		getDuration();
     void 		setDuration(int newDuration);
-    
+
+    int 		getTracks();
+    void 		setTracks(int newTracks);
+
     void 		getData();
 
 //title, artist, duration, record company, music style
@@ -30,6 +31,5 @@ private:
     std::string _recordCompany;
     std::string _musicStyle;
     int 		_duration;//in seconds
+	int			_tracks;
 };
-
-#endif // CD_H

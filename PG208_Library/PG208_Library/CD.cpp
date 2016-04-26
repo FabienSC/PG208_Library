@@ -15,7 +15,8 @@ CD::CD()
     _artist = "NA";
     _recordCompany = "NA";
     _musicStyle = "NA";
-    _duration = -1;
+    _duration = 0;
+	_tracks = 0;
 }
 
 CD::~CD()
@@ -50,14 +51,23 @@ int CD::getDuration()
 void CD::setDuration(int newDuration)
 {_duration = newDuration;}
 
+
+int CD::getTracks()
+{return _tracks;}
+
+void CD::setTracks(int newTracks)
+{_tracks = newTracks;}
+
+
 void CD::getData()
 {
-	getGeneralData();
+	Article::getData();
 	
 	cout << "Artist: " << getArtist() << endl;
 	cout << "Record Company: " << getRecordCompany() << endl;
 	cout << "Music Style: " << getMusicStyle() << endl;
 	cout << "Duration: " << getDuration() << endl;
+	cout << "Number of tracks: " << getTracks() << endl;
 		
 	cout << "----------------------------------------" << endl;
 }

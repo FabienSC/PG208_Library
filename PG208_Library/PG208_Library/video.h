@@ -1,6 +1,5 @@
 #pragma once
-#ifndef video_H
-#define video_H
+
 #include "Article.h"
 
 
@@ -26,13 +25,15 @@ public:
     void 		setIsDVD(bool newIsDVD);
     void 		setIsDVD(std::string newIsDVD);
 
-
     int 		getLength();
     void 		setLength(int newLength);
     
 	int 		getAgeLimit();
     void 		setAgeLimit(int newAgeLimit);
     
+	int			getChapters();
+    void 		setChapters(int newChapters);
+
     void 		getData();
 
 private:
@@ -42,6 +43,5 @@ private:
     bool		_isDVD;
     int 		_ageLimit;
     int 		_length;
+    int			_chapters;
 };
-
-#endif // video_H

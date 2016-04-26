@@ -41,6 +41,7 @@
       <Filter>Other Stuff</Filter>
     </ClCompile>
     <ClCompile Include="FormEditArticle.cpp" />
+    <ClCompile Include="NumericRes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FormHomeAdmin.h" />
@@ -75,12 +76,14 @@
       <Filter>Other Stuff</Filter>
     </ClInclude>
     <ClInclude Include="FormEditArticle.h" />
+    <ClInclude Include="NumericRes.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormHomeAdmin.resx" />
     <EmbeddedResource Include="FormLogOn.resX" />
     <EmbeddedResource Include="FormNewArticle.resx" />
     <EmbeddedResource Include="FormNewUser.resx" />
+    <EmbeddedResource Include="FormEditArticle.resx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.ico">

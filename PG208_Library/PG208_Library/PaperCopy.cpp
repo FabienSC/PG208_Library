@@ -14,6 +14,7 @@ paperCopy::paperCopy()
     _publisher = "NA";
     _pages = 0;
 	_isMagazine = 0;
+	_synopsis = "Nothing special about this book so far...";
 }
 
 paperCopy::~paperCopy()
@@ -62,9 +63,16 @@ else
 }
 
 
+string paperCopy::getSynopsis()
+{return _synopsis;}
+
+void paperCopy::setSynopsis(string newSynopsis)
+{_synopsis = newSynopsis;}
+
+
 void paperCopy::getData()
 {
-	getGeneralData();
+	Article::getData();
 	
 	cout << "Author: " << getAuthor() << endl;
 	cout << "Publisher: " << getPublisher() << endl;

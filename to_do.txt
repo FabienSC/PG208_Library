@@ -1,6 +1,8 @@
-fort the different articles: go through descriptions in sujet1
-add "ressources numériques" (and special class for board games ?)
+sort the different articles: go through descriptions in sujet1
+
 go over the commands in cahier des charges to check
+
+seperate books from magazines (book synopsis, mag editor + articles indexing and titles)
 
 add a boolean in user file (second line: 1 for admin, 0 for others)
 
@@ -11,11 +13,12 @@ delete button: only admin can access, erases all data, WARNING messages upon cli
 add user screen: admin can add new users, decide if they are admin (new user button on login automatically makes normal users) and add articles...
 users can only borrow and give back articles, and browse through
 
-why is Article class not used afgted declaration?
+why is Article class not used after declaration?
+>>pass it through functions (edit, delete, select buttons ...)
 
 update Library class (book/CD >> papercopy/vide/CD)
 rewrite UML (video, papercopy) and shit
 
-ASK TEACHER : must we have a single file for the library content, or is one file for each article ok ?
+IDs : make them three digit only (100 199 : books 200 299 : Cdds...
 
-ASK TEACHER : do we REALLY need to do it on terminal, or can we just finish what we started...?
+add special class for board games (?)
