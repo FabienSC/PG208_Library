@@ -23,7 +23,8 @@ class CD : public Article//ref class CD?
     void 		setTracks(int newTracks);
 
     void 		getData();
-
+	
+	bool		load(int fileID);
 //title, artist, duration, record company, music style
 
 private:

@@ -2,6 +2,8 @@
 #define Book_H
 #include "Article.h"
 
+////////////////////////////Make this an abstract class
+
 
 class Book : public Article
 {
@@ -26,6 +28,8 @@ public:
     void 		setSynopsis(std::string newSynopsis);
 
     void 		getData();
+
+	bool		load(int fileID);
 
 //title, author, publisher, editor, number of pages
 

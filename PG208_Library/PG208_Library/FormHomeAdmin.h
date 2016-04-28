@@ -25,8 +25,9 @@ namespace PG208_Library {
 			//TODO: Add the constructor code here
 
 			this->labelUsername->Text = gcnew String(username);
+
 			listArticleSize = 10;
-			listArticles = new Article[listArticleSize];
+			listArticles = new Article*[listArticleSize];
 			listArticleCount = 0;
 			//
 		}
@@ -73,8 +74,8 @@ namespace PG208_Library {
 		/// </summary>
 
 
-		int listArticleSize;
-		Article * listArticles;//will point to a dynamic array of Articles. Start off with 100 articles
+		int listArticleSize;//Start off with 10 articles
+		Article ** listArticles;//will point to a dynamic array of Articles henceforth refered to as "DynArray(TM)"
 		int listArticleCount;//number of articles in the list
 
 
@@ -353,75 +354,50 @@ namespace PG208_Library {
 			 {
 				 if(this->radioButtonBooks->Checked)//if button is checked
 				 {
-					 int fileID;
-					 String ^ strIDFilePath;
-					 char *filePath;
-					 ifstream myfile;
-					 string line;
-
 					 listArticlesClear();
 
 					 Library myLibrary;
 					 int countBooks = 0;
 					 for(int i = 0; countBooks < myLibrary.getNumberOfBooks(); i++)
 					 {
-						 fileID = BASE_BOOK_ID + i;//update file ID
-						 strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
+						 int fileID = BASE_BOOK_ID + i;//update file ID
 
-						 filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
-						 myfile.open(filePath);//open file
-
-						 if(getline(myfile, line))//get 1st line and check if line exists
+						 Book * myBook = new Book;//create new book
+						 if(myBook->load(fileID))//load data from file is successful
 						 {
-							 Book myBook;
-							 listArticles[listArticleCount] = myBook;
-							 listArticles[listArticleCount].setTitle((char*)line.c_str());//add to dynamic article array
-							 listArticles[listArticleCount].setID(fileID);//add to dynamic article array
-							 listArticleCount++;
-							 if(listArticleCount >= listArticleSize)
-								 increaseListArticleSize();
+							 listArticles[listArticleCount] = myBook;//store book in the DynArray(TM)
+
 							 countBooks++;//to stop when all of the books are found
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 increaseListArticleSize();//increase Dynamic array size
 						 }
-						 myfile.close();//close file so it can be opened again with a new path
-
 						 updateListBox();//empty listbox and add all articles in the article list to it
-
 					 }
 				 }
-
-
 			 }
 	private: System::Void radioButtonCDs_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 if(this->radioButtonCDs->Checked)//if button is checked
 				 {
-					 int fileID;
-					 String ^ strIDFilePath;
-					 char *filePath;
-					 ifstream myfile;
-					 string line;
-
 					 listArticlesClear();
 
 					 Library myLibrary;
 					 int countCDs = 0;
 					 for(int i = 0; countCDs < myLibrary.getNumberOfCDs(); i++)
 					 {
-						 fileID = BASE_CD_ID + i;//update file ID
-						 strIDFilePath = FILEPATH_CD + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
-						 filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
-						 myfile.open(filePath);//open file
-						 if(getline(myfile, line))//get 1st line and check if line exists
-						 {
-							 listArticles[listArticleCount].setTitle((char*)line.c_str());//add to dynamic article array
-							 listArticles[listArticleCount].setID(fileID);//add to dynamic article array
-							 listArticleCount++;
-							 if(listArticleCount >= listArticleSize)
-								 increaseListArticleSize();
-							 countCDs++;
-						 }
-						 myfile.close();//close file so it can be opened again with a new path
+						 int fileID = BASE_CD_ID + i;//update file ID
 
+						 CD * myCD = new CD;//create new book
+						 if(myCD->load(fileID))//load data from file is successful
+						 {
+							 listArticles[listArticleCount] = myCD;//store book in the DynArray(TM)
+
+							 countCDs++;//to stop when all of the books are found
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 increaseListArticleSize();//increase Dynamic array size
+						 }
 						 updateListBox();//empty listbox and add all articles in the article list to it
 					 }
 				 }
@@ -430,57 +406,43 @@ namespace PG208_Library {
 			 {
 				 if(this->radioButtonAll->Checked)//if button is checked
 				 {
-					 int fileID;
-					 String ^ strIDFilePath;
-					 char *filePath;
-					 ifstream myfile;
-					 string line;
-
 					 listArticlesClear();
 
 					 Library myLibrary;
-
 					 int countBooks = 0;
-					 int countCDs = 0;
-
 					 for(int i = 0; countBooks < myLibrary.getNumberOfBooks(); i++)
 					 {
-						 fileID = BASE_BOOK_ID + i;//update file ID
-						 strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
-						 filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
-						 myfile.open(filePath);//open file
-						 if(getline(myfile, line))//get 1st line and check if line exists
-						 {
-							 listArticles[listArticleCount].setTitle((char*)line.c_str());//add to dynamic article array
-							 listArticles[listArticleCount].setID(fileID);//add to dynamic article array
-							 listArticleCount++;
-							 if(listArticleCount >= listArticleSize)
-								 increaseListArticleSize();
-							 countBooks++;
-						 }
-						 myfile.close();//close file so it can be opened again with a new path
+						 int fileID = BASE_BOOK_ID + i;//update file ID
 
-						 this->labelNumberOfItems->Text = "" + countBooks;//myLibrary.getNumberOfBooks()?
+						 Book * myBook = new Book;//create new book
+						 if(myBook->load(fileID))//load data from file is successful
+						 {
+							 listArticles[listArticleCount] = myBook;//store book in the DynArray(TM)
+
+							 countBooks++;//to stop when all of the books are found
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 increaseListArticleSize();//increase Dynamic array size
+						 }
+						 updateListBox();//empty listbox and add all articles in the article list to it
 					 }
 
+
+					 int countCDs = 0;
 					 for(int i = 0; countCDs < myLibrary.getNumberOfCDs(); i++)
 					 {
-						 fileID = BASE_CD_ID + i;//update file ID
-						 strIDFilePath = FILEPATH_CD + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
-						 filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
-						 myfile.open(filePath);//open file
-						 if(getline(myfile, line))//get 1st line and check if line exists
-						 {
-							 
-							 listArticles[listArticleCount].setTitle((char*)line.c_str());//add to dynamic article array
-							 listArticles[listArticleCount].setID(fileID);//add to dynamic article array
-							 listArticleCount++;
-							 if(listArticleCount >= listArticleSize)
-								 increaseListArticleSize();
-							 countCDs++;
-						 }
-						 myfile.close();//close file so it can be opened again with a new path
+						 int fileID = BASE_CD_ID + i;//update file ID
 
+						 CD * myCD = new CD;//create new book
+						 if(myCD->load(fileID))//load data from file is successful
+						 {
+							 listArticles[listArticleCount] = myCD;//store book in the DynArray(TM)
+
+							 countCDs++;//to stop when all of the books are found
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 increaseListArticleSize();//increase Dynamic array size
+						 }
 						 updateListBox();//empty listbox and add all articles in the article list to it
 					 }
 				 }
@@ -504,8 +466,8 @@ namespace PG208_Library {
 			 {
 				 //DELETE selected article
 				 int selectedIndex = this->listBoxDisplay->SelectedIndex;
-				 listArticles[selectedIndex].deleteFile();
-				// popup("Login Successful", (char*)Marshal::StringToHGlobalAnsi("" + selectedIndex).ToPointer());
+				 listArticles[selectedIndex]->deleteFile();
+				 // popup("Login Successful", (char*)Marshal::StringToHGlobalAnsi("" + selectedIndex).ToPointer());
 			 }
 
 			 void updateListBox()//empty listbox and add all articles in the article list to it
@@ -513,7 +475,7 @@ namespace PG208_Library {
 				 this->listBoxDisplay->Items->Clear();
 
 				 for(int i = 0; i < listArticleCount; i++)
-					 this->listBoxDisplay->Items->Add(gcnew String(listArticles[i].getTitle().c_str()));
+					 this->listBoxDisplay->Items->Add(gcnew String(listArticles[i]->getTitle().c_str()));
 
 				 this->labelNumberOfItems->Text = "" + listArticleCount;//myLibrary.getNumberOfBooks()?
 			 }
@@ -523,7 +485,7 @@ namespace PG208_Library {
 				 int n = listArticleSize;
 				 listArticleSize = 2 * listArticleSize;
 
-				 Article* temp = new Article[listArticleSize]; // create new bigger, better, faster, stronger array.
+				 Article** temp = new Article*[listArticleSize]; // create new bigger, better, faster, stronger array.
 				 for (int i=0; i<n; i++)
 				 {
 					 temp[i] = listArticles[i];       // copy values to new array.
@@ -536,13 +498,13 @@ namespace PG208_Library {
 			 {
 				 delete [] listArticles;              // free old array memory.
 				 listArticleSize = 10;
-				 listArticles = new Article[listArticleSize];
+				 listArticles = new Article*[listArticleSize];
 				 listArticleCount = 0;
 			 }
 	private: System::Void buttonSelect_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
-				 int selectedIndex = this->listBoxDisplay->SelectedIndex;
-				 popup("Selected", (char*)listArticles[selectedIndex].getTitle().c_str());
+				 int selectedIndex = this->listBoxDisplay->SelectedIndex;//-1 means nothing is selected
+				 popup("Selected", (char*)listArticles[selectedIndex]->getTitle().c_str());
 			 }
-};
+	};
 }

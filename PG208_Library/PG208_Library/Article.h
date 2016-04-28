@@ -1,7 +1,6 @@
 #ifndef ARTICLES_H
 #define ARTICLES_H
-
-#include <string>
+#include "StdAfx.h"
 
 
 class Article
@@ -32,6 +31,8 @@ public:
 	bool		loadFromFile(const char* fileName);
 	bool		saveToFile(const char* fileName, Article myArticle);	
 	bool		saveToFile(const char* fileName);
+
+	virtual bool	load(int fileID);//
 
 protected:
     unsigned int _ID;
