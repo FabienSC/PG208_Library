@@ -43,31 +43,19 @@ void Book::setPages(int newPages)
 {_pages = newPages;}
 
 
-string Book::getIsMagazine()
-{if (_isMagazine)
-return"Magazine";
-else
-	return"Book";
-}
-
-void Book::setIsMagazine(bool newIsMagazine)
-{_isMagazine = newIsMagazine;}
-
-void Book::setIsMagazine(string newIsMagazine)
-{if (newIsMagazine == "Magazine")
-_isMagazine = 1;
-else if (newIsMagazine == "Book")
-	_isMagazine = 0;
-else
-	cout << "error, please specify type Magazine or Book" << endl;
-}
-
-
 string Book::getSynopsis()
 {return _synopsis;}
 
 void Book::setSynopsis(string newSynopsis)
 {_synopsis = newSynopsis;}
+
+
+string Book::getIsMagazine()
+{if (_isMagazine)
+	return " Magazine ";
+else
+	return " Book ";
+}
 
 
 void Book::getData()

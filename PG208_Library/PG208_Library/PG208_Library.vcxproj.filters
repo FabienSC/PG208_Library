@@ -41,12 +41,10 @@
     <ClCompile Include="Book.cpp">
       <Filter>Code</Filter>
     </ClCompile>
-    <ClCompile Include="Magazine.cpp">
-      <Filter>Code</Filter>
-    </ClCompile>
     <ClCompile Include="NumericRes.cpp">
       <Filter>Code</Filter>
     </ClCompile>
+    <ClCompile Include="Periodical.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FormHomeAdmin.h" />
@@ -81,12 +79,10 @@
     <ClInclude Include="Book.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Magazine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="NumericRes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Periodical.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormHomeAdmin.resx" />

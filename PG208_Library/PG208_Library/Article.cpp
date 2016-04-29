@@ -86,7 +86,7 @@ bool Article::returnArticle()
 
 void Article::getData()
 {
-	cout << "--------------Info diplay ---------------" << endl;
+	cout << "--------------Info display ---------------" << endl;
 	
 	cout << "ID: " << getID() << endl;
 	cout << "Title: " << getTitle() << endl;

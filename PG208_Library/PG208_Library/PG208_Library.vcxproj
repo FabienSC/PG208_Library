@@ -96,11 +96,11 @@
     <ClCompile Include="Article.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="FormEditArticle.cpp" />
-    <ClCompile Include="Magazine.cpp" />
     <ClCompile Include="NumericRes.cpp" />
     <ClCompile Include="Book.cpp" />
     <ClCompile Include="CD.cpp" />
     <ClCompile Include="cipher.cpp" />
+    <ClCompile Include="Periodical.cpp" />
     <ClCompile Include="video.cpp" />
     <ClCompile Include="FormHome.cpp" />
     <ClCompile Include="FormNewArticle.cpp" />
@@ -118,11 +118,11 @@
     <ClInclude Include="FormEditArticle.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Magazine.h" />
     <ClInclude Include="NumericRes.h" />
     <ClInclude Include="Book.h" />
     <ClInclude Include="CD.h" />
     <ClInclude Include="cipher.h" />
+    <ClInclude Include="Periodical.h" />
     <ClInclude Include="video.h" />
     <ClInclude Include="FormHomeAdmin.h">
       <FileType>CppForm</FileType>

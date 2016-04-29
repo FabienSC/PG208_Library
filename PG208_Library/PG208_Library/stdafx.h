@@ -10,7 +10,7 @@
 #include "popups.h"
 #include "Article.h"
 #include "Book.h"
-#include "Magazine.h"
+#include "Periodical.h"
 #include "CD.h"
 #include "video.h"
 #include "NumericRes.h"
