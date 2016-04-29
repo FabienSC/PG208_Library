@@ -12,6 +12,7 @@ using namespace System::Runtime::InteropServices;
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include "conversion.h"
 #include "cipher.h"
 #include "popups.h"
 #include "Article.h"

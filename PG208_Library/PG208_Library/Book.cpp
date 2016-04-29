@@ -81,7 +81,7 @@ bool	Book::load(int fileID)
 {
 	String ^ strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
 
-	char* filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert to char*
+	char* filePath = managedStringToChar(strIDFilePath);//convert to char*
 
 	struct stat buffer;
 	if(stat (filePath, &buffer) == 0)//If file exists
@@ -94,7 +94,7 @@ bool	Book::load(int fileID)
 		myfile.open(filePath);//open file
 		getline(myfile, line);//store first line into "line"
 
-		_title = _strdup(line.c_str());//Load Title
+		_title = stringToChar(line);//Load Title
 		return true;//Load successful
 	}
 	else
@@ -106,14 +106,15 @@ bool	Book::load(int fileID)
 bool	Book::save()
 {
 	String ^ strIDFilePath = FILEPATH_BOOK + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
-	char* filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert to char*
+	char* filePath = managedStringToChar(strIDFilePath);//convert to char*
 
 	struct stat buffer;
 	if(stat (filePath, &buffer))//If file doesn't exist
 	{
 		ofstream myfile(filePath);
-
-		myfile << _title;//save title
+		
+		myfile << _title << endl;//save title
+		myfile << _releaseDate << endl;//save release date
 		myfile.close();
 
 		return true;//Save successful

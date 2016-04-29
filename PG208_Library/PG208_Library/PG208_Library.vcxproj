@@ -95,6 +95,7 @@
   <ItemGroup>
     <ClCompile Include="Article.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="conversion.cpp" />
     <ClCompile Include="FormEditArticle.cpp" />
     <ClCompile Include="Magazine.cpp" />
     <ClCompile Include="NumericRes.cpp" />
@@ -115,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Article.h" />
+    <ClInclude Include="conversion.h" />
     <ClInclude Include="FormEditArticle.h">
       <FileType>CppForm</FileType>
     </ClInclude>

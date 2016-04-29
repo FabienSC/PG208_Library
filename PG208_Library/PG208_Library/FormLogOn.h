@@ -194,16 +194,16 @@ namespace PG208_Library {
 			 {
 				 String ^ strUsername = textBoxUsername->Text;//typed in username
 				 String ^ strPassword = textBoxPassword->Text;//typed in password
-				 char *enteredUsername = (char*)Marshal::StringToHGlobalAnsi(strUsername).ToPointer();//mnaged string to char array
+				 char *enteredUsername = managedStringToChar(strUsername);//managed string to char array
 				 strUsername = FILEPATH_USERS + strUsername + ".txt";//change username to filepath
-				 char *userFilePath = (char*)Marshal::StringToHGlobalAnsi(strUsername).ToPointer();//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
-				 char *enteredPassword = (char*)Marshal::StringToHGlobalAnsi(strPassword).ToPointer();
+				 char *userFilePath = managedStringToChar(strUsername);//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
+				 char *enteredPassword = managedStringToChar(strPassword);
 
 				 ifstream myFile(userFilePath);
 				 string line;
 				 getline( myFile, line );
 				 int sizePassword = line.size();
-				 char* filePassword = (char*)line.c_str();
+				 char* filePassword = stringToChar(line);
 
 				 char* decryptedPassword = decrypt(enteredUsername,filePassword);
 

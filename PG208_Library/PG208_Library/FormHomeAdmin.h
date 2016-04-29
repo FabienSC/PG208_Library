@@ -197,6 +197,7 @@ namespace PG208_Library {
 			this->comboBoxSortBy->Name = L"comboBoxSortBy";
 			this->comboBoxSortBy->Size = System::Drawing::Size(188, 24);
 			this->comboBoxSortBy->TabIndex = 12;
+			this->comboBoxSortBy->SelectedIndexChanged += gcnew System::EventHandler(this, &FormHomeAdmin::comboBoxSortBy_SelectedIndexChanged);
 			// 
 			// textBox1
 			// 
@@ -508,5 +509,9 @@ namespace PG208_Library {
 				 int selectedIndex = this->listBoxDisplay->SelectedIndex;//-1 means nothing is selected
 				 popup("Selected", listArticles[selectedIndex]->getTitle());//display title
 			 }
-	};
+	private: System::Void comboBoxSortBy_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 //sort by title/release date...
+			 }
+};
 }
