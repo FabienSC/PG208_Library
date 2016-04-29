@@ -30,6 +30,7 @@ public:
     void 		getData();
 
 	bool		load(int fileID);
+	bool		save();
 
 //title, author, publisher, editor, number of pages
 

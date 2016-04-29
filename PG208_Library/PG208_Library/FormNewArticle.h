@@ -3,14 +3,12 @@
 
 namespace PG208_Library {
 
-	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-	using namespace System::Runtime::InteropServices;
-	using namespace std;
+
 
 	/// <summary>
 	/// Summary for FormNewArticle
@@ -253,89 +251,77 @@ namespace PG208_Library {
 	private: System::Void buttonCreate_Click(System::Object^  sender, System::EventArgs^  e)//create the new article
 			 {
 				 bool aButtonIsChecked = (this->radioButtonBook->Checked == true) || (this->radioButtonCD->Checked == true);
-				 bool dataIsOK = (this->textBoxTitle->Text->Length != 0);
+				 bool dataIsOK = (this->textBoxTitle->Text->Length != 0);//minimum info required to create a book
 
 				 String ^ strFilePath;
 
-				 if(aButtonIsChecked && dataIsOK)
+				 if(aButtonIsChecked && dataIsOK)//create article
 				 {
 					 Library myLibrary;
-					 myLibrary.addBook();
 					 if(this->radioButtonBook->Checked == true)//new article is a book
 					 {
-						 strFilePath = FILEPATH_BOOK;
+						 Book newBook;
+						 newBook.setID(Convert::ToInt32(this->textBoxID->Text,10));//set ID
+						 newBook.setTitle((char*)Marshal::StringToHGlobalAnsi(this->textBoxTitle->Text).ToPointer());//set Title
+
+						 newBook.save();
 						 myLibrary.addBook();
 					 }
 					 else if(this->radioButtonCD->Checked == true)//new article is a CD
 					 {
-						 strFilePath = FILEPATH_CD;
+						 CD newCD;
+						 newCD.setID(Convert::ToInt32(this->textBoxID->Text,10));//set ID
+						 newCD.setTitle((char*)Marshal::StringToHGlobalAnsi(this->textBoxTitle->Text).ToPointer());//set Title
+
+						 newCD.save();
 						 myLibrary.addCD();
 					 }
-
-					 strFilePath = strFilePath + this->textBoxID->Text + ".txt";
-					 char *filePath = (char*)Marshal::StringToHGlobalAnsi(strFilePath).ToPointer();//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
-					 ofstream myfile(filePath);
-
-					 myfile << (char*)Marshal::StringToHGlobalAnsi(this->textBoxTitle->Text).ToPointer();
-					 myfile.close();
-
 					 this->Close();
 				 }
-
 			 }
 	private: System::Void radioButtonBook_CheckedChanged(System::Object^  sender, System::EventArgs^  e)//automatically sets smallest available ID
 			 {
 				 int fileID;
-				 String ^ strIDFilePath;
-				 char *filePath;
-				 fstream myfile;
-				 string line;
-
 				 bool loopFlag = 1;
 				 for(int i = 0; loopFlag; i++)
 				 {
 					 fileID = BASE_BOOK_ID + i;//update file ID
-					 strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
-					 filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
-					 myfile.open(filePath, ios::in);//open file to write
-					 if(myfile.is_open() == 0)//file doesn't exist
+					 String ^ strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
+					 char *filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
+
+					 struct stat buffer;
+					 if(stat(filePath, &buffer))//if file doesn't exist
 						 loopFlag = 0;//exit loop
 					 if(fileID == BASE_CD_ID)//all available Book IDs have been used
 					 {
 						 popup("Error","All available IDs are in use. Please burn books to free IDs.");
 						 this->Close();//close form
 					 }
-					 myfile.close();//close file so it can be opened again with a new path
 				 }
 				 this->textBoxID->Text = ""+fileID;//convert int to managed string and write to File ID text box
 			 }
 	private: System::Void radioButtonCD_CheckedChanged(System::Object^  sender, System::EventArgs^  e)//automatically sets smallest available ID
 			 {
 				 int fileID;
-				 String ^ strIDFilePath;
-				 char *filePath;
-				 fstream myfile;
-				 string line;
-
 				 bool loopFlag = 1;
 				 for(int i = 0; loopFlag; i++)
 				 {
 					 fileID = BASE_CD_ID + i;//update file ID
-					 strIDFilePath = FILEPATH_CD + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
-					 filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
-					 myfile.open(filePath, ios::in);//open file to write
-					 if(myfile.is_open() == 0)//file doesn't exist
+					 String ^ strIDFilePath = FILEPATH_CD + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
+					 char *filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
+
+					 struct stat buffer;
+					 if(stat(filePath, &buffer))//if file doesn't exist
 						 loopFlag = 0;//exit loop
-					 if(fileID == BASE_BOOK_ID)//all available Book IDs have been used//#### change to whatever is after CDs
+					 if(fileID == (BASE_CD_ID + 1000))//all available CD IDs have been used
 					 {
 						 popup("Error","All available IDs are in use. Please burn books to free IDs.");
 						 this->Close();//close form
 					 }
-					 myfile.close();//close file so it can be opened again with a new path
 				 }
 				 this->textBoxID->Text = ""+fileID;//convert int to managed string and write to File ID text box
 			 }
 	private: System::Void textBoxTitle_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 			 }
-};
+	};
 }

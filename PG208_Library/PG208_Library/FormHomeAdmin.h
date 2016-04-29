@@ -475,7 +475,9 @@ namespace PG208_Library {
 				 this->listBoxDisplay->Items->Clear();
 
 				 for(int i = 0; i < listArticleCount; i++)
-					 this->listBoxDisplay->Items->Add(gcnew String(listArticles[i]->getTitle().c_str()));
+				 {
+					 this->listBoxDisplay->Items->Add(gcnew String(listArticles[i]->getTitle()));
+				 }
 
 				 this->labelNumberOfItems->Text = "" + listArticleCount;//myLibrary.getNumberOfBooks()?
 			 }
@@ -504,7 +506,7 @@ namespace PG208_Library {
 	private: System::Void buttonSelect_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 int selectedIndex = this->listBoxDisplay->SelectedIndex;//-1 means nothing is selected
-				 popup("Selected", (char*)listArticles[selectedIndex]->getTitle().c_str());
+				 popup("Selected", listArticles[selectedIndex]->getTitle());//display title
 			 }
 	};
 }

@@ -26,10 +26,10 @@ void Article::setID(int newID)
 {_ID = newID;}
 
 
-string Article::getTitle()
+char* Article::getTitle()
 {return _title;}
 
-void Article::setTitle(string newTitle)
+void Article::setTitle(char* newTitle)
 {_title = newTitle;}
 
 
@@ -92,7 +92,7 @@ void Article::getData()
 }
 
 
-bool Article::loadFromFile(const char* fileName)
+/*bool Article::loadFromFile(const char* fileName)
 {
 	int ID, releaseDate;
 	bool isAvailable;
@@ -114,7 +114,7 @@ bool Article::loadFromFile(const char* fileName)
 	else
 		cerr << "Failed to open file!" << endl;
 	return false;
-}
+}*/
 
 
 bool Article::saveToFile(const char* fileName, Article myArticle)

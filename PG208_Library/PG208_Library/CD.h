@@ -25,6 +25,7 @@ class CD : public Article//ref class CD?
     void 		getData();
 	
 	bool		load(int fileID);
+	bool		save();
 //title, artist, duration, record company, music style
 
 private:

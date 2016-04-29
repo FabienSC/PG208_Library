@@ -94,9 +94,30 @@ bool	Book::load(int fileID)
 		myfile.open(filePath);//open file
 		getline(myfile, line);//store first line into "line"
 
-		_title = (char*)line.c_str();//Load Title
+		_title = _strdup(line.c_str());//Load Title
 		return true;//Load successful
 	}
 	else
 		return false;//Load failed
+}
+
+
+
+bool	Book::save()
+{
+	String ^ strIDFilePath = FILEPATH_BOOK + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
+	char* filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert to char*
+
+	struct stat buffer;
+	if(stat (filePath, &buffer))//If file doesn't exist
+	{
+		ofstream myfile(filePath);
+
+		myfile << _title;//save title
+		myfile.close();
+
+		return true;//Save successful
+	}
+	else
+		return false;//Save failed
 }
