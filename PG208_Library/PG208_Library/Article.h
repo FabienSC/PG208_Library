@@ -12,7 +12,9 @@ public:
 	void 		setID(int newID);								//1 to 1000 for books, 1001 to 2000 for CDs ...
     int 		getID();						    
 	
-	void 		setTitle(char* newTitle);		
+	void 		setTitle(char* newTitle);	
+	//void 		setTitle(std::string newTitle);	
+
     char*		getTitle();						
     
 	void 		setReleaseDate(int newReleaseDate);		
@@ -28,7 +30,7 @@ public:
 	
 	void		deleteFile();//delete file
 
-//	bool		loadFromFile(const char* fileName);
+	//bool		loadFromFile(const char* fileName);
 	bool		saveToFile(const char* fileName, Article myArticle);	
 	bool		saveToFile(const char* fileName);
 

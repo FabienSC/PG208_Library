@@ -82,18 +82,11 @@ bool Article::returnArticle()
 
 void Article::getData()
 {
-<<<<<<< HEAD
 	cout << "--------------Info display ---------------" << endl;
-	
-=======
-	cout << "--------------Info diplay ---------------" << endl;
-
->>>>>>> origin/master
 	cout << "ID: " << getID() << endl;
 	cout << "Title: " << getTitle() << endl;
 	cout << "Release date: " << getReleaseDate() << endl;
 	cout << "Availability: " << getAvailability() << endl;	
-
 }
 
 
