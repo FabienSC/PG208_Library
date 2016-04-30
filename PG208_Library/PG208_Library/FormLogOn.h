@@ -18,22 +18,24 @@ namespace PG208_Library {
 	/// <summary>
 	/// Summary for Form1
 	/// </summary>
-	public ref class Form1 : public System::Windows::Forms::Form
+	public ref class FormLogOn : public System::Windows::Forms::Form
 	{
 	public:
-		Form1(void)
+		FormLogOn(void)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 			//
+
+
 		}
 
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~Form1()
+		~FormLogOn()
 		{
 			if (components)
 			{
@@ -88,7 +90,7 @@ namespace PG208_Library {
 				 this->buttonRegister->TabIndex = 0;
 				 this->buttonRegister->Text = L"Log on";
 				 this->buttonRegister->UseVisualStyleBackColor = false;
-				 this->buttonRegister->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
+				 this->buttonRegister->Click += gcnew System::EventHandler(this, &FormLogOn::button1_Click);
 				 // 
 				 // textBoxUsername
 				 // 
@@ -141,7 +143,7 @@ namespace PG208_Library {
 				 this->linkLabelNewUser->TabIndex = 5;
 				 this->linkLabelNewUser->TabStop = true;
 				 this->linkLabelNewUser->Text = L"New user";
-				 this->linkLabelNewUser->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &Form1::linkLabelNewUser_LinkClicked);
+				 this->linkLabelNewUser->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &FormLogOn::linkLabelNewUser_LinkClicked);
 				 // 
 				 // linkLabelForgotPassword
 				 // 
@@ -153,7 +155,7 @@ namespace PG208_Library {
 				 this->linkLabelForgotPassword->TabIndex = 6;
 				 this->linkLabelForgotPassword->TabStop = true;
 				 this->linkLabelForgotPassword->Text = L"Forgot Password\?";
-				 this->linkLabelForgotPassword->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &Form1::linkLabelForgotPassword_LinkClicked);
+				 this->linkLabelForgotPassword->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &FormLogOn::linkLabelForgotPassword_LinkClicked);
 				 // 
 				 // buttonExit
 				 // 
@@ -165,7 +167,7 @@ namespace PG208_Library {
 				 this->buttonExit->TabIndex = 7;
 				 this->buttonExit->Text = L"Exit";
 				 this->buttonExit->UseVisualStyleBackColor = false;
-				 this->buttonExit->Click += gcnew System::EventHandler(this, &Form1::buttonExit_Click);
+				 this->buttonExit->Click += gcnew System::EventHandler(this, &FormLogOn::buttonExit_Click);
 				 // 
 				 // Form1
 				 // 
@@ -189,6 +191,7 @@ namespace PG208_Library {
 				 this->PerformLayout();
 
 			 }
+
 #pragma endregion
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)//login
 			 {
@@ -201,33 +204,44 @@ namespace PG208_Library {
 
 				 ifstream myFile(userFilePath);
 				 string line;
-				 getline( myFile, line );
+				 getline( myFile, line );//encrypted password line
 				 int sizePassword = line.size();
 				 char* filePassword = stringToChar(line);
 
 				 char* decryptedPassword = decrypt(enteredUsername,filePassword);
 
+				 getline( myFile, line );//Admin status line
+				 bool userIsAdmin = stringToInt(line);
+
 				 if((strcmp(enteredPassword,decryptedPassword) == 0) && (sizePassword > 3))//if username and password match AND password on file is longer than 3
 				 {
 					 popup("Login Successful", "Welcome!");
 					 this->Hide();
-					 FormHomeAdmin ^ F3 = gcnew FormHomeAdmin(enteredUsername); //FormHomeAdmin defined in FormHomeAdmin.h
-					 F3->ShowDialog();
+					 if(userIsAdmin)
+					 {
+						 FormHomeAdmin ^ FHomeAdmin = gcnew FormHomeAdmin(enteredUsername); //FormHomeAdmin defined in FormHomeAdmin.h
+					 FHomeAdmin->ShowDialog();
+					 }
+					 else
+						 popup("Oops","We don't want your kind around here");
 					 this->Show();
 				 }
 				 else//invalid username/password
 					 popup("Login Failed", "Invalid username or password. If problem persists, contact the 2 idiots who made this program.");
 
 			 }
+
 	private: System::Void linkLabelForgotPassword_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e)
 			 {
 				 popup("Forgot Password", "Try very hard to remember it.");
 			 }
+
 	private: System::Void linkLabelNewUser_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e)
 			 {//clicked on "New User" link
-				 FormNewUser ^ F2 = gcnew FormNewUser(); //FormNewUser defined in FormNewUser.h
-				 F2->ShowDialog();
+				 FormNewUser ^ FNewUser = gcnew FormNewUser(0); //FormNewUser for non-Admin users
+				 FNewUser->ShowDialog();
 			 }
+
 	private: System::Void buttonExit_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 this->Close();

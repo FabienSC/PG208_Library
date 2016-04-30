@@ -20,3 +20,10 @@ char * intToChar(int inputInt)
 	String^ conversionString = "" + inputInt;
 	return managedStringToChar(conversionString);
 }
+
+
+int	stringToInt(string inputString)
+{
+
+	return stoi(inputString, nullptr, 10);
+}

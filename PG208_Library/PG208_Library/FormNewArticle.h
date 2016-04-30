@@ -46,7 +46,8 @@ namespace PG208_Library {
 			 System::Windows::Forms::Label^  labelTitle;
 
 			 System::Windows::Forms::TextBox^  textBox3;
-			 System::Windows::Forms::Label^  label3;
+	private: System::Windows::Forms::Label^  label;
+
 
 			 System::Windows::Forms::TextBox^  textBox4;
 			 System::Windows::Forms::Label^  label4;
@@ -79,7 +80,7 @@ namespace PG208_Library {
 				 this->textBoxTitle = (gcnew System::Windows::Forms::TextBox());
 				 this->labelTitle = (gcnew System::Windows::Forms::Label());
 				 this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-				 this->label3 = (gcnew System::Windows::Forms::Label());
+				 this->label = (gcnew System::Windows::Forms::Label());
 				 this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 				 this->label4 = (gcnew System::Windows::Forms::Label());
 				 this->textBox5 = (gcnew System::Windows::Forms::TextBox());
@@ -165,14 +166,14 @@ namespace PG208_Library {
 				 this->textBox3->Size = System::Drawing::Size(291, 22);
 				 this->textBox3->TabIndex = 8;
 				 // 
-				 // label3
+				 // label
 				 // 
-				 this->label3->AutoSize = true;
-				 this->label3->Location = System::Drawing::Point(47, 211);
-				 this->label3->Name = L"label3";
-				 this->label3->Size = System::Drawing::Size(46, 17);
-				 this->label3->TabIndex = 7;
-				 this->label3->Text = L"label3";
+				 this->label->AutoSize = true;
+				 this->label->Location = System::Drawing::Point(47, 211);
+				 this->label->Name = L"label";
+				 this->label->Size = System::Drawing::Size(46, 17);
+				 this->label->TabIndex = 7;
+				 this->label->Text = L"label3";
 				 // 
 				 // textBox4
 				 // 
@@ -236,7 +237,7 @@ namespace PG208_Library {
 				 this->Controls->Add(this->textBox4);
 				 this->Controls->Add(this->label4);
 				 this->Controls->Add(this->textBox3);
-				 this->Controls->Add(this->label3);
+				 this->Controls->Add(this->label);
 				 this->Controls->Add(this->textBoxTitle);
 				 this->Controls->Add(this->labelTitle);
 				 this->Controls->Add(this->textBoxID);
@@ -276,6 +277,7 @@ namespace PG208_Library {
 						 CD newCD;
 						 newCD.setID(Convert::ToInt32(this->textBoxID->Text,10));//set ID
 						 newCD.setTitle(managedStringToChar(this->textBoxTitle->Text));//set Title
+						 newCD.setReleaseDate(dateTimePicker->Value.Year * 10000 + dateTimePicker->Value.Month * 100 + dateTimePicker->Value.Day);
 
 						 newCD.save();
 						 myLibrary.addCD();
@@ -329,7 +331,7 @@ namespace PG208_Library {
 			 }
 private: System::Void dateTimePicker_ValueChanged(System::Object^  sender, System::EventArgs^  e)
 		 {
-			 popup("date changed", intToChar(dateTimePicker->Value.Year));
+			 //popup("date changed", intToChar(dateTimePicker->Value.Year));//display year for debugging
 		 }
 };
 }

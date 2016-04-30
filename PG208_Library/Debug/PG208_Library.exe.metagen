@@ -28,7 +28,7 @@ Assembly Microsoft.VisualC, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b0
 	hash=None, flags=None
 Class PG208_Library.FormNewUser: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class PG208_Library.FormEditArticle: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -38,6 +38,6 @@ Class PG208_Library.FormNewArticle: AutoLayout, AnsiClass, Class, Public, Before
 Class PG208_Library.FormHomeAdmin: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(SByte*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-Class PG208_Library.Form1: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+Class PG208_Library.FormLogOn: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

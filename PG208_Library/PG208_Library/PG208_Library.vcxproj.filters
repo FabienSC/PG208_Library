@@ -37,7 +37,6 @@
     <ClCompile Include="FormNewUser.cpp">
       <Filter>Other Stuff</Filter>
     </ClCompile>
-    <ClCompile Include="FormEditArticle.cpp" />
     <ClCompile Include="Book.cpp">
       <Filter>Code</Filter>
     </ClCompile>
@@ -49,6 +48,9 @@
     </ClCompile>
     <ClCompile Include="conversion.cpp">
       <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="FormEditArticle.cpp">
+      <Filter>Other Stuff</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
