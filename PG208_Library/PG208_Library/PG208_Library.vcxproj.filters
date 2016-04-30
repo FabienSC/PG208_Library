@@ -40,18 +40,22 @@
     <ClCompile Include="Book.cpp">
       <Filter>Code</Filter>
     </ClCompile>
-    <ClCompile Include="Magazine.cpp">
-      <Filter>Code</Filter>
-    </ClCompile>
     <ClCompile Include="NumericRes.cpp">
       <Filter>Code</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="Periodical.cpp" />
+=======
     <ClCompile Include="conversion.cpp">
       <Filter>Code</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="FormEditArticle.cpp">
       <Filter>Other Stuff</Filter>
     </ClCompile>
+=======
+>>>>>>> origin/master
+>>>>>>> Origin/master
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FormHomeAdmin.h" />
@@ -86,15 +90,16 @@
     <ClInclude Include="Book.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Magazine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="NumericRes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="Periodical.h" />
+=======
     <ClInclude Include="conversion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+>>>>>>> origin/master
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormHomeAdmin.resx" />

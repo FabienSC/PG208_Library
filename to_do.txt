@@ -19,6 +19,6 @@ why is Article class not used after declaration?
 update Library class (book/CD >> papercopy/vide/CD)
 rewrite UML (video, papercopy) and shit
 
-IDs : make them three digit only (100 199 : books 200 299 : Cdds...
+check warning in article.h (delete function)
 
 add special class for board games (?)

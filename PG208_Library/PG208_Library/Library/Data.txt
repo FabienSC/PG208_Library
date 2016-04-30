@@ -1,2 +1,11 @@
+<<<<<<< HEAD
 2
 1
+=======
+<<<<<<< HEAD
+4
+=======
+9
+>>>>>>> origin/master
+4
+>>>>>>> Origin/master
