@@ -20,10 +20,12 @@ public:
     int 		getPages();
     void 		setPages(int newPages);
 
+    std::string getIsMagazine();
+    void 		setIsMagazine(bool newIsMagazine);
+	void 		setIsMagazine(std::string newIsMagazine);
+
 	std::string getSynopsis();
     void 		setSynopsis(std::string newSynopsis);
-
-	std::string		getIsMagazine();
 
     void 		getData();
 
@@ -32,7 +34,7 @@ public:
 
 //title, author, publisher, editor, number of pages
 
-protected:
+private:
     std::string _author;
     std::string _publisher;
     int 		_pages;

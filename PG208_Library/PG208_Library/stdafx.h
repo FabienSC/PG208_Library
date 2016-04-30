@@ -17,7 +17,7 @@ using namespace System::Runtime::InteropServices;
 #include "popups.h"
 #include "Article.h"
 #include "Book.h"
-#include "Periodical.h"
+#include "Magazine.h"
 #include "CD.h"
 #include "video.h"
 #include "NumericRes.h"
