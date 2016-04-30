@@ -2,10 +2,17 @@
 // or project specific include files that are used frequently, but
 // are changed infrequently
 #pragma once
+
+
+using namespace std;
+using namespace System;
+using namespace System::Runtime::InteropServices;
+
 #include <string.h>
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include "conversion.h"
 #include "cipher.h"
 #include "popups.h"
 #include "Article.h"
@@ -15,6 +22,7 @@
 #include "video.h"
 #include "NumericRes.h"
 #include "Library.h"
+#include <sys/stat.h>//for checking if a file exists
 
 
 // TODO: reference additional headers your program requires here

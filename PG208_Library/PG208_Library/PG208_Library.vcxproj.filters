@@ -44,7 +44,13 @@
     <ClCompile Include="NumericRes.cpp">
       <Filter>Code</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Periodical.cpp" />
+=======
+    <ClCompile Include="conversion.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+>>>>>>> origin/master
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FormHomeAdmin.h" />
@@ -82,7 +88,13 @@
     <ClInclude Include="NumericRes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Periodical.h" />
+=======
+    <ClInclude Include="conversion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+>>>>>>> origin/master
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormHomeAdmin.resx" />

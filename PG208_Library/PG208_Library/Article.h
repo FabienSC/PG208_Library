@@ -1,7 +1,6 @@
 #ifndef ARTICLES_H
 #define ARTICLES_H
-
-#include <string>
+#include "StdAfx.h"
 
 
 class Article
@@ -13,8 +12,8 @@ public:
 	void 		setID(int newID);								//1 to 1000 for books, 1001 to 2000 for CDs ...
     int 		getID();						    
 	
-	void 		setTitle(std::string newTitle);		
-    std::string getTitle();						
+	void 		setTitle(char* newTitle);		
+    char*		getTitle();						
     
 	void 		setReleaseDate(int newReleaseDate);		
     int 		getReleaseDate();						
@@ -29,13 +28,15 @@ public:
 	
 	void		deleteFile();//delete file
 
-	bool		loadFromFile(const char* fileName);
+//	bool		loadFromFile(const char* fileName);
 	bool		saveToFile(const char* fileName, Article myArticle);	
 	bool		saveToFile(const char* fileName);
 
+	virtual bool	load(int fileID);//
+
 protected:
     unsigned int _ID;
-    std::string _title;
+    char* _title;
     bool _isAvailable;
     int _releaseDate;//YYYYMMDD
 };

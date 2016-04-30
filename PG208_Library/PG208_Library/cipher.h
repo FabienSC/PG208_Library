@@ -1,8 +1,4 @@
-#ifndef CIPHER_H
-#define CIPHER_H
+#pragma once
 
 char* decrypt(char* ,char* );
 char* encrypt(char* ,char* );
-
-
-#endif // CIPHER_H

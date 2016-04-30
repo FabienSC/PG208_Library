@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿Build started 30/04/2016 01:55:06.
      1>Project "C:\projetC++biblio\git_alex\PG208_Library\PG208_Library\PG208_Library.vcxproj" on node 2 (rebuild target(s)).
      1>_PrepareForClean:
@@ -29,6 +30,19 @@
          Generating Code...
          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /analyze- /errorReport:prompt "C:\Users\Alex Anderson\AppData\Local\Temp\.NETFramework,Version=v4.0.AssemblyAttributes.cpp"
          .NETFramework,Version=v4.0.AssemblyAttributes.cpp
+=======
+﻿Build started 29-Apr-16 6:24:50 PM.
+     1>Project "C:\Users\Fabien\Documents\Git\PG208_Library\PG208_Library\PG208_Library.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\PG208_Library.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       GenerateTargetFrameworkMonikerAttribute:
+       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         All outputs are up-to-date.
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\PG208_Library.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Microsoft.VisualBasic.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\VBPowerPacks\v10.0\Microsoft.VisualBasic.PowerPacks.Vs.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt CD.cpp /clr:nostdlib 
+         CD.cpp
+         All outputs are up-to-date.
+>>>>>>> origin/master
        CoreResGen:
          "c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\NETFX 4.0 Tools\resgen.exe" /useSourcePath /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Microsoft.VisualBasic.dll" /r:"c:\Program Files (x86)\Reference Assemblies\Microsoft\VBPowerPacks\v10.0\Microsoft.VisualBasic.PowerPacks.Vs.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /compile FormEditArticle.resx,Debug\PG208_Library.FormEditArticle.resources FormHomeAdmin.resx,Debug\PG208_Library.FormHomeAdmin.resources FormLogOn.resX,Debug\PG208_Library.FormLogOn.resources FormNewArticle.resx,Debug\PG208_Library.FormNewArticle.resources FormNewUser.resx,Debug\PG208_Library.FormNewUser.resources
          Processing resource file "FormEditArticle.resx" into "Debug\PG208_Library.FormEditArticle.resources".
@@ -42,6 +56,7 @@
          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\projetC++biblio\git_alex\PG208_Library\Debug\PG208_Library.exe" /INCREMENTAL /NOLOGO /ASSEMBLYRESOURCE:Debug\PG208_Library.FormEditArticle.resources /ASSEMBLYRESOURCE:Debug\PG208_Library.FormHomeAdmin.resources /ASSEMBLYRESOURCE:Debug\PG208_Library.FormLogOn.resources /ASSEMBLYRESOURCE:Debug\PG208_Library.FormNewArticle.resources /ASSEMBLYRESOURCE:Debug\PG208_Library.FormNewUser.resources /MANIFEST /ManifestFile:"Debug\PG208_Library.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\projetC++biblio\git_alex\PG208_Library\Debug\PG208_Library.pdb" /ASSEMBLYDEBUG /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"main" /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\app.res
          Debug\Article.obj
          Debug\AssemblyInfo.obj
+         Debug\conversion.obj
          Debug\FormEditArticle.obj
          Debug\NumericRes.obj
          Debug\Book.obj
@@ -67,4 +82,8 @@
 
 Build succeeded.
 
+<<<<<<< HEAD
 Time Elapsed 00:00:06.60
+=======
+Time Elapsed 00:00:02.59
+>>>>>>> origin/master

@@ -3,14 +3,12 @@
 
 namespace PG208_Library {
 
-	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-	using namespace System::Runtime::InteropServices;
-	using namespace std;
+
 
 	/// <summary>
 	/// Summary for FormNewArticle
@@ -59,8 +57,10 @@ namespace PG208_Library {
 			 /// <summary>
 			 /// Required designer variable.
 			 Article * newArticle;
-			 System::Windows::Forms::MonthCalendar^  monthCalendar;
+
 			 System::Windows::Forms::Label^  labelReleaseDate;
+	private: System::Windows::Forms::DateTimePicker^  dateTimePicker;
+
 			 /// </summary>
 			 System::ComponentModel::Container ^components;
 
@@ -84,8 +84,8 @@ namespace PG208_Library {
 				 this->label4 = (gcnew System::Windows::Forms::Label());
 				 this->textBox5 = (gcnew System::Windows::Forms::TextBox());
 				 this->label5 = (gcnew System::Windows::Forms::Label());
-				 this->monthCalendar = (gcnew System::Windows::Forms::MonthCalendar());
 				 this->labelReleaseDate = (gcnew System::Windows::Forms::Label());
+				 this->dateTimePicker = (gcnew System::Windows::Forms::DateTimePicker());
 				 this->SuspendLayout();
 				 // 
 				 // radioButtonBook
@@ -160,7 +160,7 @@ namespace PG208_Library {
 				 // 
 				 // textBox3
 				 // 
-				 this->textBox3->Location = System::Drawing::Point(100, 168);
+				 this->textBox3->Location = System::Drawing::Point(100, 211);
 				 this->textBox3->Name = L"textBox3";
 				 this->textBox3->Size = System::Drawing::Size(291, 22);
 				 this->textBox3->TabIndex = 8;
@@ -168,7 +168,7 @@ namespace PG208_Library {
 				 // label3
 				 // 
 				 this->label3->AutoSize = true;
-				 this->label3->Location = System::Drawing::Point(47, 168);
+				 this->label3->Location = System::Drawing::Point(47, 211);
 				 this->label3->Name = L"label3";
 				 this->label3->Size = System::Drawing::Size(46, 17);
 				 this->label3->TabIndex = 7;
@@ -176,7 +176,7 @@ namespace PG208_Library {
 				 // 
 				 // textBox4
 				 // 
-				 this->textBox4->Location = System::Drawing::Point(100, 206);
+				 this->textBox4->Location = System::Drawing::Point(100, 249);
 				 this->textBox4->Name = L"textBox4";
 				 this->textBox4->Size = System::Drawing::Size(291, 22);
 				 this->textBox4->TabIndex = 10;
@@ -184,7 +184,7 @@ namespace PG208_Library {
 				 // label4
 				 // 
 				 this->label4->AutoSize = true;
-				 this->label4->Location = System::Drawing::Point(47, 206);
+				 this->label4->Location = System::Drawing::Point(47, 249);
 				 this->label4->Name = L"label4";
 				 this->label4->Size = System::Drawing::Size(46, 17);
 				 this->label4->TabIndex = 9;
@@ -192,7 +192,7 @@ namespace PG208_Library {
 				 // 
 				 // textBox5
 				 // 
-				 this->textBox5->Location = System::Drawing::Point(100, 244);
+				 this->textBox5->Location = System::Drawing::Point(100, 287);
 				 this->textBox5->Name = L"textBox5";
 				 this->textBox5->Size = System::Drawing::Size(291, 22);
 				 this->textBox5->TabIndex = 12;
@@ -200,35 +200,37 @@ namespace PG208_Library {
 				 // label5
 				 // 
 				 this->label5->AutoSize = true;
-				 this->label5->Location = System::Drawing::Point(47, 244);
+				 this->label5->Location = System::Drawing::Point(47, 287);
 				 this->label5->Name = L"label5";
 				 this->label5->Size = System::Drawing::Size(46, 17);
 				 this->label5->TabIndex = 11;
 				 this->label5->Text = L"label5";
 				 // 
-				 // monthCalendar
-				 // 
-				 this->monthCalendar->Location = System::Drawing::Point(447, 90);
-				 this->monthCalendar->MaxDate = System::DateTime(2016, 12, 31, 0, 0, 0, 0);
-				 this->monthCalendar->Name = L"monthCalendar";
-				 this->monthCalendar->TabIndex = 13;
-				 // 
 				 // labelReleaseDate
 				 // 
 				 this->labelReleaseDate->AutoSize = true;
-				 this->labelReleaseDate->Location = System::Drawing::Point(483, 64);
+				 this->labelReleaseDate->Location = System::Drawing::Point(47, 170);
 				 this->labelReleaseDate->Name = L"labelReleaseDate";
 				 this->labelReleaseDate->Size = System::Drawing::Size(90, 17);
 				 this->labelReleaseDate->TabIndex = 14;
 				 this->labelReleaseDate->Text = L"Relese Date:";
+				 // 
+				 // dateTimePicker
+				 // 
+				 this->dateTimePicker->CustomFormat = L"yyyyMMdd";
+				 this->dateTimePicker->Location = System::Drawing::Point(175, 170);
+				 this->dateTimePicker->Name = L"dateTimePicker";
+				 this->dateTimePicker->Size = System::Drawing::Size(216, 22);
+				 this->dateTimePicker->TabIndex = 15;
+				 this->dateTimePicker->ValueChanged += gcnew System::EventHandler(this, &FormNewArticle::dateTimePicker_ValueChanged);
 				 // 
 				 // FormNewArticle
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->ClientSize = System::Drawing::Size(739, 515);
+				 this->Controls->Add(this->dateTimePicker);
 				 this->Controls->Add(this->labelReleaseDate);
-				 this->Controls->Add(this->monthCalendar);
 				 this->Controls->Add(this->textBox5);
 				 this->Controls->Add(this->label5);
 				 this->Controls->Add(this->textBox4);
@@ -253,89 +255,81 @@ namespace PG208_Library {
 	private: System::Void buttonCreate_Click(System::Object^  sender, System::EventArgs^  e)//create the new article
 			 {
 				 bool aButtonIsChecked = (this->radioButtonBook->Checked == true) || (this->radioButtonCD->Checked == true);
-				 bool dataIsOK = (this->textBoxTitle->Text->Length != 0);
+				 bool dataIsOK = (this->textBoxTitle->Text->Length != 0);//minimum info required to create a book
 
-				 String ^ strFilePath;
 
-				 if(aButtonIsChecked && dataIsOK)
+				 if(aButtonIsChecked && dataIsOK)//create article
 				 {
 					 Library myLibrary;
-					 myLibrary.addBook();
 					 if(this->radioButtonBook->Checked == true)//new article is a book
 					 {
-						 strFilePath = FILEPATH_BOOK;
+						 Book newBook;
+						 newBook.setID(Convert::ToInt32(this->textBoxID->Text,10));//set ID
+						 newBook.setTitle(managedStringToChar(this->textBoxTitle->Text));//set Title
+						 newBook.setReleaseDate(dateTimePicker->Value.Year * 10000 + dateTimePicker->Value.Month * 100 + dateTimePicker->Value.Day);
+
+						 newBook.save();
 						 myLibrary.addBook();
 					 }
 					 else if(this->radioButtonCD->Checked == true)//new article is a CD
 					 {
-						 strFilePath = FILEPATH_CD;
+						 CD newCD;
+						 newCD.setID(Convert::ToInt32(this->textBoxID->Text,10));//set ID
+						 newCD.setTitle(managedStringToChar(this->textBoxTitle->Text));//set Title
+
+						 newCD.save();
 						 myLibrary.addCD();
 					 }
-
-					 strFilePath = strFilePath + this->textBoxID->Text + ".txt";
-					 char *filePath = (char*)Marshal::StringToHGlobalAnsi(strFilePath).ToPointer();//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
-					 ofstream myfile(filePath);
-
-					 myfile << (char*)Marshal::StringToHGlobalAnsi(this->textBoxTitle->Text).ToPointer();
-					 myfile.close();
-
 					 this->Close();
 				 }
-
 			 }
 	private: System::Void radioButtonBook_CheckedChanged(System::Object^  sender, System::EventArgs^  e)//automatically sets smallest available ID
 			 {
 				 int fileID;
-				 String ^ strIDFilePath;
-				 char *filePath;
-				 fstream myfile;
-				 string line;
-
 				 bool loopFlag = 1;
 				 for(int i = 0; loopFlag; i++)
 				 {
 					 fileID = BASE_BOOK_ID + i;//update file ID
-					 strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
-					 filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
-					 myfile.open(filePath, ios::in);//open file to write
-					 if(myfile.is_open() == 0)//file doesn't exist
+					 String ^ strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
+					 char *filePath = managedStringToChar(strIDFilePath);//convert string
+
+					 struct stat buffer;
+					 if(stat(filePath, &buffer))//if file doesn't exist
 						 loopFlag = 0;//exit loop
 					 if(fileID == BASE_CD_ID)//all available Book IDs have been used
 					 {
 						 popup("Error","All available IDs are in use. Please burn books to free IDs.");
 						 this->Close();//close form
 					 }
-					 myfile.close();//close file so it can be opened again with a new path
 				 }
 				 this->textBoxID->Text = ""+fileID;//convert int to managed string and write to File ID text box
 			 }
 	private: System::Void radioButtonCD_CheckedChanged(System::Object^  sender, System::EventArgs^  e)//automatically sets smallest available ID
 			 {
 				 int fileID;
-				 String ^ strIDFilePath;
-				 char *filePath;
-				 fstream myfile;
-				 string line;
-
 				 bool loopFlag = 1;
 				 for(int i = 0; loopFlag; i++)
 				 {
 					 fileID = BASE_CD_ID + i;//update file ID
-					 strIDFilePath = FILEPATH_CD + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
-					 filePath = (char*)Marshal::StringToHGlobalAnsi(strIDFilePath).ToPointer();//convert string
-					 myfile.open(filePath, ios::in);//open file to write
-					 if(myfile.is_open() == 0)//file doesn't exist
+					 String ^ strIDFilePath = FILEPATH_CD + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
+					 char *filePath = managedStringToChar(strIDFilePath);//convert string
+
+					 struct stat buffer;
+					 if(stat(filePath, &buffer))//if file doesn't exist
 						 loopFlag = 0;//exit loop
-					 if(fileID == BASE_BOOK_ID)//all available Book IDs have been used//#### change to whatever is after CDs
+					 if(fileID == (BASE_CD_ID + 1000))//all available CD IDs have been used
 					 {
 						 popup("Error","All available IDs are in use. Please burn books to free IDs.");
 						 this->Close();//close form
 					 }
-					 myfile.close();//close file so it can be opened again with a new path
 				 }
 				 this->textBoxID->Text = ""+fileID;//convert int to managed string and write to File ID text box
 			 }
 	private: System::Void textBoxTitle_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 			 }
+private: System::Void dateTimePicker_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+		 {
+			 popup("date changed", intToChar(dateTimePicker->Value.Year));
+		 }
 };
 }
