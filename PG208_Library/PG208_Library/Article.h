@@ -18,11 +18,11 @@ public:
 	void 		setReleaseDate(int newReleaseDate);		
     int 		getReleaseDate();						
     
-	void		setAvailability(bool newIsAvailable);			//manual set for initialisation only 
+	void		setQtyOwned(int);			
 	void		setAvailability(std::string newIsAvailable);	
 	std::string getAvailability();
     bool 		borrowArticle();						// if already borrowed, can't borrow it...
-    bool 		returnArticle();						// if in library, can't return...
+    bool 		returnArticle();						// if all in library, can't return...
 
 	void 		getData();
 	
@@ -37,8 +37,9 @@ public:
 protected:
     unsigned int _ID;
     char* _title;
-    bool _isAvailable;
     int _releaseDate;//YYYYMMDD
+    int _qtyOwned;//quantity owned
+    int _qtyLent;//quantity available
 };
 
 #endif // ARTICLES_H

@@ -16,3 +16,10 @@ void popup(char* title, char* message)
 	String^ strTitle = gcnew String(title); // String is a managed class
 	MessageBox::Show(strMessage, strTitle, MessageBoxButtons::OK);
 }
+
+void popup(char* title, int message)
+{
+	String^ strMessage = "" + message;// ^ specifies a tracking handle
+	String^ strTitle = gcnew String(title); // String is a managed class
+	MessageBox::Show(strMessage, strTitle, MessageBoxButtons::OK);
+}

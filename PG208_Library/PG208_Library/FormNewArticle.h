@@ -44,8 +44,9 @@ namespace PG208_Library {
 			 System::Windows::Forms::TextBox^  textBoxTitle;
 
 			 System::Windows::Forms::Label^  labelTitle;
+	private: System::Windows::Forms::TextBox^  textBoxQty;
 
-			 System::Windows::Forms::TextBox^  textBox3;
+
 	private: System::Windows::Forms::Label^  label;
 
 
@@ -61,6 +62,8 @@ namespace PG208_Library {
 
 			 System::Windows::Forms::Label^  labelReleaseDate;
 	private: System::Windows::Forms::DateTimePicker^  dateTimePicker;
+	private: System::Windows::Forms::Button^  buttonPlus1;
+	private: System::Windows::Forms::Button^  buttonMinus1;
 
 			 /// </summary>
 			 System::ComponentModel::Container ^components;
@@ -79,7 +82,7 @@ namespace PG208_Library {
 				 this->textBoxID = (gcnew System::Windows::Forms::TextBox());
 				 this->textBoxTitle = (gcnew System::Windows::Forms::TextBox());
 				 this->labelTitle = (gcnew System::Windows::Forms::Label());
-				 this->textBox3 = (gcnew System::Windows::Forms::TextBox());
+				 this->textBoxQty = (gcnew System::Windows::Forms::TextBox());
 				 this->label = (gcnew System::Windows::Forms::Label());
 				 this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 				 this->label4 = (gcnew System::Windows::Forms::Label());
@@ -87,13 +90,15 @@ namespace PG208_Library {
 				 this->label5 = (gcnew System::Windows::Forms::Label());
 				 this->labelReleaseDate = (gcnew System::Windows::Forms::Label());
 				 this->dateTimePicker = (gcnew System::Windows::Forms::DateTimePicker());
+				 this->buttonPlus1 = (gcnew System::Windows::Forms::Button());
+				 this->buttonMinus1 = (gcnew System::Windows::Forms::Button());
 				 this->SuspendLayout();
 				 // 
 				 // radioButtonBook
 				 // 
 				 this->radioButtonBook->Anchor = System::Windows::Forms::AnchorStyles::Top;
 				 this->radioButtonBook->AutoSize = true;
-				 this->radioButtonBook->Location = System::Drawing::Point(306, 37);
+				 this->radioButtonBook->Location = System::Drawing::Point(100, 38);
 				 this->radioButtonBook->Name = L"radioButtonBook";
 				 this->radioButtonBook->Size = System::Drawing::Size(61, 21);
 				 this->radioButtonBook->TabIndex = 0;
@@ -105,7 +110,7 @@ namespace PG208_Library {
 				 // 
 				 this->radioButtonCD->Anchor = System::Windows::Forms::AnchorStyles::Top;
 				 this->radioButtonCD->AutoSize = true;
-				 this->radioButtonCD->Location = System::Drawing::Point(373, 37);
+				 this->radioButtonCD->Location = System::Drawing::Point(167, 38);
 				 this->radioButtonCD->Name = L"radioButtonCD";
 				 this->radioButtonCD->Size = System::Drawing::Size(48, 21);
 				 this->radioButtonCD->TabIndex = 1;
@@ -159,21 +164,24 @@ namespace PG208_Library {
 				 this->labelTitle->TabIndex = 5;
 				 this->labelTitle->Text = L"Title:";
 				 // 
-				 // textBox3
+				 // textBoxQty
 				 // 
-				 this->textBox3->Location = System::Drawing::Point(100, 211);
-				 this->textBox3->Name = L"textBox3";
-				 this->textBox3->Size = System::Drawing::Size(291, 22);
-				 this->textBox3->TabIndex = 8;
+				 this->textBoxQty->Location = System::Drawing::Point(175, 211);
+				 this->textBoxQty->Name = L"textBoxQty";
+				 this->textBoxQty->Size = System::Drawing::Size(68, 22);
+				 this->textBoxQty->TabIndex = 8;
+				 this->textBoxQty->Text = L"0";
+				 this->textBoxQty->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
+				 this->textBoxQty->TextChanged += gcnew System::EventHandler(this, &FormNewArticle::textBoxQty_TextChanged);
 				 // 
 				 // label
 				 // 
 				 this->label->AutoSize = true;
 				 this->label->Location = System::Drawing::Point(47, 211);
 				 this->label->Name = L"label";
-				 this->label->Size = System::Drawing::Size(46, 17);
+				 this->label->Size = System::Drawing::Size(113, 17);
 				 this->label->TabIndex = 7;
-				 this->label->Text = L"label3";
+				 this->label->Text = L"Quantity Owned:";
 				 // 
 				 // textBox4
 				 // 
@@ -225,18 +233,40 @@ namespace PG208_Library {
 				 this->dateTimePicker->TabIndex = 15;
 				 this->dateTimePicker->ValueChanged += gcnew System::EventHandler(this, &FormNewArticle::dateTimePicker_ValueChanged);
 				 // 
+				 // buttonPlus1
+				 // 
+				 this->buttonPlus1->Location = System::Drawing::Point(249, 210);
+				 this->buttonPlus1->Name = L"buttonPlus1";
+				 this->buttonPlus1->Size = System::Drawing::Size(68, 23);
+				 this->buttonPlus1->TabIndex = 16;
+				 this->buttonPlus1->Text = L"+1";
+				 this->buttonPlus1->UseVisualStyleBackColor = true;
+				 this->buttonPlus1->Click += gcnew System::EventHandler(this, &FormNewArticle::buttonPlus1_Click);
+				 // 
+				 // buttonMinus1
+				 // 
+				 this->buttonMinus1->Location = System::Drawing::Point(323, 210);
+				 this->buttonMinus1->Name = L"buttonMinus1";
+				 this->buttonMinus1->Size = System::Drawing::Size(68, 23);
+				 this->buttonMinus1->TabIndex = 17;
+				 this->buttonMinus1->Text = L"-1";
+				 this->buttonMinus1->UseVisualStyleBackColor = true;
+				 this->buttonMinus1->Click += gcnew System::EventHandler(this, &FormNewArticle::buttonMinus1_Click);
+				 // 
 				 // FormNewArticle
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->ClientSize = System::Drawing::Size(739, 515);
+				 this->Controls->Add(this->buttonMinus1);
+				 this->Controls->Add(this->buttonPlus1);
 				 this->Controls->Add(this->dateTimePicker);
 				 this->Controls->Add(this->labelReleaseDate);
 				 this->Controls->Add(this->textBox5);
 				 this->Controls->Add(this->label5);
 				 this->Controls->Add(this->textBox4);
 				 this->Controls->Add(this->label4);
-				 this->Controls->Add(this->textBox3);
+				 this->Controls->Add(this->textBoxQty);
 				 this->Controls->Add(this->label);
 				 this->Controls->Add(this->textBoxTitle);
 				 this->Controls->Add(this->labelTitle);
@@ -332,6 +362,22 @@ namespace PG208_Library {
 private: System::Void dateTimePicker_ValueChanged(System::Object^  sender, System::EventArgs^  e)
 		 {
 			 //popup("date changed", intToChar(dateTimePicker->Value.Year));//display year for debugging
+		 }
+private: System::Void buttonPlus1_Click(System::Object^  sender, System::EventArgs^  e)
+		 {
+			 if(managedStringToInt(this->textBoxQty->Text) < 100)//only go up to 100
+				this->textBoxQty->Text = intToManagedString(managedStringToInt(this->textBoxQty->Text) + 1);
+			 else
+				 popup("LOL Fail","You're a library, not a wholeseller");
+		 }
+private: System::Void buttonMinus1_Click(System::Object^  sender, System::EventArgs^  e)
+		 {
+			 if(managedStringToInt(this->textBoxQty->Text) > 0)//only go down to 0
+				this->textBoxQty->Text = intToManagedString(managedStringToInt(this->textBoxQty->Text) - 1);
+		 }
+private: System::Void textBoxQty_TextChanged(System::Object^  sender, System::EventArgs^  e)
+		 {
+			 this->textBoxQty->Text = intToManagedString(managedStringToInt(this->textBoxQty->Text));//reject non-numbers
 		 }
 };
 }

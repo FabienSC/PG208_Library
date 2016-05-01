@@ -11,7 +11,8 @@ Article::Article()
 {
 	_ID = 0;//id not set
 	_title = "NA";
-	_isAvailable = 0;
+	_qtyLent = 0;
+	_qtyOwned = 0;
 	_releaseDate = 0;
 }
 
@@ -41,42 +42,33 @@ void Article::setReleaseDate(int newReleaseDate)
 
 
 string Article::getAvailability()
-{if(_isAvailable)
-return "Available";
-else
-	return "Unavailable";
-}
-
-void Article::setAvailability(bool newIsAvailable)
-{_isAvailable = newIsAvailable;}
-
-void Article::setAvailability(string newIsAvailable)
-{if (newIsAvailable == "Available")
-_isAvailable = 1;
-else 
-	_isAvailable = 0;
-}
-
-bool Article::borrowArticle()
 {
-	if (_isAvailable)
+	if(_qtyOwned > _qtyLent)
+		return "Available";
+	else
+		return "Unavailable";
+}
+
+bool Article::borrowArticle()//later add char* username as parameter
+{
+	if (_qtyOwned > _qtyLent)
 	{
-		_isAvailable = 0;//article no longer available
+		_qtyLent++;//borrow/lend a book
 		return 0;//ok
 	}
 	else//article isn't available
 		return 1;//error, article isn't available
 }
 
-bool Article::returnArticle()
+bool Article::returnArticle()//later add char* username as parameter
 {
-	if(_isAvailable)
-		return 1;//how can you return what has never left?
-	else
+	if(_qtyLent > 0)
 	{
-		_isAvailable = 1;//article is now available
+		_qtyLent--;
 		return 0;//ok
 	}
+	else
+		return 1;//how can you return what has never left?
 }
 
 
@@ -94,26 +86,26 @@ void Article::getData()
 
 /*bool Article::loadFromFile(const char* fileName)
 {
-	int ID, releaseDate;
-	bool isAvailable;
-	string title;
+int ID, releaseDate;
+bool isAvailable;
+string title;
 
-	ifstream FILE(fileName, ios::in);
-	if(FILE)
-	{
-		FILE >> ID >> title >> releaseDate >> isAvailable ;
+ifstream FILE(fileName, ios::in);
+if(FILE)
+{
+FILE >> ID >> title >> releaseDate >> isAvailable ;
 
-		setID(ID);	
-		setTitle(title);	
-		setReleaseDate(releaseDate);			
-		setAvailability(isAvailable);
+setID(ID);	
+setTitle(title);	
+setReleaseDate(releaseDate);			
+setAvailability(isAvailable);
 
-		FILE.close();
-		return true;
-	}
-	else
-		cerr << "Failed to open file!" << endl;
-	return false;
+FILE.close();
+return true;
+}
+else
+cerr << "Failed to open file!" << endl;
+return false;
 }*/
 
 
@@ -204,8 +196,14 @@ void Article::deleteFile()
 		popup("Error","Filepath doesn't exist, blame Alex");
 }
 
- bool	Article::load(int fileID)
+bool	Article::load(int fileID)
 {
 	popup("Error", "The article::load() function should never be called");
 	return false;
+}
+
+void Article::setQtyOwned(int newQtyOwned)
+{
+	if(newQtyOwned >= _qtyLent)//can't own 2 books but have 3 borrowed
+		_qtyOwned = newQtyOwned;
 }
