@@ -404,6 +404,7 @@ namespace PG208_Library
 			 {
 				 FormNewArticle ^ F3 = gcnew FormNewArticle();
 				 F3->ShowDialog();
+				 loadArticles();//update list
 			 }
 
 
@@ -483,7 +484,7 @@ namespace PG208_Library
 
 				 for(int i = 0; i < listArticleCount; i++)
 				 {
-					 this->listBoxDisplay->Items->Add(gcnew String(listArticles[i]->getTitle()));
+					 this->listBoxDisplay->Items->Add(stringToManagedString(listArticles[i]->getTitle()));
 				 }
 
 				 this->labelNumberOfItems->Text = "" + listArticleCount;//myLibrary.getNumberOfBooks()?

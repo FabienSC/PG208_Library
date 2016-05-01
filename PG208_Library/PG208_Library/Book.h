@@ -35,11 +35,11 @@ public:
 //title, author, publisher, editor, number of pages
 
 private:
-    std::string _author;
-    std::string _publisher;
+    string _author;
+    string _publisher;
     int 		_pages;
 	bool		_isMagazine;
-    std::string _synopsis;
+    string _synopsis;
 };
 
 #endif // Book_H

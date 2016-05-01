@@ -27,10 +27,10 @@ void Article::setID(int newID)
 {_ID = newID;}
 
 
-char* Article::getTitle()
+string Article::getTitle()
 {return _title;}
 
-void Article::setTitle(char* newTitle)
+void Article::setTitle(string newTitle)
 {_title = newTitle;}
 
 

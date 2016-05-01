@@ -296,7 +296,7 @@ namespace PG208_Library {
 					 {
 						 Book newBook;
 						 newBook.setID(Convert::ToInt32(this->textBoxID->Text,10));//set ID
-						 newBook.setTitle(managedStringToChar(this->textBoxTitle->Text));//set Title
+						 newBook.setTitle(managedStringToString(this->textBoxTitle->Text));//set Title
 						 newBook.setReleaseDate(dateTimePicker->Value.Year * 10000 + dateTimePicker->Value.Month * 100 + dateTimePicker->Value.Day);
 
 						 newBook.save();
@@ -306,7 +306,7 @@ namespace PG208_Library {
 					 {
 						 CD newCD;
 						 newCD.setID(Convert::ToInt32(this->textBoxID->Text,10));//set ID
-						 newCD.setTitle(managedStringToChar(this->textBoxTitle->Text));//set Title
+						 newCD.setTitle(managedStringToString(this->textBoxTitle->Text));//set Title
 						 newCD.setReleaseDate(dateTimePicker->Value.Year * 10000 + dateTimePicker->Value.Month * 100 + dateTimePicker->Value.Day);
 
 						 newCD.save();

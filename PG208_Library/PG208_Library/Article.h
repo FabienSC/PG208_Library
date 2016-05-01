@@ -1,5 +1,4 @@
-#ifndef ARTICLES_H
-#define ARTICLES_H
+#pragma once
 #include "StdAfx.h"
 
 
@@ -10,15 +9,15 @@ public:
     ~Article();
 
 	void 		setID(int newID);								//1 to 1000 for books, 1001 to 2000 for CDs ...
-    int 		getID();						    
+    int 		getID();
 	
-	void 		setTitle(char* newTitle);		
-    char*		getTitle();						
+	void 		setTitle(string newTitle);
+    string		getTitle();
     
-	void 		setReleaseDate(int newReleaseDate);		
-    int 		getReleaseDate();						
+	void 		setReleaseDate(int newReleaseDate);
+    int 		getReleaseDate();
     
-	void		setQtyOwned(int);			
+	void		setQtyOwned(int);
 	void		setAvailability(std::string newIsAvailable);	
 	std::string getAvailability();
     bool 		borrowArticle();						// if already borrowed, can't borrow it...
@@ -36,10 +35,8 @@ public:
 
 protected:
     unsigned int _ID;
-    char* _title;
+    string _title;
     int _releaseDate;//YYYYMMDD
     int _qtyOwned;//quantity owned
     int _qtyLent;//quantity available
 };
-
-#endif // ARTICLES_H

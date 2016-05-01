@@ -20,7 +20,7 @@ char * stringToChar(string inputString)
 char * intToChar(int inputInt)
 {
 	String^ conversionString = "" + inputInt;
-	return managedStringToChar(conversionString);
+	return (char*)Marshal::StringToHGlobalAnsi(conversionString).ToPointer();
 }
 
 
@@ -49,3 +49,39 @@ String ^ intToManagedString(int inputInt)
 {
 	return "" + inputInt;
 }
+
+String ^ charToManagedString(char* inputChar)
+{
+	return gcnew String(inputChar);
+}
+
+string charToString(char* inputChar)
+{
+	string s(inputChar);
+	return s;
+}
+
+
+String ^ stringToManagedString(string inputString)
+{
+	return charToManagedString(stringToChar(inputString));
+}
+
+
+string  managedStringToString(String ^ inputString)
+{
+	string ooo = charToString(managedStringToChar(inputString));
+	return ooo;
+}
+
+char *	managedStringToChar(String^);
+char *	stringToChar(string);
+char *	intToChar(int);
+
+int		managedStringToInt(String^);
+int		stringToInt(string);
+
+String ^ intToManagedString(int);
+String ^ charToManagedString(char*);
+
+string  charToString(char*);
