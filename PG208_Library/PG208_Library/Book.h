@@ -37,8 +37,8 @@ public:
 private:
     string _author;
     string _publisher;
-    int 		_pages;
-	bool		_isMagazine;
+    int 	_pages;
+	bool	_isMagazine;
     string _synopsis;
 };
 

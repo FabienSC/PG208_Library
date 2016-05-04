@@ -115,6 +115,8 @@ bool	Book::save()
 		
 		myfile << _title << endl;//save title
 		myfile << _releaseDate << endl;//save release date
+		myfile << _qtyOwned << endl;//save release date
+		myfile << _qtyLent << endl;//save release date
 		myfile.close();
 
 		return true;//Save successful
