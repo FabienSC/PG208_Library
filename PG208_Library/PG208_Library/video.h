@@ -3,11 +3,11 @@
 #include "Article.h"
 
 
-class video : public Article
+class Video : public Article
 {
 public:
-    video();
-	~video();
+    Video();
+	~Video();
 
     std::string getGenre();
     void 		setGenre(std::string newGenre);
@@ -35,6 +35,7 @@ public:
     void 		setChapters(int newChapters);
 
     void 		getData();
+	bool		save();
 
 private:
     std::string _director;

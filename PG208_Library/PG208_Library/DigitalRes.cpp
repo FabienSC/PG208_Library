@@ -70,3 +70,27 @@ cout << "File size: " << getByteSize() << "bytes " << endl;
 
 cout << "----------------------------------------" << endl;
 }
+
+
+bool DigitalRes::save()
+{
+	String ^ strIDFilePath = FILEPATH_DIGITAL + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
+	char* filePath = managedStringToChar(strIDFilePath);//convert to char*
+
+	struct stat buffer;
+	if(stat (filePath, &buffer))//If file doesn't exist
+	{
+		ofstream myfile(filePath);
+		
+		myfile << _title << endl;		//save title
+		myfile << _releaseDate << endl;	//save release date
+		myfile << _qtyOwned << endl;	//save the Cheerleader
+		myfile << _qtyLent << endl;		//save the World
+		//Save other stuff
+		myfile.close();
+
+		return true;//Save successful
+	}
+	else
+		return false;//Save failed
+}

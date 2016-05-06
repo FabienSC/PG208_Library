@@ -26,6 +26,7 @@ public:
     void 		setByteSize(int newByteSize);
     
     void 		getData();
+	bool		save();
 
 private:
     std::string _author;

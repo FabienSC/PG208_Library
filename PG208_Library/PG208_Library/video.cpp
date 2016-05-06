@@ -4,12 +4,12 @@
 #include <assert.h>
 #include <fstream>
 
-#include "video.h"
+#include "Video.h"
 
 using namespace std;
 
 
-video::video()
+Video::Video()
 {
     _director = "NA";
     _producer = "NA";
@@ -21,41 +21,41 @@ video::video()
 	_chapters = 0;
 }
 
-video::~video()
+Video::~Video()
 {
 }
 
-string video::getDirector()
+string Video::getDirector()
 {return _director;}
 
-void video::setDirector(string newDirector)
+void Video::setDirector(string newDirector)
 {_director = newDirector;}
 
 
-string video::getProducer()
+string Video::getProducer()
 {return _producer;}
 
-void video::setProducer(string newProducer)
+void Video::setProducer(string newProducer)
 {_producer = newProducer;}
 
 
-string video::getMainActor()
+string Video::getMainActor()
 {return _mainActor;}
 
-void video::setMainActor(string newMainActor)
+void Video::setMainActor(string newMainActor)
 {_mainActor = newMainActor;}
 
 
-string video::getIsDVD()
+string Video::getIsDVD()
 {if(_isDVD)
 	return "DVD";
 else
 	return "VHS";}
 
-void video::setIsDVD(bool newIsDVD)
+void Video::setIsDVD(bool newIsDVD)
 {_isDVD = newIsDVD;}
 
-void video::setIsDVD(string newIsDVD)
+void Video::setIsDVD(string newIsDVD)
 {if (newIsDVD == "DVD")
 	_isDVD = 1;
 else if (newIsDVD == "VHS")
@@ -65,21 +65,21 @@ else
 }
 
 
-int video::getLength()
+int Video::getLength()
 {return _length;}
 
-void video::setLength(int newLength)
+void Video::setLength(int newLength)
 {_length = newLength;}
 
 
-int video::getAgeLimit()
+int Video::getAgeLimit()
 {return _ageLimit;}
 
-void video::setAgeLimit(int newAgeLimit)
+void Video::setAgeLimit(int newAgeLimit)
 {_ageLimit = newAgeLimit;}
 
 
-int video::getChapters()
+int Video::getChapters()
 {if (_isDVD)
 	return _chapters;
 else
@@ -89,7 +89,7 @@ else
 	}
 }
 
-void video::setChapters(int newChapters)
+void Video::setChapters(int newChapters)
 {if (_isDVD)
 	_chapters = newChapters;
 else
@@ -97,7 +97,7 @@ else
 }
 
 
-void video::getData()
+void Video::getData()
 {
 	Article::getData();
 	
@@ -111,4 +111,33 @@ void video::getData()
 		cout << "Chapters: " << getChapters() << endl;
 	
 	cout << "----------------------------------------" << endl;
+}
+
+
+bool	Video::save()
+{
+	String ^ strIDFilePath;
+	if (_isDVD)	//DVD
+		strIDFilePath = FILEPATH_DVD + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
+	else		//VHS
+		strIDFilePath = FILEPATH_VHS + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
+
+	char* filePath = managedStringToChar(strIDFilePath);//convert to char*
+
+	struct stat buffer;
+	if(stat (filePath, &buffer))//If file doesn't exist
+	{
+		ofstream myfile(filePath);
+		
+		myfile << _title << endl;		//save title
+		myfile << _releaseDate << endl;	//save release date
+		myfile << _qtyOwned << endl;	//save the Cheerleader
+		myfile << _qtyLent << endl;		//save the World
+		//Save other stuff
+		myfile.close();
+
+		return true;//Save successful
+	}
+	else
+		return false;//Save failed
 }

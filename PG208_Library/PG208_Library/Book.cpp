@@ -105,7 +105,12 @@ bool	Book::load(int fileID)
 
 bool	Book::save()
 {
-	String ^ strIDFilePath = FILEPATH_BOOK + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
+	String ^ strIDFilePath;
+	if (_isMagazine)	//DVD
+		strIDFilePath = FILEPATH_MAGAZINE + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
+	else		//VHS
+		strIDFilePath = FILEPATH_BOOK + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
+
 	char* filePath = managedStringToChar(strIDFilePath);//convert to char*
 
 	struct stat buffer;
@@ -113,10 +118,11 @@ bool	Book::save()
 	{
 		ofstream myfile(filePath);
 		
-		myfile << _title << endl;//save title
-		myfile << _releaseDate << endl;//save release date
-		myfile << _qtyOwned << endl;//save release date
-		myfile << _qtyLent << endl;//save release date
+		myfile << _title << endl;		//save title
+		myfile << _releaseDate << endl;	//save release date
+		myfile << _qtyOwned << endl;	//save the Cheerleader
+		myfile << _qtyLent << endl;		//save the World
+		//Save other stuff
 		myfile.close();
 
 		return true;//Save successful

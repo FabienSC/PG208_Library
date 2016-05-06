@@ -107,8 +107,11 @@ bool	CD::save()
 	{
 		ofstream myfile(filePath);
 		
-		myfile << _title << endl;//save title
-		myfile << _releaseDate << endl;//save release date
+		myfile << _title << endl;		//save title
+		myfile << _releaseDate << endl;	//save release date
+		myfile << _qtyOwned << endl;	//save the Cheerleader
+		myfile << _qtyLent << endl;		//save the World
+		//Save other stuff
 		myfile.close();
 
 		return true;//Save successful

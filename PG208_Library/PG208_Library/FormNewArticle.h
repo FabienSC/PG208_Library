@@ -453,31 +453,39 @@ namespace PG208_Library {
 			 {
 				 bool dataIsOK = (this->textBoxTitle->Text->Length != 0);//minimum info required to create an Article
 
-
 				 if(dataIsOK)//create article and close form
 				 {
 					 Library myLibrary;
-					 if(this->radioButtonBook->Checked == true)//new article is a book
+
+					 if((this->radioButtonBook->Checked || this->radioButtonMagazine->Checked) == true)//new article is a book or Magazine
 					 {
 						 Book newBook;
-						 newBook.setID(Convert::ToInt32(this->textBoxID->Text,10));//set ID
-						 newBook.setTitle(managedStringToString(this->textBoxTitle->Text));//set Title
-						 newBook.setReleaseDate(dateTimePicker->Value.Year * 10000 + dateTimePicker->Value.Month * 100 + dateTimePicker->Value.Day);
-						 newBook.setQtyOwned(managedStringToInt(this->textBoxQty->Text));
+						 copyGeneralData(&newBook);
+
 						 newBook.save();
-						 myLibrary.addBook();
 					 }
 					 else if(this->radioButtonCD->Checked == true)//new article is a CD
 					 {
 						 CD newCD;
-						 newCD.setID(Convert::ToInt32(this->textBoxID->Text,10));//set ID
-						 newCD.setTitle(managedStringToString(this->textBoxTitle->Text));//set Title
-						 newCD.setReleaseDate(dateTimePicker->Value.Year * 10000 + dateTimePicker->Value.Month * 100 + dateTimePicker->Value.Day);
-						 newCD.setQtyOwned(managedStringToInt(this->textBoxQty->Text));
+						 copyGeneralData(&newCD);
 
 						 newCD.save();
-						 myLibrary.addCD();
 					 }
+					 else if((this->radioButtonDVD->Checked || this->radioButtonVHS->Checked) == true)//new article is a DVD or VHS
+					 {
+						 Video newVideo;
+						 copyGeneralData(&newVideo);
+
+						 newVideo.save();
+					 }
+					 else if(this->radioButtonDigital->Checked == true)//new article is a Digital Resource
+					 {
+						 DigitalRes newDigitalRes;
+						 copyGeneralData(&newDigitalRes);
+
+						 newDigitalRes.save();
+					 }
+
 					 this->Close();
 				 }
 			 }
@@ -501,7 +509,7 @@ namespace PG208_Library {
 						 struct stat buffer;
 						 if(stat(filePath, &buffer))//if file doesn't exist
 							 loopFlag = 0;//exit loop
-						 if(fileID == BASE_MAG_ID)//all available Book IDs have been used
+						 if(fileID == BASE_MAGAZINE_ID)//all available Book IDs have been used
 						 {
 							 popup("Error","All available IDs are in use. Please burn books to free IDs.");
 							 this->Close();//close form
@@ -523,8 +531,8 @@ namespace PG208_Library {
 					 bool loopFlag = 1;
 					 for(int i = 0; loopFlag; i++)
 					 {
-						 fileID = BASE_MAG_ID + i;//update file ID
-						 String ^ strIDFilePath = FILEPATH_MAG + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
+						 fileID = BASE_MAGAZINE_ID + i;//update file ID
+						 String ^ strIDFilePath = FILEPATH_MAGAZINE + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
 						 char *filePath = managedStringToChar(strIDFilePath);//convert string
 
 						 struct stat buffer;
@@ -693,6 +701,15 @@ namespace PG208_Library {
 				 this->textBoxInt3->Text = intToManagedString(managedStringToInt(this->textBoxInt3->Text));//reject non-numbers
 			 }
 
+	void	 copyGeneralData(Article * newArticle)
+			 {
+				 newArticle->setID(Convert::ToInt32(this->textBoxID->Text,10));//set ID
+				 newArticle->setTitle(managedStringToString(this->textBoxTitle->Text));//set Title
+				 newArticle->setReleaseDate(dateTimePicker->Value.Year * 10000 + dateTimePicker->Value.Month * 100 + dateTimePicker->Value.Day);
+				 if(this->radioButtonDigital->Checked == false)//skip this step for Digital Resources
+					newArticle->setQtyOwned(managedStringToInt(this->textBoxQty->Text));
+			 }
+
 	void clearSpecialFields()
 	{
 					 this->textBoxString1->Text = "";
@@ -703,7 +720,7 @@ namespace PG208_Library {
 					 this->textBoxInt3->Text = "0";
 	}
 
-	void formatBook()
+	void formatBook()//format Book or Magazine
 	{
 					 clearSpecialFields();
 					 this->labelString1->Text = "Author:";
