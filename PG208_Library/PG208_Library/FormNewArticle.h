@@ -22,6 +22,7 @@ namespace PG208_Library {
 			//
 			//TODO: Add the constructor code here
 			//
+			formatBook();//default is Book
 		}
 
 	protected:
@@ -45,18 +46,23 @@ namespace PG208_Library {
 
 			 System::Windows::Forms::Label^  labelTitle;
 	private: System::Windows::Forms::TextBox^  textBoxQty;
-
-
-	private: System::Windows::Forms::Label^  label;
-	private: System::Windows::Forms::TextBox^  textBox1;
+	private: System::Windows::Forms::Label^  labelQty;
 
 
 
-	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::TextBox^  textBox2;
+	private: System::Windows::Forms::TextBox^  textBoxString1;
+
+	private: System::Windows::Forms::Label^  labelString1;
+	private: System::Windows::Forms::TextBox^  textBoxString2;
 
 
-	private: System::Windows::Forms::Label^  label2;
+
+
+
+	private: System::Windows::Forms::Label^  labelString2;
+
+
+
 
 
 
@@ -69,10 +75,26 @@ namespace PG208_Library {
 	private: System::Windows::Forms::Button^  buttonPlus1;
 	private: System::Windows::Forms::Button^  buttonMinus1;
 	private: System::Windows::Forms::RadioButton^  radioButtonMagazine;
-	private: System::Windows::Forms::TextBox^  textBox3;
-	private: System::Windows::Forms::Label^  label3;
-	private: System::Windows::Forms::TextBox^  textBox4;
-	private: System::Windows::Forms::Label^  label4;
+	private: System::Windows::Forms::TextBox^  textBoxString3;
+
+
+
+	private: System::Windows::Forms::Label^  labelString3;
+	private: System::Windows::Forms::Label^  labelInt1;
+	private: System::Windows::Forms::TextBox^  textBoxInt1;
+	private: System::Windows::Forms::TextBox^  textBoxInt2;
+	private: System::Windows::Forms::Label^  labelInt2;
+
+
+	private: System::Windows::Forms::TextBox^  textBoxInt3;
+	private: System::Windows::Forms::Label^  labelInt3;
+
+
+	private: System::Windows::Forms::RadioButton^  radioButtonDVD;
+	private: System::Windows::Forms::RadioButton^  radioButtonVHS;
+	private: System::Windows::Forms::RadioButton^  radioButtonDigital;
+
+
 
 			 /// </summary>
 			 System::ComponentModel::Container ^components;
@@ -92,29 +114,38 @@ namespace PG208_Library {
 				 this->textBoxTitle = (gcnew System::Windows::Forms::TextBox());
 				 this->labelTitle = (gcnew System::Windows::Forms::Label());
 				 this->textBoxQty = (gcnew System::Windows::Forms::TextBox());
-				 this->label = (gcnew System::Windows::Forms::Label());
-				 this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-				 this->label1 = (gcnew System::Windows::Forms::Label());
-				 this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-				 this->label2 = (gcnew System::Windows::Forms::Label());
+				 this->labelQty = (gcnew System::Windows::Forms::Label());
+				 this->textBoxString1 = (gcnew System::Windows::Forms::TextBox());
+				 this->labelString1 = (gcnew System::Windows::Forms::Label());
+				 this->textBoxString2 = (gcnew System::Windows::Forms::TextBox());
+				 this->labelString2 = (gcnew System::Windows::Forms::Label());
 				 this->labelReleaseDate = (gcnew System::Windows::Forms::Label());
 				 this->dateTimePicker = (gcnew System::Windows::Forms::DateTimePicker());
 				 this->buttonPlus1 = (gcnew System::Windows::Forms::Button());
 				 this->buttonMinus1 = (gcnew System::Windows::Forms::Button());
 				 this->radioButtonMagazine = (gcnew System::Windows::Forms::RadioButton());
-				 this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-				 this->label3 = (gcnew System::Windows::Forms::Label());
-				 this->textBox4 = (gcnew System::Windows::Forms::TextBox());
-				 this->label4 = (gcnew System::Windows::Forms::Label());
+				 this->textBoxString3 = (gcnew System::Windows::Forms::TextBox());
+				 this->labelString3 = (gcnew System::Windows::Forms::Label());
+				 this->labelInt1 = (gcnew System::Windows::Forms::Label());
+				 this->textBoxInt1 = (gcnew System::Windows::Forms::TextBox());
+				 this->textBoxInt2 = (gcnew System::Windows::Forms::TextBox());
+				 this->labelInt2 = (gcnew System::Windows::Forms::Label());
+				 this->textBoxInt3 = (gcnew System::Windows::Forms::TextBox());
+				 this->labelInt3 = (gcnew System::Windows::Forms::Label());
+				 this->radioButtonDVD = (gcnew System::Windows::Forms::RadioButton());
+				 this->radioButtonVHS = (gcnew System::Windows::Forms::RadioButton());
+				 this->radioButtonDigital = (gcnew System::Windows::Forms::RadioButton());
 				 this->SuspendLayout();
 				 // 
 				 // radioButtonBook
 				 // 
 				 this->radioButtonBook->AutoSize = true;
-				 this->radioButtonBook->Location = System::Drawing::Point(100, 38);
+				 this->radioButtonBook->Checked = true;
+				 this->radioButtonBook->Location = System::Drawing::Point(24, 22);
 				 this->radioButtonBook->Name = L"radioButtonBook";
 				 this->radioButtonBook->Size = System::Drawing::Size(61, 21);
 				 this->radioButtonBook->TabIndex = 0;
+				 this->radioButtonBook->TabStop = true;
 				 this->radioButtonBook->Text = L"Book";
 				 this->radioButtonBook->UseVisualStyleBackColor = true;
 				 this->radioButtonBook->CheckedChanged += gcnew System::EventHandler(this, &FormNewArticle::radioButtonBook_CheckedChanged);
@@ -122,7 +153,7 @@ namespace PG208_Library {
 				 // radioButtonCD
 				 // 
 				 this->radioButtonCD->AutoSize = true;
-				 this->radioButtonCD->Location = System::Drawing::Point(167, 38);
+				 this->radioButtonCD->Location = System::Drawing::Point(187, 22);
 				 this->radioButtonCD->Name = L"radioButtonCD";
 				 this->radioButtonCD->Size = System::Drawing::Size(48, 21);
 				 this->radioButtonCD->TabIndex = 1;
@@ -132,7 +163,7 @@ namespace PG208_Library {
 				 // 
 				 // buttonCreate
 				 // 
-				 this->buttonCreate->Location = System::Drawing::Point(200, 458);
+				 this->buttonCreate->Location = System::Drawing::Point(230, 430);
 				 this->buttonCreate->Name = L"buttonCreate";
 				 this->buttonCreate->Size = System::Drawing::Size(80, 30);
 				 this->buttonCreate->TabIndex = 2;
@@ -143,7 +174,7 @@ namespace PG208_Library {
 				 // labelID
 				 // 
 				 this->labelID->AutoSize = true;
-				 this->labelID->Location = System::Drawing::Point(47, 90);
+				 this->labelID->Location = System::Drawing::Point(24, 65);
 				 this->labelID->Name = L"labelID";
 				 this->labelID->Size = System::Drawing::Size(25, 17);
 				 this->labelID->TabIndex = 3;
@@ -152,24 +183,23 @@ namespace PG208_Library {
 				 // textBoxID
 				 // 
 				 this->textBoxID->Enabled = false;
-				 this->textBoxID->Location = System::Drawing::Point(100, 90);
+				 this->textBoxID->Location = System::Drawing::Point(152, 62);
 				 this->textBoxID->Name = L"textBoxID";
-				 this->textBoxID->Size = System::Drawing::Size(291, 22);
+				 this->textBoxID->Size = System::Drawing::Size(349, 22);
 				 this->textBoxID->TabIndex = 4;
 				 this->textBoxID->Text = L"0000";
 				 // 
 				 // textBoxTitle
 				 // 
-				 this->textBoxTitle->Location = System::Drawing::Point(100, 129);
+				 this->textBoxTitle->Location = System::Drawing::Point(152, 102);
 				 this->textBoxTitle->Name = L"textBoxTitle";
-				 this->textBoxTitle->Size = System::Drawing::Size(291, 22);
+				 this->textBoxTitle->Size = System::Drawing::Size(349, 22);
 				 this->textBoxTitle->TabIndex = 6;
-				 this->textBoxTitle->TextChanged += gcnew System::EventHandler(this, &FormNewArticle::textBoxTitle_TextChanged);
 				 // 
 				 // labelTitle
 				 // 
 				 this->labelTitle->AutoSize = true;
-				 this->labelTitle->Location = System::Drawing::Point(47, 129);
+				 this->labelTitle->Location = System::Drawing::Point(24, 105);
 				 this->labelTitle->Name = L"labelTitle";
 				 this->labelTitle->Size = System::Drawing::Size(39, 17);
 				 this->labelTitle->TabIndex = 5;
@@ -177,59 +207,59 @@ namespace PG208_Library {
 				 // 
 				 // textBoxQty
 				 // 
-				 this->textBoxQty->Location = System::Drawing::Point(175, 211);
+				 this->textBoxQty->Location = System::Drawing::Point(152, 182);
 				 this->textBoxQty->Name = L"textBoxQty";
-				 this->textBoxQty->Size = System::Drawing::Size(68, 22);
+				 this->textBoxQty->Size = System::Drawing::Size(136, 22);
 				 this->textBoxQty->TabIndex = 8;
 				 this->textBoxQty->Text = L"0";
 				 this->textBoxQty->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
 				 this->textBoxQty->TextChanged += gcnew System::EventHandler(this, &FormNewArticle::textBoxQty_TextChanged);
 				 // 
-				 // label
+				 // labelQty
 				 // 
-				 this->label->AutoSize = true;
-				 this->label->Location = System::Drawing::Point(47, 211);
-				 this->label->Name = L"label";
-				 this->label->Size = System::Drawing::Size(113, 17);
-				 this->label->TabIndex = 7;
-				 this->label->Text = L"Quantity Owned:";
+				 this->labelQty->AutoSize = true;
+				 this->labelQty->Location = System::Drawing::Point(24, 182);
+				 this->labelQty->Name = L"labelQty";
+				 this->labelQty->Size = System::Drawing::Size(113, 17);
+				 this->labelQty->TabIndex = 7;
+				 this->labelQty->Text = L"Quantity Owned:";
 				 // 
-				 // textBox1
+				 // textBoxString1
 				 // 
-				 this->textBox1->Location = System::Drawing::Point(100, 249);
-				 this->textBox1->Name = L"textBox1";
-				 this->textBox1->Size = System::Drawing::Size(291, 22);
-				 this->textBox1->TabIndex = 10;
+				 this->textBoxString1->Location = System::Drawing::Point(152, 222);
+				 this->textBoxString1->Name = L"textBoxString1";
+				 this->textBoxString1->Size = System::Drawing::Size(349, 22);
+				 this->textBoxString1->TabIndex = 10;
 				 // 
-				 // label1
+				 // labelString1
 				 // 
-				 this->label1->AutoSize = true;
-				 this->label1->Location = System::Drawing::Point(47, 249);
-				 this->label1->Name = L"label1";
-				 this->label1->Size = System::Drawing::Size(46, 17);
-				 this->label1->TabIndex = 9;
-				 this->label1->Text = L"label1";
+				 this->labelString1->AutoSize = true;
+				 this->labelString1->Location = System::Drawing::Point(24, 224);
+				 this->labelString1->Name = L"labelString1";
+				 this->labelString1->Size = System::Drawing::Size(83, 17);
+				 this->labelString1->TabIndex = 9;
+				 this->labelString1->Text = L"labelString1";
 				 // 
-				 // textBox2
+				 // textBoxString2
 				 // 
-				 this->textBox2->Location = System::Drawing::Point(100, 287);
-				 this->textBox2->Name = L"textBox2";
-				 this->textBox2->Size = System::Drawing::Size(291, 22);
-				 this->textBox2->TabIndex = 12;
+				 this->textBoxString2->Location = System::Drawing::Point(152, 262);
+				 this->textBoxString2->Name = L"textBoxString2";
+				 this->textBoxString2->Size = System::Drawing::Size(349, 22);
+				 this->textBoxString2->TabIndex = 12;
 				 // 
-				 // label2
+				 // labelString2
 				 // 
-				 this->label2->AutoSize = true;
-				 this->label2->Location = System::Drawing::Point(47, 287);
-				 this->label2->Name = L"label2";
-				 this->label2->Size = System::Drawing::Size(46, 17);
-				 this->label2->TabIndex = 11;
-				 this->label2->Text = L"label2";
+				 this->labelString2->AutoSize = true;
+				 this->labelString2->Location = System::Drawing::Point(24, 262);
+				 this->labelString2->Name = L"labelString2";
+				 this->labelString2->Size = System::Drawing::Size(83, 17);
+				 this->labelString2->TabIndex = 11;
+				 this->labelString2->Text = L"labelString2";
 				 // 
 				 // labelReleaseDate
 				 // 
 				 this->labelReleaseDate->AutoSize = true;
-				 this->labelReleaseDate->Location = System::Drawing::Point(47, 170);
+				 this->labelReleaseDate->Location = System::Drawing::Point(24, 147);
 				 this->labelReleaseDate->Name = L"labelReleaseDate";
 				 this->labelReleaseDate->Size = System::Drawing::Size(90, 17);
 				 this->labelReleaseDate->TabIndex = 14;
@@ -238,15 +268,14 @@ namespace PG208_Library {
 				 // dateTimePicker
 				 // 
 				 this->dateTimePicker->CustomFormat = L"yyyyMMdd";
-				 this->dateTimePicker->Location = System::Drawing::Point(175, 170);
+				 this->dateTimePicker->Location = System::Drawing::Point(152, 142);
 				 this->dateTimePicker->Name = L"dateTimePicker";
-				 this->dateTimePicker->Size = System::Drawing::Size(216, 22);
+				 this->dateTimePicker->Size = System::Drawing::Size(349, 22);
 				 this->dateTimePicker->TabIndex = 15;
-				 this->dateTimePicker->ValueChanged += gcnew System::EventHandler(this, &FormNewArticle::dateTimePicker_ValueChanged);
 				 // 
 				 // buttonPlus1
 				 // 
-				 this->buttonPlus1->Location = System::Drawing::Point(249, 210);
+				 this->buttonPlus1->Location = System::Drawing::Point(294, 182);
 				 this->buttonPlus1->Name = L"buttonPlus1";
 				 this->buttonPlus1->Size = System::Drawing::Size(68, 23);
 				 this->buttonPlus1->TabIndex = 16;
@@ -256,7 +285,7 @@ namespace PG208_Library {
 				 // 
 				 // buttonMinus1
 				 // 
-				 this->buttonMinus1->Location = System::Drawing::Point(323, 210);
+				 this->buttonMinus1->Location = System::Drawing::Point(368, 182);
 				 this->buttonMinus1->Name = L"buttonMinus1";
 				 this->buttonMinus1->Size = System::Drawing::Size(68, 23);
 				 this->buttonMinus1->TabIndex = 17;
@@ -267,67 +296,143 @@ namespace PG208_Library {
 				 // radioButtonMagazine
 				 // 
 				 this->radioButtonMagazine->AutoSize = true;
-				 this->radioButtonMagazine->Location = System::Drawing::Point(221, 38);
+				 this->radioButtonMagazine->Location = System::Drawing::Point(91, 22);
 				 this->radioButtonMagazine->Name = L"radioButtonMagazine";
 				 this->radioButtonMagazine->Size = System::Drawing::Size(90, 21);
 				 this->radioButtonMagazine->TabIndex = 18;
-				 this->radioButtonMagazine->TabStop = true;
 				 this->radioButtonMagazine->Text = L"Magazine";
 				 this->radioButtonMagazine->UseVisualStyleBackColor = true;
+				 this->radioButtonMagazine->CheckedChanged += gcnew System::EventHandler(this, &FormNewArticle::radioButtonMagazine_CheckedChanged);
 				 // 
-				 // textBox3
+				 // textBoxString3
 				 // 
-				 this->textBox3->Location = System::Drawing::Point(100, 325);
-				 this->textBox3->Name = L"textBox3";
-				 this->textBox3->Size = System::Drawing::Size(291, 22);
-				 this->textBox3->TabIndex = 22;
+				 this->textBoxString3->Location = System::Drawing::Point(152, 302);
+				 this->textBoxString3->Multiline = true;
+				 this->textBoxString3->Name = L"textBoxString3";
+				 this->textBoxString3->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
+				 this->textBoxString3->Size = System::Drawing::Size(349, 55);
+				 this->textBoxString3->TabIndex = 20;
 				 // 
-				 // label3
+				 // labelString3
 				 // 
-				 this->label3->AutoSize = true;
-				 this->label3->Location = System::Drawing::Point(47, 328);
-				 this->label3->Name = L"label3";
-				 this->label3->Size = System::Drawing::Size(46, 17);
-				 this->label3->TabIndex = 21;
-				 this->label3->Text = L"label3";
+				 this->labelString3->AutoSize = true;
+				 this->labelString3->Location = System::Drawing::Point(24, 302);
+				 this->labelString3->Name = L"labelString3";
+				 this->labelString3->Size = System::Drawing::Size(83, 17);
+				 this->labelString3->TabIndex = 19;
+				 this->labelString3->Text = L"labelString3";
 				 // 
-				 // textBox4
+				 // labelInt1
 				 // 
-				 this->textBox4->Location = System::Drawing::Point(100, 363);
-				 this->textBox4->Name = L"textBox4";
-				 this->textBox4->Size = System::Drawing::Size(291, 22);
-				 this->textBox4->TabIndex = 20;
-				 this->textBox4->TextChanged += gcnew System::EventHandler(this, &FormNewArticle::textBox4_TextChanged);
+				 this->labelInt1->AutoSize = true;
+				 this->labelInt1->Location = System::Drawing::Point(24, 372);
+				 this->labelInt1->Name = L"labelInt1";
+				 this->labelInt1->Size = System::Drawing::Size(61, 17);
+				 this->labelInt1->TabIndex = 23;
+				 this->labelInt1->Text = L"labelInt1";
 				 // 
-				 // label4
+				 // textBoxInt1
 				 // 
-				 this->label4->AutoSize = true;
-				 this->label4->Location = System::Drawing::Point(48, 366);
-				 this->label4->Name = L"label4";
-				 this->label4->Size = System::Drawing::Size(46, 17);
-				 this->label4->TabIndex = 19;
-				 this->label4->Text = L"label4";
+				 this->textBoxInt1->Location = System::Drawing::Point(27, 392);
+				 this->textBoxInt1->Name = L"textBoxInt1";
+				 this->textBoxInt1->Size = System::Drawing::Size(154, 22);
+				 this->textBoxInt1->TabIndex = 24;
+				 this->textBoxInt1->TextChanged += gcnew System::EventHandler(this, &FormNewArticle::textBoxInt1_TextChanged);
+				 // 
+				 // textBoxInt2
+				 // 
+				 this->textBoxInt2->Location = System::Drawing::Point(187, 392);
+				 this->textBoxInt2->Name = L"textBoxInt2";
+				 this->textBoxInt2->Size = System::Drawing::Size(154, 22);
+				 this->textBoxInt2->TabIndex = 26;
+				 this->textBoxInt2->TextChanged += gcnew System::EventHandler(this, &FormNewArticle::textBoxInt2_TextChanged);
+				 // 
+				 // labelInt2
+				 // 
+				 this->labelInt2->AutoSize = true;
+				 this->labelInt2->Location = System::Drawing::Point(184, 372);
+				 this->labelInt2->Name = L"labelInt2";
+				 this->labelInt2->Size = System::Drawing::Size(61, 17);
+				 this->labelInt2->TabIndex = 25;
+				 this->labelInt2->Text = L"labelInt2";
+				 // 
+				 // textBoxInt3
+				 // 
+				 this->textBoxInt3->Location = System::Drawing::Point(347, 392);
+				 this->textBoxInt3->Name = L"textBoxInt3";
+				 this->textBoxInt3->Size = System::Drawing::Size(154, 22);
+				 this->textBoxInt3->TabIndex = 28;
+				 this->textBoxInt3->TextChanged += gcnew System::EventHandler(this, &FormNewArticle::textBoxInt3_TextChanged);
+				 // 
+				 // labelInt3
+				 // 
+				 this->labelInt3->AutoSize = true;
+				 this->labelInt3->Location = System::Drawing::Point(344, 372);
+				 this->labelInt3->Name = L"labelInt3";
+				 this->labelInt3->Size = System::Drawing::Size(61, 17);
+				 this->labelInt3->TabIndex = 27;
+				 this->labelInt3->Text = L"labelInt3";
+				 // 
+				 // radioButtonDVD
+				 // 
+				 this->radioButtonDVD->AutoSize = true;
+				 this->radioButtonDVD->Location = System::Drawing::Point(241, 22);
+				 this->radioButtonDVD->Name = L"radioButtonDVD";
+				 this->radioButtonDVD->Size = System::Drawing::Size(58, 21);
+				 this->radioButtonDVD->TabIndex = 29;
+				 this->radioButtonDVD->Text = L"DVD";
+				 this->radioButtonDVD->UseVisualStyleBackColor = true;
+				 this->radioButtonDVD->CheckedChanged += gcnew System::EventHandler(this, &FormNewArticle::radioButtonDVD_CheckedChanged);
+				 // 
+				 // radioButtonVHS
+				 // 
+				 this->radioButtonVHS->AutoSize = true;
+				 this->radioButtonVHS->Location = System::Drawing::Point(305, 22);
+				 this->radioButtonVHS->Name = L"radioButtonVHS";
+				 this->radioButtonVHS->Size = System::Drawing::Size(57, 21);
+				 this->radioButtonVHS->TabIndex = 30;
+				 this->radioButtonVHS->Text = L"VHS";
+				 this->radioButtonVHS->UseVisualStyleBackColor = true;
+				 this->radioButtonVHS->CheckedChanged += gcnew System::EventHandler(this, &FormNewArticle::radioButtonVHS_CheckedChanged);
+				 // 
+				 // radioButtonDigital
+				 // 
+				 this->radioButtonDigital->AutoSize = true;
+				 this->radioButtonDigital->Location = System::Drawing::Point(368, 22);
+				 this->radioButtonDigital->Name = L"radioButtonDigital";
+				 this->radioButtonDigital->Size = System::Drawing::Size(133, 21);
+				 this->radioButtonDigital->TabIndex = 31;
+				 this->radioButtonDigital->Text = L"Digital Resource";
+				 this->radioButtonDigital->UseVisualStyleBackColor = true;
+				 this->radioButtonDigital->CheckedChanged += gcnew System::EventHandler(this, &FormNewArticle::radioButtonDigital_CheckedChanged);
 				 // 
 				 // FormNewArticle
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-				 this->ClientSize = System::Drawing::Size(482, 503);
-				 this->Controls->Add(this->textBox3);
-				 this->Controls->Add(this->label3);
-				 this->Controls->Add(this->textBox4);
-				 this->Controls->Add(this->label4);
+				 this->ClientSize = System::Drawing::Size(527, 478);
+				 this->Controls->Add(this->radioButtonDigital);
+				 this->Controls->Add(this->radioButtonVHS);
+				 this->Controls->Add(this->radioButtonDVD);
+				 this->Controls->Add(this->textBoxInt3);
+				 this->Controls->Add(this->labelInt3);
+				 this->Controls->Add(this->textBoxInt2);
+				 this->Controls->Add(this->labelInt2);
+				 this->Controls->Add(this->textBoxInt1);
+				 this->Controls->Add(this->labelInt1);
+				 this->Controls->Add(this->textBoxString3);
+				 this->Controls->Add(this->labelString3);
 				 this->Controls->Add(this->radioButtonMagazine);
 				 this->Controls->Add(this->buttonMinus1);
 				 this->Controls->Add(this->buttonPlus1);
 				 this->Controls->Add(this->dateTimePicker);
 				 this->Controls->Add(this->labelReleaseDate);
-				 this->Controls->Add(this->textBox2);
-				 this->Controls->Add(this->label2);
-				 this->Controls->Add(this->textBox1);
-				 this->Controls->Add(this->label1);
+				 this->Controls->Add(this->textBoxString2);
+				 this->Controls->Add(this->labelString2);
+				 this->Controls->Add(this->textBoxString1);
+				 this->Controls->Add(this->labelString1);
 				 this->Controls->Add(this->textBoxQty);
-				 this->Controls->Add(this->label);
+				 this->Controls->Add(this->labelQty);
 				 this->Controls->Add(this->textBoxTitle);
 				 this->Controls->Add(this->labelTitle);
 				 this->Controls->Add(this->textBoxID);
@@ -335,8 +440,8 @@ namespace PG208_Library {
 				 this->Controls->Add(this->buttonCreate);
 				 this->Controls->Add(this->radioButtonCD);
 				 this->Controls->Add(this->radioButtonBook);
-				 this->MaximumSize = System::Drawing::Size(800, 550);
-				 this->MinimumSize = System::Drawing::Size(500, 550);
+				 this->MaximumSize = System::Drawing::Size(545, 525);
+				 this->MinimumSize = System::Drawing::Size(545, 525);
 				 this->Name = L"FormNewArticle";
 				 this->Text = L"FormNewArticle";
 				 this->ResumeLayout(false);
@@ -346,11 +451,10 @@ namespace PG208_Library {
 #pragma endregion
 	private: System::Void buttonCreate_Click(System::Object^  sender, System::EventArgs^  e)//create the new article
 			 {
-				 bool aButtonIsChecked = (this->radioButtonBook->Checked == true) || (this->radioButtonCD->Checked == true);
-				 bool dataIsOK = (this->textBoxTitle->Text->Length != 0);//minimum info required to create a book
+				 bool dataIsOK = (this->textBoxTitle->Text->Length != 0);//minimum info required to create an Article
 
 
-				 if(aButtonIsChecked && dataIsOK)//create article
+				 if(dataIsOK)//create article and close form
 				 {
 					 Library myLibrary;
 					 if(this->radioButtonBook->Checked == true)//new article is a book
@@ -377,71 +481,311 @@ namespace PG208_Library {
 					 this->Close();
 				 }
 			 }
+
 	private: System::Void radioButtonBook_CheckedChanged(System::Object^  sender, System::EventArgs^  e)//automatically sets smallest available ID
 			 {
-				 int fileID;
-				 bool loopFlag = 1;
-				 for(int i = 0; loopFlag; i++)
+				 if(this->radioButtonBook->Checked == true)//Radio Button Checked
 				 {
-					 fileID = BASE_BOOK_ID + i;//update file ID
-					 String ^ strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
-					 char *filePath = managedStringToChar(strIDFilePath);//convert string
+					 //#form formatting
+					 formatBook();
 
-					 struct stat buffer;
-					 if(stat(filePath, &buffer))//if file doesn't exist
-						 loopFlag = 0;//exit loop
-					 if(fileID == BASE_CD_ID)//all available Book IDs have been used
+					 //#update the ID field to next available ID
+					 unsigned int fileID;
+					 bool loopFlag = 1;
+					 for(int i = 0; loopFlag; i++)
 					 {
-						 popup("Error","All available IDs are in use. Please burn books to free IDs.");
-						 this->Close();//close form
+						 fileID = BASE_BOOK_ID + i;//update file ID
+						 String ^ strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
+						 char *filePath = managedStringToChar(strIDFilePath);//convert string
+
+						 struct stat buffer;
+						 if(stat(filePath, &buffer))//if file doesn't exist
+							 loopFlag = 0;//exit loop
+						 if(fileID == BASE_MAG_ID)//all available Book IDs have been used
+						 {
+							 popup("Error","All available IDs are in use. Please burn books to free IDs.");
+							 this->Close();//close form
+						 }
 					 }
+					 this->textBoxID->Text = ""+fileID;//convert int to managed string and write to File ID text box
 				 }
-				 this->textBoxID->Text = ""+fileID;//convert int to managed string and write to File ID text box
 			 }
+
+	private: System::Void radioButtonMagazine_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(this->radioButtonMagazine->Checked == true)//Radio Button Checked
+				 {
+					 //#form formatting
+					 formatBook();//Magazine is same as book
+
+					 //#update the ID field to next available ID
+					 unsigned int fileID;
+					 bool loopFlag = 1;
+					 for(int i = 0; loopFlag; i++)
+					 {
+						 fileID = BASE_MAG_ID + i;//update file ID
+						 String ^ strIDFilePath = FILEPATH_MAG + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
+						 char *filePath = managedStringToChar(strIDFilePath);//convert string
+
+						 struct stat buffer;
+						 if(stat(filePath, &buffer))//if file doesn't exist
+							 loopFlag = 0;//exit loop
+						 if(fileID == BASE_CD_ID)//all available Book IDs have been used
+						 {
+							 popup("Error","All available IDs are in use. Please burn books to free IDs.");
+							 this->Close();//close form
+						 }
+					 }
+					 this->textBoxID->Text = ""+fileID;//convert int to managed string and write to File ID text box
+				 }
+			 }
+
 	private: System::Void radioButtonCD_CheckedChanged(System::Object^  sender, System::EventArgs^  e)//automatically sets smallest available ID
 			 {
-				 int fileID;
-				 bool loopFlag = 1;
-				 for(int i = 0; loopFlag; i++)
+				 if(this->radioButtonCD->Checked == true)//Radio Button Checked
 				 {
-					 fileID = BASE_CD_ID + i;//update file ID
-					 String ^ strIDFilePath = FILEPATH_CD + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
-					 char *filePath = managedStringToChar(strIDFilePath);//convert string
+					 //#form formatting
+					 formatCD();
 
-					 struct stat buffer;
-					 if(stat(filePath, &buffer))//if file doesn't exist
-						 loopFlag = 0;//exit loop
-					 if(fileID == (BASE_CD_ID + 1000))//all available CD IDs have been used
+					 //#update the ID field to next available ID
+					 unsigned int fileID;
+					 bool loopFlag = 1;
+					 for(int i = 0; loopFlag; i++)
 					 {
-						 popup("Error","All available IDs are in use. Please burn books to free IDs.");
-						 this->Close();//close form
+						 fileID = BASE_CD_ID + i;//update file ID
+						 String ^ strIDFilePath = FILEPATH_CD + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
+						 char *filePath = managedStringToChar(strIDFilePath);//convert string
+
+						 struct stat buffer;
+						 if(stat(filePath, &buffer))//if file doesn't exist
+							 loopFlag = 0;//exit loop
+						 if(fileID == (BASE_DVD_ID))//all available CD IDs have been used
+						 {
+							 popup("Error","All available IDs are in use. Please burn books to free IDs.");
+							 this->Close();//close form
+						 }
 					 }
+					 this->textBoxID->Text = ""+fileID;//convert int to managed string and write to File ID text box
 				 }
-				 this->textBoxID->Text = ""+fileID;//convert int to managed string and write to File ID text box
 			 }
-	private: System::Void textBoxTitle_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+
+	private: System::Void radioButtonDVD_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(this->radioButtonDVD->Checked == true)//Radio Button Checked
+				 {
+					 //#form formatting
+					 formatDVD();
+
+					 //#update the ID field to next available ID
+					 unsigned int fileID;
+					 bool loopFlag = 1;
+					 for(int i = 0; loopFlag; i++)
+					 {
+						 fileID = BASE_DVD_ID + i;//update file ID
+						 String ^ strIDFilePath = FILEPATH_DVD + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
+						 char *filePath = managedStringToChar(strIDFilePath);//convert string
+
+						 struct stat buffer;
+						 if(stat(filePath, &buffer))//if file doesn't exist
+							 loopFlag = 0;//exit loop
+						 if(fileID == (BASE_VHS_ID))//all available CD IDs have been used
+						 {
+							 popup("Error","All available IDs are in use. Please burn books to free IDs.");
+							 this->Close();//close form
+						 }
+					 }
+					 this->textBoxID->Text = ""+fileID;//convert int to managed string and write to File ID text box
+				 }
 			 }
-private: System::Void dateTimePicker_ValueChanged(System::Object^  sender, System::EventArgs^  e)
-		 {
-			 //popup("date changed", intToChar(dateTimePicker->Value.Year));//display year for debugging
-		 }
-private: System::Void buttonPlus1_Click(System::Object^  sender, System::EventArgs^  e)
-		 {
-			 if(managedStringToInt(this->textBoxQty->Text) < 100)//only go up to 100
-				this->textBoxQty->Text = intToManagedString(managedStringToInt(this->textBoxQty->Text) + 1);
-			 else
-				 popup("LOL Fail","You're a library, not a wholeseller");
-		 }
-private: System::Void buttonMinus1_Click(System::Object^  sender, System::EventArgs^  e)
-		 {
-			 if(managedStringToInt(this->textBoxQty->Text) > 0)//only go down to 0
-				this->textBoxQty->Text = intToManagedString(managedStringToInt(this->textBoxQty->Text) - 1);
-		 }
-private: System::Void textBoxQty_TextChanged(System::Object^  sender, System::EventArgs^  e)
-		 {
-			 this->textBoxQty->Text = intToManagedString(managedStringToInt(this->textBoxQty->Text));//reject non-numbers
-		 }
-private: System::Void textBox4_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-};
+
+	private: System::Void radioButtonVHS_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(this->radioButtonVHS->Checked == true)//Radio Button Checked
+				 {
+					 //#form formatting
+					 formatVHS();
+
+					 //#update the ID field to next available ID
+					 unsigned int fileID;
+					 bool loopFlag = 1;
+					 for(int i = 0; loopFlag; i++)
+					 {
+						 fileID = BASE_VHS_ID + i;//update file ID
+						 String ^ strIDFilePath = FILEPATH_VHS + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
+						 char *filePath = managedStringToChar(strIDFilePath);//convert string
+
+						 struct stat buffer;
+						 if(stat(filePath, &buffer))//if file doesn't exist
+							 loopFlag = 0;//exit loop
+						 if(fileID == (BASE_DIGITAL_ID))//all available CD IDs have been used
+						 {
+							 popup("Error","All available IDs are in use. Please burn books to free IDs.");
+							 this->Close();//close form
+						 }
+					 }
+					 this->textBoxID->Text = ""+fileID;//convert int to managed string and write to File ID text box
+				 }
+			 }
+
+	private: System::Void radioButtonDigital_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(this->radioButtonDigital->Checked == true)//Radio Button Checked
+				 {
+					 //#form formatting
+					 formatDigital();
+
+					 //#update the ID field to next available ID
+					 unsigned int fileID;
+					 bool loopFlag = 1;
+					 for(int i = 0; loopFlag; i++)
+					 {
+						 fileID = BASE_DIGITAL_ID + i;//update file ID
+						 String ^ strIDFilePath = FILEPATH_DIGITAL + fileID + ".txt";//update filepath ex: Articles/Books/1234.txt
+						 char *filePath = managedStringToChar(strIDFilePath);//convert string
+
+						 struct stat buffer;
+						 if(stat(filePath, &buffer))//if file doesn't exist
+							 loopFlag = 0;//exit loop
+						 if(fileID == (BASE_MAX_ID))//all available CD IDs have been used
+						 {
+							 popup("Error","All available IDs are in use. Please burn books to free IDs.");
+							 this->Close();//close form
+						 }
+					 }
+					 this->textBoxID->Text = ""+fileID;//convert int to managed string and write to File ID text box
+				 }
+				 else//Radio button unchecked
+				 {
+					 this->textBoxQty->Visible = true;
+					 this->labelQty->Visible = true;
+					 this->buttonPlus1->Visible = true;
+					 this->buttonMinus1->Visible = true;
+				 }
+			 }
+
+
+	private: System::Void buttonPlus1_Click(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(managedStringToInt(this->textBoxQty->Text) < 100)//only go up to 100
+					 this->textBoxQty->Text = intToManagedString(managedStringToInt(this->textBoxQty->Text) + 1);
+				 else
+					 popup("LOL Fail","You're a library, not a wholeseller");
+			 }
+	private: System::Void buttonMinus1_Click(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(managedStringToInt(this->textBoxQty->Text) > 0)//only go down to 0
+					 this->textBoxQty->Text = intToManagedString(managedStringToInt(this->textBoxQty->Text) - 1);
+			 }
+	private: System::Void textBoxQty_TextChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 this->textBoxQty->Text = intToManagedString(managedStringToInt(this->textBoxQty->Text));//reject non-numbers
+			 }
+	private: System::Void textBoxInt1_TextChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 this->textBoxInt1->Text = intToManagedString(managedStringToInt(this->textBoxInt1->Text));//reject non-numbers
+			 }
+	private: System::Void textBoxInt2_TextChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 this->textBoxInt2->Text = intToManagedString(managedStringToInt(this->textBoxInt2->Text));//reject non-numbers
+			 }
+	private: System::Void textBoxInt3_TextChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 this->textBoxInt3->Text = intToManagedString(managedStringToInt(this->textBoxInt3->Text));//reject non-numbers
+			 }
+
+	void clearSpecialFields()
+	{
+					 this->textBoxString1->Text = "";
+					 this->textBoxString2->Text = "";
+					 this->textBoxString3->Text = "";
+					 this->textBoxInt1->Text = "0";
+					 this->textBoxInt2->Text = "0";
+					 this->textBoxInt3->Text = "0";
+	}
+
+	void formatBook()
+	{
+					 clearSpecialFields();
+					 this->labelString1->Text = "Author:";
+					 this->labelString2->Text = "Publisher:";
+					 this->labelString3->Text = "Synopsis:";
+
+					 this->labelInt2->Visible = false;
+					 this->labelInt3->Visible = false;
+					 this->labelInt1->Text = "N° of Pages:";
+
+					 this->textBoxInt2->Visible = false;
+					 this->textBoxInt3->Visible = false;
+	}
+
+	void formatCD()
+	{
+					 clearSpecialFields();
+					 this->labelString1->Text = "Artist:";
+					 this->labelString2->Text = "Record Company:";
+					 this->labelString3->Text = "Music Style:";
+
+					 this->labelInt2->Visible = true;
+					 this->labelInt3->Visible = false;
+					 this->labelInt1->Text = "Duration (min):";
+					 this->labelInt2->Text = "N° of Tracks:";
+
+					 this->textBoxInt2->Visible = true;
+					 this->textBoxInt3->Visible = false;
+	}
+
+	void formatDVD()
+	{
+					 clearSpecialFields();
+					 this->labelString1->Text = "Director:";
+					 this->labelString2->Text = "Producer:";
+					 this->labelString3->Text = "Lead Actor:";
+
+					 this->labelInt2->Visible = true;
+					 this->labelInt3->Visible = true;
+					 this->labelInt1->Text = "Duration (min):";
+					 this->labelInt2->Text = "N° of Chapters:";
+					 this->labelInt3->Text = "Age Limit:";
+
+					 this->textBoxInt2->Visible = true;
+					 this->textBoxInt3->Visible = true;
+	}
+
+	void formatVHS()
+	{
+					 clearSpecialFields();
+					 this->labelString1->Text = "Director:";
+					 this->labelString2->Text = "Producer:";
+					 this->labelString3->Text = "Lead Actor:";
+
+					 this->labelInt2->Visible = true;
+					 this->labelInt3->Visible = false;
+					 this->labelInt1->Text = "Duration (min):";
+					 this->labelInt2->Text = "Age Limit:";
+
+					 this->textBoxInt2->Visible = true;
+					 this->textBoxInt3->Visible = false;
+	}
+
+	void formatDigital()
+	{
+					 clearSpecialFields();
+					 this->textBoxQty->Visible = false;
+					 this->labelQty->Visible = false;
+					 this->buttonPlus1->Visible = false;
+					 this->buttonMinus1->Visible = false;
+
+					 this->labelString1->Text = "Author:";
+					 this->labelString2->Text = "File Type:";
+					 this->labelString3->Text = "URL:";
+
+					 this->labelInt2->Visible = false;
+					 this->labelInt3->Visible = false;
+					 this->labelInt1->Text = "Size (Bytes):";
+
+					 this->textBoxInt2->Visible = false;
+					 this->textBoxInt3->Visible = false;
+	}
+
+	};
 }

@@ -98,7 +98,7 @@
     <ClCompile Include="conversion.cpp" />
     <ClCompile Include="FormEditArticle.cpp" />
     <ClCompile Include="Magazine.cpp" />
-    <ClCompile Include="NumericRes.cpp" />
+    <ClCompile Include="DigitalRes.cpp" />
     <ClCompile Include="Book.cpp" />
     <ClCompile Include="CD.cpp" />
     <ClCompile Include="cipher.cpp" />
@@ -121,7 +121,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Magazine.h" />
-    <ClInclude Include="NumericRes.h" />
+    <ClInclude Include="DigitalRes.h" />
     <ClInclude Include="Book.h" />
     <ClInclude Include="CD.h" />
     <ClInclude Include="cipher.h" />

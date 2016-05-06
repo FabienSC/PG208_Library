@@ -43,14 +43,14 @@
     <ClCompile Include="Magazine.cpp">
       <Filter>Code</Filter>
     </ClCompile>
-    <ClCompile Include="NumericRes.cpp">
-      <Filter>Code</Filter>
-    </ClCompile>
     <ClCompile Include="conversion.cpp">
       <Filter>Code</Filter>
     </ClCompile>
     <ClCompile Include="FormEditArticle.cpp">
       <Filter>Other Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="DigitalRes.cpp">
+      <Filter>Code</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -89,10 +89,10 @@
     <ClInclude Include="Magazine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NumericRes.h">
+    <ClInclude Include="conversion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="conversion.h">
+    <ClInclude Include="DigitalRes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

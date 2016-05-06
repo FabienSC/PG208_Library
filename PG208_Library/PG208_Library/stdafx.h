@@ -20,17 +20,28 @@ using namespace System::Runtime::InteropServices;
 #include "Magazine.h"
 #include "CD.h"
 #include "video.h"
-#include "NumericRes.h"
+#include "DigitalRes.h"
 #include "Library.h"
 #include <sys/stat.h>//for checking if a file exists
 
 
 // TODO: reference additional headers your program requires here
-#define BASE_BOOK_ID 1000//1000~3000 reserved for books
-#define BASE_CD_ID 3000
+#define BASE_MIN_ID		1000	//Min
+#define BASE_BOOK_ID	1000	//1000~2999 reserved for books
+#define BASE_MAG_ID		3000	//3000~3999 reserved for Magazines
+#define BASE_CD_ID		4000	//4000~5999 reserved for CDs
+#define BASE_DVD_ID		6000	//6000~6999 reserved for DVDs
+#define BASE_VHS_ID		7000	//7000~7999 reserved for VHSs
+#define BASE_DIGITAL_ID 8000	//8000~9999 reserved for Digital Resources
+#define BASE_MAX_ID		10000	//Max
+
 #define FILEPATH_USERS "Library/Users/"
 #define FILEPATH_BOOK "Library/Articles/Books/"
+#define FILEPATH_MAG "Library/Articles/Magazines/"
 #define FILEPATH_CD "Library/Articles/CDs/"
+#define FILEPATH_DVD "Library/Articles/DVDs/"
+#define FILEPATH_VHS "Library/Articles/VHSs/"
+#define FILEPATH_DIGITAL "Library/Articles/Digital_Resources/"
 
 
 #include "FormNewUser.h"

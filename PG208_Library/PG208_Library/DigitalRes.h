@@ -3,12 +3,12 @@
 #include "Article.h"
 
 
-class NumericRes :
+class DigitalRes :
 	public Article
 {
 public:
-	NumericRes(void);
-	~NumericRes(void);
+	DigitalRes(void);
+	~DigitalRes(void);
 
     std::string getAuthor();
     void 		setAuthor(std::string newAuthor);
@@ -30,7 +30,7 @@ public:
 private:
     std::string _author;
     std::string _fileType;
-    std::string _fileName;
+    std::string _fileName;//no need: use _title
     std::string _URL;
     int 		_byteSize;
 };

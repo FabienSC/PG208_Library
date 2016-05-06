@@ -4,11 +4,11 @@
 #include <assert.h>
 #include <fstream>
 
-#include "NumericRes.h"
+#include "DigitalRes.h"
 
 using namespace std;
 
-NumericRes::NumericRes(void)
+DigitalRes::DigitalRes(void)
 {
 	_author = "NA";
 	_fileType = "NA";
@@ -18,47 +18,47 @@ NumericRes::NumericRes(void)
 }
 
 
-NumericRes::~NumericRes(void)
+DigitalRes::~DigitalRes(void)
 {
 }
 
 
-string NumericRes::getAuthor()
+string DigitalRes::getAuthor()
 {return _author;}
 
-void NumericRes::setAuthor(string newAuthor)
+void DigitalRes::setAuthor(string newAuthor)
 {_author = newAuthor;}
 
 
-string NumericRes::getFileType()
+string DigitalRes::getFileType()
 {return _fileType;}
 
-void NumericRes::setFileType(string newFileType)
+void DigitalRes::setFileType(string newFileType)
 {_fileType = newFileType;}
 
 
-string NumericRes::getFileName()
+string DigitalRes::getFileName()
 {return _fileName;}
 
-void NumericRes::setFileName(string newFileName)
+void DigitalRes::setFileName(string newFileName)
 {_fileName = newFileName;}
 
 
-string NumericRes::getURL()
+string DigitalRes::getURL()
 {return _URL;}
 
-void NumericRes::setURL(string newURL)
+void DigitalRes::setURL(string newURL)
 {_URL = newURL;}
 
 
-int NumericRes::getByteSize()
+int DigitalRes::getByteSize()
 {return _byteSize;}
 
-void NumericRes::setByteSize(int newByteSize)
+void DigitalRes::setByteSize(int newByteSize)
 {_byteSize = newByteSize;}
 
 
-void NumericRes::getData()
+void DigitalRes::getData()
 {
 Article::getData();
 
