@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-fzef
-=======
-fettt
->>>>>>> origin/master
