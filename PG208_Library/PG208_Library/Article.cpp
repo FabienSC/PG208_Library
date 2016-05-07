@@ -182,12 +182,20 @@ void Article::deleteFile()
 	String ^ strFilepath;
 	char* filepath;
 
-	if((BASE_BOOK_ID <= _ID) && (_ID < BASE_CD_ID))	//Book IDs
+	if((BASE_BOOK_ID <= _ID) && (_ID < BASE_MAGAZINE_ID))	//Book IDs
 		strFilepath = FILEPATH_BOOK + _ID + ".txt";
-	else if((BASE_CD_ID <= _ID) && (_ID < 4000))	//CD IDs
+	else if((BASE_MAGAZINE_ID <= _ID) && (_ID < BASE_CD_ID))
+		strFilepath = FILEPATH_MAGAZINE + _ID + ".txt";
+	else if((BASE_CD_ID <= _ID) && (_ID < BASE_DVD_ID))
 		strFilepath = FILEPATH_CD + _ID + ".txt";
+	else if((BASE_DVD_ID <= _ID) && (_ID < BASE_VHS_ID))
+		strFilepath = FILEPATH_DVD + _ID + ".txt";
+	else if((BASE_VHS_ID <= _ID) && (_ID < BASE_DIGITAL_ID))
+		strFilepath = FILEPATH_VHS + _ID + ".txt";
+	else if((BASE_DIGITAL_ID <= _ID) && (_ID < BASE_MAX_ID))
+		strFilepath = FILEPATH_DIGITAL + _ID + ".txt";
 
-	filepath = (char*)Marshal::StringToHGlobalAnsi(strFilepath).ToPointer();//convert to char*
+	filepath = managedStringToChar(strFilepath);
 
 	struct stat buffer;
 	if(stat (filepath, &buffer) == 0)//If File exists

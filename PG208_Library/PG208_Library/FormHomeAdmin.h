@@ -78,6 +78,7 @@ namespace PG208_Library
 		int listArticleSize;//Start off with 10 articles
 		Article ** listArticles;//will point to a dynamic array of Articles henceforth refered to as "DynArray(TM)"
 		int listArticleCount;//number of articles in the list
+
 	private: System::Windows::Forms::Button^  buttonAddUser;
 	private: System::Windows::Forms::CheckBox^  checkBoxAll;
 	private: System::Windows::Forms::CheckBox^  checkBoxBooks;
@@ -85,6 +86,8 @@ namespace PG208_Library
 	private: System::Windows::Forms::CheckBox^  checkBoxDVDs;
 	private: System::Windows::Forms::CheckBox^  checkBoxMagazines;
 	private: System::Windows::Forms::Label^  labelCheckBoxes;
+	private: System::Windows::Forms::CheckBox^  checkBoxVHSs;
+	private: System::Windows::Forms::CheckBox^  checkBoxDigital;
 
 
 
@@ -121,6 +124,8 @@ namespace PG208_Library
 				 this->checkBoxDVDs = (gcnew System::Windows::Forms::CheckBox());
 				 this->checkBoxMagazines = (gcnew System::Windows::Forms::CheckBox());
 				 this->labelCheckBoxes = (gcnew System::Windows::Forms::Label());
+				 this->checkBoxVHSs = (gcnew System::Windows::Forms::CheckBox());
+				 this->checkBoxDigital = (gcnew System::Windows::Forms::CheckBox());
 				 this->SuspendLayout();
 				 // 
 				 // labelWelcome
@@ -320,7 +325,7 @@ namespace PG208_Library
 				 // checkBoxCDs
 				 // 
 				 this->checkBoxCDs->AutoSize = true;
-				 this->checkBoxCDs->Location = System::Drawing::Point(16, 260);
+				 this->checkBoxCDs->Location = System::Drawing::Point(16, 287);
 				 this->checkBoxCDs->Name = L"checkBoxCDs";
 				 this->checkBoxCDs->Size = System::Drawing::Size(56, 21);
 				 this->checkBoxCDs->TabIndex = 25;
@@ -331,22 +336,24 @@ namespace PG208_Library
 				 // checkBoxDVDs
 				 // 
 				 this->checkBoxDVDs->AutoSize = true;
-				 this->checkBoxDVDs->Location = System::Drawing::Point(16, 287);
+				 this->checkBoxDVDs->Location = System::Drawing::Point(15, 314);
 				 this->checkBoxDVDs->Name = L"checkBoxDVDs";
 				 this->checkBoxDVDs->Size = System::Drawing::Size(66, 21);
 				 this->checkBoxDVDs->TabIndex = 26;
 				 this->checkBoxDVDs->Text = L"DVDs";
 				 this->checkBoxDVDs->UseVisualStyleBackColor = true;
+				 this->checkBoxDVDs->CheckedChanged += gcnew System::EventHandler(this, &FormHomeAdmin::checkBoxDVDs_CheckedChanged);
 				 // 
 				 // checkBoxMagazines
 				 // 
 				 this->checkBoxMagazines->AutoSize = true;
-				 this->checkBoxMagazines->Location = System::Drawing::Point(16, 314);
+				 this->checkBoxMagazines->Location = System::Drawing::Point(16, 260);
 				 this->checkBoxMagazines->Name = L"checkBoxMagazines";
 				 this->checkBoxMagazines->Size = System::Drawing::Size(98, 21);
 				 this->checkBoxMagazines->TabIndex = 27;
 				 this->checkBoxMagazines->Text = L"Magazines";
 				 this->checkBoxMagazines->UseVisualStyleBackColor = true;
+				 this->checkBoxMagazines->CheckedChanged += gcnew System::EventHandler(this, &FormHomeAdmin::checkBoxMagazines_CheckedChanged);
 				 // 
 				 // labelCheckBoxes
 				 // 
@@ -357,11 +364,35 @@ namespace PG208_Library
 				 this->labelCheckBoxes->TabIndex = 28;
 				 this->labelCheckBoxes->Text = L"Display:";
 				 // 
+				 // checkBoxVHSs
+				 // 
+				 this->checkBoxVHSs->AutoSize = true;
+				 this->checkBoxVHSs->Location = System::Drawing::Point(15, 341);
+				 this->checkBoxVHSs->Name = L"checkBoxVHSs";
+				 this->checkBoxVHSs->Size = System::Drawing::Size(65, 21);
+				 this->checkBoxVHSs->TabIndex = 29;
+				 this->checkBoxVHSs->Text = L"VHSs";
+				 this->checkBoxVHSs->UseVisualStyleBackColor = true;
+				 this->checkBoxVHSs->CheckedChanged += gcnew System::EventHandler(this, &FormHomeAdmin::checkBoxVHSs_CheckedChanged);
+				 // 
+				 // checkBoxDigital
+				 // 
+				 this->checkBoxDigital->AutoSize = true;
+				 this->checkBoxDigital->Location = System::Drawing::Point(15, 369);
+				 this->checkBoxDigital->Name = L"checkBoxDigital";
+				 this->checkBoxDigital->Size = System::Drawing::Size(102, 21);
+				 this->checkBoxDigital->TabIndex = 30;
+				 this->checkBoxDigital->Text = L"Digital Res.";
+				 this->checkBoxDigital->UseVisualStyleBackColor = true;
+				 this->checkBoxDigital->CheckedChanged += gcnew System::EventHandler(this, &FormHomeAdmin::checkBoxDigital_CheckedChanged);
+				 // 
 				 // FormHomeAdmin
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->ClientSize = System::Drawing::Size(732, 503);
+				 this->Controls->Add(this->checkBoxDigital);
+				 this->Controls->Add(this->checkBoxVHSs);
 				 this->Controls->Add(this->labelCheckBoxes);
 				 this->Controls->Add(this->checkBoxMagazines);
 				 this->Controls->Add(this->checkBoxDVDs);
@@ -410,10 +441,14 @@ namespace PG208_Library
 
 	private: System::Void checkBoxAll_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
-				 if(this->checkBoxAll->Checked)//if box is checked
+				 if(this->checkBoxAll->Checked)	//if box is checked
 				 {
-					 this->checkBoxBooks->Checked = false;//uncheck books
-					 this->checkBoxCDs->Checked = false;//uncheck CDs
+					 this->checkBoxBooks->Checked		= false;//uncheck books
+					 this->checkBoxMagazines->Checked	= false;//uncheck
+					 this->checkBoxCDs->Checked			= false;//uncheck
+					 this->checkBoxDVDs->Checked		= false;//uncheck
+					 this->checkBoxVHSs->Checked		= false;//uncheck
+					 this->checkBoxDigital->Checked		= false;//uncheck
 				 }
 				 loadArticles();
 			 }
@@ -421,6 +456,14 @@ namespace PG208_Library
 	private: System::Void checkBoxBooks_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 if(this->checkBoxBooks->Checked)//if box is checked
+					 this->checkBoxAll->Checked = false;//useless to check first
+
+				 loadArticles();
+			 }
+			 
+	private: System::Void checkBoxMagazines_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(this->checkBoxMagazines->Checked)//if box is checked
 					 this->checkBoxAll->Checked = false;//useless to check first
 
 				 loadArticles();
@@ -433,6 +476,31 @@ namespace PG208_Library
 
 				 loadArticles();
 			 }
+
+	private: System::Void checkBoxDVDs_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(this->checkBoxDVDs->Checked)//if box is checked
+					 this->checkBoxAll->Checked = false;//useless to check first
+
+				 loadArticles();
+			 }
+
+	private: System::Void checkBoxVHSs_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(this->checkBoxVHSs->Checked)//if box is checked
+					 this->checkBoxAll->Checked = false;//useless to check first
+
+				 loadArticles();
+			 }
+
+	private: System::Void checkBoxDigital_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(this->checkBoxDigital->Checked)//if box is checked
+					 this->checkBoxAll->Checked = false;//useless to check first
+
+				 loadArticles();
+			 }
+
 
 	private: System::Void buttonTerminalMode_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
@@ -516,6 +584,25 @@ namespace PG208_Library
 						 }
 					 }
 				 }
+				 if(this->checkBoxMagazines->Checked || this->checkBoxAll->Checked)
+				 {
+					 int countMagazines = 0;
+					 for(int i = 0; countMagazines < myLibrary.getNumberOfMagazines(); i++)
+					 {
+						 int fileID = BASE_MAGAZINE_ID + i;//update file ID
+
+						 Book * myMag = new Book;//create new magazine
+						 if(myMag->load(fileID))//load data from file is successful
+						 {
+							 listArticles[listArticleCount] = myMag;//store magazine in the DynArray(TM)
+
+							 countMagazines++;//to stop when all of the Magazines are found
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 increaseListArticleSize();//increase Dynamic array size
+						 }
+					 }
+				 }
 				 if(this->checkBoxCDs->Checked || this->checkBoxAll->Checked)
 				 {
 					 int countCDs = 0;
@@ -523,12 +610,69 @@ namespace PG208_Library
 					 {
 						 int fileID = BASE_CD_ID + i;//update file ID
 
-						 CD * myCD = new CD;//create new book
+						 CD * myCD = new CD;//create new CD
 						 if(myCD->load(fileID))//load data from file is successful
 						 {
-							 listArticles[listArticleCount] = myCD;//store book in the DynArray(TM)
+							 listArticles[listArticleCount] = myCD;//store CD in the DynArray(TM)
 
-							 countCDs++;//to stop when all of the books are found
+							 countCDs++;//to stop when all of the CDs are found
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 increaseListArticleSize();//increase Dynamic array size
+						 }
+					 }
+				 }
+				 if(this->checkBoxDVDs->Checked || this->checkBoxAll->Checked)
+				 {
+					 int countDVDs = 0;
+					 for(int i = 0; countDVDs < myLibrary.getNumberOfDVDs(); i++)
+					 {
+						 int fileID = BASE_DVD_ID + i;//update file ID
+
+						 Video * myDVD = new Video;//create new DVD
+						 if(myDVD->load(fileID))//load data from file is successful
+						 {
+							 listArticles[listArticleCount] = myDVD;//store DVD in the DynArray(TM)
+
+							 countDVDs++;//to stop when all of the DVDs are found
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 increaseListArticleSize();//increase Dynamic array size
+						 }
+					 }
+				 }
+				 if(this->checkBoxVHSs->Checked || this->checkBoxAll->Checked)
+				 {
+					 int countVHSs = 0;
+					 for(int i = 0; countVHSs < myLibrary.getNumberOfVHSs(); i++)
+					 {
+						 int fileID = BASE_VHS_ID + i;//update file ID
+
+						 Video * myVHS = new Video;//create new book
+						 if(myVHS->load(fileID))//load data from file is successful
+						 {
+							 listArticles[listArticleCount] = myVHS;//store book in the DynArray(TM)
+
+							 countVHSs++;//to stop when all of the books are found
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 increaseListArticleSize();//increase Dynamic array size
+						 }
+					 }
+				 }
+				 if(this->checkBoxDigital->Checked || this->checkBoxAll->Checked)
+				 {
+					 int digitalResources = 0;
+					 for(int i = 0; digitalResources < myLibrary.getNumberOfDigitalResources(); i++)
+					 {
+						 int fileID = BASE_DIGITAL_ID + i;//update file ID
+
+						 DigitalRes * myDigitalRes = new DigitalRes;//create new book
+						 if(myDigitalRes->load(fileID))//load data from file is successful
+						 {
+							 listArticles[listArticleCount] = myDigitalRes;//store book in the DynArray(TM)
+
+							 digitalResources++;//to stop when all of the books are found
 							 listArticleCount++;
 							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
 								 increaseListArticleSize();//increase Dynamic array size
@@ -569,5 +713,6 @@ namespace PG208_Library
 				 FormNewUser ^ FNewUser = gcnew FormNewUser(1); //FormNewUser for Admin users
 				 FNewUser->ShowDialog();
 			 }
-};
+
+	};
 }

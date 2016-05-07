@@ -79,7 +79,11 @@ void Book::getData()
 
 bool	Book::load(int fileID)
 {
-	String ^ strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
+	String ^ strIDFilePath;
+	if(fileID < BASE_MAGAZINE_ID)
+		strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
+	else
+		strIDFilePath = FILEPATH_MAGAZINE + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
 
 	char* filePath = managedStringToChar(strIDFilePath);//convert to char*
 
@@ -123,6 +127,11 @@ bool	Book::save()
 		myfile << _qtyOwned << endl;	//save the Cheerleader
 		myfile << _qtyLent << endl;		//save the World
 		//Save other stuff
+		myfile << _author << endl;
+		myfile << _publisher << endl;
+		myfile << _synopsis << endl;
+		myfile << _pages << endl;
+
 		myfile.close();
 
 		return true;//Save successful

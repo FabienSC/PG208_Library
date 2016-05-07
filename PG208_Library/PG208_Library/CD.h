@@ -7,13 +7,13 @@ class CD : public Article//ref class CD?
     CD();
     ~CD();
 
-    std::string getArtist();
+    string		getArtist();
     void 		setArtist(std::string newArtist);
 
-    std::string getRecordCompany();
+    string		getRecordCompany();
     void 		setRecordCompany(std::string newRecordCompany);
 
-    std::string getMusicStyle();
+    string		getMusicStyle();
     void 		setMusicStyle(std::string newMusicStyle);
 
     int 		getDuration();
@@ -29,9 +29,9 @@ class CD : public Article//ref class CD?
 //title, artist, duration, record company, music style
 
 private:
-    std::string _artist;
-    std::string _recordCompany;
-    std::string _musicStyle;
+    string		_artist;
+    string		_recordCompany;
+    string		_musicStyle;
     int 		_duration;//in seconds
 	int			_tracks;
 };

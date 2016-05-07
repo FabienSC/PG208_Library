@@ -72,6 +72,31 @@ cout << "----------------------------------------" << endl;
 }
 
 
+bool DigitalRes::load(int fileID)
+{
+	String ^ strIDFilePath = FILEPATH_DIGITAL + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
+
+	char* filePath = managedStringToChar(strIDFilePath);//convert to char*
+
+	struct stat buffer;
+	if(stat (filePath, &buffer) == 0)//If file exists
+	{
+		_ID = fileID;//Load ID
+
+		ifstream myfile;
+		string line;
+
+		myfile.open(filePath);//open file
+		getline(myfile, line);//store first line into "line"
+
+		_title = stringToChar(line);//Load Title
+		return true;//Load successful
+	}
+	else
+		return false;//Load failed
+}
+
+
 bool DigitalRes::save()
 {
 	String ^ strIDFilePath = FILEPATH_DIGITAL + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
@@ -87,6 +112,10 @@ bool DigitalRes::save()
 		myfile << _qtyOwned << endl;	//save the Cheerleader
 		myfile << _qtyLent << endl;		//save the World
 		//Save other stuff
+		myfile << _author << endl;
+		myfile << _fileType << endl;
+		myfile << _URL << endl;
+		myfile << _byteSize << endl;
 		myfile.close();
 
 		return true;//Save successful

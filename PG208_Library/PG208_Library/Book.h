@@ -11,25 +11,25 @@ public:
     Book();
 	~Book();
 
-    std::string getAuthor();
+    string		getAuthor();
     void 		setAuthor(std::string newAuthor);
 
-    std::string getPublisher();
+    string		getPublisher();
     void 		setPublisher(std::string newPublisher);
 
     int 		getPages();
     void 		setPages(int newPages);
 
-    std::string getIsMagazine();
-    void 		setIsMagazine(bool newIsMagazine);
+    string		getIsMagazine();
+    void 		setIsMagazine(bool);
 	void 		setIsMagazine(std::string newIsMagazine);
 
-	std::string getSynopsis();
+	string		getSynopsis();
     void 		setSynopsis(std::string newSynopsis);
 
     void 		getData();
 
-	bool		load(int fileID);
+	bool		load(int);
 	bool		save();
 
 //title, author, publisher, editor, number of pages
@@ -37,9 +37,9 @@ public:
 private:
     string _author;
     string _publisher;
+    string _synopsis;
     int 	_pages;
 	bool	_isMagazine;
-    string _synopsis;
 };
 
 #endif // Book_H

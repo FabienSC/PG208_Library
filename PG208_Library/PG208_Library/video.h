@@ -9,19 +9,19 @@ public:
     Video();
 	~Video();
 
-    std::string getGenre();
+    string		getGenre();
     void 		setGenre(std::string newGenre);
 
-    std::string getDirector();
+    string		getDirector();
     void 		setDirector(std::string newDirector);
 
-    std::string getProducer();
+    string		getProducer();
     void 		setProducer(std::string newProducer);
 
-    std::string getMainActor();
+    string		getMainActor();
     void 		setMainActor(std::string newMainActor);
 
-	std::string getIsDVD();
+	string		getIsDVD();
     void 		setIsDVD(bool newIsDVD);
     void 		setIsDVD(std::string newIsDVD);
 
@@ -35,14 +35,15 @@ public:
     void 		setChapters(int newChapters);
 
     void 		getData();
+	bool		load(int);
 	bool		save();
 
 private:
-    std::string _director;
-    std::string _producer;
-    std::string _mainActor;
-    bool		_isDVD;
-    int 		_ageLimit;
+    string		_director;
+    string		_producer;
+    string		_mainActor;
     int 		_length;
+    int 		_ageLimit;
     int			_chapters;
+    bool		_isDVD;
 };

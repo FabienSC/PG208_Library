@@ -114,6 +114,35 @@ void Video::getData()
 }
 
 
+bool Video::load(int fileID)
+{
+	String ^ strIDFilePath;
+	if(fileID < BASE_VHS_ID)
+		strIDFilePath = FILEPATH_DVD + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
+	else
+		strIDFilePath = FILEPATH_VHS + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
+
+	char* filePath = managedStringToChar(strIDFilePath);//convert to char*
+
+	struct stat buffer;
+	if(stat (filePath, &buffer) == 0)//If file exists
+	{
+		_ID = fileID;//Load ID
+
+		ifstream myfile;
+		string line;
+
+		myfile.open(filePath);//open file
+		getline(myfile, line);//store first line into "line"
+
+		_title = stringToChar(line);//Load Title
+		return true;//Load successful
+	}
+	else
+		return false;//Load failed
+}
+
+
 bool	Video::save()
 {
 	String ^ strIDFilePath;
@@ -134,6 +163,13 @@ bool	Video::save()
 		myfile << _qtyOwned << endl;	//save the Cheerleader
 		myfile << _qtyLent << endl;		//save the World
 		//Save other stuff
+		myfile << _director << endl;
+		myfile << _producer << endl;
+		myfile << _mainActor << endl;
+		myfile << _length << endl;
+		myfile << _ageLimit << endl;
+		if(_isDVD)
+			myfile << _chapters << endl;
 		myfile.close();
 
 		return true;//Save successful

@@ -112,6 +112,12 @@ bool	CD::save()
 		myfile << _qtyOwned << endl;	//save the Cheerleader
 		myfile << _qtyLent << endl;		//save the World
 		//Save other stuff
+		myfile << _artist << endl;
+		myfile << _recordCompany << endl;
+		myfile << _musicStyle << endl;
+		myfile << _duration << endl;
+		myfile << _tracks << endl;
+
 		myfile.close();
 
 		return true;//Save successful

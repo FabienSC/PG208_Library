@@ -49,21 +49,13 @@ namespace PG208_Library {
 	private: System::Windows::Forms::Label^  labelQty;
 
 
-
 	private: System::Windows::Forms::TextBox^  textBoxString1;
 
 	private: System::Windows::Forms::Label^  labelString1;
 	private: System::Windows::Forms::TextBox^  textBoxString2;
 
 
-
-
-
 	private: System::Windows::Forms::Label^  labelString2;
-
-
-
-
 
 
 			 /// <summary>
@@ -76,7 +68,6 @@ namespace PG208_Library {
 	private: System::Windows::Forms::Button^  buttonMinus1;
 	private: System::Windows::Forms::RadioButton^  radioButtonMagazine;
 	private: System::Windows::Forms::TextBox^  textBoxString3;
-
 
 
 	private: System::Windows::Forms::Label^  labelString3;
@@ -93,7 +84,6 @@ namespace PG208_Library {
 	private: System::Windows::Forms::RadioButton^  radioButtonDVD;
 	private: System::Windows::Forms::RadioButton^  radioButtonVHS;
 	private: System::Windows::Forms::RadioButton^  radioButtonDigital;
-
 
 
 			 /// </summary>
@@ -459,22 +449,41 @@ namespace PG208_Library {
 
 					 if((this->radioButtonBook->Checked || this->radioButtonMagazine->Checked) == true)//new article is a book or Magazine
 					 {
-						 Book newBook;
-						 copyGeneralData(&newBook);
+						Book newBook;
+						copyGeneralData(&newBook);
+						newBook.setAuthor(managedStringToString(this->textBoxString1->Text));
+						newBook.setPublisher(managedStringToString(this->textBoxString2->Text));
+						newBook.setSynopsis(managedStringToString(this->textBoxString3->Text));
+						newBook.setPages(managedStringToInt(this->textBoxInt1->Text));
 
-						 newBook.save();
+						newBook.setIsMagazine(this->radioButtonMagazine->Checked);
+
+						newBook.save();
 					 }
 					 else if(this->radioButtonCD->Checked == true)//new article is a CD
 					 {
-						 CD newCD;
-						 copyGeneralData(&newCD);
+						CD newCD;
+						copyGeneralData(&newCD);
+						newCD.setArtist(managedStringToString(this->textBoxString1->Text));
+						newCD.setRecordCompany(managedStringToString(this->textBoxString2->Text));
+						newCD.setMusicStyle(managedStringToString(this->textBoxString3->Text));
+						newCD.setDuration(managedStringToInt(this->textBoxInt1->Text));
+						newCD.setTracks(managedStringToInt(this->textBoxInt2->Text));
 
-						 newCD.save();
+						newCD.save();
 					 }
 					 else if((this->radioButtonDVD->Checked || this->radioButtonVHS->Checked) == true)//new article is a DVD or VHS
 					 {
 						 Video newVideo;
 						 copyGeneralData(&newVideo);
+						 newVideo.setDirector(managedStringToString(this->textBoxString1->Text));
+						 newVideo.setProducer(managedStringToString(this->textBoxString2->Text));
+						 newVideo.setMainActor(managedStringToString(this->textBoxString3->Text));
+						 newVideo.setLength(managedStringToInt(this->textBoxInt1->Text));
+						 newVideo.setChapters(managedStringToInt(this->textBoxInt2->Text));
+						 if(this->radioButtonDVD->Checked)
+							newVideo.setAgeLimit(managedStringToInt(this->textBoxInt3->Text));
+						 newVideo.setIsDVD(this->radioButtonDVD->Checked);
 
 						 newVideo.save();
 					 }
@@ -482,6 +491,10 @@ namespace PG208_Library {
 					 {
 						 DigitalRes newDigitalRes;
 						 copyGeneralData(&newDigitalRes);
+						 newDigitalRes.setAuthor(managedStringToString(this->textBoxString1->Text));
+						 newDigitalRes.setFileType(managedStringToString(this->textBoxString2->Text));
+						 newDigitalRes.setURL(managedStringToString(this->textBoxString3->Text));
+						 newDigitalRes.setByteSize(managedStringToInt(this->textBoxInt1->Text));
 
 						 newDigitalRes.save();
 					 }
@@ -701,7 +714,7 @@ namespace PG208_Library {
 				 this->textBoxInt3->Text = intToManagedString(managedStringToInt(this->textBoxInt3->Text));//reject non-numbers
 			 }
 
-	void	 copyGeneralData(Article * newArticle)
+	void copyGeneralData(Article * newArticle)
 			 {
 				 newArticle->setID(Convert::ToInt32(this->textBoxID->Text,10));//set ID
 				 newArticle->setTitle(managedStringToString(this->textBoxTitle->Text));//set Title
@@ -761,8 +774,8 @@ namespace PG208_Library {
 					 this->labelInt2->Visible = true;
 					 this->labelInt3->Visible = true;
 					 this->labelInt1->Text = "Duration (min):";
-					 this->labelInt2->Text = "N° of Chapters:";
-					 this->labelInt3->Text = "Age Limit:";
+					 this->labelInt2->Text = "Age Limit:";
+					 this->labelInt3->Text = "N° of Chapters:";
 
 					 this->textBoxInt2->Visible = true;
 					 this->textBoxInt3->Visible = true;

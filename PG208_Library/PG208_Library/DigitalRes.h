@@ -26,13 +26,14 @@ public:
     void 		setByteSize(int newByteSize);
     
     void 		getData();
+	bool		load(int);
 	bool		save();
 
 private:
-    std::string _author;
-    std::string _fileType;
-    std::string _fileName;//no need: use _title
-    std::string _URL;
+    string		_author;
+    string		_fileType;
+    string		_fileName;//no need: use _title
+    string		_URL;
     int 		_byteSize;
 };
 

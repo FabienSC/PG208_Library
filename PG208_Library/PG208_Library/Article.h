@@ -19,7 +19,7 @@ public:
     
 	void		setQtyOwned(int);
 	void		setAvailability(std::string newIsAvailable);	
-	std::string getAvailability();
+	string		getAvailability();
     bool 		borrowArticle();						// if already borrowed, can't borrow it...
     bool 		returnArticle();						// if all in library, can't return...
 
