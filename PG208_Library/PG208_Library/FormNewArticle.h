@@ -22,7 +22,43 @@ namespace PG208_Library {
 			//
 			//TODO: Add the constructor code here
 			//
-			formatBook();//default is Book
+			editMode = 0;
+			this->radioButtonBook->Checked = true;
+		}
+		FormNewArticle(int fileID)
+		{
+			InitializeComponent();
+			//
+			//TODO: Add the constructor code here
+			//
+			editMode = 1;
+			formatEdit(fileID);
+
+			if(isBookOrMagazine)
+			{
+				Book newBook;
+				newBook.load(fileID);
+				writeGeneralData(&newBook);
+
+				this->textBoxString1->Text = stringToManagedString(newBook.getAuthor());
+				this->textBoxString2->Text = stringToManagedString(newBook.getPublisher());
+				this->textBoxString3->Text = stringToManagedString(newBook.getSummary());
+				this->textBoxInt1->Text = intToManagedString(newBook.getPages());
+			}
+			else if(isCD)
+			{
+				CD newCD;
+				newCD.load(fileID);
+				writeGeneralData(&newCD);
+
+				this->textBoxString1->Text = stringToManagedString(newCD.getArtist());
+				this->textBoxString2->Text = stringToManagedString(newCD.getRecordCompany());
+				this->textBoxString3->Text = stringToManagedString(newCD.getMusicStyle());
+				this->textBoxInt1->Text = intToManagedString(newCD.getDuration());
+				this->textBoxInt2->Text = intToManagedString(newCD.getTracks());
+			}
+			//add others
+
 		}
 
 	protected:
@@ -61,6 +97,12 @@ namespace PG208_Library {
 			 /// <summary>
 			 /// Required designer variable.
 			 Article * newArticle;
+			 bool editMode;
+
+			 bool isBookOrMagazine;
+			 bool isCD;
+			 bool isDVDOrVHS;
+			 bool isDigital;
 
 			 System::Windows::Forms::Label^  labelReleaseDate;
 	private: System::Windows::Forms::DateTimePicker^  dateTimePicker;
@@ -130,7 +172,6 @@ namespace PG208_Library {
 				 // radioButtonBook
 				 // 
 				 this->radioButtonBook->AutoSize = true;
-				 this->radioButtonBook->Checked = true;
 				 this->radioButtonBook->Location = System::Drawing::Point(24, 22);
 				 this->radioButtonBook->Name = L"radioButtonBook";
 				 this->radioButtonBook->Size = System::Drawing::Size(61, 21);
@@ -447,32 +488,35 @@ namespace PG208_Library {
 				 {
 					 Library myLibrary;
 
-					 if((this->radioButtonBook->Checked || this->radioButtonMagazine->Checked) == true)//new article is a book or Magazine
+					 if(isBookOrMagazine || ((this->radioButtonBook->Checked || this->radioButtonMagazine->Checked) == true))//new article is a book or Magazine
 					 {
-						Book newBook;
-						copyGeneralData(&newBook);
-						newBook.setAuthor(managedStringToString(this->textBoxString1->Text));
-						newBook.setPublisher(managedStringToString(this->textBoxString2->Text));
-						newBook.setSynopsis(managedStringToString(this->textBoxString3->Text));
-						newBook.setPages(managedStringToInt(this->textBoxInt1->Text));
+						 Book newBook;
+						 copyGeneralData(&newBook);
+						 newBook.setAuthor(managedStringToString(this->textBoxString1->Text));
+						 newBook.setPublisher(managedStringToString(this->textBoxString2->Text));
+						 newBook.setSummary(managedStringToString(this->textBoxString3->Text));
+						 newBook.setPages(managedStringToInt(this->textBoxInt1->Text));
 
-						newBook.setIsMagazine(this->radioButtonMagazine->Checked);
+						 if((BASE_BOOK_ID <= newBook.getID()) && (newBook.getID() < BASE_MAGAZINE_ID))	//Book IDs
+							 newBook.setIsMagazine(false);
+						 else
+							 newBook.setIsMagazine(true);
 
-						newBook.save();
+						 newBook.save();
 					 }
-					 else if(this->radioButtonCD->Checked == true)//new article is a CD
+					 else if(isCD || (this->radioButtonCD->Checked == true))//new article is a CD
 					 {
-						CD newCD;
-						copyGeneralData(&newCD);
-						newCD.setArtist(managedStringToString(this->textBoxString1->Text));
-						newCD.setRecordCompany(managedStringToString(this->textBoxString2->Text));
-						newCD.setMusicStyle(managedStringToString(this->textBoxString3->Text));
-						newCD.setDuration(managedStringToInt(this->textBoxInt1->Text));
-						newCD.setTracks(managedStringToInt(this->textBoxInt2->Text));
+						 CD newCD;
+						 copyGeneralData(&newCD);
+						 newCD.setArtist(managedStringToString(this->textBoxString1->Text));
+						 newCD.setRecordCompany(managedStringToString(this->textBoxString2->Text));
+						 newCD.setMusicStyle(managedStringToString(this->textBoxString3->Text));
+						 newCD.setDuration(managedStringToInt(this->textBoxInt1->Text));
+						 newCD.setTracks(managedStringToInt(this->textBoxInt2->Text));
 
-						newCD.save();
+						 newCD.save();
 					 }
-					 else if((this->radioButtonDVD->Checked || this->radioButtonVHS->Checked) == true)//new article is a DVD or VHS
+					 else if(isDVDOrVHS || ((this->radioButtonDVD->Checked || this->radioButtonVHS->Checked) == true))//new article is a DVD or VHS
 					 {
 						 Video newVideo;
 						 copyGeneralData(&newVideo);
@@ -480,14 +524,19 @@ namespace PG208_Library {
 						 newVideo.setProducer(managedStringToString(this->textBoxString2->Text));
 						 newVideo.setMainActor(managedStringToString(this->textBoxString3->Text));
 						 newVideo.setLength(managedStringToInt(this->textBoxInt1->Text));
-						 newVideo.setChapters(managedStringToInt(this->textBoxInt2->Text));
-						 if(this->radioButtonDVD->Checked)
-							newVideo.setAgeLimit(managedStringToInt(this->textBoxInt3->Text));
-						 newVideo.setIsDVD(this->radioButtonDVD->Checked);
+						 newVideo.setAgeLimit(managedStringToInt(this->textBoxInt2->Text));
+
+						 if((BASE_DVD_ID <= newVideo.getID()) && (newVideo.getID() < BASE_VHS_ID))
+						 {
+							 newVideo.setChapters(managedStringToInt(this->textBoxInt3->Text));
+							 newVideo.setIsDVD(true);
+						 }
+						 else
+							 newVideo.setIsDVD(false);
 
 						 newVideo.save();
 					 }
-					 else if(this->radioButtonDigital->Checked == true)//new article is a Digital Resource
+					 else if(isDigital || (this->radioButtonDigital->Checked == true))//new article is a Digital Resource
 					 {
 						 DigitalRes newDigitalRes;
 						 copyGeneralData(&newDigitalRes);
@@ -498,7 +547,6 @@ namespace PG208_Library {
 
 						 newDigitalRes.save();
 					 }
-
 					 this->Close();
 				 }
 			 }
@@ -714,108 +762,166 @@ namespace PG208_Library {
 				 this->textBoxInt3->Text = intToManagedString(managedStringToInt(this->textBoxInt3->Text));//reject non-numbers
 			 }
 
-	void copyGeneralData(Article * newArticle)
+			 void copyGeneralData(Article * newArticle)
 			 {
-				 newArticle->setID(Convert::ToInt32(this->textBoxID->Text,10));//set ID
+				 newArticle->setID(managedStringToInt(this->textBoxID->Text));//set ID
 				 newArticle->setTitle(managedStringToString(this->textBoxTitle->Text));//set Title
 				 newArticle->setReleaseDate(dateTimePicker->Value.Year * 10000 + dateTimePicker->Value.Month * 100 + dateTimePicker->Value.Day);
 				 if(this->radioButtonDigital->Checked == false)//skip this step for Digital Resources
-					newArticle->setQtyOwned(managedStringToInt(this->textBoxQty->Text));
+					 newArticle->setQtyOwned(managedStringToInt(this->textBoxQty->Text));
 			 }
 
-	void clearSpecialFields()
-	{
-					 this->textBoxString1->Text = "";
-					 this->textBoxString2->Text = "";
-					 this->textBoxString3->Text = "";
-					 this->textBoxInt1->Text = "0";
-					 this->textBoxInt2->Text = "0";
-					 this->textBoxInt3->Text = "0";
-	}
+			 void clearSpecialFields()
+			 {
+				 this->textBoxString1->Text = "";
+				 this->textBoxString2->Text = "";
+				 this->textBoxString3->Text = "";
+				 this->textBoxInt1->Text = "0";
+				 this->textBoxInt2->Text = "0";
+				 this->textBoxInt3->Text = "0";
+			 }
 
-	void formatBook()//format Book or Magazine
-	{
-					 clearSpecialFields();
-					 this->labelString1->Text = "Author:";
-					 this->labelString2->Text = "Publisher:";
-					 this->labelString3->Text = "Synopsis:";
+			 void formatBook()//format Book or Magazine
+			 {
+				 clearSpecialFields();
+				 this->labelString1->Text = "Author:";
+				 this->labelString2->Text = "Publisher:";
+				 this->labelString3->Text = "Summary:";
 
-					 this->labelInt2->Visible = false;
-					 this->labelInt3->Visible = false;
-					 this->labelInt1->Text = "N° of Pages:";
+				 this->labelInt2->Visible = false;
+				 this->labelInt3->Visible = false;
+				 this->labelInt1->Text = "N° of Pages:";
 
-					 this->textBoxInt2->Visible = false;
-					 this->textBoxInt3->Visible = false;
-	}
+				 this->textBoxInt2->Visible = false;
+				 this->textBoxInt3->Visible = false;
+			 }
 
-	void formatCD()
-	{
-					 clearSpecialFields();
-					 this->labelString1->Text = "Artist:";
-					 this->labelString2->Text = "Record Company:";
-					 this->labelString3->Text = "Music Style:";
+			 void formatCD()
+			 {
+				 clearSpecialFields();
+				 this->labelString1->Text = "Artist:";
+				 this->labelString2->Text = "Record Company:";
+				 this->labelString3->Text = "Music Style:";
 
-					 this->labelInt2->Visible = true;
-					 this->labelInt3->Visible = false;
-					 this->labelInt1->Text = "Duration (min):";
-					 this->labelInt2->Text = "N° of Tracks:";
+				 this->labelInt2->Visible = true;
+				 this->labelInt3->Visible = false;
+				 this->labelInt1->Text = "Duration (min):";
+				 this->labelInt2->Text = "N° of Tracks:";
 
-					 this->textBoxInt2->Visible = true;
-					 this->textBoxInt3->Visible = false;
-	}
+				 this->textBoxInt2->Visible = true;
+				 this->textBoxInt3->Visible = false;
+			 }
 
-	void formatDVD()
-	{
-					 clearSpecialFields();
-					 this->labelString1->Text = "Director:";
-					 this->labelString2->Text = "Producer:";
-					 this->labelString3->Text = "Lead Actor:";
+			 void formatDVD()
+			 {
+				 clearSpecialFields();
+				 this->labelString1->Text = "Director:";
+				 this->labelString2->Text = "Producer:";
+				 this->labelString3->Text = "Lead Actor:";
 
-					 this->labelInt2->Visible = true;
-					 this->labelInt3->Visible = true;
-					 this->labelInt1->Text = "Duration (min):";
-					 this->labelInt2->Text = "Age Limit:";
-					 this->labelInt3->Text = "N° of Chapters:";
+				 this->labelInt2->Visible = true;
+				 this->labelInt3->Visible = true;
+				 this->labelInt1->Text = "Duration (min):";
+				 this->labelInt2->Text = "Age Limit:";
+				 this->labelInt3->Text = "N° of Chapters:";
 
-					 this->textBoxInt2->Visible = true;
-					 this->textBoxInt3->Visible = true;
-	}
+				 this->textBoxInt2->Visible = true;
+				 this->textBoxInt3->Visible = true;
+			 }
 
-	void formatVHS()
-	{
-					 clearSpecialFields();
-					 this->labelString1->Text = "Director:";
-					 this->labelString2->Text = "Producer:";
-					 this->labelString3->Text = "Lead Actor:";
+			 void formatVHS()
+			 {
+				 clearSpecialFields();
+				 this->labelString1->Text = "Director:";
+				 this->labelString2->Text = "Producer:";
+				 this->labelString3->Text = "Lead Actor:";
 
-					 this->labelInt2->Visible = true;
-					 this->labelInt3->Visible = false;
-					 this->labelInt1->Text = "Duration (min):";
-					 this->labelInt2->Text = "Age Limit:";
+				 this->labelInt2->Visible = true;
+				 this->labelInt3->Visible = false;
+				 this->labelInt1->Text = "Duration (min):";
+				 this->labelInt2->Text = "Age Limit:";
 
-					 this->textBoxInt2->Visible = true;
-					 this->textBoxInt3->Visible = false;
-	}
+				 this->textBoxInt2->Visible = true;
+				 this->textBoxInt3->Visible = false;
+			 }
 
-	void formatDigital()
-	{
-					 clearSpecialFields();
-					 this->textBoxQty->Visible = false;
-					 this->labelQty->Visible = false;
-					 this->buttonPlus1->Visible = false;
-					 this->buttonMinus1->Visible = false;
+			 void formatDigital()
+			 {
+				 clearSpecialFields();
+				 this->textBoxQty->Visible = false;
+				 this->labelQty->Visible = false;
+				 this->buttonPlus1->Visible = false;
+				 this->buttonMinus1->Visible = false;
 
-					 this->labelString1->Text = "Author:";
-					 this->labelString2->Text = "File Type:";
-					 this->labelString3->Text = "URL:";
+				 this->labelString1->Text = "Author:";
+				 this->labelString2->Text = "File Type:";
+				 this->labelString3->Text = "URL:";
 
-					 this->labelInt2->Visible = false;
-					 this->labelInt3->Visible = false;
-					 this->labelInt1->Text = "Size (Bytes):";
+				 this->labelInt2->Visible = false;
+				 this->labelInt3->Visible = false;
+				 this->labelInt1->Text = "Size (Bytes):";
 
-					 this->textBoxInt2->Visible = false;
-					 this->textBoxInt3->Visible = false;
-	}
+				 this->textBoxInt2->Visible = false;
+				 this->textBoxInt3->Visible = false;
+			 }
+
+			 void formatEdit(int existingFileID)
+			 {
+				 this->radioButtonBook->Visible		= false;
+				 this->radioButtonMagazine->Visible = false;
+				 this->radioButtonCD->Visible		= false;
+				 this->radioButtonDVD->Visible		= false;
+				 this->radioButtonVHS->Visible		= false;
+				 this->radioButtonDigital->Visible	= false;
+
+				 if((BASE_BOOK_ID <= existingFileID) && (existingFileID < BASE_MAGAZINE_ID))	//Book IDs
+				 {
+					 formatBook();
+					 isBookOrMagazine = true;
+				 }
+				 else if((BASE_MAGAZINE_ID <= existingFileID) && (existingFileID < BASE_CD_ID))
+				 {
+					 formatBook();
+					 isBookOrMagazine = true;
+				 }
+				 else if((BASE_CD_ID <= existingFileID) && (existingFileID < BASE_DVD_ID))
+				 {
+					 formatCD();
+					 isCD = true;
+				 }
+				 else if((BASE_DVD_ID <= existingFileID) && (existingFileID < BASE_VHS_ID))
+				 {
+					 formatDVD();
+					 isDVDOrVHS = true;
+				 }
+				 else if((BASE_VHS_ID <= existingFileID) && (existingFileID < BASE_DIGITAL_ID))
+				 {
+					 formatVHS();
+					 isDVDOrVHS = true;
+				 }
+				 else if((BASE_DIGITAL_ID <= existingFileID) && (existingFileID < BASE_MAX_ID))
+				 {
+					 formatDigital();
+					 isDigital = true;
+				 }
+
+				 this->buttonCreate->Text = L"Save Changes";
+			 }
+
+			 void writeGeneralData(Article * newArticle)
+			 {
+				 this->textBoxID->Text = intToManagedString(newArticle->getID());
+				 this->textBoxTitle->Text = stringToManagedString(newArticle->getTitle());
+
+				 int releaseDate = newArticle->getReleaseDate();
+				 int year = (int) releaseDate/10000;
+				 int month = releaseDate/ 100 - year * 100;
+				 int day = releaseDate - month * 100 - year * 10000;
+				 this->dateTimePicker->Value = DateTime(year, month, day);
+
+				 if(isDigital == false)
+					 this->textBoxQty->Text = intToManagedString(newArticle->getQtyOwned());
+			 }
 
 	};
 }

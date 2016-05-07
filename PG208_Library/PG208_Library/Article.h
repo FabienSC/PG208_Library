@@ -18,6 +18,7 @@ public:
     int 		getReleaseDate();
     
 	void		setQtyOwned(int);
+	int			getQtyOwned();
 	void		setAvailability(std::string newIsAvailable);	
 	string		getAvailability();
     bool 		borrowArticle();						// if already borrowed, can't borrow it...

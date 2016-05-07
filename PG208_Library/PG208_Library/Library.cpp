@@ -1,9 +1,6 @@
 #include "stdafx.h"
 #include "Library.h"
 
-using namespace std;
-using namespace System::Runtime::InteropServices;
-using namespace System;
 
 Library::Library(void)//go through all folders to count the number of articles (More accurate than just reading the data file)
 {
@@ -74,7 +71,7 @@ Library::Library(void)//go through all folders to count the number of articles (
 			_numberOfDigitalResources++;//file is valid => count it as a book
 	}
 
-	saveData();//save data to data.txt needed? jst for reference?
+	//saveData();//save data to data.txt needed? jst for reference?
 }
 
 int Library::getNumberOfAll()
@@ -125,10 +122,12 @@ void Library::removeCD()
 
 void Library::saveData()//Write data to file. useless?
 {
-	ofstream myfile;
-	myfile.open("Library/Data.txt");
-	myfile << _numberOfBooks;
-	myfile << "\n";
-	myfile << _numberOfCDs;
-	myfile.close();
+	ofstream mySave("Library/Data.txt");
+	mySave << _numberOfBooks << endl;
+	mySave << _numberOfMagazines << endl;
+	mySave << _numberOfCDs << endl;
+	mySave << _numberOfDVDs << endl;
+	mySave << _numberOfVHSs << endl;
+	mySave << _numberOfDigitalResources;
+	mySave.close();
 }

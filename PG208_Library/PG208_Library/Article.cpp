@@ -2,10 +2,6 @@
 
 #include "Article.h"
 
-using namespace std;
-using namespace System;
-using namespace System::Runtime::InteropServices;
-
 
 Article::Article()
 {
@@ -13,7 +9,7 @@ Article::Article()
 	_title = "NA";
 	_qtyLent = 0;
 	_qtyOwned = 0;
-	_releaseDate = 0;
+	_releaseDate = 20000101;//default release date = 1st Jan 2000
 }
 
 Article::~Article()
@@ -214,4 +210,9 @@ void Article::setQtyOwned(int newQtyOwned)
 {
 	if(newQtyOwned >= _qtyLent)//can't own 2 books but have 3 borrowed
 		_qtyOwned = newQtyOwned;
+}
+
+int Article::getQtyOwned()
+{
+	return _qtyOwned;
 }

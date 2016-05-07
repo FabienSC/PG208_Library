@@ -1,5 +1,4 @@
-#ifndef Book_H
-#define Book_H
+#pragma once
 #include "Article.h"
 
 ////////////////////////////Make this an abstract class
@@ -24,8 +23,8 @@ public:
     void 		setIsMagazine(bool);
 	void 		setIsMagazine(std::string newIsMagazine);
 
-	string		getSynopsis();
-    void 		setSynopsis(std::string newSynopsis);
+	string		getSummary();
+    void 		setSummary(string newSummary);
 
     void 		getData();
 
@@ -35,11 +34,9 @@ public:
 //title, author, publisher, editor, number of pages
 
 private:
-    string _author;
-    string _publisher;
-    string _synopsis;
+    string	_author;
+    string	_publisher;
+    string	_synopsis;
     int 	_pages;
 	bool	_isMagazine;
 };
-
-#endif // Book_H

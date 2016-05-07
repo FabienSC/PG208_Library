@@ -6,9 +6,9 @@ Book::Book()
 {
 	_author = "NA";
 	_publisher = "NA";
+	_synopsis = "NA";//thing special about this book so far...";//too big, causes a crash
 	_pages = 0;
 	_isMagazine = 0;
-	_synopsis = "Nothing special about this book so far...";
 }
 
 Book::~Book()
@@ -48,20 +48,21 @@ void Book::setIsMagazine(bool newIsMagazine)
 {_isMagazine = newIsMagazine;}
 
 void Book::setIsMagazine(string newIsMagazine)
-{if (newIsMagazine == "Magazine")
-_isMagazine = 1;
-else if (newIsMagazine == "Book")
-	_isMagazine = 0;
-else
-	cout << "error, please specify type Magazine or Book" << endl;
+{
+	if (newIsMagazine == "Magazine")
+		_isMagazine = 1;
+	else if (newIsMagazine == "Book")
+		_isMagazine = 0;
+	else
+		cout << "error, please specify type Magazine or Book" << endl;
 }
 
 
-string Book::getSynopsis()
+string Book::getSummary()
 {return _synopsis;}
 
-void Book::setSynopsis(string newSynopsis)
-{_synopsis = newSynopsis;}
+void Book::setSummary(string newSummary)
+{_synopsis = newSummary;}
 
 
 void Book::getData()
@@ -96,9 +97,17 @@ bool	Book::load(int fileID)
 		string line;
 
 		myfile.open(filePath);//open file
-		getline(myfile, line);//store first line into "line"
 
-		_title = stringToChar(line);//Load Title
+		getline(myfile, line);//store first line into "line"
+		_title = line;//Load Title
+		
+		getline(myfile, line);//store first line into "line"
+		_releaseDate = stringToInt(line);//Load
+		
+		getline(myfile, line);//store first line into "line"
+		_qtyOwned = stringToInt(line);//Load
+
+		myfile.close();
 		return true;//Load successful
 	}
 	else
@@ -117,11 +126,8 @@ bool	Book::save()
 
 	char* filePath = managedStringToChar(strIDFilePath);//convert to char*
 
-	struct stat buffer;
-	if(stat (filePath, &buffer))//If file doesn't exist
-	{
 		ofstream myfile(filePath);
-		
+
 		myfile << _title << endl;		//save title
 		myfile << _releaseDate << endl;	//save release date
 		myfile << _qtyOwned << endl;	//save the Cheerleader
@@ -130,12 +136,9 @@ bool	Book::save()
 		myfile << _author << endl;
 		myfile << _publisher << endl;
 		myfile << _synopsis << endl;
-		myfile << _pages << endl;
+		myfile << _pages;
 
 		myfile.close();
 
 		return true;//Save successful
-	}
-	else
-		return false;//Save failed
 }

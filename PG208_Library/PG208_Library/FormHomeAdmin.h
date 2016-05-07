@@ -62,10 +62,11 @@ namespace PG208_Library
 	private: System::Windows::Forms::Label^  labelNumberOfItemsLabel;
 	private: System::Windows::Forms::Label^  labelNumberOfItems;
 	private: System::Windows::Forms::Label^  labelArticleID;
+	private: System::Windows::Forms::Button^  buttonEdit;
 
 
 
-	private: System::Windows::Forms::Button^  button1;
+
 	private: System::Windows::Forms::Button^  buttonTerminalMode;
 
 
@@ -115,7 +116,7 @@ namespace PG208_Library
 				 this->labelNumberOfItemsLabel = (gcnew System::Windows::Forms::Label());
 				 this->labelNumberOfItems = (gcnew System::Windows::Forms::Label());
 				 this->labelArticleID = (gcnew System::Windows::Forms::Label());
-				 this->button1 = (gcnew System::Windows::Forms::Button());
+				 this->buttonEdit = (gcnew System::Windows::Forms::Button());
 				 this->buttonTerminalMode = (gcnew System::Windows::Forms::Button());
 				 this->buttonAddUser = (gcnew System::Windows::Forms::Button());
 				 this->checkBoxAll = (gcnew System::Windows::Forms::CheckBox());
@@ -270,15 +271,15 @@ namespace PG208_Library
 				 this->labelArticleID->TabIndex = 17;
 				 this->labelArticleID->Text = L"Search by ID:";
 				 // 
-				 // button1
+				 // buttonEdit
 				 // 
-				 this->button1->Location = System::Drawing::Point(488, 396);
-				 this->button1->Name = L"button1";
-				 this->button1->Size = System::Drawing::Size(80, 27);
-				 this->button1->TabIndex = 21;
-				 this->button1->Text = L"Editing";
-				 this->button1->UseVisualStyleBackColor = true;
-				 this->button1->Click += gcnew System::EventHandler(this, &FormHomeAdmin::button1_Click);
+				 this->buttonEdit->Location = System::Drawing::Point(488, 373);
+				 this->buttonEdit->Name = L"buttonEdit";
+				 this->buttonEdit->Size = System::Drawing::Size(105, 47);
+				 this->buttonEdit->TabIndex = 21;
+				 this->buttonEdit->Text = L"Edit";
+				 this->buttonEdit->UseVisualStyleBackColor = true;
+				 this->buttonEdit->Click += gcnew System::EventHandler(this, &FormHomeAdmin::buttonEdit_Click);
 				 // 
 				 // buttonTerminalMode
 				 // 
@@ -400,7 +401,7 @@ namespace PG208_Library
 				 this->Controls->Add(this->checkBoxBooks);
 				 this->Controls->Add(this->checkBoxAll);
 				 this->Controls->Add(this->buttonAddUser);
-				 this->Controls->Add(this->button1);
+				 this->Controls->Add(this->buttonEdit);
 				 this->Controls->Add(this->buttonTerminalMode);
 				 this->Controls->Add(this->labelArticleID);
 				 this->Controls->Add(this->labelNumberOfItems);
@@ -507,15 +508,15 @@ namespace PG208_Library
 				 popup("Error", "This is the 21st century, nobody uses terminals anymore!");
 			 }
 
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
+	private: System::Void buttonEdit_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
-				 popup("Login Successful", "Welcome!");
-				 this->Hide();//hides the current form window (so two users can't login at the same time)
-				 FormEditArticle ^ myForm = gcnew FormEditArticle(); //FormEditArticle defined in FormEditArticle.h
-				 myForm->ShowDialog(); //blocks modifications on previous form (not visible anyway) 
-				 //stays on F3 for most of the program execution time
-				 this->Show();//redisplays previous form once F3 is shut
+				 int selectedIndex = this->listBoxDisplay->SelectedIndex;
+				 if(selectedIndex == -1)
+					 return;//no selection => do nothing
 
+				 FormNewArticle ^ Fedit = gcnew FormNewArticle(listArticles[selectedIndex]->getID());//Edit Article
+				 Fedit->ShowDialog();
+				 //updateListBox();//loadArticles();//update list
 			 }
 
 	private: System::Void buttonDelete_Click(System::Object^  sender, System::EventArgs^  e) //DELETE Article
@@ -555,7 +556,7 @@ namespace PG208_Library
 					 this->listBoxDisplay->Items->Add(stringToManagedString(listArticles[i]->getTitle()));
 				 }
 
-				 this->labelNumberOfItems->Text = "" + listArticleCount;//myLibrary.getNumberOfBooks()?
+				 this->labelNumberOfItems->Text = intToManagedString(listArticleCount);//myLibrary.getNumberOfBooks()?
 			 }
 
 			 ///////////////////////////////////////////////////////////////
@@ -702,9 +703,15 @@ namespace PG208_Library
 
 			 void listArticlesClear()
 			 {
-				 delete [] listArticles;              // free old array memory.
-				 listArticleSize = 10;
-				 listArticles = new Article*[listArticleSize];
+				 // free old array memory.
+			/*	 for(int i = 0; i < listArticleCount; i++)
+					 delete listArticles[i];
+				 
+				 delete [] listArticles;*/
+
+
+				// listArticleSize = 10;
+				// listArticles = new Article*[listArticleSize];
 				 listArticleCount = 0;
 			 }
 
@@ -713,6 +720,5 @@ namespace PG208_Library
 				 FormNewUser ^ FNewUser = gcnew FormNewUser(1); //FormNewUser for Admin users
 				 FNewUser->ShowDialog();
 			 }
-
-	};
+};
 }
