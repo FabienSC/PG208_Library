@@ -24,7 +24,6 @@ namespace PG208_Library {
 			//
 			editMode = 0;
 			this->radioButtonBook->Checked = true;
-			
 		}
 		FormNewArticle(int fileID)
 		{

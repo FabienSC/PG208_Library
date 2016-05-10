@@ -132,7 +132,7 @@ bool Article::saveToFile(const char* fileName)
 	ofstream FILE(fileName, ios::out);
 	if(FILE)
 	{
-		cout << "Desired ID ? (1 to 2000 for PaperCopies, 2001 to 4000 for videos, 4001 to 5000 for CDs)" << endl ;
+		cout << "Desired ID ? (1 to 1000 for PaperCopies, 1001 to 2000 for videos, 2001 to 3000 for CDs)" << endl ;
 		cin >> ID;
 		if ( (ID<1) || (ID>3000) )
 		{
@@ -161,7 +161,7 @@ bool Article::saveToFile(const char* fileName)
 		}
 		FILE << releaseDate << endl;
 
-		cout << "Is this article available right now? (1:yes 0:no)" << endl ;
+		cout << "Is your article available right now? (1:yes 0:no)" << endl ;
 		cin >> isAvailable;
 		FILE << isAvailable << endl;
 
@@ -197,7 +197,7 @@ void Article::deleteFile()
 	if(stat (filepath, &buffer) == 0)//If File exists
 		remove(filepath);//delete file
 	else
-		popup("Error","Filepath doesn't exist, blame Fabien");
+		popup("Error","Filepath doesn't exist, blame Alex");
 }
 
 bool	Article::load(int fileID)

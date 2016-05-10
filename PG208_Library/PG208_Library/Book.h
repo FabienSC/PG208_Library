@@ -38,6 +38,5 @@ private:
     string	_publisher;
     string	_synopsis;
     int 	_pages;
-protected:
 	bool	_isMagazine;
 };
