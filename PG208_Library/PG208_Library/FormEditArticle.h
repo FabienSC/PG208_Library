@@ -53,7 +53,7 @@ namespace PG208_Library {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(82, 82);
+			this->button1->Location = System::Drawing::Point(51, 46);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(123, 75);
 			this->button1->TabIndex = 0;
