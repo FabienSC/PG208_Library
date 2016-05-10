@@ -6,7 +6,7 @@ Book::Book()
 {
 	_author = "NA";
 	_publisher = "NA";
-	_synopsis = "NA";//thing special about this book so far...";//too big, causes a crash
+	_synopsis = "NA";//"nothing special about this book so far...";//too big, causes a crash
 	_pages = 0;
 	_isMagazine = 0;
 }
@@ -73,8 +73,8 @@ void Book::getData()
 	cout << "Publisher: " << getPublisher() << endl;
 	cout << "Pages: " << getPages() << endl;
 	cout << "Type: " << getIsMagazine() << endl;
-
-	cout << "----------------------------------------" << endl;
+	if(!_isMagazine)
+		cout << "----------------------------------------" << endl;
 }
 
 
@@ -130,7 +130,7 @@ bool	Book::save()
 
 		myfile << _title << endl;		//save title
 		myfile << _releaseDate << endl;	//save release date
-		myfile << _qtyOwned << endl;	//save the Cheerleader
+		myfile << _qtyOwned << endl;	//save Pvt. Ryan
 		myfile << _qtyLent << endl;		//save the World
 		//Save other stuff
 		myfile << _author << endl;
