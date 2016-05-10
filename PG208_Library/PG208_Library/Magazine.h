@@ -9,17 +9,19 @@ class Magazine:
 public:
 	Magazine(void);
 	~Magazine(void);
-/*
-	getEditor
-	setEditor
 
-	getReviewNumber
-	setNewReview
-	delReview
-	getReviewList
+	std::string getEditor();
+	void		setEditor(std::string newEditor);
+
+	int			getReviewNumber();
+	void		addReview(std::string newReviewName);
+	void		deleteReview(int reviewIndex);
+	void		getReviewList();
+
+    void 		getData();
 
 private:
-	std::string _editor;
-    vector std::string _reviewTitles
-	int			_reviews;*/
+	std::string	_editor;
+    vector<std::string> _reviewTitles;
+	int			_reviewNum;
 };
