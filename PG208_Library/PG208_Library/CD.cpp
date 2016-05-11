@@ -110,7 +110,7 @@ bool	CD::save()
 		myfile << _title << endl;		//save title
 		myfile << _releaseDate << endl;	//save release date
 		myfile << _qtyOwned << endl;	//save the Cheerleader
-		myfile << _qtyLent << endl;		//save our souls
+		myfile << _qtyLent << endl;		//save the World
 		//Save other stuff
 		myfile << _artist << endl;
 		myfile << _recordCompany << endl;
