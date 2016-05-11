@@ -52,7 +52,7 @@ Library::Library(void)//go through all folders to count the number of articles (
 		if(stat (filePath, &buffer) == 0)//If file exists
 			_numberOfDVDs++;//file is valid => count it as a book
 	}
-	
+
 	for(int fileID = BASE_VHS_ID; fileID < BASE_DIGITAL_ID; fileID++)//update file ID
 	{
 		strIDFilePath = FILEPATH_VHS + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
@@ -61,7 +61,7 @@ Library::Library(void)//go through all folders to count the number of articles (
 		if(stat (filePath, &buffer) == 0)//If file exists
 			_numberOfVHSs++;//file is valid => count it as a book
 	}
-	
+
 	for(int fileID = BASE_DIGITAL_ID; fileID < BASE_MAX_ID; fileID++)//update file ID
 	{
 		strIDFilePath = FILEPATH_DIGITAL + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
@@ -97,26 +97,26 @@ int Library::getNumberOfDigitalResources()
 
 /*void Library::addBook()
 {
-	_numberOfBooks++;//add book
-	saveData();//save changes & rewrite other data
+_numberOfBooks++;//add book
+saveData();//save changes & rewrite other data
 }
 
 void Library::removeBook()
 {
-	_numberOfBooks--;//remove book
-	saveData();//save changes & rewrite other data
+_numberOfBooks--;//remove book
+saveData();//save changes & rewrite other data
 }
 
 void Library::addCD()
 {
-	_numberOfCDs++;//add book
-	saveData();//save changes & rewrite other data
+_numberOfCDs++;//add book
+saveData();//save changes & rewrite other data
 }
 
 void Library::removeCD()
 {
-	_numberOfCDs--;//remove book
-	saveData();//save changes & rewrite other data
+_numberOfCDs--;//remove book
+saveData();//save changes & rewrite other data
 }
 */
 

@@ -168,6 +168,7 @@ namespace PG208_Library
 				 this->listBoxDisplay->Name = L"listBoxDisplay";
 				 this->listBoxDisplay->Size = System::Drawing::Size(188, 260);
 				 this->listBoxDisplay->TabIndex = 4;
+				 this->listBoxDisplay->SelectedIndexChanged += gcnew System::EventHandler(this, &FormHomeAdmin::listBoxDisplay_SelectedIndexChanged);
 				 // 
 				 // buttonSelect
 				 // 
@@ -720,5 +721,7 @@ namespace PG208_Library
 				 FormNewUser ^ FNewUser = gcnew FormNewUser(1); //FormNewUser for Admin users
 				 FNewUser->ShowDialog();
 			 }
+private: System::Void listBoxDisplay_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+		 }
 };
 }

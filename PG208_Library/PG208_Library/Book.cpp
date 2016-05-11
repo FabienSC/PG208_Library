@@ -66,7 +66,7 @@ void Book::setSummary(string newSummary)
 
 
 void Book::getData()
-{
+{//for a terminal version... useless
 	Article::getData();
 
 	cout << "Author: " << getAuthor() << endl;
@@ -100,10 +100,10 @@ bool	Book::load(int fileID)
 
 		getline(myfile, line);//store first line into "line"
 		_title = line;//Load Title
-		
+
 		getline(myfile, line);//store first line into "line"
 		_releaseDate = stringToInt(line);//Load
-		
+
 		getline(myfile, line);//store first line into "line"
 		_qtyOwned = stringToInt(line);//Load
 
@@ -126,19 +126,19 @@ bool	Book::save()
 
 	char* filePath = managedStringToChar(strIDFilePath);//convert to char*
 
-		ofstream myfile(filePath);
+	ofstream myfile(filePath);
 
-		myfile << _title << endl;		//save title
-		myfile << _releaseDate << endl;	//save release date
-		myfile << _qtyOwned << endl;	//save Pvt. Ryan
-		myfile << _qtyLent << endl;		//save the World
-		//Save other stuff
-		myfile << _author << endl;
-		myfile << _publisher << endl;
-		myfile << _synopsis << endl;
-		myfile << _pages;
+	myfile << _title << endl;		//save title
+	myfile << _releaseDate << endl;	//save release date
+	myfile << _qtyOwned << endl;	//save Pvt. Ryan
+	myfile << _qtyLent << endl;		//save the World
+	//Save other stuff
+	myfile << _author << endl;
+	myfile << _publisher << endl;
+	myfile << _synopsis << endl;
+	myfile << _pages;
 
-		myfile.close();
+	myfile.close();
 
-		return true;//Save successful
+	return true;//Save successful
 }

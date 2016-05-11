@@ -1,6 +1,6 @@
 #pragma once
 
-#include <vector>
+//#include <vector>
 #include "book.h"
 
 class Magazine:
@@ -14,14 +14,16 @@ public:
 	void		setEditor(std::string newEditor);
 
 	int			getReviewNumber();
-	void		addReview(std::string newReviewName);
-	void		deleteReview(int reviewIndex);
-	void		getReviewList();
+	//void		addReview(std::string newReviewName);
+	//void		deleteReview(int reviewIndex);
+	std::string	getReviewList();
+	void		setReviewList(std::string newReviewList);
 
     void 		getData();
 
 private:
 	std::string	_editor;
-    vector<std::string> _reviewTitles;
+	std::string _reviewList;
+    //vector<std::string> _reviewList;
 	int			_reviewNum;
 };

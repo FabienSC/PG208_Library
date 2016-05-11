@@ -59,16 +59,16 @@ void DigitalRes::setByteSize(int newByteSize)
 
 
 void DigitalRes::getData()
-{
-Article::getData();
+{//for a terminal version... useless
+	Article::getData();
 
-cout << "File author: " << getAuthor() << endl;
-cout << "File type: " << getFileType() << endl;
-cout << "File name: " << getFileName() << endl;
-cout << "File URL: " << getURL() << endl;
-cout << "File size: " << getByteSize() << "bytes " << endl;
+	cout << "File author: " << getAuthor() << endl;
+	cout << "File type: " << getFileType() << endl;
+	cout << "File name: " << getFileName() << endl;
+	cout << "File URL: " << getURL() << endl;
+	cout << "File size: " << getByteSize() << "bytes " << endl;
 
-cout << "----------------------------------------" << endl;
+	cout << "----------------------------------------" << endl;
 }
 
 
@@ -106,7 +106,7 @@ bool DigitalRes::save()
 	if(stat (filePath, &buffer))//If file doesn't exist
 	{
 		ofstream myfile(filePath);
-		
+
 		myfile << _title << endl;		//save title
 		myfile << _releaseDate << endl;	//save release date
 		myfile << _qtyOwned << endl;	//save the Cheerleader

@@ -69,7 +69,7 @@ bool Article::returnArticle()//later add char* username as parameter
 
 
 void Article::getData()
-{
+{//for a terminal version... useless
 	cout << "--------------Info diplay ---------------" << endl;
 
 	cout << "ID: " << getID() << endl;

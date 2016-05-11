@@ -44,6 +44,8 @@ namespace PG208_Library {
 				this->textBoxString2->Text = stringToManagedString(newBook.getPublisher());
 				this->textBoxString3->Text = stringToManagedString(newBook.getSummary());
 				this->textBoxInt1->Text = intToManagedString(newBook.getPages());
+
+				//Book::~book 
 			}
 			else if(isCD)
 			{

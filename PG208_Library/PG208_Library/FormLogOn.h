@@ -169,7 +169,7 @@ namespace PG208_Library {
 				 this->buttonExit->UseVisualStyleBackColor = false;
 				 this->buttonExit->Click += gcnew System::EventHandler(this, &FormLogOn::buttonExit_Click);
 				 // 
-				 // Form1
+				 // FormLogOn
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
@@ -185,8 +185,9 @@ namespace PG208_Library {
 				 this->Controls->Add(this->buttonRegister);
 				 this->MaximumSize = System::Drawing::Size(350, 250);
 				 this->MinimumSize = System::Drawing::Size(350, 250);
-				 this->Name = L"Form1";
+				 this->Name = L"FormLogOn";
 				 this->Text = L"Library Login";
+				 this->Load += gcnew System::EventHandler(this, &FormLogOn::FormLogOn_Load);
 				 this->ResumeLayout(false);
 				 this->PerformLayout();
 
@@ -246,6 +247,8 @@ namespace PG208_Library {
 			 {
 				 this->Close();
 			 }
-	};
+	private: System::Void FormLogOn_Load(System::Object^  sender, System::EventArgs^  e) {
+			 }
+};
 }
 

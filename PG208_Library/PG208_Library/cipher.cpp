@@ -31,7 +31,7 @@ char* decrypt(char* cipherKey,char* cipherText)//decrypts the password using a v
 {
 	int sizeKey = strlen(cipherKey);
 	int sizeText = strlen(cipherText);
-	
+
 	int j = 0;
 
 	for(int i = 0; i < sizeText; i++)

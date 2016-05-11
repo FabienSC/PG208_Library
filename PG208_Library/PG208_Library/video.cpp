@@ -11,12 +11,12 @@ using namespace std;
 
 Video::Video()
 {
-    _director = "NA";
-    _producer = "NA";
-    _mainActor = "NA";
-    _isDVD = "NA";
-    _ageLimit = 0;
-    _length = 0;
+	_director = "NA";
+	_producer = "NA";
+	_mainActor = "NA";
+	_isDVD = "NA";
+	_ageLimit = 0;
+	_length = 0;
 	_isDVD = 1;
 	_chapters = 0;
 }
@@ -48,7 +48,7 @@ void Video::setMainActor(string newMainActor)
 
 string Video::getIsDVD()
 {if(_isDVD)
-	return "DVD";
+return "DVD";
 else
 	return "VHS";}
 
@@ -57,7 +57,7 @@ void Video::setIsDVD(bool newIsDVD)
 
 void Video::setIsDVD(string newIsDVD)
 {if (newIsDVD == "DVD")
-	_isDVD = 1;
+_isDVD = 1;
 else if (newIsDVD == "VHS")
 	_isDVD = 0;
 else 
@@ -81,26 +81,26 @@ void Video::setAgeLimit(int newAgeLimit)
 
 int Video::getChapters()
 {if (_isDVD)
-	return _chapters;
+return _chapters;
 else
-	{	
-		cout << "VHS do not have chapters..." << endl;
-		return 0;
-	}
+{	
+	cout << "VHS do not have chapters..." << endl;
+	return 0;
+}
 }
 
 void Video::setChapters(int newChapters)
 {if (_isDVD)
 	_chapters = newChapters;
 else
-	cout << "VHS do not have chapters..." << endl;
+	popup("Error","VHS don't have chapter...");
 }
 
 
 void Video::getData()
-{
+{//for a terminal version... useless
 	Article::getData();
-	
+
 	cout << "Director: " << getDirector() << endl;
 	cout << "Producer: " << getProducer() << endl;
 	cout << "Main Actor: " << getMainActor() << endl;
@@ -109,7 +109,7 @@ void Video::getData()
 	cout << "Support Type: " << getIsDVD() << endl;
 	if(_isDVD)
 		cout << "Chapters: " << getChapters() << endl;
-	
+
 	cout << "----------------------------------------" << endl;
 }
 
@@ -157,7 +157,7 @@ bool	Video::save()
 	if(stat (filePath, &buffer))//If file doesn't exist
 	{
 		ofstream myfile(filePath);
-		
+
 		myfile << _title << endl;		//save title
 		myfile << _releaseDate << endl;	//save release date
 		myfile << _qtyOwned << endl;	//save the Cheerleader

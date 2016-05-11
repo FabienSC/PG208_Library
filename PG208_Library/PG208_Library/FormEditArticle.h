@@ -35,6 +35,7 @@ namespace PG208_Library {
 			}
 		}
 	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Button^  button2;
 
 		/// <summary>
 		/// Required designer variable.
@@ -49,6 +50,7 @@ namespace PG208_Library {
 		void InitializeComponent(void)
 		{
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// button1
@@ -61,11 +63,22 @@ namespace PG208_Library {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &FormEditArticle::button1_Click);
 			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(51, 153);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(75, 74);
+			this->button2->TabIndex = 1;
+			this->button2->Text = L"bonana";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &FormEditArticle::button2_Click);
+			// 
 			// FormEditArticle
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(282, 253);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Name = L"FormEditArticle";
 			this->Text = L"FormEditArticle";
@@ -76,6 +89,8 @@ namespace PG208_Library {
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
 				 this->Close();
+			 }
+	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 			 }
 	};
 }

@@ -15,3 +15,10 @@ update Library class (book/CD >> papercopy/vide/CD)
 rewrite UML (video, papercopy) and shit
 
 add special class for board games (?)
+
+user window: reuse admin window + boolean for user/admin state and hide buttons from user
+borrow/give back button for users (not for admin) 
+
+replace all the cout with return and concatenate big string
+
+backup before merging 

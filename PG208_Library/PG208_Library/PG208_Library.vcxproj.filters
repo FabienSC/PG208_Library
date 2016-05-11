@@ -22,9 +22,6 @@
     <ClCompile Include="video.cpp">
       <Filter>Code</Filter>
     </ClCompile>
-    <ClCompile Include="FormHome.cpp">
-      <Filter>Other Stuff</Filter>
-    </ClCompile>
     <ClCompile Include="AssemblyInfo.cpp">
       <Filter>Other Stuff</Filter>
     </ClCompile>
@@ -52,6 +49,7 @@
     <ClCompile Include="DigitalRes.cpp">
       <Filter>Code</Filter>
     </ClCompile>
+    <ClCompile Include="FormBorrowReturn.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FormHomeAdmin.h" />
@@ -95,6 +93,7 @@
     <ClInclude Include="DigitalRes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FormBorrowReturn.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormHomeAdmin.resx" />

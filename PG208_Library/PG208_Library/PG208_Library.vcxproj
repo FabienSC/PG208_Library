@@ -96,6 +96,7 @@
     <ClCompile Include="Article.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="conversion.cpp" />
+    <ClCompile Include="FormBorrowReturn.cpp" />
     <ClCompile Include="FormEditArticle.cpp" />
     <ClCompile Include="Magazine.cpp" />
     <ClCompile Include="DigitalRes.cpp" />
@@ -103,7 +104,6 @@
     <ClCompile Include="CD.cpp" />
     <ClCompile Include="cipher.cpp" />
     <ClCompile Include="video.cpp" />
-    <ClCompile Include="FormHome.cpp" />
     <ClCompile Include="FormNewArticle.cpp" />
     <ClCompile Include="FormNewUser.cpp" />
     <ClCompile Include="Library.cpp" />
@@ -117,6 +117,9 @@
   <ItemGroup>
     <ClInclude Include="Article.h" />
     <ClInclude Include="conversion.h" />
+    <ClInclude Include="FormBorrowReturn.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="FormEditArticle.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -147,6 +150,9 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormBorrowReturn.resx">
+      <DependentUpon>FormBorrowReturn.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEditArticle.resx">
       <DependentUpon>FormEditArticle.h</DependentUpon>
     </EmbeddedResource>
