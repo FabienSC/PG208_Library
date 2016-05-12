@@ -226,6 +226,7 @@ namespace PG208_Library {
 				 this->textBoxID->Size = System::Drawing::Size(349, 22);
 				 this->textBoxID->TabIndex = 4;
 				 this->textBoxID->Text = L"0000";
+				 this->textBoxID->TextChanged += gcnew System::EventHandler(this, &FormNewArticle::textBoxID_TextChanged);
 				 // 
 				 // textBoxTitle
 				 // 
@@ -233,6 +234,7 @@ namespace PG208_Library {
 				 this->textBoxTitle->Name = L"textBoxTitle";
 				 this->textBoxTitle->Size = System::Drawing::Size(349, 22);
 				 this->textBoxTitle->TabIndex = 6;
+				 this->textBoxTitle->TextChanged += gcnew System::EventHandler(this, &FormNewArticle::textBoxTitle_TextChanged);
 				 // 
 				 // labelTitle
 				 // 
@@ -930,5 +932,9 @@ namespace PG208_Library {
 					 this->textBoxQty->Text = intToManagedString(newArticle->getQtyOwned());
 			 }
 
-	};
+	private: System::Void textBoxTitle_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+			 }
+private: System::Void textBoxID_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+		 }
+};
 }

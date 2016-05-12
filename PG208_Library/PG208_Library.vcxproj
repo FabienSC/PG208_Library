@@ -117,7 +117,7 @@
   <ItemGroup>
     <ClInclude Include="Article.h" />
     <ClInclude Include="conversion.h" />
-    <ClInclude Include="FormEditArticle.h">
+    <ClInclude Include="FormBorrowArticle.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Magazine.h" />
@@ -147,8 +147,8 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FormEditArticle.resx">
-      <DependentUpon>FormEditArticle.h</DependentUpon>
+    <EmbeddedResource Include="FormBorrowArticle.resx">
+      <DependentUpon>FormBorrowArticle.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormHomeAdmin.resx">
       <DependentUpon>FormHomeAdmin.h</DependentUpon>
