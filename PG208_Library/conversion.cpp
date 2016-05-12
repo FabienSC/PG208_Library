@@ -86,9 +86,16 @@ String^ readData(StreamReader^ sr)
 {
 	String^ returnString = "";
 	String^ readString = sr->ReadLine();
+	bool multiLine = false;
 	while(readString != "###")
 	{
+		if(multiLine)
+			returnString = returnString + "\n";//add '\n's before each extra line
+		else
+			multiLine = true;//String has at least one line
+
 		returnString = returnString + readString;//append read String^
+
 		readString = sr->ReadLine();
 	}
 	return returnString;
