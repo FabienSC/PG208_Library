@@ -37,7 +37,7 @@ private:
     String ^	_author;
     String ^	_publisher;
     String ^	_synopsis;
-    int 	_pages;
+    int 		_pages;
 protected:
-	bool	_isMagazine;
+	bool		_isMagazine;
 };

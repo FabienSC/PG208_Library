@@ -17,3 +17,4 @@ string  managedStringToString(String ^);
 
 
 void	AddLine( FileStream^ , String^ );
+String^ readData(StreamReader^);

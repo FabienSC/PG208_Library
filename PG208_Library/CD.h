@@ -2,19 +2,19 @@
 #include "Article.h"
 
 
-class CD //: public Article//ref class CD?
+ref class CD : public Article//ref class CD?
 {public:
     CD();
     ~CD();
 
-    string		getArtist();
-    void 		setArtist(std::string newArtist);
+    String^		getArtist();
+    void 		setArtist(String^ newArtist);
 
-    string		getRecordCompany();
-    void 		setRecordCompany(std::string newRecordCompany);
+    String^		getRecordCompany();
+    void 		setRecordCompany(String^ newRecordCompany);
 
-    string		getMusicStyle();
-    void 		setMusicStyle(std::string newMusicStyle);
+    String^		getMusicStyle();
+    void 		setMusicStyle(String^ newMusicStyle);
 
     int 		getDuration();
     void 		setDuration(int newDuration);
@@ -22,16 +22,16 @@ class CD //: public Article//ref class CD?
     int 		getTracks();
     void 		setTracks(int newTracks);
 
-    void 		getData();
+   // void 		getData();
 	
 	bool		load(int fileID);
 	bool		save();
 //title, artist, duration, record company, music style
 
 private:
-    string		_artist;
-    string		_recordCompany;
-    string		_musicStyle;
+    String^		_artist;
+    String^		_recordCompany;
+    String^		_musicStyle;
     int 		_duration;//in seconds
 	int			_tracks;
 };

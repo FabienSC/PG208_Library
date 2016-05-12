@@ -80,6 +80,7 @@ cout << "----------------------------------------" << endl;
 
 bool Book::load(int fileID)
 {
+
 	String ^ strIDFilePath;
 	if(fileID < BASE_MAGAZINE_ID)
 		strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
@@ -91,14 +92,20 @@ bool Book::load(int fileID)
 	{
 		_ID = fileID;//Load ID
 
-		StreamReader^ sr = File::OpenText( strIDFilePath );//sometimes crashes because file already exists
+		StreamReader^ sr = File::OpenText( strIDFilePath );
 		try
 		{
-			_title = sr->ReadLine();
-			_releaseDate = managedStringToInt(sr->ReadLine());
-			_qtyOwned = managedStringToInt(sr->ReadLine());
+			_title = readData(sr);
+			_releaseDate = managedStringToInt(readData(sr));
+			_qtyOwned = managedStringToInt(readData(sr));
+			_qtyLent = managedStringToInt(readData(sr));
+
+			_author = readData(sr);
+			_publisher = readData(sr);
+			_synopsis = readData(sr);
+			_pages = managedStringToInt(readData(sr));
 		}
-		finally
+		finally//make sure to close file
 		{
 			if ( sr )
 				delete (IDisposable^)sr;
@@ -123,20 +130,20 @@ bool	Book::save()
 	FileStream^ fs = File::Create( strIDFilePath );
 	try
 	{
-	AddLine( fs, _title );			//save title
-	AddLine( fs, intToManagedString(_releaseDate) );	//save release date
-	AddLine( fs, intToManagedString(_qtyOwned) );		//save the cheerleader
-	AddLine( fs, intToManagedString(_qtyLent) );		//save the World
-	AddLine( fs, _author );
-	AddLine( fs, _publisher );
-	AddLine( fs, _synopsis );
-	AddLine( fs, intToManagedString(_pages) );
-}
-		finally
-		{
-			if ( fs )
-				delete (IDisposable^)fs;
-		}
+		AddLine( fs, _title );								//save title
+		AddLine( fs, intToManagedString(_releaseDate) );	//save release date
+		AddLine( fs, intToManagedString(_qtyOwned) );		//save the cheerleader
+		AddLine( fs, intToManagedString(_qtyLent) );		//save the World
+		AddLine( fs, _author );
+		AddLine( fs, _publisher );
+		AddLine( fs, _synopsis );
+		AddLine( fs, intToManagedString(_pages) );
+	}
+	finally//make sure to close file
+	{
+		if ( fs )
+			delete (IDisposable^)fs;
+	}
 
 
 	return true;//Save successful

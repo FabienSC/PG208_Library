@@ -78,6 +78,18 @@ string  managedStringToString(String ^ inputString)
 
 void AddLine( FileStream^ fs, String^ value )
 {
-   array<Byte>^info = (gcnew UTF8Encoding( true ))->GetBytes( value + "\n" );
-   fs->Write( info, 0, info->Length );
+	array<Byte>^info = (gcnew UTF8Encoding( true ))->GetBytes( value + "\n" + "###\n" );//mark the start of each piece of data with a "###"line 
+	fs->Write( info, 0, info->Length );
+}
+
+String^ readData(StreamReader^ sr)
+{
+	String^ returnString = "";
+	String^ readString = sr->ReadLine();
+	while(readString != "###")
+	{
+		returnString = returnString + readString;//append read String^
+		readString = sr->ReadLine();
+	}
+	return returnString;
 }

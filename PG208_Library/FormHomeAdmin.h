@@ -518,7 +518,7 @@ namespace PG208_Library
 
 				 FormNewArticle ^ Fedit = gcnew FormNewArticle(listArticles[selectedIndex]->getID());//Edit Article
 				 Fedit->ShowDialog();
-				
+
 				 loadArticles();
 				 updateListBox();//loadArticles();//update list
 			 }
@@ -610,26 +610,29 @@ namespace PG208_Library
 				  increaseListArticleSize();//increase Dynamic array size
 				  }
 				  }
-				  }
-				  if(this->checkBoxCDs->Checked || this->checkBoxAll->Checked)
-				  {
-				  int countCDs = 0;
-				  for(int i = 0; countCDs < myLibrary.getNumberOfCDs(); i++)
-				  {
-				  int fileID = BASE_CD_ID + i;//update file ID
+				  }*/
+				 if(this->checkBoxCDs->Checked || this->checkBoxAll->Checked)
+				 {
+					 int countCDs = 0;
+					 for(int i = 0; countCDs < myLibrary.getNumberOfCDs(); i++)
+					 {
+						 int fileID = BASE_CD_ID + i;//update file ID
 
-				  CD * myCD = new CD;//create new CD
-				  if(myCD->load(fileID))//load data from file is successful
-				  {
-				  listArticles[listArticleCount] = myCD;//store CD in the DynArray(TM)
+						 CD ^ myCD = gcnew CD;//create new CD
+						 if(myCD->load(fileID))//load data from file is successful
+						 {
+							 listArticles[listArticleCount] = gcnew CD;
+							 listArticles[listArticleCount] = myCD;//store book in the DynArray(TM)
 
-				  countCDs++;//to stop when all of the CDs are found
-				  listArticleCount++;
-				  if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
-				  increaseListArticleSize();//increase Dynamic array size
-				  }
-				  }
-				  }
+							 countCDs++;//to stop when all of the CDs are found
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 increaseListArticleSize();//increase Dynamic array size
+						 }
+						 else
+							 delete myCD;
+					 }
+				 }/*
 				  if(this->checkBoxDVDs->Checked || this->checkBoxAll->Checked)
 				  {
 				  int countDVDs = 0;

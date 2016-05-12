@@ -24,24 +24,24 @@ CD::~CD()
 }
 
 
-string CD::getArtist()
+String^ CD::getArtist()
 {return _artist;}
 
-void CD::setArtist(string newArtist)
+void CD::setArtist(String^ newArtist)
 {_artist = newArtist;}
 
 
-string CD::getRecordCompany()
+String^ CD::getRecordCompany()
 {return _recordCompany;}
 
-void CD::setRecordCompany(string newRecordCompany)
+void CD::setRecordCompany(String^ newRecordCompany)
 {_recordCompany = newRecordCompany;}
 
 
-string CD::getMusicStyle()
+String^ CD::getMusicStyle()
 {return _musicStyle;}
 
-void CD::setMusicStyle(string newMusicStyle)
+void CD::setMusicStyle(String^ newMusicStyle)
 {_musicStyle = newMusicStyle;}
 
 
@@ -70,26 +70,36 @@ void CD::setTracks(int newTracks)
 	cout << "Number of tracks: " << getTracks() << endl;
 		
 	cout << "----------------------------------------" << endl;
-}
+}*/
 
 bool	CD::load(int fileID)
 {
-	String ^ strIDFilePath = FILEPATH_CD + fileID + ".txt";//update filepath ex: Library/Articles/CDs/3141.txt
+	String ^ strIDFilePath = FILEPATH_CD + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
 
-	char* filePath = managedStringToChar(strIDFilePath);//convert to char*
-
-	struct stat buffer;
-	if(stat (filePath, &buffer) == 0)//If file exists
+	if(File::Exists( strIDFilePath ))
 	{
 		_ID = fileID;//Load ID
 
-		ifstream myfile;
-		string line;
+		StreamReader^ sr = File::OpenText( strIDFilePath );
+		try
+		{
+			_title = readData(sr);
+			_releaseDate = managedStringToInt(readData(sr));
+			_qtyOwned = managedStringToInt(readData(sr));
+			_qtyLent = managedStringToInt(readData(sr));
 
-		myfile.open(filePath);//open file
-		getline(myfile, line);//store first line into "line"
+			_artist = readData(sr);
+			_recordCompany = readData(sr);
+			_musicStyle = readData(sr);
+			_duration = managedStringToInt(readData(sr));
+			_tracks = managedStringToInt(readData(sr));
+		}
+		finally//make sure to close file
+		{
+			if ( sr )
+				delete (IDisposable^)sr;
+		}
 
-		_title = stringToChar(line);//Load Title
 		return true;//Load successful
 	}
 	else
@@ -100,28 +110,26 @@ bool	CD::load(int fileID)
 bool	CD::save()
 {
 	String ^ strIDFilePath = FILEPATH_CD + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
-	char* filePath = managedStringToChar(strIDFilePath);//convert to char*
 
-	struct stat buffer;
-	if(stat (filePath, &buffer))//If file doesn't exist
+	FileStream^ fs = File::Create( strIDFilePath );
+	try
 	{
-		ofstream myfile(filePath);
-		
-		myfile << _title << endl;		//save title
-		myfile << _releaseDate << endl;	//save release date
-		myfile << _qtyOwned << endl;	//save the Cheerleader
-		myfile << _qtyLent << endl;		//save our souls
-		//Save other stuff
-		myfile << _artist << endl;
-		myfile << _recordCompany << endl;
-		myfile << _musicStyle << endl;
-		myfile << _duration << endl;
-		myfile << _tracks << endl;
-
-		myfile.close();
-
-		return true;//Save successful
+		AddLine( fs, _title );								//save title
+		AddLine( fs, intToManagedString(_releaseDate) );	//save release date
+		AddLine( fs, intToManagedString(_qtyOwned) );		//save the cheerleader
+		AddLine( fs, intToManagedString(_qtyLent) );		//save the World
+		AddLine( fs, _artist );
+		AddLine( fs, _recordCompany );
+		AddLine( fs, _musicStyle );
+		AddLine( fs, intToManagedString(_duration) );
+		AddLine( fs, intToManagedString(_tracks) );
 	}
-	else
-		return false;//Save failed
-}*/
+	finally//make sure to close file
+	{
+		if ( fs )
+			delete (IDisposable^)fs;
+	}
+
+
+	return true;//Save successful
+}
