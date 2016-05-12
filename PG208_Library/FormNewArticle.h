@@ -51,20 +51,19 @@ namespace PG208_Library {
 				this->textBoxString2->Text = newBook->getPublisher();
 				this->textBoxString3->Text = newBook->getSummary();
 				this->textBoxInt1->Text = intToManagedString(newBook->getPages());
-				//delete newBook;
 			}
-			/*else if(isCD)
+			else if(isCD)
 			{
-				CD newCD;
-				newCD.load(fileID);
-				writeGeneralData(&newCD);
+				CD ^ newCD = gcnew CD;
+				newCD->load(fileID);
+				writeGeneralData(newCD);
 
-				this->textBoxString1->Text = stringToManagedString(newCD.getArtist());
-				this->textBoxString2->Text = stringToManagedString(newCD.getRecordCompany());
-				this->textBoxString3->Text = stringToManagedString(newCD.getMusicStyle());
-				this->textBoxInt1->Text = intToManagedString(newCD.getDuration());
-				this->textBoxInt2->Text = intToManagedString(newCD.getTracks());
-			}*/
+				this->textBoxString1->Text = newCD->getArtist();
+				this->textBoxString2->Text = newCD->getRecordCompany();
+				this->textBoxString3->Text = newCD->getMusicStyle();
+				this->textBoxInt1->Text = intToManagedString(newCD->getDuration());
+				this->textBoxInt1->Text = intToManagedString(newCD->getTracks());
+			}
 			//add others
 
 		}
@@ -512,18 +511,18 @@ namespace PG208_Library {
 
 						 newBook->save();
 					 }
-					/* else if(isCD || (this->radioButtonCD->Checked == true))//new article is a CD
+					 else if(isCD || (this->radioButtonCD->Checked == true))//new article is a CD
 					 {
-						 CD newCD;
-						 copyGeneralData(&newCD);
-						 newCD.setArtist(managedStringToString(this->textBoxString1->Text));
-						 newCD.setRecordCompany(managedStringToString(this->textBoxString2->Text));
-						 newCD.setMusicStyle(managedStringToString(this->textBoxString3->Text));
-						 newCD.setDuration(managedStringToInt(this->textBoxInt1->Text));
-						 newCD.setTracks(managedStringToInt(this->textBoxInt2->Text));
+						 CD ^ newCD = gcnew CD;
+						 copyGeneralData(newCD);
+						 newCD->setArtist(this->textBoxString1->Text);
+						 newCD->setRecordCompany(this->textBoxString2->Text);
+						 newCD->setMusicStyle(this->textBoxString3->Text);
+						 newCD->setDuration(managedStringToInt(this->textBoxInt1->Text));
+						 newCD->setTracks(managedStringToInt(this->textBoxInt2->Text));
 
-						 newCD.save();
-					 }
+						 newCD->save();
+					 }/*
 					 else if(isDVDOrVHS || ((this->radioButtonDVD->Checked || this->radioButtonVHS->Checked) == true))//new article is a DVD or VHS
 					 {
 						 Video newVideo;

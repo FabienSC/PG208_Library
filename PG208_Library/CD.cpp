@@ -83,10 +83,16 @@ bool	CD::load(int fileID)
 		StreamReader^ sr = File::OpenText( strIDFilePath );
 		try
 		{
-			_title = sr->ReadLine();
-			_releaseDate = managedStringToInt(sr->ReadLine());
-			_qtyOwned = managedStringToInt(sr->ReadLine());
-			//Add personal 
+			_title = readData(sr);
+			_releaseDate = managedStringToInt(readData(sr));
+			_qtyOwned = managedStringToInt(readData(sr));
+			_qtyLent = managedStringToInt(readData(sr));
+
+			_artist = readData(sr);
+			_recordCompany = readData(sr);
+			_musicStyle = readData(sr);
+			_duration = managedStringToInt(readData(sr));
+			_tracks = managedStringToInt(readData(sr));
 		}
 		finally//make sure to close file
 		{
@@ -108,7 +114,7 @@ bool	CD::save()
 	FileStream^ fs = File::Create( strIDFilePath );
 	try
 	{
-		AddLine( fs, _title );			//save title
+		AddLine( fs, _title );								//save title
 		AddLine( fs, intToManagedString(_releaseDate) );	//save release date
 		AddLine( fs, intToManagedString(_qtyOwned) );		//save the cheerleader
 		AddLine( fs, intToManagedString(_qtyLent) );		//save the World

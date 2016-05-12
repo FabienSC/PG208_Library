@@ -95,9 +95,15 @@ bool Book::load(int fileID)
 		StreamReader^ sr = File::OpenText( strIDFilePath );
 		try
 		{
-			_title = sr->ReadLine();
-			_releaseDate = managedStringToInt(sr->ReadLine());
-			_qtyOwned = managedStringToInt(sr->ReadLine());
+			_title = readData(sr);
+			_releaseDate = managedStringToInt(readData(sr));
+			_qtyOwned = managedStringToInt(readData(sr));
+			_qtyLent = managedStringToInt(readData(sr));
+
+			_author = readData(sr);
+			_publisher = readData(sr);
+			_synopsis = readData(sr);
+			_pages = managedStringToInt(readData(sr));
 		}
 		finally//make sure to close file
 		{
@@ -124,7 +130,7 @@ bool	Book::save()
 	FileStream^ fs = File::Create( strIDFilePath );
 	try
 	{
-		AddLine( fs, _title );			//save title
+		AddLine( fs, _title );								//save title
 		AddLine( fs, intToManagedString(_releaseDate) );	//save release date
 		AddLine( fs, intToManagedString(_qtyOwned) );		//save the cheerleader
 		AddLine( fs, intToManagedString(_qtyLent) );		//save the World
