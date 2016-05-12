@@ -29,7 +29,7 @@ namespace PG208_Library {
 			this->radioButtonBook->Checked = true;
 
 		}
-		FormNewArticle(int fileID)
+		FormNewArticle(int fileID)//Edit not new
 		{
 			InitializeComponent();
 			//
@@ -47,7 +47,7 @@ namespace PG208_Library {
 				newBook->load(fileID);
 				writeGeneralData(newBook);
 
-				this->textBoxString1->Text = newBook->getAuthor();
+				this->textBoxString1->Text = newBook->getAuthor();//text becomes author
 				this->textBoxString2->Text = newBook->getPublisher();
 				this->textBoxString3->Text = newBook->getSummary();
 				this->textBoxInt1->Text = intToManagedString(newBook->getPages());
@@ -62,7 +62,7 @@ namespace PG208_Library {
 				this->textBoxString2->Text = newCD->getRecordCompany();
 				this->textBoxString3->Text = newCD->getMusicStyle();
 				this->textBoxInt1->Text = intToManagedString(newCD->getDuration());
-				this->textBoxInt1->Text = intToManagedString(newCD->getTracks());
+				this->textBoxInt2->Text = intToManagedString(newCD->getTracks());
 			}
 			//add others
 

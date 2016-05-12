@@ -107,7 +107,7 @@ bool	CD::load(int fileID)
 }
 
 
-bool	CD::save()
+bool CD::save()
 {
 	String ^ strIDFilePath = FILEPATH_CD + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
 
@@ -129,7 +129,6 @@ bool	CD::save()
 		if ( fs )
 			delete (IDisposable^)fs;
 	}
-
 
 	return true;//Save successful
 }

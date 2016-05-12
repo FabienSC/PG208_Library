@@ -59,7 +59,7 @@ void Book::setIsMagazine(String^ newIsMagazine)
 
 
 String^ Book::getSummary()
-{return _publisher;}
+{return _synopsis;}
 
 void Book::setSummary(String^ newSummary)
 {_synopsis = newSummary;}
