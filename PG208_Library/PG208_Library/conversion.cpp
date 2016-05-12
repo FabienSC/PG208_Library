@@ -14,7 +14,6 @@ char * stringToChar(string inputString)
 	char * outputChar = new char;
 	strcpy(outputChar, (char*)inputString.c_str());
 	return outputChar;
-	//return (char*)inputString.c_str();//doesn't work
 }
 
 
@@ -65,7 +64,7 @@ string charToString(char* inputChar)
 
 String ^ stringToManagedString(string inputString)
 {
-	return charToManagedString(stringToChar(inputString.c_str()));
+	return charToManagedString(stringToChar(inputString));
 }
 
 
@@ -75,9 +74,14 @@ string  managedStringToString(String ^ inputString)
 	return ooo;
 }
 
+char *	managedStringToChar(String^);
+char *	stringToChar(string);
+char *	intToChar(int);
 
-void AddLine( FileStream^ fs, String^ value )
-{
-   array<Byte>^info = (gcnew UTF8Encoding( true ))->GetBytes( value + "\n" );
-   fs->Write( info, 0, info->Length );
-}
+int		managedStringToInt(String^);
+int		stringToInt(string);
+
+String ^ intToManagedString(int);
+String ^ charToManagedString(char*);
+
+string  charToString(char*);

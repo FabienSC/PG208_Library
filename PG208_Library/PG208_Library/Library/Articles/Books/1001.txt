@@ -1,8 +1,8 @@
 fab
 20100919
-4
 0
-NA
-NA
-NA
 0
+fabien
+
+no summ
+33

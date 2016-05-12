@@ -3,7 +3,8 @@
 #include "Article.h"
 
 
-class DigitalRes //: public Article
+class DigitalRes :
+	public Article
 {
 public:
 	DigitalRes(void);

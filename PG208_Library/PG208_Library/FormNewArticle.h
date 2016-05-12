@@ -22,12 +22,8 @@ namespace PG208_Library {
 			//
 			//TODO: Add the constructor code here
 			//
-
-			newArticle = gcnew Article;
-
 			editMode = 0;
 			this->radioButtonBook->Checked = true;
-
 		}
 		FormNewArticle(int fileID)
 		{
@@ -35,25 +31,23 @@ namespace PG208_Library {
 			//
 			//TODO: Add the constructor code here
 			//
-			
-			newArticle = gcnew Article;
-
 			editMode = 1;
 			formatEdit(fileID);
 
 			if(isBookOrMagazine)
 			{
-				Book ^ newBook = gcnew Book;
-				newBook->load(fileID);
-				writeGeneralData(newBook);
+				Book newBook;
+				newBook.load(fileID);
+				writeGeneralData(&newBook);
 
-				this->textBoxString1->Text = newBook->getAuthor();
-				this->textBoxString2->Text = newBook->getPublisher();
-				this->textBoxString3->Text = newBook->getSummary();
-				this->textBoxInt1->Text = intToManagedString(newBook->getPages());
-				//delete newBook;
+				this->textBoxString1->Text = stringToManagedString(newBook.getAuthor());
+				this->textBoxString2->Text = stringToManagedString(newBook.getPublisher());
+				this->textBoxString3->Text = stringToManagedString(newBook.getSummary());
+				this->textBoxInt1->Text = intToManagedString(newBook.getPages());
+
+				//Book::~book 
 			}
-			/*else if(isCD)
+			else if(isCD)
 			{
 				CD newCD;
 				newCD.load(fileID);
@@ -64,7 +58,7 @@ namespace PG208_Library {
 				this->textBoxString3->Text = stringToManagedString(newCD.getMusicStyle());
 				this->textBoxInt1->Text = intToManagedString(newCD.getDuration());
 				this->textBoxInt2->Text = intToManagedString(newCD.getTracks());
-			}*/
+			}
 			//add others
 
 		}
@@ -104,7 +98,7 @@ namespace PG208_Library {
 
 			 /// <summary>
 			 /// Required designer variable.
-			 Article ^ newArticle;
+			 Article * newArticle;
 			 bool editMode;
 
 			 bool isBookOrMagazine;
@@ -498,21 +492,21 @@ namespace PG208_Library {
 
 					 if(isBookOrMagazine || ((this->radioButtonBook->Checked || this->radioButtonMagazine->Checked) == true))//new article is a book or Magazine
 					 {
-						 Book ^ newBook = gcnew Book;
-						 copyGeneralData(newBook);
-						 newBook->setAuthor(this->textBoxString1->Text);
-						 newBook->setPublisher(this->textBoxString2->Text);
-						 newBook->setSummary(this->textBoxString3->Text);
-						 newBook->setPages(managedStringToInt(this->textBoxInt1->Text));
+						 Book newBook;
+						 copyGeneralData(&newBook);
+						 newBook.setAuthor(managedStringToString(this->textBoxString1->Text));
+						 newBook.setPublisher(managedStringToString(this->textBoxString2->Text));
+						 newBook.setSummary(managedStringToString(this->textBoxString3->Text));
+						 newBook.setPages(managedStringToInt(this->textBoxInt1->Text));
 
-						 if((BASE_BOOK_ID <= newBook->getID()) && (newBook->getID() < BASE_MAGAZINE_ID))	//Book IDs
-							 newBook->setIsMagazine(false);
+						 if((BASE_BOOK_ID <= newBook.getID()) && (newBook.getID() < BASE_MAGAZINE_ID))	//Book IDs
+							 newBook.setIsMagazine(false);
 						 else
-							 newBook->setIsMagazine(true);
+							 newBook.setIsMagazine(true);
 
-						 newBook->save();
+						 newBook.save();
 					 }
-					/* else if(isCD || (this->radioButtonCD->Checked == true))//new article is a CD
+					 else if(isCD || (this->radioButtonCD->Checked == true))//new article is a CD
 					 {
 						 CD newCD;
 						 copyGeneralData(&newCD);
@@ -554,7 +548,7 @@ namespace PG208_Library {
 						 newDigitalRes.setByteSize(managedStringToInt(this->textBoxInt1->Text));
 
 						 newDigitalRes.save();
-					 }*/
+					 }
 					 this->Close();
 				 }
 			 }
@@ -770,10 +764,10 @@ namespace PG208_Library {
 				 this->textBoxInt3->Text = intToManagedString(managedStringToInt(this->textBoxInt3->Text));//reject non-numbers
 			 }
 
-			 void copyGeneralData(Article ^ newArticle)
+			 void copyGeneralData(Article * newArticle)
 			 {
 				 newArticle->setID(managedStringToInt(this->textBoxID->Text));//set ID
-				 newArticle->setTitle(this->textBoxTitle->Text);//set Title
+				 newArticle->setTitle(managedStringToString(this->textBoxTitle->Text));//set Title
 				 newArticle->setReleaseDate(dateTimePicker->Value.Year * 10000 + dateTimePicker->Value.Month * 100 + dateTimePicker->Value.Day);
 				 if(this->radioButtonDigital->Checked == false)//skip this step for Digital Resources
 					 newArticle->setQtyOwned(managedStringToInt(this->textBoxQty->Text));
@@ -916,10 +910,10 @@ namespace PG208_Library {
 				 this->buttonCreate->Text = L"Save Changes";
 			 }
 
-			 void writeGeneralData(Article ^% newArticle)
+			 void writeGeneralData(Article * newArticle)
 			 {
 				 this->textBoxID->Text = intToManagedString(newArticle->getID());
-				 this->textBoxTitle->Text = newArticle->getTitle();
+				 this->textBoxTitle->Text = stringToManagedString(newArticle->getTitle());
 
 				 int releaseDate = newArticle->getReleaseDate();
 				 int year = (int) releaseDate/10000;

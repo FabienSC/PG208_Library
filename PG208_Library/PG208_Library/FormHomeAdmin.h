@@ -25,10 +25,10 @@ namespace PG208_Library
 			//
 			//TODO: Add the constructor code here
 
-			this->labelUsername->Text = charToManagedString(username);
+			this->labelUsername->Text = gcnew String(username);
 
-			listArticleSize = 2;
-			listArticles = initArticleList();
+			listArticleSize = 10;
+			listArticles = new Article*[listArticleSize];
 			listArticleCount = 0;
 			//
 		}
@@ -37,10 +37,8 @@ namespace PG208_Library
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-
 		~FormHomeAdmin()
 		{
-			//thibaud.tonnellier@ims-bordeaux.fr
 			if (components)
 			{
 				delete components;
@@ -79,7 +77,7 @@ namespace PG208_Library
 
 
 		int listArticleSize;//Start off with 10 articles
-		array<Article ^>^ listArticles;//will point to a dynamic array of Articles henceforth refered to as "DynArray(TM)"
+		Article ** listArticles;//will point to a dynamic array of Articles henceforth refered to as "DynArray(TM)"
 		int listArticleCount;//number of articles in the list
 
 	private: System::Windows::Forms::Button^  buttonAddUser;
@@ -170,6 +168,7 @@ namespace PG208_Library
 				 this->listBoxDisplay->Name = L"listBoxDisplay";
 				 this->listBoxDisplay->Size = System::Drawing::Size(188, 260);
 				 this->listBoxDisplay->TabIndex = 4;
+				 this->listBoxDisplay->SelectedIndexChanged += gcnew System::EventHandler(this, &FormHomeAdmin::listBoxDisplay_SelectedIndexChanged);
 				 // 
 				 // buttonSelect
 				 // 
@@ -463,7 +462,7 @@ namespace PG208_Library
 
 				 loadArticles();
 			 }
-
+			 
 	private: System::Void checkBoxMagazines_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 if(this->checkBoxMagazines->Checked)//if box is checked
@@ -518,9 +517,7 @@ namespace PG208_Library
 
 				 FormNewArticle ^ Fedit = gcnew FormNewArticle(listArticles[selectedIndex]->getID());//Edit Article
 				 Fedit->ShowDialog();
-				
-				 loadArticles();
-				 updateListBox();//loadArticles();//update list
+				 //updateListBox();//loadArticles();//update list
 			 }
 
 	private: System::Void buttonDelete_Click(System::Object^  sender, System::EventArgs^  e) //DELETE Article
@@ -557,7 +554,7 @@ namespace PG208_Library
 
 				 for(int i = 0; i < listArticleCount; i++)
 				 {
-					 this->listBoxDisplay->Items->Add(listArticles[i]->getTitle());
+					 this->listBoxDisplay->Items->Add(stringToManagedString(listArticles[i]->getTitle()));
 				 }
 
 				 this->labelNumberOfItems->Text = intToManagedString(listArticleCount);//myLibrary.getNumberOfBooks()?
@@ -573,143 +570,134 @@ namespace PG208_Library
 				 if(this->checkBoxBooks->Checked || this->checkBoxAll->Checked)
 				 {
 					 int countBooks = 0;
-					 for(int i = 0; countBooks < myLibrary.getNumberOfBooks(); i++)//myLibrary.getNumberOfBooks()
+					 for(int i = 0; countBooks < myLibrary.getNumberOfBooks(); i++)
 					 {
 						 int fileID = BASE_BOOK_ID + i;//update file ID
 
-						 Book ^ myBook = gcnew Book;// = new Book;//create new book
+						 Book * myBook = new Book;//create new book
 						 if(myBook->load(fileID))//load data from file is successful
 						 {
-							 listArticles[listArticleCount] = gcnew Book;
 							 listArticles[listArticleCount] = myBook;//store book in the DynArray(TM)
 
 							 countBooks++;//to stop when all of the books are found
 							 listArticleCount++;
 							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
-								 listArticles = increaseListArticleSize();//increase Dynamic array size*/
+								 increaseListArticleSize();//increase Dynamic array size
 						 }
-						 else
-							 delete myBook;
 					 }
-				 }/*
-				  if(this->checkBoxMagazines->Checked || this->checkBoxAll->Checked)
-				  {
-				  int countMagazines = 0;
-				  for(int i = 0; countMagazines < myLibrary.getNumberOfMagazines(); i++)
-				  {
-				  int fileID = BASE_MAGAZINE_ID + i;//update file ID
+				 }
+				 if(this->checkBoxMagazines->Checked || this->checkBoxAll->Checked)
+				 {
+					 int countMagazines = 0;
+					 for(int i = 0; countMagazines < myLibrary.getNumberOfMagazines(); i++)
+					 {
+						 int fileID = BASE_MAGAZINE_ID + i;//update file ID
 
-				  Book * myMag = new Book;//create new magazine
-				  if(myMag->load(fileID))//load data from file is successful
-				  {
-				  listArticles[listArticleCount] = myMag;//store magazine in the DynArray(TM)
+						 Book * myMag = new Book;//create new magazine
+						 if(myMag->load(fileID))//load data from file is successful
+						 {
+							 listArticles[listArticleCount] = myMag;//store magazine in the DynArray(TM)
 
-				  countMagazines++;//to stop when all of the Magazines are found
-				  listArticleCount++;
-				  if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
-				  increaseListArticleSize();//increase Dynamic array size
-				  }
-				  }
-				  }
-				  if(this->checkBoxCDs->Checked || this->checkBoxAll->Checked)
-				  {
-				  int countCDs = 0;
-				  for(int i = 0; countCDs < myLibrary.getNumberOfCDs(); i++)
-				  {
-				  int fileID = BASE_CD_ID + i;//update file ID
+							 countMagazines++;//to stop when all of the Magazines are found
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 increaseListArticleSize();//increase Dynamic array size
+						 }
+					 }
+				 }
+				 if(this->checkBoxCDs->Checked || this->checkBoxAll->Checked)
+				 {
+					 int countCDs = 0;
+					 for(int i = 0; countCDs < myLibrary.getNumberOfCDs(); i++)
+					 {
+						 int fileID = BASE_CD_ID + i;//update file ID
 
-				  CD * myCD = new CD;//create new CD
-				  if(myCD->load(fileID))//load data from file is successful
-				  {
-				  listArticles[listArticleCount] = myCD;//store CD in the DynArray(TM)
+						 CD * myCD = new CD;//create new CD
+						 if(myCD->load(fileID))//load data from file is successful
+						 {
+							 listArticles[listArticleCount] = myCD;//store CD in the DynArray(TM)
 
-				  countCDs++;//to stop when all of the CDs are found
-				  listArticleCount++;
-				  if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
-				  increaseListArticleSize();//increase Dynamic array size
-				  }
-				  }
-				  }
-				  if(this->checkBoxDVDs->Checked || this->checkBoxAll->Checked)
-				  {
-				  int countDVDs = 0;
-				  for(int i = 0; countDVDs < myLibrary.getNumberOfDVDs(); i++)
-				  {
-				  int fileID = BASE_DVD_ID + i;//update file ID
+							 countCDs++;//to stop when all of the CDs are found
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 increaseListArticleSize();//increase Dynamic array size
+						 }
+					 }
+				 }
+				 if(this->checkBoxDVDs->Checked || this->checkBoxAll->Checked)
+				 {
+					 int countDVDs = 0;
+					 for(int i = 0; countDVDs < myLibrary.getNumberOfDVDs(); i++)
+					 {
+						 int fileID = BASE_DVD_ID + i;//update file ID
 
-				  Video * myDVD = new Video;//create new DVD
-				  if(myDVD->load(fileID))//load data from file is successful
-				  {
-				  listArticles[listArticleCount] = myDVD;//store DVD in the DynArray(TM)
+						 Video * myDVD = new Video;//create new DVD
+						 if(myDVD->load(fileID))//load data from file is successful
+						 {
+							 listArticles[listArticleCount] = myDVD;//store DVD in the DynArray(TM)
 
-				  countDVDs++;//to stop when all of the DVDs are found
-				  listArticleCount++;
-				  if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
-				  increaseListArticleSize();//increase Dynamic array size
-				  }
-				  }
-				  }
-				  if(this->checkBoxVHSs->Checked || this->checkBoxAll->Checked)
-				  {
-				  int countVHSs = 0;
-				  for(int i = 0; countVHSs < myLibrary.getNumberOfVHSs(); i++)
-				  {
-				  int fileID = BASE_VHS_ID + i;//update file ID
+							 countDVDs++;//to stop when all of the DVDs are found
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 increaseListArticleSize();//increase Dynamic array size
+						 }
+					 }
+				 }
+				 if(this->checkBoxVHSs->Checked || this->checkBoxAll->Checked)
+				 {
+					 int countVHSs = 0;
+					 for(int i = 0; countVHSs < myLibrary.getNumberOfVHSs(); i++)
+					 {
+						 int fileID = BASE_VHS_ID + i;//update file ID
 
-				  Video * myVHS = new Video;//create new book
-				  if(myVHS->load(fileID))//load data from file is successful
-				  {
-				  listArticles[listArticleCount] = myVHS;//store book in the DynArray(TM)
+						 Video * myVHS = new Video;//create new book
+						 if(myVHS->load(fileID))//load data from file is successful
+						 {
+							 listArticles[listArticleCount] = myVHS;//store book in the DynArray(TM)
 
-				  countVHSs++;//to stop when all of the books are found
-				  listArticleCount++;
-				  if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
-				  increaseListArticleSize();//increase Dynamic array size
-				  }
-				  }
-				  }
-				  if(this->checkBoxDigital->Checked || this->checkBoxAll->Checked)
-				  {
-				  int digitalResources = 0;
-				  for(int i = 0; digitalResources < myLibrary.getNumberOfDigitalResources(); i++)
-				  {
-				  int fileID = BASE_DIGITAL_ID + i;//update file ID
+							 countVHSs++;//to stop when all of the books are found
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 increaseListArticleSize();//increase Dynamic array size
+						 }
+					 }
+				 }
+				 if(this->checkBoxDigital->Checked || this->checkBoxAll->Checked)
+				 {
+					 int digitalResources = 0;
+					 for(int i = 0; digitalResources < myLibrary.getNumberOfDigitalResources(); i++)
+					 {
+						 int fileID = BASE_DIGITAL_ID + i;//update file ID
 
-				  DigitalRes * myDigitalRes = new DigitalRes;//create new book
-				  if(myDigitalRes->load(fileID))//load data from file is successful
-				  {
-				  listArticles[listArticleCount] = myDigitalRes;//store book in the DynArray(TM)
+						 DigitalRes * myDigitalRes = new DigitalRes;//create new book
+						 if(myDigitalRes->load(fileID))//load data from file is successful
+						 {
+							 listArticles[listArticleCount] = myDigitalRes;//store book in the DynArray(TM)
 
-				  digitalResources++;//to stop when all of the books are found
-				  listArticleCount++;
-				  if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
-				  increaseListArticleSize();//increase Dynamic array size
-				  }
-				  }
-				  }*/
+							 digitalResources++;//to stop when all of the books are found
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 increaseListArticleSize();//increase Dynamic array size
+						 }
+					 }
+				 }
 				 updateListBox();//empty listbox and add all articles in the article list to it
 			 }
 
 			 ///////////////////////////////////////////////////////////////
 
-			 array<Article^>^ increaseListArticleSize()//empty listbox and add all articles in the article list to it
+			 void increaseListArticleSize()//empty listbox and add all articles in the article list to it
 			 {
+				 int n = listArticleSize;
+				 listArticleSize = 2 * listArticleSize;
 
-				 listArticleSize = listArticleSize*2;
-				 int i;
-				 array< Article^ >^ local = gcnew array< Article^ >(listArticleSize);
-
-				 for (i = 0 ; i < listArticleSize/2 ; i++)
+				 Article** temp = new Article*[listArticleSize]; // create new bigger, better, faster, stronger array.
+				 for (int i=0; i<n; i++)
 				 {
-					 local[i] = gcnew Article;
-					 local[i] = listArticles[i];
+					 temp[i] = listArticles[i];       // copy values to new array.
 				 }
-
-				 for (i = listArticleSize/2 ; i < listArticleSize ; i++)
-				 {
-					 local[i] = gcnew Article;
-				 }
-				 return local;
+				 delete [] listArticles;              // free old array memory.
+				 listArticles = temp;         
 			 }
 
 			 ///////////////////////////////////////////////////////////////
@@ -717,28 +705,15 @@ namespace PG208_Library
 			 void listArticlesClear()
 			 {
 				 // free old array memory.
-				 /* for(int i = 0; i < listArticleCount; i++)
-				 delete listArticles[i];
+			/*	 for(int i = 0; i < listArticleCount; i++)
+					 delete listArticles[i];
+				 
+				 delete [] listArticles;*/
 
-				 delete [] listArticles;
 
-				 listArticleSize = 10;
-				 listArticles = new Article*[listArticleSize];*/
+				// listArticleSize = 10;
+				// listArticles = new Article*[listArticleSize];
 				 listArticleCount = 0;
-			 }
-
-
-
-			 array<Article^>^ initArticleList()
-			 {
-				 int i;
-				 array< Article^ >^ local = gcnew array< Article^ >(listArticleSize);
-
-				 for (i = 0 ; i < listArticleSize ; i++)
-				 {
-					 local[i] = gcnew Article;
-				 }
-				 return local;
 			 }
 
 	private: System::Void buttonAddUser_Click(System::Object^  sender, System::EventArgs^  e)
@@ -746,5 +721,7 @@ namespace PG208_Library
 				 FormNewUser ^ FNewUser = gcnew FormNewUser(1); //FormNewUser for Admin users
 				 FNewUser->ShowDialog();
 			 }
-	};
+private: System::Void listBoxDisplay_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+		 }
+};
 }

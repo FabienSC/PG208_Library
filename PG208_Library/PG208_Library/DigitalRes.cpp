@@ -58,21 +58,21 @@ void DigitalRes::setByteSize(int newByteSize)
 {_byteSize = newByteSize;}
 
 
-/*void DigitalRes::getData()
-{
-Article::getData();
+void DigitalRes::getData()
+{//for a terminal version... useless
+	Article::getData();
 
-cout << "File author: " << getAuthor() << endl;
-cout << "File type: " << getFileType() << endl;
-cout << "File name: " << getFileName() << endl;
-cout << "File URL: " << getURL() << endl;
-cout << "File size: " << getByteSize() << "bytes " << endl;
+	cout << "File author: " << getAuthor() << endl;
+	cout << "File type: " << getFileType() << endl;
+	cout << "File name: " << getFileName() << endl;
+	cout << "File URL: " << getURL() << endl;
+	cout << "File size: " << getByteSize() << "bytes " << endl;
 
-cout << "----------------------------------------" << endl;
-}*/
+	cout << "----------------------------------------" << endl;
+}
 
 
-/*bool DigitalRes::load(int fileID)
+bool DigitalRes::load(int fileID)
 {
 	String ^ strIDFilePath = FILEPATH_DIGITAL + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
 
@@ -106,7 +106,7 @@ bool DigitalRes::save()
 	if(stat (filePath, &buffer))//If file doesn't exist
 	{
 		ofstream myfile(filePath);
-		
+
 		myfile << _title << endl;		//save title
 		myfile << _releaseDate << endl;	//save release date
 		myfile << _qtyOwned << endl;	//save the Cheerleader
@@ -122,4 +122,4 @@ bool DigitalRes::save()
 	}
 	else
 		return false;//Save failed
-}*/
+}

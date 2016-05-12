@@ -3,7 +3,7 @@
 #include "Article.h"
 
 
-class Video //: public Article
+class Video : public Article
 {
 public:
     Video();

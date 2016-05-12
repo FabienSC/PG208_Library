@@ -2,7 +2,7 @@
 #include "Article.h"
 
 
-class CD //: public Article//ref class CD?
+class CD : public Article//ref class CD?
 {public:
     CD();
     ~CD();

@@ -12,10 +12,10 @@ using namespace std;
 
 CD::CD()
 {
-    _artist = "NA";
-    _recordCompany = "NA";
-    _musicStyle = "NA";
-    _duration = 0;
+	_artist = "NA";
+	_recordCompany = "NA";
+	_musicStyle = "NA";
+	_duration = 0;
 	_tracks = 0;
 }
 
@@ -59,16 +59,16 @@ void CD::setTracks(int newTracks)
 {_tracks = newTracks;}
 
 
-/*void CD::getData()
-{
+void CD::getData()
+{ //for a terminal version... useless
 	Article::getData();
-	
+
 	cout << "Artist: " << getArtist() << endl;
 	cout << "Record Company: " << getRecordCompany() << endl;
 	cout << "Music Style: " << getMusicStyle() << endl;
 	cout << "Duration: " << getDuration() << endl;
 	cout << "Number of tracks: " << getTracks() << endl;
-		
+
 	cout << "----------------------------------------" << endl;
 }
 
@@ -106,7 +106,7 @@ bool	CD::save()
 	if(stat (filePath, &buffer))//If file doesn't exist
 	{
 		ofstream myfile(filePath);
-		
+
 		myfile << _title << endl;		//save title
 		myfile << _releaseDate << endl;	//save release date
 		myfile << _qtyOwned << endl;	//save the Cheerleader
@@ -124,4 +124,4 @@ bool	CD::save()
 	}
 	else
 		return false;//Save failed
-}*/
+}

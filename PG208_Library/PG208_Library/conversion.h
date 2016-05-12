@@ -14,6 +14,3 @@ string  charToString(char*);
 
 String ^ stringToManagedString(string);
 string  managedStringToString(String ^);
-
-
-void	AddLine( FileStream^ , String^ );

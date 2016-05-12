@@ -7,14 +7,11 @@
 using namespace std;
 using namespace System;
 using namespace System::Runtime::InteropServices;
-using namespace System::IO;
-using namespace System::Text;
 
 #include <string.h>
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <sys/stat.h>//for checking if a file exists
 #include "conversion.h"
 #include "cipher.h"
 #include "popups.h"
@@ -25,6 +22,7 @@ using namespace System::Text;
 #include "Video.h"
 #include "DigitalRes.h"
 #include "Library.h"
+#include <sys/stat.h>//for checking if a file exists
 
 
 // TODO: reference additional headers your program requires here

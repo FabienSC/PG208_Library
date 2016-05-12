@@ -16,17 +16,17 @@ Book::~Book()
 }
 
 
-String^ Book::getAuthor()
+string Book::getAuthor()
 {return _author;}
 
-void Book::setAuthor(String^ newAuthor)
+void Book::setAuthor(string newAuthor)
 {_author = newAuthor;}
 
 
-String^ Book::getPublisher()
+string Book::getPublisher()
 {return _publisher;}
 
-void Book::setPublisher(String^ newPublisher)
+void Book::setPublisher(string newPublisher)
 {_publisher = newPublisher;}
 
 
@@ -37,7 +37,7 @@ void Book::setPages(int newPages)
 {_pages = newPages;}
 
 
-String^ Book::getIsMagazine()
+string Book::getIsMagazine()
 {if (_isMagazine)
 return"Magazine";
 else
@@ -47,7 +47,7 @@ else
 void Book::setIsMagazine(bool newIsMagazine)
 {_isMagazine = newIsMagazine;}
 
-void Book::setIsMagazine(String^ newIsMagazine)
+void Book::setIsMagazine(string newIsMagazine)
 {
 	if (newIsMagazine == "Magazine")
 		_isMagazine = 1;
@@ -58,27 +58,27 @@ void Book::setIsMagazine(String^ newIsMagazine)
 }
 
 
-String^ Book::getSummary()
-{return _publisher;}
+string Book::getSummary()
+{return _synopsis;}
 
-void Book::setSummary(String^ newSummary)
+void Book::setSummary(string newSummary)
 {_synopsis = newSummary;}
 
 
-/*void Book::getData()
-{
-Article::getData();
+void Book::getData()
+{//for a terminal version... useless
+	Article::getData();
 
-cout << "Author: " << getAuthor() << endl;
-cout << "Publisher: " << getPublisher() << endl;
-cout << "Pages: " << getPages() << endl;
-cout << "Type: " << getIsMagazine() << endl;
-if(!_isMagazine)
-cout << "----------------------------------------" << endl;
-}*/
+	cout << "Author: " << getAuthor() << endl;
+	cout << "Publisher: " << getPublisher() << endl;
+	cout << "Pages: " << getPages() << endl;
+	cout << "Type: " << getIsMagazine() << endl;
+	if(!_isMagazine)
+		cout << "----------------------------------------" << endl;
+}
 
 
-bool Book::load(int fileID)
+bool	Book::load(int fileID)
 {
 	String ^ strIDFilePath;
 	if(fileID < BASE_MAGAZINE_ID)
@@ -86,24 +86,28 @@ bool Book::load(int fileID)
 	else
 		strIDFilePath = FILEPATH_MAGAZINE + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
 
+	char* filePath = managedStringToChar(strIDFilePath);//convert to char*
 
-	if(File::Exists( strIDFilePath ))
+	struct stat buffer;
+	if(stat (filePath, &buffer) == 0)//If file exists
 	{
 		_ID = fileID;//Load ID
 
-		StreamReader^ sr = File::OpenText( strIDFilePath );//sometimes crashes because file already exists
-		try
-		{
-			_title = sr->ReadLine();
-			_releaseDate = managedStringToInt(sr->ReadLine());
-			_qtyOwned = managedStringToInt(sr->ReadLine());
-		}
-		finally
-		{
-			if ( sr )
-				delete (IDisposable^)sr;
-		}
+		ifstream myfile;
+		string line;
 
+		myfile.open(filePath);//open file
+
+		getline(myfile, line);//store first line into "line"
+		_title = line;//Load Title
+
+		getline(myfile, line);//store first line into "line"
+		_releaseDate = stringToInt(line);//Load
+
+		getline(myfile, line);//store first line into "line"
+		_qtyOwned = stringToInt(line);//Load
+
+		myfile.close();
 		return true;//Load successful
 	}
 	else
@@ -115,30 +119,26 @@ bool Book::load(int fileID)
 bool	Book::save()
 {
 	String ^ strIDFilePath;
-	if (_isMagazine)
+	if (_isMagazine)	//DVD
 		strIDFilePath = FILEPATH_MAGAZINE + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
-	else
+	else		//VHS
 		strIDFilePath = FILEPATH_BOOK + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
 
-	FileStream^ fs = File::Create( strIDFilePath );
-	try
-	{
-	AddLine( fs, _title );			//save title
-	AddLine( fs, intToManagedString(_releaseDate) );	//save release date
-	AddLine( fs, intToManagedString(_qtyOwned) );		//save the cheerleader
-	AddLine( fs, intToManagedString(_qtyLent) );		//save the World
-	AddLine( fs, _author );
-	AddLine( fs, _publisher );
-	AddLine( fs, _synopsis );
-	AddLine( fs, intToManagedString(_pages) );
-}
-		finally
-		{
-			if ( fs )
-				delete (IDisposable^)fs;
-		}
+	char* filePath = managedStringToChar(strIDFilePath);//convert to char*
 
+	ofstream myfile(filePath);
+
+	myfile << _title << endl;		//save title
+	myfile << _releaseDate << endl;	//save release date
+	myfile << _qtyOwned << endl;	//save Pvt. Ryan
+	myfile << _qtyLent << endl;		//save the World
+	//Save other stuff
+	myfile << _author << endl;
+	myfile << _publisher << endl;
+	myfile << _synopsis << endl;
+	myfile << _pages;
+
+	myfile.close();
 
 	return true;//Save successful
 }
-

@@ -4,39 +4,39 @@
 ////////////////////////////Make this an abstract class
 
 
-ref class Book : public Article
+class Book : public Article
 {
 public:
     Book();
 	~Book();
 
-    String^		getAuthor();
-    void 		setAuthor(String^ newAuthor);
+    string		getAuthor();
+    void 		setAuthor(std::string newAuthor);
 
-    String^		getPublisher();
-    void 		setPublisher(String^ newPublisher);
+    string		getPublisher();
+    void 		setPublisher(std::string newPublisher);
 
     int 		getPages();
     void 		setPages(int newPages);
 
-    String^		getIsMagazine();
+    string		getIsMagazine();
     void 		setIsMagazine(bool);
-	void 		setIsMagazine(String^ newIsMagazine);
+	void 		setIsMagazine(std::string newIsMagazine);
 
-	String^		getSummary();
-    void 		setSummary(String^ newSummary);
+	string		getSummary();
+    void 		setSummary(string newSummary);
 
-//    void 		getData();
+    void 		getData();
 
-	bool		load(int fileID);
+	bool		load(int);
 	bool		save();
 
 //title, author, publisher, editor, number of pages
 
 private:
-    String ^	_author;
-    String ^	_publisher;
-    String ^	_synopsis;
+    string	_author;
+    string	_publisher;
+    string	_synopsis;
     int 	_pages;
 protected:
 	bool	_isMagazine;

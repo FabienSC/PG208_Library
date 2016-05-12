@@ -23,10 +23,10 @@ void Article::setID(int newID)
 {_ID = newID;}
 
 
-String^ Article::getTitle()
+string Article::getTitle()
 {return _title;}
 
-void Article::setTitle(String^ newTitle)
+void Article::setTitle(string newTitle)
 {_title = newTitle;}
 
 
@@ -37,7 +37,7 @@ void Article::setReleaseDate(int newReleaseDate)
 {_releaseDate = newReleaseDate;}
 
 
-String^ Article::getAvailability()
+string Article::getAvailability()
 {
 	if(_qtyOwned > _qtyLent)
 		return "Available";
@@ -68,8 +68,8 @@ bool Article::returnArticle()//later add char* username as parameter
 }
 
 
-/*void Article::getData()
-{
+void Article::getData()
+{//for a terminal version... useless
 	cout << "--------------Info diplay ---------------" << endl;
 
 	cout << "ID: " << getID() << endl;
@@ -77,14 +77,14 @@ bool Article::returnArticle()//later add char* username as parameter
 	cout << "Release date: " << getReleaseDate() << endl;
 	cout << "Availability: " << getAvailability() << endl;	
 
-}*/
+}
 
 
 /*bool Article::loadFromFile(const char* fileName)
 {
 int ID, releaseDate;
 bool isAvailable;
-String^ title;
+string title;
 
 ifstream FILE(fileName, ios::in);
 if(FILE)
@@ -105,7 +105,7 @@ return false;
 }*/
 
 
-/*bool Article::saveToFile(const char* fileName, Article myArticle)
+bool Article::saveToFile(const char* fileName, Article myArticle)
 {
 	ofstream FILE(fileName, ios::out);
 	if(FILE)
@@ -120,14 +120,14 @@ return false;
 	else
 		cerr << "Failed to open file!" << endl;
 	return false;
-}*/
+}
 
 
-/*bool Article::saveToFile(const char* fileName)
+bool Article::saveToFile(const char* fileName)
 {
 	int ID, releaseDate;
 	bool isAvailable;
-	String^ title;
+	string title;
 
 	ofstream FILE(fileName, ios::out);
 	if(FILE)
@@ -170,7 +170,7 @@ return false;
 	else
 		cerr << "Failed to open file!" << endl;
 	return false;
-}*/
+}
 
 
 void Article::deleteFile()
@@ -197,14 +197,14 @@ void Article::deleteFile()
 	if(stat (filepath, &buffer) == 0)//If File exists
 		remove(filepath);//delete file
 	else
-		popup("Error","Filepath doesn't exist");
+		popup("Error","Filepath doesn't exist, blame Fabien");
 }
 
-/*bool	Article::load(int fileID)//delete?
+bool	Article::load(int fileID)
 {
 	popup("Error", "The article::load() function should never be called");
 	return false;
-}*/
+}
 
 void Article::setQtyOwned(int newQtyOwned)
 {

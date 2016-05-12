@@ -1,6 +1,6 @@
 #pragma once
 
-ref class Library
+class Library
 {
 public:
 	Library(void);
