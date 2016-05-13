@@ -47,6 +47,6 @@ using namespace System::Text;
 
 
 #include "FormNewUser.h"
-#include "FormEditArticle.h"
+#include "FormBorrowArticle.h"
 #include "FormNewArticle.h"
 #include "FormHomeAdmin.h"//must be last

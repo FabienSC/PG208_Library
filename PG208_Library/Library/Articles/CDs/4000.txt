@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+zboub
+=======
 null music
+>>>>>>> origin/master
 ###
 20160512
 ###
@@ -6,6 +10,13 @@ null music
 ###
 0
 ###
+<<<<<<< HEAD
+10minAperdre
+###
+yutube
+###
+sexy
+=======
 cdda
 ###
 cddr
@@ -13,8 +24,13 @@ cddr
 cdd
 mcool
 yay
+>>>>>>> origin/master
 ###
 6
 ###
+<<<<<<< HEAD
+0
+=======
 55
+>>>>>>> origin/master
 ###

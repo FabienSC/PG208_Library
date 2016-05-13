@@ -19,17 +19,27 @@ namespace PG208_Library
 	public ref class FormHomeAdmin : public System::Windows::Forms::Form
 	{
 	public:
-		FormHomeAdmin(char* username)//username is passed in
+		FormHomeAdmin(char* username, bool userIsAdmin)//username and status passed in 
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 
 			this->labelUsername->Text = charToManagedString(username);
-
+			
 			listArticleSize = 2;
 			listArticles = initArticleList();
 			listArticleCount = 0;
+
+			if(!userIsAdmin)
+			{
+				this->buttonNewItem->Visible = false;
+				this->buttonAddUser->Visible = false;
+				this->buttonDelete->Visible = false;
+				this->buttonEdit->Visible = false;
+			}
+			else 
+				this->buttonSelect->Visible = false;
 			//
 		}
 
@@ -170,14 +180,15 @@ namespace PG208_Library
 				 this->listBoxDisplay->Name = L"listBoxDisplay";
 				 this->listBoxDisplay->Size = System::Drawing::Size(188, 260);
 				 this->listBoxDisplay->TabIndex = 4;
+				 this->listBoxDisplay->SelectedIndexChanged += gcnew System::EventHandler(this, &FormHomeAdmin::listBoxDisplay_SelectedIndexChanged);
 				 // 
 				 // buttonSelect
 				 // 
-				 this->buttonSelect->Location = System::Drawing::Point(488, 267);
+				 this->buttonSelect->Location = System::Drawing::Point(469, 267);
 				 this->buttonSelect->Name = L"buttonSelect";
-				 this->buttonSelect->Size = System::Drawing::Size(105, 47);
+				 this->buttonSelect->Size = System::Drawing::Size(136, 47);
 				 this->buttonSelect->TabIndex = 7;
-				 this->buttonSelect->Text = L"Select";
+				 this->buttonSelect->Text = L"Borrow/Return";
 				 this->buttonSelect->UseVisualStyleBackColor = true;
 				 this->buttonSelect->Click += gcnew System::EventHandler(this, &FormHomeAdmin::buttonSelect_Click);
 				 // 
@@ -541,7 +552,15 @@ namespace PG208_Library
 	private: System::Void buttonSelect_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 int selectedIndex = this->listBoxDisplay->SelectedIndex;//-1 means nothing is selected
-				 popup("Selected", listArticles[selectedIndex]->getTitle());//display title
+				 
+				 popup("Borrowing Programme", "Welcome! Choose your article!");
+				 this->Hide();
+				
+				 FormEditArticle ^ FBorrowArticle = gcnew FormEditArticle(); //FormEditArticle defined in FormBorrowArticle.h
+				 FBorrowArticle->ShowDialog();
+				 this->Show();
+				 
+	//			 popup("Selected", listArticles[selectedIndex]->getTitle());//display title
 			 }
 
 	private: System::Void comboBoxSortBy_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
@@ -758,5 +777,7 @@ namespace PG208_Library
 				 FormNewUser ^ FNewUser = gcnew FormNewUser(1); //FormNewUser for Admin users
 				 FNewUser->ShowDialog();
 			 }
-	};
+	private: System::Void listBoxDisplay_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+			 }
+};
 }

@@ -101,6 +101,7 @@ namespace PG208_Library {
 				 this->textBoxUsername->Size = System::Drawing::Size(192, 22);
 				 this->textBoxUsername->TabIndex = 1;
 				 this->textBoxUsername->Text = L"Mr.Fab";
+				 this->textBoxUsername->TextChanged += gcnew System::EventHandler(this, &FormLogOn::textBoxUsername_TextChanged);
 				 // 
 				 // labelUsername
 				 // 
@@ -169,7 +170,7 @@ namespace PG208_Library {
 				 this->buttonExit->UseVisualStyleBackColor = false;
 				 this->buttonExit->Click += gcnew System::EventHandler(this, &FormLogOn::buttonExit_Click);
 				 // 
-				 // Form1
+				 // FormLogOn
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
@@ -185,7 +186,7 @@ namespace PG208_Library {
 				 this->Controls->Add(this->buttonRegister);
 				 this->MaximumSize = System::Drawing::Size(350, 250);
 				 this->MinimumSize = System::Drawing::Size(350, 250);
-				 this->Name = L"Form1";
+				 this->Name = L"FormLogOn";
 				 this->Text = L"Library Login";
 				 this->ResumeLayout(false);
 				 this->PerformLayout();
@@ -217,13 +218,13 @@ namespace PG208_Library {
 				 {
 					 popup("Login Successful", "Welcome!");
 					 this->Hide();
-					 if(userIsAdmin)
-					 {
-						 FormHomeAdmin ^ FHomeAdmin = gcnew FormHomeAdmin(enteredUsername); //FormHomeAdmin defined in FormHomeAdmin.h
+				//	 if(userIsAdmin)
+				//	 {
+					 FormHomeAdmin ^ FHomeAdmin = gcnew FormHomeAdmin(enteredUsername, userIsAdmin); //FormHomeAdmin defined in FormHomeAdmin.h
 					 FHomeAdmin->ShowDialog();
-					 }
-					 else
-						 popup("Oops","We don't want your kind around here");
+				//	 }
+				//	 else
+				//		 popup("Oops","We don't want your kind around here");
 					 this->Show();
 				 }
 				 else//invalid username/password
@@ -246,6 +247,8 @@ namespace PG208_Library {
 			 {
 				 this->Close();
 			 }
-	};
+	private: System::Void textBoxUsername_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+			 }
+};
 }
 
