@@ -1,4 +1,4 @@
-  PG208_Library.FormEditArticle.resources - Embedded, ContainedInManifestFile, 
+  PG208_Library.FormBorrowArticle.resources - Embedded, ContainedInManifestFile, 
   PG208_Library.FormHomeAdmin.resources - Embedded, ContainedInManifestFile, 
   PG208_Library.FormLogOn.resources - Embedded, ContainedInManifestFile, 
   PG208_Library.FormNewArticle.resources - Embedded, ContainedInManifestFile, 
@@ -38,7 +38,7 @@ Class PG208_Library.FormNewArticle: AutoLayout, AnsiClass, Class, Public, Before
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class PG208_Library.FormHomeAdmin: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
-    Void .ctor(SByte*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(SByte*, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class PG208_Library.FormLogOn: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

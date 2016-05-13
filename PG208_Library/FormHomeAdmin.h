@@ -26,7 +26,7 @@ namespace PG208_Library
 			//TODO: Add the constructor code here
 
 			this->labelUsername->Text = charToManagedString(username);
-			
+
 			listArticleSize = 2;
 			listArticles = initArticleList();
 			listArticleCount = 0;
@@ -471,48 +471,48 @@ namespace PG208_Library
 			 {
 				 if(this->checkBoxBooks->Checked)//if box is checked
 					 this->checkBoxAll->Checked = false;//useless to check first
-
-				 loadArticles();
+				 if(this->checkBoxAll->Checked == false)//no need to load if the check all box is true, it will load the articles
+					 loadArticles();
 			 }
 
 	private: System::Void checkBoxMagazines_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 if(this->checkBoxMagazines->Checked)//if box is checked
 					 this->checkBoxAll->Checked = false;//useless to check first
-
-				 loadArticles();
+				 if(this->checkBoxAll->Checked == false)//no need to load if the check all box is true, it will load the articles
+					 loadArticles();
 			 }
 
 	private: System::Void checkBoxCDs_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 if(this->checkBoxCDs->Checked)//if box is checked
 					 this->checkBoxAll->Checked = false;//useless to check first
-
-				 loadArticles();
+				 if(this->checkBoxAll->Checked == false)//no need to load if the check all box is true, it will load the articles
+					 loadArticles();
 			 }
 
 	private: System::Void checkBoxDVDs_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 if(this->checkBoxDVDs->Checked)//if box is checked
 					 this->checkBoxAll->Checked = false;//useless to check first
-
-				 loadArticles();
+				 if(this->checkBoxAll->Checked == false)//no need to load if the check all box is true, it will load the articles
+					 loadArticles();
 			 }
 
 	private: System::Void checkBoxVHSs_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 if(this->checkBoxVHSs->Checked)//if box is checked
 					 this->checkBoxAll->Checked = false;//useless to check first
-
-				 loadArticles();
+				 if(this->checkBoxAll->Checked == false)//no need to load if the check all box is true, it will load the articles
+					 loadArticles();
 			 }
 
 	private: System::Void checkBoxDigital_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 if(this->checkBoxDigital->Checked)//if box is checked
 					 this->checkBoxAll->Checked = false;//useless to check first
-
-				 loadArticles();
+				 if(this->checkBoxAll->Checked == false)//no need to load if the check all box is true, it will load the articles
+					 loadArticles();
 			 }
 
 
@@ -552,15 +552,15 @@ namespace PG208_Library
 	private: System::Void buttonSelect_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 int selectedIndex = this->listBoxDisplay->SelectedIndex;//-1 means nothing is selected
-				 
+
 				 popup("Borrowing Programme", "Welcome! Choose your article!");
 				 this->Hide();
-				
+
 				 FormEditArticle ^ FBorrowArticle = gcnew FormEditArticle(); //FormEditArticle defined in FormBorrowArticle.h
 				 FBorrowArticle->ShowDialog();
 				 this->Show();
-				 
-	//			 popup("Selected", listArticles[selectedIndex]->getTitle());//display title
+
+				 //			 popup("Selected", listArticles[selectedIndex]->getTitle());//display title
 			 }
 
 	private: System::Void comboBoxSortBy_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
@@ -779,5 +779,5 @@ namespace PG208_Library
 			 }
 	private: System::Void listBoxDisplay_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 			 }
-};
+	};
 }
