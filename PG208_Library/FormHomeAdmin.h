@@ -627,69 +627,78 @@ namespace PG208_Library
 							 countCDs++;//to stop when all of the CDs are found
 							 listArticleCount++;
 							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
-								 increaseListArticleSize();//increase Dynamic array size
+								 listArticles = increaseListArticleSize();//increase Dynamic array size
 						 }
 						 else
 							 delete myCD;
 					 }
-				 }/*
-				  if(this->checkBoxDVDs->Checked || this->checkBoxAll->Checked)
-				  {
-				  int countDVDs = 0;
-				  for(int i = 0; countDVDs < myLibrary.getNumberOfDVDs(); i++)
-				  {
-				  int fileID = BASE_DVD_ID + i;//update file ID
+				 }
+				 if(this->checkBoxDVDs->Checked || this->checkBoxAll->Checked)
+				 {
+					 int countDVDs = 0;
+					 for(int i = 0; countDVDs < myLibrary.getNumberOfDVDs(); i++)
+					 {
+						 int fileID = BASE_DVD_ID + i;//update file ID
 
-				  Video * myDVD = new Video;//create new DVD
-				  if(myDVD->load(fileID))//load data from file is successful
-				  {
-				  listArticles[listArticleCount] = myDVD;//store DVD in the DynArray(TM)
+						 Video ^ myDVD = gcnew Video;//create new DVD
+						 if(myDVD->load(fileID))//load data from file is successful
+						 {
+							 listArticles[listArticleCount] = gcnew Video;
+							 listArticles[listArticleCount] = myDVD;//store book in the DynArray(TM)
 
-				  countDVDs++;//to stop when all of the DVDs are found
-				  listArticleCount++;
-				  if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
-				  increaseListArticleSize();//increase Dynamic array size
-				  }
-				  }
-				  }
-				  if(this->checkBoxVHSs->Checked || this->checkBoxAll->Checked)
-				  {
-				  int countVHSs = 0;
-				  for(int i = 0; countVHSs < myLibrary.getNumberOfVHSs(); i++)
-				  {
-				  int fileID = BASE_VHS_ID + i;//update file ID
+							 countDVDs++;//to stop when all of the DVDs are found
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 listArticles = increaseListArticleSize();//increase Dynamic array size
+						 }
+						 else
+							 delete myDVD;
+					 }
+				 }
+				 if(this->checkBoxVHSs->Checked || this->checkBoxAll->Checked)
+				 {
+					 int countVHSs = 0;
+					 for(int i = 0; countVHSs < myLibrary.getNumberOfVHSs(); i++)
+					 {
+						 int fileID = BASE_VHS_ID + i;//update file ID
 
-				  Video * myVHS = new Video;//create new book
-				  if(myVHS->load(fileID))//load data from file is successful
-				  {
-				  listArticles[listArticleCount] = myVHS;//store book in the DynArray(TM)
+						 Video ^ myVHS = gcnew Video;//create new book
+						 if(myVHS->load(fileID))//load data from file is successful
+						 {
+							 listArticles[listArticleCount] = gcnew Video;
+							 listArticles[listArticleCount] = myVHS;//store book in the DynArray(TM)
 
-				  countVHSs++;//to stop when all of the books are found
-				  listArticleCount++;
-				  if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
-				  increaseListArticleSize();//increase Dynamic array size
-				  }
-				  }
-				  }
-				  if(this->checkBoxDigital->Checked || this->checkBoxAll->Checked)
-				  {
-				  int digitalResources = 0;
-				  for(int i = 0; digitalResources < myLibrary.getNumberOfDigitalResources(); i++)
-				  {
-				  int fileID = BASE_DIGITAL_ID + i;//update file ID
+							 countVHSs++;//to stop when all of the books are found
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 listArticles = increaseListArticleSize();//increase Dynamic array size
+						 }
+						 else
+							 delete myVHS;
+					 }
+				 }
+				 if(this->checkBoxDigital->Checked || this->checkBoxAll->Checked)
+				 {
+					 int digitalResources = 0;
+					 for(int i = 0; digitalResources < myLibrary.getNumberOfDigitalResources(); i++)
+					 {
+						 int fileID = BASE_DIGITAL_ID + i;//update file ID
 
-				  DigitalRes * myDigitalRes = new DigitalRes;//create new book
-				  if(myDigitalRes->load(fileID))//load data from file is successful
-				  {
-				  listArticles[listArticleCount] = myDigitalRes;//store book in the DynArray(TM)
+						 DigitalRes ^ myDigitalRes = gcnew DigitalRes;//create new book
+						 if(myDigitalRes->load(fileID))//load data from file is successful
+						 {
+							 listArticles[listArticleCount] = gcnew DigitalRes;
+							 listArticles[listArticleCount] = myDigitalRes;//store book in the DynArray(TM)
 
-				  digitalResources++;//to stop when all of the books are found
-				  listArticleCount++;
-				  if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
-				  increaseListArticleSize();//increase Dynamic array size
-				  }
-				  }
-				  }*/
+							 digitalResources++;//to stop when all of the books are found
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 listArticles = increaseListArticleSize();//increase Dynamic array size
+						 }
+						 else
+							 delete myDigitalRes;
+					 }
+				 }
 				 updateListBox();//empty listbox and add all articles in the article list to it
 			 }
 

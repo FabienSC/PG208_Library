@@ -1,23 +1,16 @@
 #include "StdAfx.h"
-#include <iostream>
-#include <string>
-#include <assert.h>
-#include <fstream>
-
 #include "Video.h"
-
-using namespace std;
 
 
 Video::Video()
 {
-    _director = "NA";
-    _producer = "NA";
-    _mainActor = "NA";
-    _isDVD = "NA";
-    _ageLimit = 0;
-    _length = 0;
-	_isDVD = 1;
+	_director = "NA";
+	_producer = "NA";
+	_mainActor = "NA";
+	_isDVD = "NA";
+	_ageLimit = 0;
+	_length = 0;
+	_isDVD = true;
 	_chapters = 0;
 }
 
@@ -25,39 +18,36 @@ Video::~Video()
 {
 }
 
-string Video::getDirector()
+String^ Video::getDirector()
 {return _director;}
 
-void Video::setDirector(string newDirector)
+void Video::setDirector(String^ newDirector)
 {_director = newDirector;}
 
 
-string Video::getProducer()
+String^ Video::getProducer()
 {return _producer;}
 
-void Video::setProducer(string newProducer)
+void Video::setProducer(String^ newProducer)
 {_producer = newProducer;}
 
 
-string Video::getMainActor()
+String^ Video::getMainActor()
 {return _mainActor;}
 
-void Video::setMainActor(string newMainActor)
+void Video::setMainActor(String^ newMainActor)
 {_mainActor = newMainActor;}
 
 
-string Video::getIsDVD()
-{if(_isDVD)
-	return "DVD";
-else
-	return "VHS";}
+bool Video::getIsDVD()
+{return _isDVD;}
 
 void Video::setIsDVD(bool newIsDVD)
 {_isDVD = newIsDVD;}
 
-void Video::setIsDVD(string newIsDVD)
+void Video::setIsDVD(String^ newIsDVD)
 {if (newIsDVD == "DVD")
-	_isDVD = 1;
+_isDVD = 1;
 else if (newIsDVD == "VHS")
 	_isDVD = 0;
 else 
@@ -81,17 +71,17 @@ void Video::setAgeLimit(int newAgeLimit)
 
 int Video::getChapters()
 {if (_isDVD)
-	return _chapters;
+return _chapters;
 else
-	{	
-		cout << "VHS do not have chapters..." << endl;
-		return 0;
-	}
+{	
+	cout << "VHS do not have chapters..." << endl;
+	return 0;
+}
 }
 
 void Video::setChapters(int newChapters)
 {if (_isDVD)
-	_chapters = newChapters;
+_chapters = newChapters;
 else
 	cout << "VHS do not have chapters..." << endl;
 }
@@ -99,19 +89,19 @@ else
 
 /*void Video::getData()
 {
-	Article::getData();
-	
-	cout << "Director: " << getDirector() << endl;
-	cout << "Producer: " << getProducer() << endl;
-	cout << "Main Actor: " << getMainActor() << endl;
-	cout << "Length: " << getLength() << endl;
-	cout << "Age Limit: " << getAgeLimit() << endl;
-	cout << "Support Type: " << getIsDVD() << endl;
-	if(_isDVD)
-		cout << "Chapters: " << getChapters() << endl;
-	
-	cout << "----------------------------------------" << endl;
-}
+Article::getData();
+
+cout << "Director: " << getDirector() << endl;
+cout << "Producer: " << getProducer() << endl;
+cout << "Main Actor: " << getMainActor() << endl;
+cout << "Length: " << getLength() << endl;
+cout << "Age Limit: " << getAgeLimit() << endl;
+cout << "Support Type: " << getIsDVD() << endl;
+if(_isDVD)
+cout << "Chapters: " << getChapters() << endl;
+
+cout << "----------------------------------------" << endl;
+}*/
 
 
 bool Video::load(int fileID)
@@ -120,22 +110,37 @@ bool Video::load(int fileID)
 	if(fileID < BASE_VHS_ID)
 		strIDFilePath = FILEPATH_DVD + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
 	else
+	{
 		strIDFilePath = FILEPATH_VHS + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
+		_isDVD = false;
+	}
 
-	char* filePath = managedStringToChar(strIDFilePath);//convert to char*
-
-	struct stat buffer;
-	if(stat (filePath, &buffer) == 0)//If file exists
+	if(File::Exists( strIDFilePath ))
 	{
 		_ID = fileID;//Load ID
 
-		ifstream myfile;
-		string line;
+		StreamReader^ sr = File::OpenText( strIDFilePath );
+		try
+		{
+			_title = readData(sr);
+			_releaseDate = managedStringToInt(readData(sr));
+			_qtyOwned = managedStringToInt(readData(sr));
+			_qtyLent = managedStringToInt(readData(sr));
 
-		myfile.open(filePath);//open file
-		getline(myfile, line);//store first line into "line"
+			_director = readData(sr);
+			_producer = readData(sr);
+			_mainActor = readData(sr);
+			_length = managedStringToInt(readData(sr));
+			_ageLimit = managedStringToInt(readData(sr));
+			if(_isDVD)
+				_chapters = managedStringToInt(readData(sr));
+		}
+		finally//make sure to close file
+		{
+			if ( sr )
+				delete (IDisposable^)sr;
+		}
 
-		_title = stringToChar(line);//Load Title
 		return true;//Load successful
 	}
 	else
@@ -151,29 +156,28 @@ bool	Video::save()
 	else		//VHS
 		strIDFilePath = FILEPATH_VHS + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
 
-	char* filePath = managedStringToChar(strIDFilePath);//convert to char*
-
-	struct stat buffer;
-	if(stat (filePath, &buffer))//If file doesn't exist
+	FileStream^ fs = File::Create( strIDFilePath );
+	try
 	{
-		ofstream myfile(filePath);
-		
-		myfile << _title << endl;		//save title
-		myfile << _releaseDate << endl;	//save release date
-		myfile << _qtyOwned << endl;	//save the Cheerleader
-		myfile << _qtyLent << endl;		//save the World
-		//Save other stuff
-		myfile << _director << endl;
-		myfile << _producer << endl;
-		myfile << _mainActor << endl;
-		myfile << _length << endl;
-		myfile << _ageLimit << endl;
-		if(_isDVD)
-			myfile << _chapters << endl;
-		myfile.close();
+		AddLine( fs, _title );								//save title
+		AddLine( fs, intToManagedString(_releaseDate) );	//save release date
+		AddLine( fs, intToManagedString(_qtyOwned) );		//save the cheerleader
+		AddLine( fs, intToManagedString(_qtyLent) );		//save the World
 
-		return true;//Save successful
+		AddLine( fs, _director );
+		AddLine( fs, _producer );
+		AddLine( fs, _mainActor );
+		AddLine( fs, intToManagedString(_length) );
+		AddLine( fs, intToManagedString(_ageLimit) );
+
+		if(_isDVD)
+			AddLine( fs, intToManagedString(_chapters) );
 	}
-	else
-		return false;//Save failed
-}*/
+	finally//make sure to close file
+	{
+		if ( fs )
+			delete (IDisposable^)fs;
+	}
+
+	return true;//Save successful
+}

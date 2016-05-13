@@ -3,36 +3,36 @@
 #include "Article.h"
 
 
-class DigitalRes //: public Article
+ref class DigitalRes : public Article
 {
 public:
 	DigitalRes(void);
 	~DigitalRes(void);
 
-    std::string getAuthor();
-    void 		setAuthor(std::string newAuthor);
+    String^		getAuthor();
+    void 		setAuthor(String^ newAuthor);
 
-    std::string getFileType();
-    void 		setFileType(std::string newFileType);
+    String^		getFileType();
+    void 		setFileType(String^ newFileType);
 
-    std::string getFileName();
-    void 		setFileName(std::string newFileName);
+//    String^		getFileName();
+//    void 		setFileName(String^ newFileName);
 
-	std::string getURL();
-    void 		setURL(std::string newURL);
+	String^		getURL();
+    void 		setURL(String^ newURL);
 
 	int 		getByteSize();
     void 		setByteSize(int newByteSize);
     
-    void 		getData();
+//    void 		getData();
 	bool		load(int);
 	bool		save();
 
 private:
-    string		_author;
-    string		_fileType;
-    string		_fileName;//no need: use _title
-    string		_URL;
+    String^		_author;
+    String^		_fileType;
+//    String^		_fileName;//no need: use _title
+    String^		_URL;
     int 		_byteSize;
 };
 

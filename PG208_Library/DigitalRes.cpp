@@ -12,7 +12,7 @@ DigitalRes::DigitalRes(void)
 {
 	_author = "NA";
 	_fileType = "NA";
-	_fileName = "NA";
+//	_fileName = "NA";
 	_URL = "NA";
 	_byteSize = 0;
 }
@@ -23,31 +23,31 @@ DigitalRes::~DigitalRes(void)
 }
 
 
-string DigitalRes::getAuthor()
+String^ DigitalRes::getAuthor()
 {return _author;}
 
-void DigitalRes::setAuthor(string newAuthor)
+void DigitalRes::setAuthor(String^ newAuthor)
 {_author = newAuthor;}
 
 
-string DigitalRes::getFileType()
+String^ DigitalRes::getFileType()
 {return _fileType;}
 
-void DigitalRes::setFileType(string newFileType)
+void DigitalRes::setFileType(String^ newFileType)
 {_fileType = newFileType;}
 
-
-string DigitalRes::getFileName()
+/*
+String^ DigitalRes::getFileName()
 {return _fileName;}
 
-void DigitalRes::setFileName(string newFileName)
+void DigitalRes::setFileName(String^ newFileName)
 {_fileName = newFileName;}
+*/
 
-
-string DigitalRes::getURL()
+String^ DigitalRes::getURL()
 {return _URL;}
 
-void DigitalRes::setURL(string newURL)
+void DigitalRes::setURL(String^ newURL)
 {_URL = newURL;}
 
 
@@ -72,24 +72,33 @@ cout << "----------------------------------------" << endl;
 }*/
 
 
-/*bool DigitalRes::load(int fileID)
+bool DigitalRes::load(int fileID)
 {
 	String ^ strIDFilePath = FILEPATH_DIGITAL + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
 
-	char* filePath = managedStringToChar(strIDFilePath);//convert to char*
-
-	struct stat buffer;
-	if(stat (filePath, &buffer) == 0)//If file exists
+	if(File::Exists( strIDFilePath ))
 	{
 		_ID = fileID;//Load ID
 
-		ifstream myfile;
-		string line;
+		StreamReader^ sr = File::OpenText( strIDFilePath );
+		try
+		{
+			_title = readData(sr);
+			_releaseDate = managedStringToInt(readData(sr));
+			_qtyOwned = managedStringToInt(readData(sr));
+			_qtyLent = managedStringToInt(readData(sr));
 
-		myfile.open(filePath);//open file
-		getline(myfile, line);//store first line into "line"
+			_author = readData(sr);
+			_fileType = readData(sr);
+			_URL = readData(sr);
+			_byteSize = managedStringToInt(readData(sr));
+		}
+		finally//make sure to close file
+		{
+			if ( sr )
+				delete (IDisposable^)sr;
+		}
 
-		_title = stringToChar(line);//Load Title
 		return true;//Load successful
 	}
 	else
@@ -97,29 +106,29 @@ cout << "----------------------------------------" << endl;
 }
 
 
+
 bool DigitalRes::save()
 {
 	String ^ strIDFilePath = FILEPATH_DIGITAL + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
-	char* filePath = managedStringToChar(strIDFilePath);//convert to char*
-
-	struct stat buffer;
-	if(stat (filePath, &buffer))//If file doesn't exist
+	
+	FileStream^ fs = File::Create( strIDFilePath );
+	try
 	{
-		ofstream myfile(filePath);
-		
-		myfile << _title << endl;		//save title
-		myfile << _releaseDate << endl;	//save release date
-		myfile << _qtyOwned << endl;	//save the Cheerleader
-		myfile << _qtyLent << endl;		//save the World
-		//Save other stuff
-		myfile << _author << endl;
-		myfile << _fileType << endl;
-		myfile << _URL << endl;
-		myfile << _byteSize << endl;
-		myfile.close();
-
-		return true;//Save successful
+		AddLine( fs, _title );								//save title
+		AddLine( fs, intToManagedString(_releaseDate) );	//save release date
+		AddLine( fs, intToManagedString(_qtyOwned) );		//save the cheerleader
+		AddLine( fs, intToManagedString(_qtyLent) );		//save the World
+		AddLine( fs, _author );
+		AddLine( fs, _fileType );
+		AddLine( fs, _URL );
+		AddLine( fs, intToManagedString(_byteSize) );
 	}
-	else
-		return false;//Save failed
-}*/
+	finally//make sure to close file
+	{
+		if ( fs )
+			delete (IDisposable^)fs;
+	}
+
+	return true;//Save successful
+}
+

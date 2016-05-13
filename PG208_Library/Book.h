@@ -28,15 +28,15 @@ public:
 
 //    void 		getData();
 
-	bool		load(int fileID);
+	bool		load(int);
 	bool		save();
 
 //title, author, publisher, editor, number of pages
 
 private:
-    String ^	_author;
-    String ^	_publisher;
-    String ^	_synopsis;
+    String^		_author;
+    String^		_publisher;
+    String^		_synopsis;
     int 		_pages;
 protected:
 	bool		_isMagazine;

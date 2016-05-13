@@ -90,7 +90,7 @@ String^ readData(StreamReader^ sr)
 	while(readString != "###")
 	{
 		if(multiLine)
-			returnString = returnString + "\n";//add '\n's before each extra line
+			returnString = returnString + "\r\n";//add '\n's before each extra line
 		else
 			multiLine = true;//String has at least one line
 

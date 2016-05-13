@@ -3,27 +3,24 @@
 #include "Article.h"
 
 
-class Video //: public Article
+ref class Video : public Article
 {
 public:
     Video();
 	~Video();
 
-    string		getGenre();
-    void 		setGenre(std::string newGenre);
+    String^		getDirector();
+    void 		setDirector(String^ newDirector);
 
-    string		getDirector();
-    void 		setDirector(std::string newDirector);
+    String^		getProducer();
+    void 		setProducer(String^ newProducer);
 
-    string		getProducer();
-    void 		setProducer(std::string newProducer);
+    String^		getMainActor();
+    void 		setMainActor(String^ newMainActor);
 
-    string		getMainActor();
-    void 		setMainActor(std::string newMainActor);
-
-	string		getIsDVD();
+	bool		getIsDVD();
     void 		setIsDVD(bool newIsDVD);
-    void 		setIsDVD(std::string newIsDVD);
+    void 		setIsDVD(String^ newIsDVD);
 
     int 		getLength();
     void 		setLength(int newLength);
@@ -34,14 +31,14 @@ public:
 	int			getChapters();
     void 		setChapters(int newChapters);
 
-    void 		getData();
+   // void 		getData();
 	bool		load(int);
 	bool		save();
 
 private:
-    string		_director;
-    string		_producer;
-    string		_mainActor;
+    String^		_director;
+    String^		_producer;
+    String^		_mainActor;
     int 		_length;
     int 		_ageLimit;
     int			_chapters;

@@ -64,7 +64,31 @@ namespace PG208_Library {
 				this->textBoxInt1->Text = intToManagedString(newCD->getDuration());
 				this->textBoxInt2->Text = intToManagedString(newCD->getTracks());
 			}
-			//add others
+			else if(isDVDOrVHS)
+			{
+				Video ^ newVideo = gcnew Video;
+				newVideo->load(fileID);
+				writeGeneralData(newVideo);
+
+				this->textBoxString1->Text = newVideo->getDirector();
+				this->textBoxString2->Text = newVideo->getProducer();
+				this->textBoxString3->Text = newVideo->getMainActor();
+				this->textBoxInt1->Text = intToManagedString(newVideo->getLength());
+				this->textBoxInt2->Text = intToManagedString(newVideo->getAgeLimit());
+
+				this->textBoxInt3->Text = intToManagedString(newVideo->getChapters());
+			}
+			else if(isDigital)
+			{
+				DigitalRes ^ newCD = gcnew DigitalRes;
+				newCD->load(fileID);
+				writeGeneralData(newCD);
+
+				this->textBoxString1->Text = newCD->getAuthor();
+				this->textBoxString2->Text = newCD->getFileType();
+				this->textBoxString3->Text = newCD->getURL();
+				this->textBoxInt1->Text = intToManagedString(newCD->getByteSize());
+			}
 
 		}
 
@@ -522,38 +546,38 @@ namespace PG208_Library {
 						 newCD->setTracks(managedStringToInt(this->textBoxInt2->Text));
 
 						 newCD->save();
-					 }/*
+					 }
 					 else if(isDVDOrVHS || ((this->radioButtonDVD->Checked || this->radioButtonVHS->Checked) == true))//new article is a DVD or VHS
 					 {
-						 Video newVideo;
-						 copyGeneralData(&newVideo);
-						 newVideo.setDirector(managedStringToString(this->textBoxString1->Text));
-						 newVideo.setProducer(managedStringToString(this->textBoxString2->Text));
-						 newVideo.setMainActor(managedStringToString(this->textBoxString3->Text));
-						 newVideo.setLength(managedStringToInt(this->textBoxInt1->Text));
-						 newVideo.setAgeLimit(managedStringToInt(this->textBoxInt2->Text));
+						 Video ^ newVideo = gcnew Video;
+						 copyGeneralData(newVideo);
+						 newVideo->setDirector(this->textBoxString1->Text);
+						 newVideo->setProducer(this->textBoxString2->Text);
+						 newVideo->setMainActor(this->textBoxString3->Text);
+						 newVideo->setLength(managedStringToInt(this->textBoxInt1->Text));
+						 newVideo->setAgeLimit(managedStringToInt(this->textBoxInt2->Text));
 
-						 if((BASE_DVD_ID <= newVideo.getID()) && (newVideo.getID() < BASE_VHS_ID))
+						 if((BASE_DVD_ID <= newVideo->getID()) && (newVideo->getID() < BASE_VHS_ID))
 						 {
-							 newVideo.setChapters(managedStringToInt(this->textBoxInt3->Text));
-							 newVideo.setIsDVD(true);
+							 newVideo->setChapters(managedStringToInt(this->textBoxInt3->Text));
+							 newVideo->setIsDVD(true);
 						 }
 						 else
-							 newVideo.setIsDVD(false);
+							 newVideo->setIsDVD(false);
 
-						 newVideo.save();
+						 newVideo->save();
 					 }
 					 else if(isDigital || (this->radioButtonDigital->Checked == true))//new article is a Digital Resource
 					 {
-						 DigitalRes newDigitalRes;
-						 copyGeneralData(&newDigitalRes);
-						 newDigitalRes.setAuthor(managedStringToString(this->textBoxString1->Text));
-						 newDigitalRes.setFileType(managedStringToString(this->textBoxString2->Text));
-						 newDigitalRes.setURL(managedStringToString(this->textBoxString3->Text));
-						 newDigitalRes.setByteSize(managedStringToInt(this->textBoxInt1->Text));
+						 DigitalRes ^ newDigitalRes = gcnew DigitalRes;
+						 copyGeneralData(newDigitalRes);
+						 newDigitalRes->setAuthor(this->textBoxString1->Text);
+						 newDigitalRes->setFileType(this->textBoxString2->Text);
+						 newDigitalRes->setURL(this->textBoxString3->Text);
+						 newDigitalRes->setByteSize(managedStringToInt(this->textBoxInt1->Text));
 
-						 newDigitalRes.save();
-					 }*/
+						 newDigitalRes->save();
+					 }
 					 this->Close();
 				 }
 			 }
