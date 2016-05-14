@@ -31,14 +31,14 @@ namespace PG208_Library
 			listArticles = initArticleList();
 			listArticleCount = 0;
 
-			if(!userIsAdmin)
+			if(!userIsAdmin)//regular user
 			{
 				this->buttonNewItem->Visible = false;
 				this->buttonAddUser->Visible = false;
 				this->buttonDelete->Visible = false;
 				this->buttonEdit->Visible = false;
 			}
-			else 
+			else //admin user
 				this->buttonSelect->Visible = false;
 			//
 		}
@@ -101,6 +101,7 @@ namespace PG208_Library
 	private: System::Windows::Forms::Label^  labelCheckBoxes;
 	private: System::Windows::Forms::CheckBox^  checkBoxVHSs;
 	private: System::Windows::Forms::CheckBox^  checkBoxDigital;
+	private: System::Windows::Forms::Button^  buttonView;
 
 
 
@@ -139,6 +140,7 @@ namespace PG208_Library
 				 this->labelCheckBoxes = (gcnew System::Windows::Forms::Label());
 				 this->checkBoxVHSs = (gcnew System::Windows::Forms::CheckBox());
 				 this->checkBoxDigital = (gcnew System::Windows::Forms::CheckBox());
+				 this->buttonView = (gcnew System::Windows::Forms::Button());
 				 this->SuspendLayout();
 				 // 
 				 // labelWelcome
@@ -215,7 +217,7 @@ namespace PG208_Library
 				 // labelSortBy
 				 // 
 				 this->labelSortBy->AutoSize = true;
-				 this->labelSortBy->Location = System::Drawing::Point(64, 136);
+				 this->labelSortBy->Location = System::Drawing::Point(46, 136);
 				 this->labelSortBy->Name = L"labelSortBy";
 				 this->labelSortBy->Size = System::Drawing::Size(54, 17);
 				 this->labelSortBy->TabIndex = 11;
@@ -224,10 +226,11 @@ namespace PG208_Library
 				 // comboBoxSortBy
 				 // 
 				 this->comboBoxSortBy->FormattingEnabled = true;
-				 this->comboBoxSortBy->Items->AddRange(gcnew cli::array< System::Object^  >(2) {L"Title", L"Release Date"});
-				 this->comboBoxSortBy->Location = System::Drawing::Point(144, 136);
+				 this->comboBoxSortBy->Items->AddRange(gcnew cli::array< System::Object^  >(6) {L"ID (Ascending)", L"ID (Descending)", L"Title (A->Z)", 
+					 L"Title (Z->A)", L"Release Date (Newest First)", L"Release Date (Oldest First)"});
+				 this->comboBoxSortBy->Location = System::Drawing::Point(134, 136);
 				 this->comboBoxSortBy->Name = L"comboBoxSortBy";
-				 this->comboBoxSortBy->Size = System::Drawing::Size(188, 24);
+				 this->comboBoxSortBy->Size = System::Drawing::Size(207, 24);
 				 this->comboBoxSortBy->TabIndex = 12;
 				 this->comboBoxSortBy->SelectedIndexChanged += gcnew System::EventHandler(this, &FormHomeAdmin::comboBoxSortBy_SelectedIndexChanged);
 				 // 
@@ -400,11 +403,22 @@ namespace PG208_Library
 				 this->checkBoxDigital->UseVisualStyleBackColor = true;
 				 this->checkBoxDigital->CheckedChanged += gcnew System::EventHandler(this, &FormHomeAdmin::checkBoxDigital_CheckedChanged);
 				 // 
+				 // buttonView
+				 // 
+				 this->buttonView->Location = System::Drawing::Point(488, 216);
+				 this->buttonView->Name = L"buttonView";
+				 this->buttonView->Size = System::Drawing::Size(105, 43);
+				 this->buttonView->TabIndex = 31;
+				 this->buttonView->Text = L"View";
+				 this->buttonView->UseVisualStyleBackColor = true;
+				 this->buttonView->Click += gcnew System::EventHandler(this, &FormHomeAdmin::buttonView_Click);
+				 // 
 				 // FormHomeAdmin
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->ClientSize = System::Drawing::Size(732, 503);
+				 this->Controls->Add(this->buttonView);
 				 this->Controls->Add(this->checkBoxDigital);
 				 this->Controls->Add(this->checkBoxVHSs);
 				 this->Controls->Add(this->labelCheckBoxes);
@@ -527,7 +541,7 @@ namespace PG208_Library
 				 if(selectedIndex == -1)
 					 return;//no selection => do nothing
 
-				 FormNewArticle ^ Fedit = gcnew FormNewArticle(listArticles[selectedIndex]->getID());//Edit Article
+				 FormNewArticle ^ Fedit = gcnew FormNewArticle(listArticles[selectedIndex]->getID(), true);//Edit Article
 				 Fedit->ShowDialog();
 
 				 loadArticles();
@@ -553,7 +567,10 @@ namespace PG208_Library
 			 {
 				 int selectedIndex = this->listBoxDisplay->SelectedIndex;//-1 means nothing is selected
 
+				 String^ fabComp = "null book";
+
 				 popup("Borrowing Programme", "Welcome! Choose your article!");
+				 popup("Borrowing Programme", String::Compare(listArticles[selectedIndex]->getTitle(),fabComp));
 				 this->Hide();
 
 				 FormEditArticle ^ FBorrowArticle = gcnew FormEditArticle(); //FormEditArticle defined in FormBorrowArticle.h
@@ -566,6 +583,24 @@ namespace PG208_Library
 	private: System::Void comboBoxSortBy_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 //sort by title/release date...
+				 int index = comboBoxSortBy->SelectedIndex;
+
+				 if(index == 0)		//ID Low->High selected
+					 sortByID(1);
+				 else if(index == 1)//ID High->Low selected
+					sortByID(-1);
+				 else if(index == 2)//A->Z selected
+					sortByTitle(1);
+				 else if(index == 3)//Z->A selected
+					sortByTitle(-1);
+				 else if(index == 4)//Release date newest 1st selected
+					sortByReleaseDate(1);
+				 else if(index == 5)//Release date oldest 1st selected
+					sortByReleaseDate(-1);
+				 else
+					 popup("Error", "sorting index error");
+
+				 updateListBox();
 			 }
 
 			 ///////////////////////////////////////////////////////////////
@@ -772,6 +807,84 @@ namespace PG208_Library
 				 return local;
 			 }
 
+
+			 void sortByID(int dir)
+			 {
+				 if((dir != -1) && (dir != 1))//extra safety, it should never happen, but if it does, I want to know
+				 {
+					 popup("Error", "wrong parameters in ID sort");
+					 return;//don't sort
+				 }
+
+				 bool direction = false;
+				 if(dir == 1)
+					direction = true;
+
+				 for(int i = listArticleCount-1; i > 0; i--)//bubble sort
+				 {
+					 for(int j = 0; j < i; j++)
+					 {
+						 if((listArticles[j]->getID() > listArticles[j+1]->getID()) == direction)//sorting direction
+						 {//swap
+							 Article ^ tmp = listArticles[j];
+							 listArticles[j] = listArticles[j+1];
+							 listArticles[j+1] = tmp;
+						 }
+					 }
+				 }
+			 }
+
+
+			 void sortByTitle(int dir)
+			 {
+				 if((dir != -1) && (dir != 1))//extra safety, it should never happen, but if it does, I want to know
+				 {
+					 popup("Error", "wrong parameters in Title sort");
+					 return;//don't sort
+				 }
+
+				 for(int i = listArticleCount-1; i > 0; i--)//bubble sort
+				 {
+					 for(int j = 0; j < i; j++)
+					 {
+						 if(String::Compare(listArticles[j]->getTitle(),listArticles[j+1]->getTitle()) == dir)//sorting direction
+						 {//swap
+							 Article ^ tmp = listArticles[j];
+							 listArticles[j] = listArticles[j+1];
+							 listArticles[j+1] = tmp;
+						 }
+					 }
+				 }
+			 }
+
+			 
+
+			 void sortByReleaseDate(int dir)
+			 {
+				 if((dir != -1) && (dir != 1))//extra safety, it should never happen, but if it does, I want to know
+				 {
+					 popup("Error", "wrong parameters in ReleaseDate sort");
+					 return;//don't sort
+				 }
+
+				 bool direction = false;
+				 if(dir == 1)
+					direction = true;
+
+				 for(int i = listArticleCount-1; i > 0; i--)//bubble sort
+				 {
+					 for(int j = 0; j < i; j++)
+					 {
+						 if((listArticles[j]->getReleaseDate() > listArticles[j+1]->getReleaseDate()) == direction)//sorting direction
+						 {//swap
+							 Article ^ tmp = listArticles[j];
+							 listArticles[j] = listArticles[j+1];
+							 listArticles[j+1] = tmp;
+						 }
+					 }
+				 }
+			 }
+
 	private: System::Void buttonAddUser_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 FormNewUser ^ FNewUser = gcnew FormNewUser(1); //FormNewUser for Admin users
@@ -779,5 +892,14 @@ namespace PG208_Library
 			 }
 	private: System::Void listBoxDisplay_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 			 }
-	};
+	private: System::Void buttonView_Click(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 int selectedIndex = this->listBoxDisplay->SelectedIndex;
+				 if(selectedIndex == -1)
+					 return;//no selection => do nothing
+
+				 FormNewArticle ^ Fedit = gcnew FormNewArticle(listArticles[selectedIndex]->getID(),false);//view Article
+				 Fedit->ShowDialog();
+			 }
+};
 }

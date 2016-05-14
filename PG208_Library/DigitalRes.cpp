@@ -12,7 +12,7 @@ DigitalRes::DigitalRes(void)
 {
 	_author = "NA";
 	_fileType = "NA";
-//	_fileName = "NA";
+	//	_fileName = "NA";
 	_URL = "NA";
 	_byteSize = 0;
 }
@@ -110,7 +110,7 @@ bool DigitalRes::load(int fileID)
 bool DigitalRes::save()
 {
 	String ^ strIDFilePath = FILEPATH_DIGITAL + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
-	
+
 	FileStream^ fs = File::Create( strIDFilePath );
 	try
 	{

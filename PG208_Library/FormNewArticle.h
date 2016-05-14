@@ -29,13 +29,14 @@ namespace PG208_Library {
 			this->radioButtonBook->Checked = true;
 
 		}
-		FormNewArticle(int fileID)//Edit not new
+
+		FormNewArticle(int fileID, bool editView)//Edit or view mode
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 			//
-			
+
 			newArticle = gcnew Article;
 
 			editMode = 1;
@@ -88,6 +89,25 @@ namespace PG208_Library {
 				this->textBoxString2->Text = newCD->getFileType();
 				this->textBoxString3->Text = newCD->getURL();
 				this->textBoxInt1->Text = intToManagedString(newCD->getByteSize());
+			}
+
+			if(editView == false)//view mode => hide some buttons, disable everything
+			{
+				this->textBoxID->Enabled = false;
+				this->textBoxTitle->Enabled = false;
+				this->dateTimePicker->Enabled = false;
+				this->textBoxQty->Enabled = false;
+				this->buttonPlus1->Visible = false;
+				this->buttonMinus1->Visible = false;
+
+				this->textBoxString1->Enabled = false;
+				this->textBoxString2->Enabled = false;
+				this->textBoxString3->Enabled = false;
+				this->textBoxInt1->Enabled = false;
+				this->textBoxInt2->Enabled = false;
+				this->textBoxInt3->Enabled = false;
+
+				this->buttonCreate->Visible = false;
 			}
 
 		}
@@ -958,7 +978,7 @@ namespace PG208_Library {
 
 	private: System::Void textBoxTitle_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 			 }
-private: System::Void textBoxID_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-};
+	private: System::Void textBoxID_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+			 }
+	};
 }

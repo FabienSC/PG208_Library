@@ -52,6 +52,7 @@
     <ClCompile Include="DigitalRes.cpp">
       <Filter>Code</Filter>
     </ClCompile>
+    <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FormHomeAdmin.h" />
@@ -95,6 +96,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FormBorrowArticle.h" />
+    <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormHomeAdmin.resx" />

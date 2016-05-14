@@ -40,4 +40,5 @@ protected:
     int _releaseDate;//YYYYMMDD
     int _qtyOwned;//quantity owned
     int _qtyLent;//quantity available
+	//??? add users reserved
 };

@@ -1,4 +1,4 @@
-﻿Build started 13-May-16 2:49:21 AM.
+﻿Build started 14-May-16 8:28:08 PM.
      1>Project "C:\Users\Fabien\Documents\Git\PG208_Library\PG208_Library.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\PG208_Library.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -24,4 +24,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.10
+Time Elapsed 00:00:00.18

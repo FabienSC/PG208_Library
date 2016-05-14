@@ -216,7 +216,7 @@ namespace PG208_Library {
 
 				 if((strcmp(enteredPassword,decryptedPassword) == 0) && (sizePassword > 3))//if username and password match AND password on file is longer than 3
 				 {
-					 popup("Login Successful", "Welcome!");
+				//	 popup("Login Successful", "Welcome!");
 					 this->Hide();
 				//	 if(userIsAdmin)
 				//	 {
