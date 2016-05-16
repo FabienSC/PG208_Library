@@ -11,7 +11,7 @@ using namespace System::IO;
 using namespace System::Text;
 
 
-
+//ID "0000" is reserved
 #define BASE_MIN_ID			1000	//Min
 #define BASE_BOOK_ID		1000	//1000~2999 reserved for books
 #define BASE_MAGAZINE_ID	3000	//3000~3999 reserved for Magazines
@@ -29,7 +29,8 @@ using namespace System::Text;
 #define FILEPATH_VHS "Library/Articles/VHSs/"
 #define FILEPATH_DIGITAL "Library/Articles/Digital_Resources/"
 
-#define BORROW_LIMIT 5	//maximum number of articles a user ma borrow
+#define BORROW_LIMIT 5	//maximum number of articles a user may borrow
+#define RESERVE_LIMIT 5	//maximum number of articles a user may reserve
 
 
 
