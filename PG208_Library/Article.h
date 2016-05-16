@@ -45,8 +45,9 @@ protected:
     int		 _qtyLent;//quantity available
 	//String ^ _reservationList[3];				can't do it in array... ?
 	String ^ _reservation1;
-	String ^ _reservation2;
-	String ^ _reservation3;
-	bool	 _reservable;
+//	String ^ _reservation2;
+//	String ^ _reservation3;
+//	bool	 _reservable;
+	bool	 _isReserved;
 	//??? add users reserved
 };
