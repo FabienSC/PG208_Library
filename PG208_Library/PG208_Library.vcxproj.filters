@@ -52,9 +52,12 @@
     <ClCompile Include="DigitalRes.cpp">
       <Filter>Code</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="User.cpp">
       <Filter>Code</Filter>
     </ClCompile>
+=======
+>>>>>>> Origin/master
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FormHomeAdmin.h" />
@@ -98,9 +101,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FormBorrowArticle.h" />
+<<<<<<< HEAD
     <ClInclude Include="User.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+=======
+>>>>>>> Origin/master
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormHomeAdmin.resx" />

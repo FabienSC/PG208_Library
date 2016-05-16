@@ -567,13 +567,16 @@ namespace PG208_Library
 			 {
 				 int selectedIndex = this->listBoxDisplay->SelectedIndex;//-1 means nothing is selected
 
-				 String^ fabComp = "null book";
+ 				 if(selectedIndex == -1)
+				 {
+					 popup("Epic Fail", "Please choose your article first!");
+					 return;//no selection => do nothing
+				 }
 
 				 popup("Borrowing Programme", "Welcome! Choose your article!");
-				 popup("Borrowing Programme", String::Compare(listArticles[selectedIndex]->getTitle(),fabComp));
 				 this->Hide();
 
-				 FormEditArticle ^ FBorrowArticle = gcnew FormEditArticle(); //FormEditArticle defined in FormBorrowArticle.h
+				 FormEditArticle ^ FBorrowArticle = gcnew FormEditArticle(listArticles[selectedIndex]->getID(), this->labelUsername->Text); //FormEditArticle defined in FormBorrowArticle.h
 				 FBorrowArticle->ShowDialog();
 				 this->Show();
 
