@@ -10,6 +10,11 @@ Article::Article()
 	_qtyLent = 0;
 	_qtyOwned = 0;
 	_releaseDate = 20000101;//default release date = 1st Jan 2000
+
+	_reservable = 1;
+	_reservation1 = "NA";
+	_reservation2 = "NA";
+	_reservation3 = "NA";
 }
 
 Article::~Article()
@@ -65,6 +70,33 @@ bool Article::returnArticle()//later add char* username as parameter
 	}
 	else
 		return 1;//how can you return what has never left?
+}
+
+void Article::reserveArticle(String^  newUsername)
+{
+	if(_qtyOwned == 0)
+	{
+		if (_reservable)
+		{
+			if (_reservation1 == "NA")
+			{
+				_reservation1 = newUsername;
+			}
+			else if (_reservation2 == "NA")
+			{
+				_reservation2 = newUsername;
+			}
+			else if (_reservation3 == "NA")
+			{
+				_reservation3 = newUsername;
+				_reservable = 0;
+			}
+			else 
+			{
+				_reservable = 0;
+			}
+		}
+	}
 }
 
 

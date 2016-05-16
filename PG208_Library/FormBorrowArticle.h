@@ -201,14 +201,20 @@ namespace PG208_Library {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
-				 if((this->radioButton1->Checked || this->radioButton2->Checked) == true)
+				 if(this->radioButton1->Checked == true) 
 				 {
-					popup("Error", "Functions not yet finished with... SOON NIGGA!");
-					this->Close();
+
+					 popup("Error", "Functions not yet finished with... SOON NIGGA!");
+					 this->Close();
+				 }
+				 else if(this->radioButton2->Checked) == true)
+				 {
+					 popup("Error", "Functions not yet finished with... SOON NIGGA!");
+					 this->Close();
 				 }
 				 else
 				 {
-					popup("EPIC FAIL", "Select borrow or return. Otherwise, use cancel to leave");
+					 popup("EPIC FAIL", "Select borrow or return. Otherwise, use cancel to leave");
 				 }
 			 }
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) 

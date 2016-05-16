@@ -23,8 +23,11 @@ public:
 	String^		getAvailability();
     bool 		borrowArticle();						// if already borrowed, can't borrow it...
     bool 		returnArticle();						// if all in library, can't return...
+	
+	void		reserveArticle(String^  newUsername);
 
-//	void 		getData();
+
+		//	void 		getData();
 	
 	void		deleteFile();//delete file
 
@@ -35,10 +38,15 @@ public:
 	//virtual bool	load(int fileID);//
 
 protected:
-    int _ID;
+    int		 _ID;
     String ^ _title;
-    int _releaseDate;//YYYYMMDD
-    int _qtyOwned;//quantity owned
-    int _qtyLent;//quantity available
+    int		 _releaseDate;//YYYYMMDD
+    int		 _qtyOwned;//quantity owned
+    int		 _qtyLent;//quantity available
+	//String ^ _reservationList[3];				can't do it in array... ?
+	String ^ _reservation1;
+	String ^ _reservation2;
+	String ^ _reservation3;
+	bool	 _reservable;
 	//??? add users reserved
 };
