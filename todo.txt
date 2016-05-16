@@ -1,0 +1,31 @@
+sort the different articles: go through descriptions in sujet1
+
+go over the commands in cahier des charges to check
+
+admin can see who borrowed such article through select button
+edit button: for existing articles, to modify title, author, quantity...
+delete button: only admin can access, erases all data, WARNING messages upon click on delete and when you say I wanna delete "are you sure" + options: cancel, delete(definite), move to storage(no display, only data kept, can be recovered) 
+
+add user screen: users can only borrow and give back articles, and browse through
+
+why is Article class not used after declaration?
+>>pass it through functions (edit, delete, select buttons ...)
+
+update Library class (book/CD >> papercopy/vide/CD)
+rewrite UML (video, papercopy) and shit
+
+add special class for board games (?)
+
+user window: reuse admin window + boolean for user/admin state and hide buttons from user
+borrow/give back button for users (not for admin) 
+
+replace all the cout with return and concatenate big string
+
+backup before merging 
+
+			//add reserve function inside article
+			//	and an array of strings for people on the waiting list
+
+			//get ready to use user class and reserve/borrow... boolean (useful for ifs)
+			// for the moment do if(1) and add a comment saying "check if user alowed to reserve" / ""check if user allowed to borrow..."
+			
