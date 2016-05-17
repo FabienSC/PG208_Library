@@ -46,12 +46,12 @@ int managedStringToInt(String^ inputString)
 	return outputInt;
 }
 
-String ^ intToManagedString(int inputInt)
+String^ intToManagedString(int inputInt)
 {
 	return "" + inputInt;
 }
 
-String ^ charToManagedString(char* inputChar)
+String^ charToManagedString(char* inputChar)
 {
 	return gcnew String(inputChar);
 }
@@ -63,7 +63,7 @@ string charToString(char* inputChar)
 }
 
 
-String ^ stringToManagedString(string inputString)
+String^ stringToManagedString(string inputString)
 {
 	return charToManagedString(stringToChar(inputString.c_str()));
 }

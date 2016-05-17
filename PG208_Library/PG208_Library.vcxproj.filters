@@ -1,47 +1,104 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Article.cpp" />
-    <ClCompile Include="AssemblyInfo.cpp" />
-    <ClCompile Include="conversion.cpp" />
-    <ClCompile Include="FormEditArticle.cpp" />
-    <ClCompile Include="Magazine.cpp" />
-    <ClCompile Include="DigitalRes.cpp" />
-    <ClCompile Include="Book.cpp" />
-    <ClCompile Include="CD.cpp" />
-    <ClCompile Include="cipher.cpp" />
-    <ClCompile Include="video.cpp" />
-    <ClCompile Include="FormHome.cpp" />
-    <ClCompile Include="FormNewArticle.cpp" />
-    <ClCompile Include="FormNewUser.cpp" />
-    <ClCompile Include="Library.cpp" />
     <ClCompile Include="PG208_Library.cpp" />
-    <ClCompile Include="popups.cpp" />
-    <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="User.cpp" />
+    <ClCompile Include="Article.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Book.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="CD.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="cipher.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="conversion.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="DigitalRes.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="AssemblyInfo.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="FormEditArticle.cpp">
+      <Filter>Forms</Filter>
+    </ClCompile>
+    <ClCompile Include="FormHome.cpp">
+      <Filter>Forms</Filter>
+    </ClCompile>
+    <ClCompile Include="FormNewArticle.cpp">
+      <Filter>Forms</Filter>
+    </ClCompile>
+    <ClCompile Include="FormNewUser.cpp">
+      <Filter>Forms</Filter>
+    </ClCompile>
+    <ClCompile Include="video.cpp">
+      <Filter>Forms</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Forms</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>Forms</Filter>
+    </ClCompile>
+    <ClCompile Include="popups.cpp">
+      <Filter>Forms</Filter>
+    </ClCompile>
+    <ClCompile Include="Magazine.cpp">
+      <Filter>Forms</Filter>
+    </ClCompile>
+    <ClCompile Include="Library.cpp">
+      <Filter>Forms</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Article.h" />
-    <ClInclude Include="conversion.h" />
     <ClInclude Include="FormBorrowArticle.h" />
-    <ClInclude Include="Magazine.h" />
-    <ClInclude Include="DigitalRes.h" />
-    <ClInclude Include="Book.h" />
-    <ClInclude Include="CD.h" />
-    <ClInclude Include="cipher.h" />
-    <ClInclude Include="video.h" />
     <ClInclude Include="FormHomeAdmin.h" />
     <ClInclude Include="FormLogOn.h" />
     <ClInclude Include="FormNewArticle.h" />
     <ClInclude Include="FormNewUser.h" />
-    <ClInclude Include="Library.h" />
-    <ClInclude Include="popups.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="User.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="app.rc" />
+    <ClInclude Include="Article.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Book.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="CD.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="cipher.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="conversion.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="DigitalRes.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="video.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="popups.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Magazine.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Library.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Other</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormBorrowArticle.resx" />
@@ -51,9 +108,34 @@
     <EmbeddedResource Include="FormNewUser.resx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.ico" />
-    <None Include="Article.datasource" />
     <None Include="ReadMe.txt" />
-    <None Include="ClassDiagram1.cd" />
+    <None Include="app.ico">
+      <Filter>Other</Filter>
+    </None>
+    <None Include="ClassDiagram1.cd">
+      <Filter>Other</Filter>
+    </None>
+    <None Include="Article.datasource">
+      <Filter>Other</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Includes">
+      <UniqueIdentifier>{67058ca2-fa84-4115-80fd-38190436319f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{0327ba33-0edc-49d2-96a2-6a0dc3ca28b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Other">
+      <UniqueIdentifier>{da525e1e-744f-4c88-bd14-672a6abd40c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Forms">
+      <UniqueIdentifier>{1c97949c-85fe-47b9-ad4e-ee6efc209113}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="app.rc">
+      <Filter>Other</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

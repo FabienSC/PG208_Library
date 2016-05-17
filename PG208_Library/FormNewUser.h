@@ -1,7 +1,8 @@
 #pragma once
 #include "stdafx.h"
 
-namespace PG208_Library {
+namespace PG208_Library
+{
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -46,8 +47,6 @@ namespace PG208_Library {
 			 System::Windows::Forms::TextBox^  textBoxUsername;
 			 System::Windows::Forms::Button^  buttonRegister;
 	private: System::Windows::Forms::CheckBox^  checkBoxAdmin;
-
-
 
 
 			 /// <summary>
@@ -149,45 +148,33 @@ namespace PG208_Library {
 				 this->Text = L"FormNewUser";
 				 this->ResumeLayout(false);
 				 this->PerformLayout();
-
 			 }
 #pragma endregion
 	private: System::Void buttonRegister_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
-				 String ^ strUsername = textBoxUsername->Text;//typed in username
-				 String ^ strPassword = textBoxPassword->Text;//typed in password
+				 String^ strUsername = textBoxUsername->Text;//typed in username
+				 String^ strPassword = textBoxPassword->Text;
 
-				 char *enteredUsername = (char*)Marshal::StringToHGlobalAnsi(strUsername).ToPointer();
-				 strUsername = FILEPATH_USERS + strUsername + ".txt";//change username to filepath
-				 char *userFilePath = (char*)Marshal::StringToHGlobalAnsi(strUsername).ToPointer();//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
-				 char *enteredPassword = (char*)Marshal::StringToHGlobalAnsi(strPassword).ToPointer();
+				 String^ strFilePath = FILEPATH_USERS + strUsername + ".txt";//change username to filepath
 
-				 struct stat buffer;
-				 if(stat (userFilePath, &buffer) == 0)//If username doesn't already exist
-					popup("Epic Fail!","Username already exists!");
-				 else
-				 {
-					 int sizeUsername = strlen(enteredUsername);
-					 int sizePassword = strlen(enteredPassword);
+				 if(File::Exists(strFilePath))
+				 {popup("3pic Fa1L", "Username already chosen");return;}
 
-					 if((sizeUsername > 0) && (sizePassword > 3))
-					 {
-						 char* encryptedPassword = encrypt(enteredUsername,enteredPassword);
+				 if(strUsername->Length < MIN_USERNAME_SIZE)//username too short
+				 {popup("3pic Fa1L", "Username too short.");return;}
 
-						 ofstream myfile;
-						 myfile.open (userFilePath);
-						 myfile << encryptedPassword << endl;
-						 myfile << this->checkBoxAdmin->Checked << endl;
-						 myfile.close();
-						 popup("Success", "New user registered.");
-						 this->Close();
-					 }
-					 else
-					 {
-						 popup("3P1C FA1L L0LZ", "Username must contain at least one character.\nPassword must contain at least 4 characters.");
-					 }
-				 }
+				 if(strPassword->Length < MIN_PASSWORD_SIZE)//username too short
+				 {popup("3pic Fa1L", "Password too short.");return;}
 
+				 User^ newUser = gcnew User();
+				 
+				 newUser->setUsername(strUsername);
+				 newUser->setEncryptedPassword(charToManagedString(encrypt(managedStringToChar(strUsername), managedStringToChar(strPassword))));
+				 newUser->setAdminStatus(this->checkBoxAdmin->Checked);
+				 newUser->save();
+
+				 popup("Success", "New user registered.");
+				 this->Close();
 			 }
 	};
 }

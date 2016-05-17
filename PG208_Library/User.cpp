@@ -6,6 +6,7 @@ User::User(void)
 {
 	borrowedArticles = gcnew array< int >(BORROW_LIMIT);//0 isn't allowed => no article borrowed/reserved
 	reservedArticles = gcnew array< int >(BORROW_LIMIT);
+	isAdmin = false;
 	for (int i = 0 ; i < BORROW_LIMIT ; i++)
 	{
 		borrowedArticles[i] = 0;
@@ -19,6 +20,7 @@ User::User(String^ enteredUsername)//load data from this user
 {
 	borrowedArticles = gcnew array< Int32 >(BORROW_LIMIT);//0 isn't allowed => no article borrowed/reserved
 	reservedArticles = gcnew array< Int32 >(BORROW_LIMIT);
+	isAdmin = false;
 	for (int i = 0 ; i < BORROW_LIMIT ; i++)
 	{
 		borrowedArticles[i] = 0;
@@ -28,6 +30,16 @@ User::User(String^ enteredUsername)//load data from this user
 	encryptedPassword = "";
 	load(enteredUsername);
 }
+
+
+
+	bool	User::getAdminStatus()
+	{return isAdmin;}
+
+
+	void	User::setAdminStatus(bool newAdminStatus)
+	{isAdmin = newAdminStatus;}
+
 
 bool User::canBorrow(int articleID)
 {
@@ -197,6 +209,8 @@ bool	User::load(String^ enteredUsername)
 		{
 
 			encryptedPassword = readData(sr);
+			isAdmin = managedStringToInt(readData(sr));
+
 			for(int i = 0; i < BORROW_LIMIT; i++)
 			{
 				borrowedArticles[i] = managedStringToInt(readData(sr));
@@ -227,6 +241,8 @@ bool	User::save()
 	try
 	{
 		AddLine( fs, encryptedPassword );
+		AddLine( fs, intToManagedString(isAdmin) );
+
 		for(int i = 0; i < BORROW_LIMIT; i++)
 		{
 			AddLine( fs, intToManagedString(borrowedArticles[i] ));
