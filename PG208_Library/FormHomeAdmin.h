@@ -19,13 +19,13 @@ namespace PG208_Library
 	public ref class FormHomeAdmin : public System::Windows::Forms::Form
 	{
 	public:
-		FormHomeAdmin(char* username, bool userIsAdmin)//username and status passed in 
+		FormHomeAdmin(String^ username, bool userIsAdmin)//username and status passed in 
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 
-			this->labelUsername->Text = charToManagedString(username);
+			this->labelUsername->Text = username;
 
 			listArticleSize = 2;
 			listArticles = initArticleList();

@@ -90,7 +90,7 @@ namespace PG208_Library {
 				 this->buttonRegister->TabIndex = 0;
 				 this->buttonRegister->Text = L"Log on";
 				 this->buttonRegister->UseVisualStyleBackColor = false;
-				 this->buttonRegister->Click += gcnew System::EventHandler(this, &FormLogOn::button1_Click);
+				 this->buttonRegister->Click += gcnew System::EventHandler(this, &FormLogOn::buttonRegister_Click);
 				 // 
 				 // textBoxUsername
 				 // 
@@ -194,41 +194,33 @@ namespace PG208_Library {
 			 }
 
 #pragma endregion
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)//login
+	private: System::Void buttonRegister_Click(System::Object^  sender, System::EventArgs^  e)//login
 			 {
-				 String ^ strUsername = textBoxUsername->Text;//typed in username
-				 String ^ strPassword = textBoxPassword->Text;//typed in password
-				 char *enteredUsername = managedStringToChar(strUsername);//managed string to char array
-				 strUsername = FILEPATH_USERS + strUsername + ".txt";//change username to filepath
-				 char *userFilePath = managedStringToChar(strUsername);//Marshal::FreeHGlobal((IntPtr)name); // add at the end to free up memory?
+				 String^ strUsername = textBoxUsername->Text;//typed in username
+				 String^ strPassword = textBoxPassword->Text;//typed in password
+
+				 User ^ newUser = gcnew User();
+				 if(newUser->load(strUsername) == false)//if user's file doesn't exist
+				 {
+					 popup("Login Failed","No record exists for that user, verify username.");
+					 return;
+				 }
+
 				 char *enteredPassword = managedStringToChar(strPassword);
+				 char* decryptedPassword = decrypt(managedStringToChar(newUser->getUsername()), managedStringToChar(newUser->getEncryptedPassword()));
 
-				 ifstream myFile(userFilePath);
-				 string line;
-				 getline( myFile, line );//encrypted password line
-				 int sizePassword = line.size();
-				 char* filePassword = stringToChar(line);
-
-				 char* decryptedPassword = decrypt(enteredUsername,filePassword);
-
-				 getline( myFile, line );//Admin status line
-				 bool userIsAdmin = stringToInt(line);
-
-				 if((strcmp(enteredPassword,decryptedPassword) == 0) && (sizePassword > 3))//if username and password match AND password on file is longer than 3
+				 if((strcmp(enteredPassword,decryptedPassword) == 0) && (strPassword->Length >= MIN_PASSWORD_SIZE))//if username and password match AND password on file is longer than 3
 				 {
 				//	 popup("Login Successful", "Welcome!");
 					 this->Hide();
-				//	 if(userIsAdmin)
-				//	 {
-					 FormHomeAdmin ^ FHomeAdmin = gcnew FormHomeAdmin(enteredUsername, userIsAdmin); //FormHomeAdmin defined in FormHomeAdmin.h
+
+					 FormHomeAdmin ^ FHomeAdmin = gcnew FormHomeAdmin(strUsername, newUser->getAdminStatus()); //FormHomeAdmin defined in FormHomeAdmin.h
 					 FHomeAdmin->ShowDialog();
-				//	 }
-				//	 else
-				//		 popup("Oops","We don't want your kind around here");
+
 					 this->Show();
 				 }
 				 else//invalid username/password
-					 popup("Login Failed", "Invalid username or password. If problem persists, contact the 2 idiots who made this program.");
+					 popup("Login Failed", "Invalid password. If problem persists, contact the 2 idiots who made this program.");
 
 			 }
 

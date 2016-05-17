@@ -11,6 +11,9 @@ using namespace System::IO;
 using namespace System::Text;
 
 
+#define MIN_PASSWORD_SIZE	4		//Minimum
+#define MIN_USERNAME_SIZE	4		//Minimum
+
 //ID "0000" is reserved
 #define BASE_MIN_ID			1000	//Min
 #define BASE_BOOK_ID		1000	//1000~2999 reserved for books
@@ -43,6 +46,7 @@ using namespace System::Text;
 #include "conversion.h"
 #include "cipher.h"
 #include "popups.h"
+#include "User.h"
 #include "Article.h"
 #include "Book.h"
 #include "Magazine.h"

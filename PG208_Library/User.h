@@ -10,6 +10,9 @@ public:
 
 	String^	getEncryptedPassword();
 	void	setEncryptedPassword(String^);
+	
+	bool	getAdminStatus();
+	void	setAdminStatus(bool);
 
 	bool	canBorrow(int);//true if user can borrow that article
 	bool	canReturn(int);
@@ -27,6 +30,7 @@ public:
 private:
 	String^ username;
 	String^ encryptedPassword;
+	bool	isAdmin;//true if user is an admin
 	array<int>^ borrowedArticles;//array of article IDs
 	array<int>^ reservedArticles;//array of article IDs
 };
