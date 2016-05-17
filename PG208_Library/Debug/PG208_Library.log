@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 ﻿Build started 17-May-16 12:22:01 AM.
      1>Project "C:\Users\Fabien\Documents\Git\PG208_Library\PG208_Library.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
+=======
+﻿Build started 17/05/2016 00:47:26.
+     1>Project "C:\projetC++biblio\git_alex\PG208_Library\PG208_Library.vcxproj" on node 2 (rebuild target(s)).
+     1>_PrepareForClean:
+         Deleting file "Debug\PG208_Library.lastbuildstate".
+       InitializeBuildStatus:
+>>>>>>> Origin/master
          Touching "Debug\PG208_Library.unsuccessfulbuild".
        GenerateTargetFrameworkMonikerAttribute:
        Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
@@ -49,4 +57,8 @@
 
 Build succeeded.
 
+<<<<<<< HEAD
 Time Elapsed 00:00:05.97
+=======
+Time Elapsed 00:00:04.79
+>>>>>>> Origin/master

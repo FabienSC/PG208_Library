@@ -111,23 +111,23 @@ namespace PG208_Library {
 				 // radioButton1
 				 // 
 				 this->radioButton1->AutoSize = true;
-				 this->radioButton1->Location = System::Drawing::Point(161, 123);
+				 this->radioButton1->Location = System::Drawing::Point(67, 136);
 				 this->radioButton1->Name = L"radioButton1";
-				 this->radioButton1->Size = System::Drawing::Size(67, 21);
+				 this->radioButton1->Size = System::Drawing::Size(72, 21);
 				 this->radioButton1->TabIndex = 1;
 				 this->radioButton1->TabStop = true;
-				 this->radioButton1->Text = L"return";
+				 this->radioButton1->Text = L"borrow";
 				 this->radioButton1->UseVisualStyleBackColor = true;
 				 // 
 				 // radioButton2
 				 // 
 				 this->radioButton2->AutoSize = true;
-				 this->radioButton2->Location = System::Drawing::Point(56, 123);
+				 this->radioButton2->Location = System::Drawing::Point(145, 136);
 				 this->radioButton2->Name = L"radioButton2";
-				 this->radioButton2->Size = System::Drawing::Size(72, 21);
+				 this->radioButton2->Size = System::Drawing::Size(67, 21);
 				 this->radioButton2->TabIndex = 2;
 				 this->radioButton2->TabStop = true;
-				 this->radioButton2->Text = L"borrow";
+				 this->radioButton2->Text = L"return";
 				 this->radioButton2->UseVisualStyleBackColor = true;
 				 this->radioButton2->CheckedChanged += gcnew System::EventHandler(this, &FormEditArticle::radioButton2_CheckedChanged);
 				 // 
@@ -201,14 +201,24 @@ namespace PG208_Library {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
-				 if((this->radioButton1->Checked || this->radioButton2->Checked) == true)
+				 if(this->radioButton1->Checked == true) 
 				 {
-					popup("Error", "Functions not yet finished with... SOON NIGGA!");
-					this->Close();
+					 /*if (selectedArticle->_reservable)
+					 {
+						 selectedArticle->borrowArticle();
+					 }*/
+
+					 popup("Error", "Functions not yet finished with... SOON NIGGA!");
+					 this->Close();
+				 }
+				 else if(this->radioButton2->Checked == true)
+				 {
+					 popup("Error", "Functions not yet finished with... SOON NIGGA!");
+					 this->Close();
 				 }
 				 else
 				 {
-					popup("EPIC FAIL", "Select borrow or return. Otherwise, use cancel to leave");
+					 popup("EPIC FAIL", "Select borrow or return. Otherwise, use cancel to leave");
 				 }
 			 }
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) 
