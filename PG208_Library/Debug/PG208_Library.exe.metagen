@@ -31,7 +31,7 @@ Class PG208_Library.FormNewUser: AutoLayout, AnsiClass, Class, Public, BeforeFie
     Void .ctor(Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class PG208_Library.FormEditArticle: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Int32, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class PG208_Library.FormNewArticle: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(Int32, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
