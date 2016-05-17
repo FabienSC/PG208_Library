@@ -45,37 +45,48 @@ void Article::setReleaseDate(int newReleaseDate)
 
 String^ Article::getAvailability()
 {
-	if(_qtyOwned > _qtyLent)
+	if(_quantity > 0)
 		return "Available";
 	else
 		return "Unavailable";
 }
 
-bool Article::borrowArticle()//later add char* username as parameter
+bool Article::borrowArticle(/*user^ newUser*/)//later add char* username as parameter
 {
-	if (_qtyOwned > _qtyLent)
+	if (_quantity > 0)
 	{
-		_qtyLent++;//borrow/lend a book
-		return 0;//ok
+		if (_reservation1 == "NA" || newUser.getName() == _reservation1)
+		{
+			_quantity--;//borrow/lend a book
+			/*newUser.borrowedArticles(getID()); */
+			return 1;//ok
+		}
+		else
+		{
+			return 0; //article is reserved, cannot lend
+		}
 	}
 	else//article isn't available
-		return 1;//error, article isn't available
+	{
+		reserveArticle(/*newUser.getName()*/);
+		return 0;//error, article isn't available
+	}
 }
 
-bool Article::returnArticle()//later add char* username as parameter
+bool Article::returnArticle(User^  newUser)//later add char* username as parameter
 {
-	if(_qtyLent > 0)
+	if (/*newUser.borrowedArticles[0] == getID() || newUser.borrowedArticles[1] == getID || newUser.borrowedArticles[2] == getID*/)
 	{
-		_qtyLent--;
-		return 0;//ok
+		_quantity++;
+		return 1;//ok
 	}
-	else
-		return 1;//how can you return what has never left?
+	else 
+		return 0; // user does not have the article, he cannot give it back...
 }
 
 void Article::reserveArticle(String^  newUsername)
 {
-	if(_qtyOwned == 0)
+	if(_quantity == 0)
 	{
 		//if (_reservable)
 		//{
@@ -83,7 +94,7 @@ void Article::reserveArticle(String^  newUsername)
 			{
 				_reservation1 = newUsername;
 				_isReserved = 1;
-				//add article to user reservation list
+				/*newUsername*/
 			}
 
 	/*		else if (_reservation2 == "NA")

@@ -43,6 +43,7 @@ protected:
     int		 _releaseDate;//YYYYMMDD
     int		 _qtyOwned;//quantity owned
     int		 _qtyLent;//quantity available
+	int		_quantity;
 	//String ^ _reservationList[3];				can't do it in array... ?
 	String ^ _reservation1;
 //	String ^ _reservation2;
