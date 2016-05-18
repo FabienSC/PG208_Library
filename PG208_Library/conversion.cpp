@@ -100,3 +100,29 @@ String^ readData(StreamReader^ sr)
 	}
 	return returnString;
 }
+
+int getNumberOfLines(String^ str)
+{
+	int numberOfElements = str->Length;//number of characters in the string
+	int numLines = 0;
+	char* charsInStr = managedStringToChar(str);
+	bool validLine = false;
+
+	/*if(numberOfElements > 0)
+	numLines++;*/
+
+	for(int i = 0; i < numberOfElements; i++)
+	{
+		char c = charsInStr[i];
+
+		if((c != '\n') && (c != '\r'))
+			validLine = true;
+
+		if((validLine == true)&&((c == '\n')||(i == (numberOfElements-1))))
+		{
+			numLines++;
+			validLine = false;
+		}
+	}
+	return numLines;
+}

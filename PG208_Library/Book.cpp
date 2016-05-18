@@ -8,7 +8,7 @@ Book::Book()
 	_publisher = "NA";
 	_synopsis = "NA";//"nothing special about this book so far...";//too big, causes a crash
 	_pages = 0;
-	_isMagazine = 0;
+	//_isMagazine = 0;
 }
 
 Book::~Book()
@@ -37,7 +37,7 @@ void Book::setPages(int newPages)
 {_pages = newPages;}
 
 
-String^ Book::getIsMagazine()
+/*String^ Book::getIsMagazine()
 {if (_isMagazine)
 return"Magazine";
 else
@@ -55,7 +55,7 @@ void Book::setIsMagazine(String^ newIsMagazine)
 		_isMagazine = 0;
 	else
 		cout << "error, please specify type Magazine or Book" << endl;
-}
+}*/
 
 
 String^ Book::getSummary()
@@ -81,10 +81,10 @@ cout << "----------------------------------------" << endl;
 bool Book::load(int fileID)
 {
 	String ^ strIDFilePath;
-	if(fileID < BASE_MAGAZINE_ID)
-		strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
-	else
-		strIDFilePath = FILEPATH_MAGAZINE + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
+//	if(fileID < BASE_MAGAZINE_ID)
+	strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
+//	else
+//		strIDFilePath = FILEPATH_MAGAZINE + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
 
 
 	if(File::Exists( strIDFilePath ))
@@ -121,9 +121,9 @@ bool Book::load(int fileID)
 bool	Book::save()
 {
 	String ^ strIDFilePath;
-	if (_isMagazine)
+	/*if (_isMagazine)
 		strIDFilePath = FILEPATH_MAGAZINE + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
-	else
+	else*/
 		strIDFilePath = FILEPATH_BOOK + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
 
 	FileStream^ fs = File::Create( strIDFilePath );

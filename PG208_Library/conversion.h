@@ -17,3 +17,4 @@ string  managedStringToString(String ^);
 
 void	AddLine( FileStream^ , String^ );
 String^ readData(StreamReader^);
+int		getNumberOfLines(String^);//returns the number of lines that have text in a string
