@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="FormCancelReservations.cpp" />
+    <ClCompile Include="FormEditArticle.cpp" />
+    <ClCompile Include="FormHome.cpp" />
+    <ClCompile Include="FormNewArticle.cpp" />
+    <ClCompile Include="FormNewUser.cpp" />
     <ClCompile Include="PG208_Library.cpp" />
     <ClCompile Include="Article.cpp">
       <Filter>Sources</Filter>
@@ -20,31 +26,10 @@
     <ClCompile Include="DigitalRes.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="AssemblyInfo.cpp">
-      <Filter>Other</Filter>
-    </ClCompile>
-    <ClCompile Include="FormEditArticle.cpp">
-      <Filter>Forms</Filter>
-    </ClCompile>
-    <ClCompile Include="FormHome.cpp">
-      <Filter>Forms</Filter>
-    </ClCompile>
-    <ClCompile Include="FormNewArticle.cpp">
-      <Filter>Forms</Filter>
-    </ClCompile>
-    <ClCompile Include="FormNewUser.cpp">
-      <Filter>Forms</Filter>
-    </ClCompile>
     <ClCompile Include="video.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="Library.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Magazine.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="popups.cpp">
+    <ClCompile Include="search.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
@@ -53,22 +38,24 @@
     <ClCompile Include="User.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="FormCancelReservations.cpp" />
-    <ClCompile Include="search.cpp">
+    <ClCompile Include="popups.cpp">
       <Filter>Sources</Filter>
-=======
-    <ClCompile Include="FormCancelReservations.cpp">
-      <Filter>Forms</Filter>
->>>>>>> Origin/master
+    </ClCompile>
+    <ClCompile Include="Magazine.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Library.cpp">
+      <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FormBorrowArticle.h" />
+    <ClInclude Include="FormCancelReservations.h" />
     <ClInclude Include="FormHomeAdmin.h" />
     <ClInclude Include="FormLogOn.h" />
     <ClInclude Include="FormNewArticle.h" />
     <ClInclude Include="FormNewUser.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Article.h">
       <Filter>Includes</Filter>
     </ClInclude>
@@ -96,6 +83,9 @@
     <ClInclude Include="stdafx.h">
       <Filter>Includes</Filter>
     </ClInclude>
+    <ClInclude Include="search.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
     <ClInclude Include="popups.h">
       <Filter>Includes</Filter>
     </ClInclude>
@@ -105,49 +95,30 @@
     <ClInclude Include="Library.h">
       <Filter>Includes</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Other</Filter>
-    </ClInclude>
-    <ClInclude Include="FormCancelReservations.h" />
-    <ClInclude Include="search.h">
-      <Filter>Includes</Filter>
-    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormBorrowArticle.resx" />
+    <EmbeddedResource Include="FormCancelReservations.resx" />
     <EmbeddedResource Include="FormHomeAdmin.resx" />
     <EmbeddedResource Include="FormLogOn.resX" />
     <EmbeddedResource Include="FormNewArticle.resx" />
     <EmbeddedResource Include="FormNewUser.resx" />
-    <EmbeddedResource Include="FormCancelReservations.resx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ReadMe.txt" />
-    <None Include="app.ico">
-      <Filter>Other</Filter>
-    </None>
-    <None Include="Article.datasource">
-      <Filter>Other</Filter>
-    </None>
+    <None Include="app.ico" />
+    <None Include="Article.datasource" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Includes">
-      <UniqueIdentifier>{67058ca2-fa84-4115-80fd-38190436319f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sources">
-      <UniqueIdentifier>{0327ba33-0edc-49d2-96a2-6a0dc3ca28b1}</UniqueIdentifier>
+      <UniqueIdentifier>{b633f0d6-6436-4ea0-9060-52c13b4a864d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Other">
-      <UniqueIdentifier>{da525e1e-744f-4c88-bd14-672a6abd40c8}</UniqueIdentifier>
+    <Filter Include="Includes">
+      <UniqueIdentifier>{6c5728cc-e40e-4ceb-b5ec-2a7602f5402f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Forms">
-      <UniqueIdentifier>{1c97949c-85fe-47b9-ad4e-ee6efc209113}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="app.rc">
-      <Filter>Other</Filter>
-    </ResourceCompile>
   </ItemGroup>
 </Project>

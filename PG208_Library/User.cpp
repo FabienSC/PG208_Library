@@ -18,8 +18,8 @@ User::User(void)
 
 User::User(String^ enteredUsername)//load data from this user
 {
-	borrowedArticles = gcnew array< Int32 >(BORROW_LIMIT);//0 isn't allowed => no article borrowed/reserved
-	reservedArticles = gcnew array< Int32 >(BORROW_LIMIT);
+	borrowedArticles = gcnew array< int >(BORROW_LIMIT);//0 isn't allowed => no article borrowed/reserved
+	reservedArticles = gcnew array< int >(BORROW_LIMIT);
 	isAdmin = false;
 	for (int i = 0 ; i < BORROW_LIMIT ; i++)
 	{

@@ -31,11 +31,12 @@ public:
 	
 	void		deleteFile();//delete file
 
+
 //	bool		loadFromFile(const char* fileName);
 //	bool		saveToFile(const char* fileName, Article myArticle);	
 //	bool		saveToFile(const char* fileName);
 
-	//virtual bool	load(int fileID);//
+	virtual bool	save();//
 
 protected:
     int		 _ID;

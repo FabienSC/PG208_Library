@@ -219,21 +219,62 @@ namespace PG208_Library {
 			 {
 				 if(this->radioButton1->Checked == true) //borrow button
 				 {
-					selectedArticle->borrowArticle(user->getUsername());
-					popup("borrow succesful", "You are now responsible for this article!");
-					this->Close();
+					 int fileID = selectedArticle->getID();
+					 //newBook->borrowArticle(user->getUsername());
+					 //selectedArticle->save();
+
+					 if(fileID >= BASE_BOOK_ID && fileID < BASE_MAGAZINE_ID) //Book IDs
+					 {
+						 Book ^ newBook = gcnew Book;
+						 newBook->load(fileID);
+						 newBook->borrowArticle(user->getUsername());
+						 newBook->save();
+					 }
+					 else if(fileID >= BASE_MAGAZINE_ID && fileID < BASE_CD_ID) //Magazine IDs
+					 {
+						 Magazine ^ newMagazine = gcnew Magazine;
+						 newMagazine->load(fileID);
+						 
+					 }
+					 else if(fileID >= BASE_CD_ID && fileID < BASE_DVD_ID) //CD IDs
+					 {
+						 CD ^ newCD = gcnew CD;
+						 newCD->load(fileID);
+						 
+					 }
+					 else if(fileID >= BASE_DVD_ID && fileID < BASE_VHS_ID) //DVD IDs
+					 {
+						 Video ^ newDVD = gcnew Video;
+						 newDVD->load(fileID);
+						
+					 }
+					 else if(fileID >= BASE_VHS_ID && fileID < BASE_DIGITAL_ID)//VHS IDs
+					 {
+						 Video ^ newVHS = gcnew Video;
+						 newVHS->load(fileID);
+						 
+					 }
+					 else if(fileID >= BASE_DIGITAL_ID && fileID < BASE_MAX_ID)//digital ressource IDs
+					 {
+						 DigitalRes ^ newDigitalRes = gcnew DigitalRes;
+						 newDigitalRes->load(fileID);
+
+					 }
+
+					 popup("borrow succesful", "You are now responsible for this article!");
+					 this->Close();
 				 }
 				 else if(this->radioButton2->Checked == true) //return button
 				 {
 					 if (user->canReturn(selectedArticle->getID()))
 					 {
-						selectedArticle->returnArticle(user->getUsername());
-						popup("return succesful", "You are no longer responsible for this article!");
-						this->Close();
+						 selectedArticle->returnArticle(user->getUsername());
+						 popup("return succesful", "You are no longer responsible for this article!");
+						 this->Close();
 					 }
 					 else
 					 {
-						popup("WOOPS", "Cannot return this article...");
+						 popup("WOOPS", "Cannot return this article...");
 					 }
 				 }
 				 else												// no button selected
@@ -259,5 +300,5 @@ namespace PG208_Library {
 			 }
 	private: System::Void FormEditArticle_Load(System::Object^  sender, System::EventArgs^  e) {
 			 }
-};
+	};
 }

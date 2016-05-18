@@ -18,7 +18,8 @@ namespace PG208_Library {
 		FormCancelReservations(String^ userName)
 		{
 			InitializeComponent();
-
+			
+			 listIDsALL = gcnew array< int >(RESERVE_LIMIT);
 			borrower = gcnew User(userName);
 			this->buttonBorrow->Visible = false; //only display this button if borrowing is possible
 			updateBoxAll();
@@ -250,6 +251,7 @@ private: System::Void listBoxReservations_SelectedIndexChanged(System::Object^  
 			 selectedArticle = gcnew Article;
 			 this->listBoxReservations->Items->Clear(); //init text box
 			 int cpt = 0;
+
 
 			 for(int i = 0; i < RESERVE_LIMIT; i++) //write reservation list to box
 			 {

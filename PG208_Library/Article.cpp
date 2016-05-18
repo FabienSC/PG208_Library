@@ -75,16 +75,16 @@ bool Article::borrowArticle(String^ newUser)
 	//check reservation list//////
 	for (int i = 0; i < ARTICLE_RESERVE_LIMIT; i++)
 	{
-		if (_reservationList[i] != "NA") 
+		if (String::Compare(_reservationList[i], "NA") != 0) //if strings are different
 		{
 			reservations++;
 		}
-		if (_reservationList[i] == borrower->getUsername())
+		if (String::Compare(_reservationList[i], borrower->getUsername()) == 0)//if strings are the same
 		{
 			userReservePriority = i;
 		}
 	}
-	
+
 	if(borrower->canBorrow(_ID))
 	{
 		if (userReservePriority == -1) // user has not reserved
@@ -92,22 +92,30 @@ bool Article::borrowArticle(String^ newUser)
 			if (reservations < _quantity)// enough articles to borrow one
 			{	
 				borrower->borrowArticle(_ID);
+				borrower->save();
 				_quantity --;
 				_qtyLent ++;
-				return 1;
+				return 1;//success
 			}
 			else //more reservations than articles available
 			{
 				popup("Sorry", "The article is not available, accessing reservation list...");
-				reserveArticle(borrower->getUsername());
-				return 0;
+				if(borrower->canReserve(_ID))
+				{
+					borrower->reserveArticle(_ID);
+					borrower->save();
+					reserveArticle(borrower->getUsername());
+				}
+				return 0;//fail
 			}
 		}
 		else // user has reserved
 		{
 			if ((userReservePriority + 1)< _quantity) // user has enough priority to borrow
 			{
+				//check
 				borrower->borrowArticle(_ID);
+				borrower->save();
 				_quantity--;
 				_qtyLent++;
 				//shift reservation list
@@ -135,10 +143,11 @@ bool Article::borrowArticle(String^ newUser)
 bool Article::returnArticle(String^ newUser)//later add char* username as parameter
 {
 	User^ borrower = gcnew User(newUser);
-	
+
 	if(borrower->canReturn(_ID))
 	{
 		borrower->returnArticle(_ID);
+		borrower->save();
 		_quantity++;
 		_qtyLent--;
 		return 1;
@@ -155,50 +164,38 @@ bool Article::reserveArticle(String^  newUser)
 	User^ reserver = gcnew User(newUser);
 	int reservations = 0;
 
-	if (_reservationList[5] != "NA") //check if reservable
+	if (String::Compare(_reservationList[ARTICLE_RESERVE_LIMIT-1], "NA") == 0) //check if the last spot is free
 	{
-		_isReservable = 0;
-	}
-
-	if (_isReservable == 1)
-	{
-		if(reserver->canReserve(_ID)) 
+		if(reserver->canReserve(_ID)) //if user can reserve this article
 		{
 			for (int i = 0; i < ARTICLE_RESERVE_LIMIT; i++) //check reservation list
 			{
-				if (_reservationList[i] != "NA") 
+				if (String::Compare(_reservationList[i], "NA") != 0) //if someone's username is written
 				{
 					reservations++;
 				}
-				if (_reservationList[i] == reserver->getUsername())
+				if (String::Compare(_reservationList[i], reserver->getUsername()) == 0)//if username is on the list already
 				{
 					popup("EPIC FAIL", "You are already on reservation list!");
 					return 0;
 				}
 			}
 
-			if (_isReservable == 0) //list full
-			{
-				popup("EPIC FAIL", "Reservation list is full!");
-				return 0;
-			}
-			else
-			{
 				_reservationList[reservations] = reserver->getUsername();
 				reserver->reserveArticle(_ID);
+				reserver->save();
 				popup("WELL DONE", "You are now on reservation list! You can cancel reservation if needed.");
 				return 1;
-			}
+			
 		}
 		else
 		{
-			popup("EPIC FAIL", "You can't reserve this article! Sorry...");
 			return 0;
 		}
 	}
 	else
 	{
-		popup("EPIC FAIL", "Article not available for reservation! Sorry...");
+		popup("EPIC FAIL", "Reservation list is full!");
 		return 0;
 	}
 }
@@ -207,7 +204,7 @@ bool Article::cancelReserveArticle(String^  newUser)
 {
 	User^ reserver = gcnew User(newUser);
 	int userReservePriority = -1;
-	
+
 	if(reserver->canCancel(_ID))
 	{
 		reserver->cancelReservation(_ID);
@@ -240,12 +237,12 @@ bool Article::cancelReserveArticle(String^  newUser)
 
 /*void Article::getData()
 {
-	cout << "--------------Info diplay ---------------" << endl;
+cout << "--------------Info diplay ---------------" << endl;
 
-	cout << "ID: " << getID() << endl;
-	cout << "Title: " << getTitle() << endl;
-	cout << "Release date: " << getReleaseDate() << endl;
-	cout << "Availability: " << getAvailability() << endl;	
+cout << "ID: " << getID() << endl;
+cout << "Title: " << getTitle() << endl;
+cout << "Release date: " << getReleaseDate() << endl;
+cout << "Availability: " << getAvailability() << endl;	
 
 }*/
 
@@ -277,69 +274,69 @@ return false;
 
 /*bool Article::saveToFile(const char* fileName, Article myArticle)
 {
-	ofstream FILE(fileName, ios::out);
-	if(FILE)
-	{
-		FILE << myArticle.getID() << endl;
-		FILE << myArticle.getTitle() << endl;
-		FILE << myArticle.getReleaseDate() << endl;
-		FILE << myArticle.getAvailability() << endl;
+ofstream FILE(fileName, ios::out);
+if(FILE)
+{
+FILE << myArticle.getID() << endl;
+FILE << myArticle.getTitle() << endl;
+FILE << myArticle.getReleaseDate() << endl;
+FILE << myArticle.getAvailability() << endl;
 
-		return true;
-	}
-	else
-		cerr << "Failed to open file!" << endl;
-	return false;
+return true;
+}
+else
+cerr << "Failed to open file!" << endl;
+return false;
 }*/
 
 
 /*bool Article::saveToFile(const char* fileName)
 {
-	int ID, releaseDate;
-	bool isAvailable;
-	String^ title;
+int ID, releaseDate;
+bool isAvailable;
+String^ title;
 
-	ofstream FILE(fileName, ios::out);
-	if(FILE)
-	{
-		cout << "Desired ID ? (1 to 2000 for PaperCopies, 2001 to 4000 for videos, 4001 to 5000 for CDs)" << endl ;
-		cin >> ID;
-		if ( (ID<1) || (ID>3000) )
-		{
-			while( (ID<1) || (ID>3000))
-			{
-				cout << "Please type an available ID\n";
-				cin >> ID;
-			}
-		}
-		FILE << ID << endl;
+ofstream FILE(fileName, ios::out);
+if(FILE)
+{
+cout << "Desired ID ? (1 to 2000 for PaperCopies, 2001 to 4000 for videos, 4001 to 5000 for CDs)" << endl ;
+cin >> ID;
+if ( (ID<1) || (ID>3000) )
+{
+while( (ID<1) || (ID>3000))
+{
+cout << "Please type an available ID\n";
+cin >> ID;
+}
+}
+FILE << ID << endl;
 
-		cout << "What is the title of your article?" << endl ;
-		cin.ignore();
-		getline(cin, title);
-		FILE << title << endl;
+cout << "What is the title of your article?" << endl ;
+cin.ignore();
+getline(cin, title);
+FILE << title << endl;
 
-		cout << "In what year was it released?" << endl ;
-		cin >> releaseDate;
-		if (releaseDate > 2016)
-		{
-			while(releaseDate > 2016);
-			{
-				cout << "Please type a possible release date\n";
-				cin >> releaseDate;
-			}
-		}
-		FILE << releaseDate << endl;
+cout << "In what year was it released?" << endl ;
+cin >> releaseDate;
+if (releaseDate > 2016)
+{
+while(releaseDate > 2016);
+{
+cout << "Please type a possible release date\n";
+cin >> releaseDate;
+}
+}
+FILE << releaseDate << endl;
 
-		cout << "Is this article available right now? (1:yes 0:no)" << endl ;
-		cin >> isAvailable;
-		FILE << isAvailable << endl;
+cout << "Is this article available right now? (1:yes 0:no)" << endl ;
+cin >> isAvailable;
+FILE << isAvailable << endl;
 
-		return true;
-	}
-	else
-		cerr << "Failed to open file!" << endl;
-	return false;
+return true;
+}
+else
+cerr << "Failed to open file!" << endl;
+return false;
 }*/
 
 
@@ -372,8 +369,8 @@ void Article::deleteFile()
 
 /*bool	Article::load(int fileID)//delete?
 {
-	popup("Error", "The article::load() function should never be called");
-	return false;
+popup("Error", "The article::load() function should never be called");
+return false;
 }*/
 
 
@@ -381,8 +378,14 @@ void Article::deleteFile()
 void Article::setQtyOwned(int newQuantity)
 {
 	if(newQuantity >= _qtyLent) //can't own 2 books but have 3 borrowed
-	_quantity = newQuantity;
+		_quantity = newQuantity;
 }
 
 int	Article::getQtyOwned()
 {return _quantity;}
+
+bool Article::save()
+{
+	popup("Error","Article->save() should never be executed");
+	return false;
+}

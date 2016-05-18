@@ -29,7 +29,7 @@ public:
 //    void 		getData();
 
 	bool		load(int);
-	bool		save();
+	virtual bool		save() new;
 
 //title, author, publisher, editor, number of pages
 

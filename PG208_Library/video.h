@@ -33,7 +33,7 @@ public:
 
    // void 		getData();
 	bool		load(int);
-	bool		save();
+	virtual bool		save() new;
 
 private:
     String^		_director;

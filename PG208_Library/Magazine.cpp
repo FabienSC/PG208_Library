@@ -93,6 +93,7 @@ bool Magazine::load(int fileID)
 
 bool Magazine::save()
 {
+	popup("cool","mag save");
 	String ^ strIDFilePath;
 
 	strIDFilePath = FILEPATH_MAGAZINE + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt

@@ -727,7 +727,7 @@ namespace PG208_Library
 							 countMagazines++;//to stop when all of the Magazines are found
 							 listArticleCount++;
 							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
-								 increaseListArticleSize();//increase Dynamic array size
+								listArticles = increaseListArticleSize();//increase Dynamic array size
 						 }
 						 else
 							 delete myMag;

@@ -41,7 +41,7 @@ void Book::setPages(int newPages)
 {if (_isMagazine)
 return"Magazine";
 else
-	return"Book";
+return"Book";
 }
 
 void Book::setIsMagazine(bool newIsMagazine)
@@ -49,12 +49,12 @@ void Book::setIsMagazine(bool newIsMagazine)
 
 void Book::setIsMagazine(String^ newIsMagazine)
 {
-	if (newIsMagazine == "Magazine")
-		_isMagazine = 1;
-	else if (newIsMagazine == "Book")
-		_isMagazine = 0;
-	else
-		cout << "error, please specify type Magazine or Book" << endl;
+if (newIsMagazine == "Magazine")
+_isMagazine = 1;
+else if (newIsMagazine == "Book")
+_isMagazine = 0;
+else
+cout << "error, please specify type Magazine or Book" << endl;
 }*/
 
 
@@ -81,10 +81,10 @@ cout << "----------------------------------------" << endl;
 bool Book::load(int fileID)
 {
 	String ^ strIDFilePath;
-//	if(fileID < BASE_MAGAZINE_ID)
+	//	if(fileID < BASE_MAGAZINE_ID)
 	strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
-//	else
-//		strIDFilePath = FILEPATH_MAGAZINE + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
+	//	else
+	//		strIDFilePath = FILEPATH_MAGAZINE + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
 
 
 	if(File::Exists( strIDFilePath ))
@@ -103,6 +103,11 @@ bool Book::load(int fileID)
 			_publisher = readData(sr);
 			_synopsis = readData(sr);
 			_pages = managedStringToInt(readData(sr));
+
+			for (int i = 0; i < ARTICLE_RESERVE_LIMIT; i++)
+			{
+				_reservationList[i] = readData(sr);
+			}
 		}
 		finally//make sure to close file
 		{
@@ -120,11 +125,12 @@ bool Book::load(int fileID)
 
 bool	Book::save()
 {
+	popup("cool","book save");
 	String ^ strIDFilePath;
 	/*if (_isMagazine)
-		strIDFilePath = FILEPATH_MAGAZINE + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
+	strIDFilePath = FILEPATH_MAGAZINE + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
 	else*/
-		strIDFilePath = FILEPATH_BOOK + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
+	strIDFilePath = FILEPATH_BOOK + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
 
 	FileStream^ fs = File::Create( strIDFilePath );
 	try
@@ -137,6 +143,10 @@ bool	Book::save()
 		AddLine( fs, _publisher );
 		AddLine( fs, _synopsis );
 		AddLine( fs, intToManagedString(_pages) );
+		for (int i = 0; i < ARTICLE_RESERVE_LIMIT; i++)
+		{
+			AddLine( fs, _reservationList[i] );
+		}
 	}
 	finally//make sure to close file
 	{
