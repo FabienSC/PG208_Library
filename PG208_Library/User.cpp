@@ -259,3 +259,10 @@ bool	User::save()
 
 	return true;//Save successful
 }
+
+int User::getBorrowed(int newIndex)
+{return borrowedArticles[newIndex];}
+
+
+int User::getReserved(int newIndex)
+{return reservedArticles[newIndex];}

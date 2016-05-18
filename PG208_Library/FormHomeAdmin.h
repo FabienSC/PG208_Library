@@ -19,12 +19,12 @@ namespace PG208_Library
 	public ref class FormHomeAdmin : public System::Windows::Forms::Form
 	{
 	public:
-		FormHomeAdmin(String^ username, bool userIsAdmin)//username and status passed in 
+		FormHomeAdmin(String^ user, bool userIsAdmin)//username and status passed in 
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
-
+			username = user; //username is stored and can be passed
 			this->labelUsername->Text = username;
 
 			listArticleSize = 2;
@@ -88,7 +88,7 @@ namespace PG208_Library
 		/// Required designer variable.
 		/// </summary>
 
-
+		String ^ username;
 		int listArticleSize;//Start off with 10 articles
 		array<Article ^>^ listArticles;//will point to a dynamic array of Articles henceforth refered to as "DynArray(TM)"
 		int listArticleCount;//number of articles in the list
@@ -180,7 +180,7 @@ namespace PG208_Library
 				 this->labelUsername->Size = System::Drawing::Size(50, 17);
 				 this->labelUsername->TabIndex = 2;
 				 this->labelUsername->Text = L"USER";
-				 // 
+				  // 
 				 // listBoxDisplay
 				 // 
 				 this->listBoxDisplay->FormattingEnabled = true;
@@ -439,6 +439,7 @@ namespace PG208_Library
 				 this->buttonManageReservations->TabIndex = 33;
 				 this->buttonManageReservations->Text = L"Manage Reservations";
 				 this->buttonManageReservations->UseVisualStyleBackColor = true;
+				 this->buttonManageReservations->Click += gcnew System::EventHandler(this, &FormHomeAdmin::buttonManageReservations_Click);
 				 // 
 				 // FormHomeAdmin
 				 // 
@@ -602,14 +603,12 @@ namespace PG208_Library
 					 return;//no selection => do nothing
 				 }
 
-				 popup("Borrowing Programme", "Welcome! Choose your article!");
+				 popup("Borrowing Programme", "Welcome! What do you want to do?");
 				 this->Hide();
 
 				 FormEditArticle ^ FBorrowArticle = gcnew FormEditArticle(listArticles[selectedIndex]->getID(), this->labelUsername->Text); //FormEditArticle defined in FormBorrowArticle.h
 				 FBorrowArticle->ShowDialog();
 				 this->Show();
-
-				 //			 popup("Selected", listArticles[selectedIndex]->getTitle());//display title
 			 }
 
 	private: System::Void comboBoxSortBy_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
@@ -924,7 +923,8 @@ namespace PG208_Library
 				 FormNewUser ^ FNewUser = gcnew FormNewUser(1); //FormNewUser for Admin users
 				 FNewUser->ShowDialog();
 			 }
-	private: System::Void listBoxDisplay_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void listBoxDisplay_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) 
+			 {
 			 }
 	private: System::Void buttonView_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
@@ -1028,5 +1028,16 @@ namespace PG208_Library
 			 {
 				 intToManagedString(managedStringToInt(this->textBoxSearchID->Text));//reject non-numbers
 			 }
-	};
+	private: System::Void buttonManageReservations_Click(System::Object^  sender, System::EventArgs^  e) 
+			 {
+				 popup("Reservation Programme", "Welcome!");
+				 this->Hide();
+
+				 FormCancelReservations ^ FReservations = gcnew FormCancelReservations(this->labelUsername->Text); //FormEditArticle defined in FormBorrowArticle.h
+				 FReservations->ShowDialog();
+				 this->Show();
+			 
+				 
+			 }
+};
 }

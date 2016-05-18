@@ -47,14 +47,24 @@ int Article::getReleaseDate()
 void Article::setReleaseDate(int newReleaseDate)
 {_releaseDate = newReleaseDate;}
 
-/*
-String^ Article::getAvailability()
+bool Article::getAvailability()
 {
 	if(_quantity > 0)
-		return "Available";
+	{
+		if(_reservationList[_quantity - 1] == "NA")
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+	}
 	else
-		return "Unavailable";
-}*/
+	{
+		return 0;
+	}
+}
 
 bool Article::borrowArticle(String^ newUser)
 {
@@ -63,7 +73,7 @@ bool Article::borrowArticle(String^ newUser)
 	int userReservePriority = -1;
 
 	//check reservation list//////
-	for (int i = 0; i < ARTICLE_RESERVE_LIMIT - 1; i++)
+	for (int i = 0; i < ARTICLE_RESERVE_LIMIT; i++)
 	{
 		if (_reservationList[i] != "NA") 
 		{
@@ -95,13 +105,13 @@ bool Article::borrowArticle(String^ newUser)
 		}
 		else // user has reserved
 		{
-			if (userReservePriority < _quantity) // user has enough priority to borrow
+			if ((userReservePriority + 1)< _quantity) // user has enough priority to borrow
 			{
 				borrower->borrowArticle(_ID);
 				_quantity--;
 				_qtyLent++;
 				//shift reservation list
-				for (int i = userReservePriority; i < ARTICLE_RESERVE_LIMIT - 2; i++) 
+				for (int i = userReservePriority; i < ARTICLE_RESERVE_LIMIT - 1; i++) 
 				{
 					_reservationList[i] = _reservationList[i+1];
 				}
@@ -145,37 +155,50 @@ bool Article::reserveArticle(String^  newUser)
 	User^ reserver = gcnew User(newUser);
 	int reservations = 0;
 
-	if(reserver->canReserve(_ID)) 
+	if (_reservationList[5] != "NA") //check if reservable
 	{
-		for (int i = 0; i < ARTICLE_RESERVE_LIMIT - 1; i++) //check reservation list
+		_isReservable = 0;
+	}
+
+	if (_isReservable == 1)
+	{
+		if(reserver->canReserve(_ID)) 
 		{
-			if (_reservationList[i] != "NA") 
+			for (int i = 0; i < ARTICLE_RESERVE_LIMIT; i++) //check reservation list
 			{
-				reservations++;
+				if (_reservationList[i] != "NA") 
+				{
+					reservations++;
+				}
+				if (_reservationList[i] == reserver->getUsername())
+				{
+					popup("EPIC FAIL", "You are already on reservation list!");
+					return 0;
+				}
 			}
-			if (_reservationList[i] == reserver->getUsername())
+
+			if (_isReservable == 0) //list full
 			{
-				popup("EPIC FAIL", "You are already on reservation list!");
+				popup("EPIC FAIL", "Reservation list is full!");
 				return 0;
 			}
-		}
-
-		if (reservations == (ARTICLE_RESERVE_LIMIT -1)) //list full
-		{
-			popup("EPIC FAIL", "Reservation list is full!");
-			return 0;
+			else
+			{
+				_reservationList[reservations] = reserver->getUsername();
+				reserver->reserveArticle(_ID);
+				popup("WELL DONE", "You are now on reservation list! You can cancel reservation if needed.");
+				return 1;
+			}
 		}
 		else
 		{
-			_reservationList[reservations] = reserver->getUsername();
-			reserver->reserveArticle(_ID);
-			popup("WELL DONE", "You are now on reservation list! You can cancel reservation if needed.");
-			return 1;
+			popup("EPIC FAIL", "You can't reserve this article! Sorry...");
+			return 0;
 		}
 	}
 	else
 	{
-		popup("EPIC FAIL", "You can't reserve this article! Sorry...");
+		popup("EPIC FAIL", "Article not available for reservation! Sorry...");
 		return 0;
 	}
 }
@@ -189,7 +212,7 @@ bool Article::cancelReserveArticle(String^  newUser)
 	{
 		reserver->cancelReservation(_ID);
 
-		for (int i = 0; i < ARTICLE_RESERVE_LIMIT - 1; i++) //check reservation list
+		for (int i = 0; i < ARTICLE_RESERVE_LIMIT; i++) //check reservation list
 		{
 			if (_reservationList[i] == reserver->getUsername()) 
 			{
@@ -197,12 +220,12 @@ bool Article::cancelReserveArticle(String^  newUser)
 			}
 		}
 
-		for (int i = userReservePriority; i < ARTICLE_RESERVE_LIMIT - 2; i++) //update list
+		for (int i = userReservePriority; i < ARTICLE_RESERVE_LIMIT - 1; i++) //update list
 		{
 			_reservationList[i] = _reservationList[i+1];
 		}
 		_reservationList[ARTICLE_RESERVE_LIMIT - 1] = "NA";
-
+		_isReservable = 1;
 		popup("SUCCESSFUL CANCEL", "You are smart and thoughtful, you did the right thing!");
 		return 1;
 	}

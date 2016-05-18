@@ -16,7 +16,7 @@ using namespace System::Text;
 
 
 //ID "0000" is reserved
-#define BASE_MIN_ID			1000	//Min
+//#define BASE_MIN_ID			1000	//Min
 #define BASE_BOOK_ID		1000	//1000~2999 reserved for books
 #define BASE_MAGAZINE_ID	3000	//3000~3999 reserved for Magazines
 #define BASE_CD_ID			4000	//4000~5999 reserved for CDs
@@ -41,7 +41,7 @@ using namespace System::Text;
 #define RESERVE_LIMIT	5	//maximum number of articles a user may reserve
 #define REVIEW_LIMIT	10	//Max number of reviews in a magazine
 
-#define ARTICLE_RESERVE_LIMIT 3 //article reervation list limit
+#define ARTICLE_RESERVE_LIMIT 3 //article reservation list limit
 
 #include <string.h>
 #include <iostream>
@@ -65,6 +65,7 @@ using namespace System::Text;
 #include "FormNewUser.h"
 #include "FormBorrowArticle.h"
 #include "FormNewArticle.h"
+#include "FormCancelReservations.h"
 #include "FormHomeAdmin.h"//must be last
 
 

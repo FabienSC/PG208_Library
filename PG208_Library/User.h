@@ -26,6 +26,10 @@ public:
 
 	bool	load(String^ username);
 	bool	save();
+
+	int		getBorrowed(int newIndex);
+	int		getReserved(int newIndex);
+
 	
 private:
 	String^ username;
