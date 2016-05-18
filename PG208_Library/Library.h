@@ -12,10 +12,6 @@ public:
 	int getNumberOfVHSs();//returns the number of VHSs
 	int getNumberOfDigitalResources();//returns the number of DigitalResources
 
-/*	void addBook();//increments the number of books
-	void removeBook();//decrements the number of books
-	void addCD();//increments the number of CDs
-	void removeCD();//decrements the number of CDs*/
 
 private:
 	int _numberOfBooks;//number of separate books

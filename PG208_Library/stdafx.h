@@ -59,6 +59,7 @@ using namespace System::Text;
 #include "Video.h"
 #include "DigitalRes.h"
 #include "Library.h"
+#include "search.h"
 
 
 

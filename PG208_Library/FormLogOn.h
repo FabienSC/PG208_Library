@@ -89,7 +89,7 @@ namespace PG208_Library {
 				 // 
 				 this->buttonRegister->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
 				 this->buttonRegister->BackColor = System::Drawing::SystemColors::ButtonFace;
-				 this->buttonRegister->Location = System::Drawing::Point(108, 262);
+				 this->buttonRegister->Location = System::Drawing::Point(108, 312);
 				 this->buttonRegister->Name = L"buttonRegister";
 				 this->buttonRegister->Size = System::Drawing::Size(75, 29);
 				 this->buttonRegister->TabIndex = 0;
@@ -100,7 +100,7 @@ namespace PG208_Library {
 				 // textBoxUsername
 				 // 
 				 this->textBoxUsername->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
-				 this->textBoxUsername->Location = System::Drawing::Point(108, 162);
+				 this->textBoxUsername->Location = System::Drawing::Point(108, 212);
 				 this->textBoxUsername->MaxLength = 255;
 				 this->textBoxUsername->Name = L"textBoxUsername";
 				 this->textBoxUsername->Size = System::Drawing::Size(192, 22);
@@ -112,7 +112,7 @@ namespace PG208_Library {
 				 // 
 				 this->labelUsername->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
 				 this->labelUsername->AutoSize = true;
-				 this->labelUsername->Location = System::Drawing::Point(29, 166);
+				 this->labelUsername->Location = System::Drawing::Point(29, 216);
 				 this->labelUsername->Name = L"labelUsername";
 				 this->labelUsername->Size = System::Drawing::Size(77, 17);
 				 this->labelUsername->TabIndex = 2;
@@ -122,7 +122,7 @@ namespace PG208_Library {
 				 // 
 				 this->labelPassword->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
 				 this->labelPassword->AutoSize = true;
-				 this->labelPassword->Location = System::Drawing::Point(29, 208);
+				 this->labelPassword->Location = System::Drawing::Point(29, 258);
 				 this->labelPassword->Name = L"labelPassword";
 				 this->labelPassword->Size = System::Drawing::Size(73, 17);
 				 this->labelPassword->TabIndex = 4;
@@ -131,7 +131,7 @@ namespace PG208_Library {
 				 // textBoxPassword
 				 // 
 				 this->textBoxPassword->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
-				 this->textBoxPassword->Location = System::Drawing::Point(108, 204);
+				 this->textBoxPassword->Location = System::Drawing::Point(108, 254);
 				 this->textBoxPassword->MaxLength = 63;
 				 this->textBoxPassword->Name = L"textBoxPassword";
 				 this->textBoxPassword->Size = System::Drawing::Size(192, 22);
@@ -143,7 +143,7 @@ namespace PG208_Library {
 				 // 
 				 this->linkLabelNewUser->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
 				 this->linkLabelNewUser->AutoSize = true;
-				 this->linkLabelNewUser->Location = System::Drawing::Point(105, 229);
+				 this->linkLabelNewUser->Location = System::Drawing::Point(105, 279);
 				 this->linkLabelNewUser->Name = L"linkLabelNewUser";
 				 this->linkLabelNewUser->Size = System::Drawing::Size(67, 17);
 				 this->linkLabelNewUser->TabIndex = 5;
@@ -155,7 +155,7 @@ namespace PG208_Library {
 				 // 
 				 this->linkLabelForgotPassword->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
 				 this->linkLabelForgotPassword->AutoSize = true;
-				 this->linkLabelForgotPassword->Location = System::Drawing::Point(178, 229);
+				 this->linkLabelForgotPassword->Location = System::Drawing::Point(178, 279);
 				 this->linkLabelForgotPassword->Name = L"linkLabelForgotPassword";
 				 this->linkLabelForgotPassword->Size = System::Drawing::Size(122, 17);
 				 this->linkLabelForgotPassword->TabIndex = 6;
@@ -167,7 +167,7 @@ namespace PG208_Library {
 				 // 
 				 this->buttonExit->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
 				 this->buttonExit->BackColor = System::Drawing::SystemColors::ButtonFace;
-				 this->buttonExit->Location = System::Drawing::Point(245, 262);
+				 this->buttonExit->Location = System::Drawing::Point(245, 312);
 				 this->buttonExit->Name = L"buttonExit";
 				 this->buttonExit->Size = System::Drawing::Size(55, 29);
 				 this->buttonExit->TabIndex = 7;
@@ -178,9 +178,9 @@ namespace PG208_Library {
 				 // pictureBox1
 				 // 
 				 this->pictureBox1->ImageLocation = L"";
-				 this->pictureBox1->Location = System::Drawing::Point(58, 16);
+				 this->pictureBox1->Location = System::Drawing::Point(12, 12);
 				 this->pictureBox1->Name = L"pictureBox1";
-				 this->pictureBox1->Size = System::Drawing::Size(204, 128);
+				 this->pictureBox1->Size = System::Drawing::Size(308, 184);
 				 this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 				 this->pictureBox1->TabIndex = 8;
 				 this->pictureBox1->TabStop = false;
@@ -191,7 +191,7 @@ namespace PG208_Library {
 				 this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->BackColor = System::Drawing::SystemColors::ActiveBorder;
-				 this->ClientSize = System::Drawing::Size(332, 303);
+				 this->ClientSize = System::Drawing::Size(332, 353);
 				 this->Controls->Add(this->pictureBox1);
 				 this->Controls->Add(this->buttonExit);
 				 this->Controls->Add(this->linkLabelForgotPassword);
@@ -201,8 +201,8 @@ namespace PG208_Library {
 				 this->Controls->Add(this->labelUsername);
 				 this->Controls->Add(this->textBoxUsername);
 				 this->Controls->Add(this->buttonRegister);
-				 this->MaximumSize = System::Drawing::Size(350, 350);
-				 this->MinimumSize = System::Drawing::Size(350, 350);
+				 this->MaximumSize = System::Drawing::Size(350, 400);
+				 this->MinimumSize = System::Drawing::Size(350, 400);
 				 this->Name = L"FormLogOn";
 				 this->Text = L"Library Login";
 				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox1))->EndInit();

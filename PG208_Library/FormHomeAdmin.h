@@ -24,6 +24,7 @@ namespace PG208_Library
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
+			pictureBox1->Image = Image::FromFile(FILEPATH_LOGO);
 
 			this->labelUsername->Text = username;
 
@@ -68,13 +69,15 @@ namespace PG208_Library
 	private: System::Windows::Forms::Button^  buttonDelete;
 	private: System::Windows::Forms::Label^  labelSortBy;
 	private: System::Windows::Forms::ComboBox^  comboBoxSortBy;
-	private: System::Windows::Forms::TextBox^  textBoxSearchID;
+	private: System::Windows::Forms::TextBox^  textBoxSearch;
+
 
 	private: Microsoft::VisualBasic::PowerPacks::ShapeContainer^  shapeContainer1;
 	private: Microsoft::VisualBasic::PowerPacks::LineShape^  lineShape1;
 	private: System::Windows::Forms::Label^  labelNumberOfItemsLabel;
 	private: System::Windows::Forms::Label^  labelNumberOfItems;
-	private: System::Windows::Forms::Label^  labelArticleID;
+	private: System::Windows::Forms::Label^  labelSearch;
+
 	private: System::Windows::Forms::Button^  buttonEdit;
 
 
@@ -88,7 +91,7 @@ namespace PG208_Library
 		/// Required designer variable.
 		/// </summary>
 
-
+		bool lol;//logo status
 		int listArticleSize;//Start off with 10 articles
 		array<Article ^>^ listArticles;//will point to a dynamic array of Articles henceforth refered to as "DynArray(TM)"
 		int listArticleCount;//number of articles in the list
@@ -103,8 +106,12 @@ namespace PG208_Library
 	private: System::Windows::Forms::CheckBox^  checkBoxVHSs;
 	private: System::Windows::Forms::CheckBox^  checkBoxDigital;
 	private: System::Windows::Forms::Button^  buttonView;
-	private: System::Windows::Forms::Button^  buttonSearchID;
+	private: System::Windows::Forms::Button^  buttonSearchAll;
+
 	private: System::Windows::Forms::Button^  buttonManageReservations;
+	private: System::Windows::Forms::Button^  buttonInResults;
+	private: System::Windows::Forms::PictureBox^  pictureBox1;
+
 
 
 
@@ -128,12 +135,12 @@ namespace PG208_Library
 				 this->buttonDelete = (gcnew System::Windows::Forms::Button());
 				 this->labelSortBy = (gcnew System::Windows::Forms::Label());
 				 this->comboBoxSortBy = (gcnew System::Windows::Forms::ComboBox());
-				 this->textBoxSearchID = (gcnew System::Windows::Forms::TextBox());
+				 this->textBoxSearch = (gcnew System::Windows::Forms::TextBox());
 				 this->shapeContainer1 = (gcnew Microsoft::VisualBasic::PowerPacks::ShapeContainer());
 				 this->lineShape1 = (gcnew Microsoft::VisualBasic::PowerPacks::LineShape());
 				 this->labelNumberOfItemsLabel = (gcnew System::Windows::Forms::Label());
 				 this->labelNumberOfItems = (gcnew System::Windows::Forms::Label());
-				 this->labelArticleID = (gcnew System::Windows::Forms::Label());
+				 this->labelSearch = (gcnew System::Windows::Forms::Label());
 				 this->buttonEdit = (gcnew System::Windows::Forms::Button());
 				 this->buttonTerminalMode = (gcnew System::Windows::Forms::Button());
 				 this->buttonAddUser = (gcnew System::Windows::Forms::Button());
@@ -146,8 +153,11 @@ namespace PG208_Library
 				 this->checkBoxVHSs = (gcnew System::Windows::Forms::CheckBox());
 				 this->checkBoxDigital = (gcnew System::Windows::Forms::CheckBox());
 				 this->buttonView = (gcnew System::Windows::Forms::Button());
-				 this->buttonSearchID = (gcnew System::Windows::Forms::Button());
+				 this->buttonSearchAll = (gcnew System::Windows::Forms::Button());
 				 this->buttonManageReservations = (gcnew System::Windows::Forms::Button());
+				 this->buttonInResults = (gcnew System::Windows::Forms::Button());
+				 this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox1))->BeginInit();
 				 this->SuspendLayout();
 				 // 
 				 // labelWelcome
@@ -203,7 +213,7 @@ namespace PG208_Library
 				 // 
 				 // buttonNewItem
 				 // 
-				 this->buttonNewItem->Location = System::Drawing::Point(581, 28);
+				 this->buttonNewItem->Location = System::Drawing::Point(370, 43);
 				 this->buttonNewItem->Name = L"buttonNewItem";
 				 this->buttonNewItem->Size = System::Drawing::Size(108, 29);
 				 this->buttonNewItem->TabIndex = 8;
@@ -241,13 +251,12 @@ namespace PG208_Library
 				 this->comboBoxSortBy->TabIndex = 12;
 				 this->comboBoxSortBy->SelectedIndexChanged += gcnew System::EventHandler(this, &FormHomeAdmin::comboBoxSortBy_SelectedIndexChanged);
 				 // 
-				 // textBoxSearchID
+				 // textBoxSearch
 				 // 
-				 this->textBoxSearchID->Location = System::Drawing::Point(501, 133);
-				 this->textBoxSearchID->Name = L"textBoxSearchID";
-				 this->textBoxSearchID->Size = System::Drawing::Size(92, 22);
-				 this->textBoxSearchID->TabIndex = 13;
-				 this->textBoxSearchID->TextChanged += gcnew System::EventHandler(this, &FormHomeAdmin::textBoxSearchID_TextChanged);
+				 this->textBoxSearch->Location = System::Drawing::Point(412, 133);
+				 this->textBoxSearch->Name = L"textBoxSearch";
+				 this->textBoxSearch->Size = System::Drawing::Size(277, 22);
+				 this->textBoxSearch->TabIndex = 13;
 				 // 
 				 // shapeContainer1
 				 // 
@@ -286,14 +295,16 @@ namespace PG208_Library
 				 this->labelNumberOfItems->TabIndex = 16;
 				 this->labelNumberOfItems->Text = L"0";
 				 // 
-				 // labelArticleID
+				 // labelSearch
 				 // 
-				 this->labelArticleID->AutoSize = true;
-				 this->labelArticleID->Location = System::Drawing::Point(395, 136);
-				 this->labelArticleID->Name = L"labelArticleID";
-				 this->labelArticleID->Size = System::Drawing::Size(93, 17);
-				 this->labelArticleID->TabIndex = 17;
-				 this->labelArticleID->Text = L"Search by ID:";
+				 this->labelSearch->AutoSize = true;
+				 this->labelSearch->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+					 static_cast<System::Byte>(0)));
+				 this->labelSearch->Location = System::Drawing::Point(517, 113);
+				 this->labelSearch->Name = L"labelSearch";
+				 this->labelSearch->Size = System::Drawing::Size(64, 17);
+				 this->labelSearch->TabIndex = 17;
+				 this->labelSearch->Text = L"Search:";
 				 // 
 				 // buttonEdit
 				 // 
@@ -307,7 +318,7 @@ namespace PG208_Library
 				 // 
 				 // buttonTerminalMode
 				 // 
-				 this->buttonTerminalMode->Location = System::Drawing::Point(217, 10);
+				 this->buttonTerminalMode->Location = System::Drawing::Point(208, 19);
 				 this->buttonTerminalMode->Name = L"buttonTerminalMode";
 				 this->buttonTerminalMode->Size = System::Drawing::Size(115, 47);
 				 this->buttonTerminalMode->TabIndex = 21;
@@ -317,7 +328,7 @@ namespace PG208_Library
 				 // 
 				 // buttonAddUser
 				 // 
-				 this->buttonAddUser->Location = System::Drawing::Point(425, 28);
+				 this->buttonAddUser->Location = System::Drawing::Point(370, 9);
 				 this->buttonAddUser->Name = L"buttonAddUser";
 				 this->buttonAddUser->Size = System::Drawing::Size(108, 28);
 				 this->buttonAddUser->TabIndex = 22;
@@ -421,15 +432,15 @@ namespace PG208_Library
 				 this->buttonView->UseVisualStyleBackColor = true;
 				 this->buttonView->Click += gcnew System::EventHandler(this, &FormHomeAdmin::buttonView_Click);
 				 // 
-				 // buttonSearchID
+				 // buttonSearchAll
 				 // 
-				 this->buttonSearchID->Location = System::Drawing::Point(608, 133);
-				 this->buttonSearchID->Name = L"buttonSearchID";
-				 this->buttonSearchID->Size = System::Drawing::Size(96, 26);
-				 this->buttonSearchID->TabIndex = 32;
-				 this->buttonSearchID->Text = L"Search";
-				 this->buttonSearchID->UseVisualStyleBackColor = true;
-				 this->buttonSearchID->Click += gcnew System::EventHandler(this, &FormHomeAdmin::buttonSearchID_Click);
+				 this->buttonSearchAll->Location = System::Drawing::Point(412, 164);
+				 this->buttonSearchAll->Name = L"buttonSearchAll";
+				 this->buttonSearchAll->Size = System::Drawing::Size(102, 32);
+				 this->buttonSearchAll->TabIndex = 32;
+				 this->buttonSearchAll->Text = L"Search All";
+				 this->buttonSearchAll->UseVisualStyleBackColor = true;
+				 this->buttonSearchAll->Click += gcnew System::EventHandler(this, &FormHomeAdmin::buttonSearchAll_Click);
 				 // 
 				 // buttonManageReservations
 				 // 
@@ -440,13 +451,35 @@ namespace PG208_Library
 				 this->buttonManageReservations->Text = L"Manage Reservations";
 				 this->buttonManageReservations->UseVisualStyleBackColor = true;
 				 // 
+				 // buttonInResults
+				 // 
+				 this->buttonInResults->Location = System::Drawing::Point(520, 164);
+				 this->buttonInResults->Name = L"buttonInResults";
+				 this->buttonInResults->Size = System::Drawing::Size(169, 32);
+				 this->buttonInResults->TabIndex = 34;
+				 this->buttonInResults->Text = L"Search in results";
+				 this->buttonInResults->UseVisualStyleBackColor = true;
+				 this->buttonInResults->Click += gcnew System::EventHandler(this, &FormHomeAdmin::buttonInResults_Click);
+				 // 
+				 // pictureBox1
+				 // 
+				 this->pictureBox1->Location = System::Drawing::Point(548, 0);
+				 this->pictureBox1->Name = L"pictureBox1";
+				 this->pictureBox1->Size = System::Drawing::Size(184, 96);
+				 this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+				 this->pictureBox1->TabIndex = 35;
+				 this->pictureBox1->TabStop = false;
+				 this->pictureBox1->Click += gcnew System::EventHandler(this, &FormHomeAdmin::pictureBox1_Click);
+				 // 
 				 // FormHomeAdmin
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->ClientSize = System::Drawing::Size(732, 503);
+				 this->Controls->Add(this->pictureBox1);
+				 this->Controls->Add(this->buttonInResults);
 				 this->Controls->Add(this->buttonManageReservations);
-				 this->Controls->Add(this->buttonSearchID);
+				 this->Controls->Add(this->buttonSearchAll);
 				 this->Controls->Add(this->buttonView);
 				 this->Controls->Add(this->checkBoxDigital);
 				 this->Controls->Add(this->checkBoxVHSs);
@@ -459,10 +492,10 @@ namespace PG208_Library
 				 this->Controls->Add(this->buttonAddUser);
 				 this->Controls->Add(this->buttonEdit);
 				 this->Controls->Add(this->buttonTerminalMode);
-				 this->Controls->Add(this->labelArticleID);
+				 this->Controls->Add(this->labelSearch);
 				 this->Controls->Add(this->labelNumberOfItems);
 				 this->Controls->Add(this->labelNumberOfItemsLabel);
-				 this->Controls->Add(this->textBoxSearchID);
+				 this->Controls->Add(this->textBoxSearch);
 				 this->Controls->Add(this->comboBoxSortBy);
 				 this->Controls->Add(this->labelSortBy);
 				 this->Controls->Add(this->buttonDelete);
@@ -477,6 +510,7 @@ namespace PG208_Library
 				 this->MinimumSize = System::Drawing::Size(750, 550);
 				 this->Name = L"FormHomeAdmin";
 				 this->Text = L"Home";
+				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox1))->EndInit();
 				 this->ResumeLayout(false);
 				 this->PerformLayout();
 
@@ -935,98 +969,233 @@ namespace PG208_Library
 				 FormNewArticle ^ Fedit = gcnew FormNewArticle(listArticles[selectedIndex]->getID(),false);//view Article
 				 Fedit->ShowDialog();
 			 }
-	private: System::Void buttonSearchID_Click(System::Object^  sender, System::EventArgs^  e)
+	private: System::Void buttonSearchAll_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
-				 int enteredID = managedStringToInt(this->textBoxSearchID->Text);
+				 String^ searchString = this->textBoxSearch->Text;
 
 				 listArticlesClear();//clear list
 				 //clear checkboxes???
 
-				 if((BASE_BOOK_ID <= enteredID) && (enteredID < BASE_MAGAZINE_ID))	//Book IDs
-				 {
-					 Book ^ myBook = gcnew Book;// = new Book;//create new book
-					 if(myBook->load(enteredID))//load data from file is successful
-					 {
-						 listArticles[listArticleCount] = gcnew Book;
-						 listArticles[listArticleCount] = myBook;//store book in the DynArray(TM)
-						 listArticleCount++;
-					 }
-					 else
-						 delete myBook;
-				 }
-				 else if((BASE_MAGAZINE_ID <= enteredID) && (enteredID < BASE_CD_ID))
-				 {
-					 Magazine ^ myMagazine = gcnew Magazine;// = new Magazine;//create new Magazine
-					 if(myMagazine->load(enteredID))//load data from file is successful
-					 {
-						 listArticles[listArticleCount] = gcnew Magazine;
-						 listArticles[listArticleCount] = myMagazine;//store Magazine in the DynArray(TM)
-						 listArticleCount++;
-					 }
-					 else
-						 delete myMagazine;
-				 }
-				 else if((BASE_CD_ID <= enteredID) && (enteredID < BASE_DVD_ID))
-				 {
-					 CD ^ myCD = gcnew CD;// = new CD;//create new CD
-					 if(myCD->load(enteredID))//load data from file is successful
-					 {
-						 listArticles[listArticleCount] = gcnew CD;
-						 listArticles[listArticleCount] = myCD;//store CD in the DynArray(TM)
-						 listArticleCount++;
-					 }
-					 else
-						 delete myCD;
-				 }
-				 else if((BASE_DVD_ID <= enteredID) && (enteredID < BASE_VHS_ID))
-				 {
-					 Video ^ myDVD = gcnew Video;// = new DVD;//create new DVD
-					 if(myDVD->load(enteredID))//load data from file is successful
-					 {
-						 listArticles[listArticleCount] = gcnew Video;
-						 listArticles[listArticleCount] = myDVD;//store DVD in the DynArray(TM)
-						 listArticleCount++;
-					 }
-					 else
-						 delete myDVD;
-				 }
-				 else if((BASE_VHS_ID <= enteredID) && (enteredID < BASE_DIGITAL_ID))
-				 {
-					 Video ^ myVHS = gcnew Video;// = new VHS;//create new VHS
-					 if(myVHS->load(enteredID))//load data from file is successful
-					 {
-						 listArticles[listArticleCount] = gcnew Video;
-						 listArticles[listArticleCount] = myVHS;//store VHS in the DynArray(TM)
-						 listArticleCount++;
-					 }
-					 else
-						 delete myVHS;
-				 }
-				 else if((BASE_DIGITAL_ID <= enteredID) && (enteredID < BASE_MAX_ID))
-				 {
-					 DigitalRes ^ myDigitalRes = gcnew DigitalRes;// = new DigitalRes;//create new DigitalRes
-					 if(myDigitalRes->load(enteredID))//load data from file is successful
-					 {
-						 listArticles[listArticleCount] = gcnew DigitalRes;
-						 listArticles[listArticleCount] = myDigitalRes;//store DigitalRes in the DynArray(TM)
-						 listArticleCount++;
-					 }
-					 else
-						 delete myDigitalRes;
-				 }
-				 else
-				 {
-					 popup("Ep!c Fai1", "ID format is wrong.");
-					 return;
-				 }
+				 Library myLibrary;//get number of books, CDs...
 
-				 if(listArticleCount == 0)
-					 popup("Epic Fail!", "Article not found");
+				 int fileID = 0;
+				 int count = 0;
+				 for(int i = 0; count < myLibrary.getNumberOfBooks(); i++)//myLibrary.getNumberOfBooks()
+				 {
+					 fileID = BASE_BOOK_ID + i;//update file ID
+					 Book ^ myArticle = gcnew Book;// = new Book;//create new book
+					 if(myArticle->load(fileID))//load data from file is successful
+					 {
+						 count++;
+						 if(searchBook(myArticle, searchString))//if myArticle contains the string
+						 {
+							 listArticles[listArticleCount] = gcnew Book;
+							 listArticles[listArticleCount] = myArticle;//store book in the DynArray(TM)
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 listArticles = increaseListArticleSize();//increase Dynamic array size
+						 }
+					 }
+					 else
+						 delete myArticle;
+				 }
+				 count = 0;//reset count
+				 for(int i = 0; count < myLibrary.getNumberOfMagazines(); i++)
+				 {
+					 fileID = BASE_MAGAZINE_ID + i;//update file ID
+					 Magazine ^ myArticle = gcnew Magazine;
+					 if(myArticle->load(fileID))//load data from file is successful
+					 {
+						 count++;
+						 if(searchMagazine(myArticle, searchString))//if myArticle contains the string
+						 {
+							 listArticles[listArticleCount] = gcnew Magazine;
+							 listArticles[listArticleCount] = myArticle;//store book in the DynArray(TM)
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 listArticles = increaseListArticleSize();//increase Dynamic array size
+						 }
+					 }
+					 else
+						 delete myArticle;
+				 }
+				 count = 0;//reset count
+				 for(int i = 0; count < myLibrary.getNumberOfCDs(); i++)
+				 {
+					 fileID = BASE_CD_ID + i;//update file ID
+					 CD ^ myArticle = gcnew CD;
+					 if(myArticle->load(fileID))//load data from file is successful
+					 {
+						 count++;
+						 if(searchCD(myArticle, searchString))//if myArticle contains the string
+						 {
+							 listArticles[listArticleCount] = gcnew CD;
+							 listArticles[listArticleCount] = myArticle;//store book in the DynArray(TM)
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 listArticles = increaseListArticleSize();//increase Dynamic array size
+						 }
+					 }
+					 else
+						 delete myArticle;
+				 }
+				 count = 0;//reset count
+				 for(int i = 0; count < myLibrary.getNumberOfDVDs(); i++)
+				 {
+					 fileID = BASE_DVD_ID + i;//update file ID
+					 Video ^ myArticle = gcnew Video;
+					 if(myArticle->load(fileID))//load data from file is successful
+					 {
+						 count++;
+						 if(searchDVD(myArticle, searchString))//if myArticle contains the string
+						 {
+							 listArticles[listArticleCount] = gcnew Video;
+							 listArticles[listArticleCount] = myArticle;//store book in the DynArray(TM)
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 listArticles = increaseListArticleSize();//increase Dynamic array size
+						 }
+					 }
+					 else
+						 delete myArticle;
+				 }
+				 count = 0;//reset count
+				 for(int i = 0; count < myLibrary.getNumberOfVHSs(); i++)
+				 {
+					 fileID = BASE_VHS_ID + i;//update file ID
+					 Video ^ myArticle = gcnew Video;
+					 if(myArticle->load(fileID))//load data from file is successful
+					 {
+						 count++;
+						 if(searchVHS(myArticle, searchString))//if myArticle contains the string
+						 {
+							 listArticles[listArticleCount] = gcnew Video;
+							 listArticles[listArticleCount] = myArticle;//store book in the DynArray(TM)
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 listArticles = increaseListArticleSize();//increase Dynamic array size
+						 }
+					 }
+					 else
+						 delete myArticle;
+				 }
+				 count = 0;//reset count
+				 for(int i = 0; count < myLibrary.getNumberOfDigitalResources(); i++)
+				 {
+					 fileID = BASE_DIGITAL_ID + i;//update file ID
+					 DigitalRes ^ myArticle = gcnew DigitalRes;
+					 if(myArticle->load(fileID))//load data from file is successful
+					 {
+						 count++;
+						 if(searchDigitalRes(myArticle, searchString))//if myArticle contains the string
+						 {
+							 listArticles[listArticleCount] = gcnew DigitalRes;
+							 listArticles[listArticleCount] = myArticle;//store book in the DynArray(TM)
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 listArticles = increaseListArticleSize();//increase Dynamic array size
+						 }
+					 }
+					 else
+						 delete myArticle;
+				 }
 				 updateListBox();//empty listbox and add all articles in the article list to it
 			 }
-	private: System::Void textBoxSearchID_TextChanged(System::Object^  sender, System::EventArgs^  e)
+	private: System::Void pictureBox1_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
-				 intToManagedString(managedStringToInt(this->textBoxSearchID->Text));//reject non-numbers
+				 lol = !lol;//toggle lol
+				 if(lol)
+					 pictureBox1->Image = Image::FromFile(FILEPATH_LOL);
+				 else
+					 pictureBox1->Image = Image::FromFile(FILEPATH_LOGO);
+			 }
+	private: System::Void buttonInResults_Click(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 String^ searchString = this->textBoxSearch->Text;
+
+				 array< Article^ >^ searchArray = gcnew array< Article^ >(listArticleSize);
+
+				 for (int i = 0 ; i < listArticleCount ; i++)//duplicate listArticles
+				 {
+					 searchArray[i] = gcnew Article;
+					 searchArray[i] = listArticles[i];
+				 }
+				 int initialElements = listArticleCount;
+
+				 listArticlesClear();//clear list
+				 //clear checkboxes???
+
+				 int fileID = 0;
+				 int count = 0;
+
+				 for(int i = 0; i < initialElements; i++)
+				 {
+					 fileID = searchArray[i]->getID();
+
+					 if((BASE_BOOK_ID <= fileID) && (fileID < BASE_MAGAZINE_ID))	//Book IDs
+					 {
+						 Book ^ myArticle = gcnew Book;// = new Book;//create new book
+						myArticle->load(fileID);
+						 if(searchBook(myArticle,searchString))
+						 {
+							 listArticles[listArticleCount] = searchArray[i];//store article in the DynArray(TM)
+							 listArticleCount++;
+						 }
+					 }
+					 else if((BASE_MAGAZINE_ID <= fileID) && (fileID < BASE_CD_ID))
+					 {
+						 Magazine ^ myArticle = gcnew Magazine;
+						myArticle->load(fileID);
+						 if(searchMagazine(myArticle,searchString))
+						 {
+							 listArticles[listArticleCount] = searchArray[i];//store article in the DynArray(TM)
+							 listArticleCount++;
+						 }
+					 }
+					 else if((BASE_CD_ID <= fileID) && (fileID < BASE_DVD_ID))
+					 {
+						 CD ^ myArticle = gcnew CD;
+						myArticle->load(fileID);
+						 if(searchCD(myArticle,searchString))
+						 {
+							 listArticles[listArticleCount] = searchArray[i];//store article in the DynArray(TM)
+							 listArticleCount++;
+						 }
+					 }
+					 else if((BASE_DVD_ID <= fileID) && (fileID < BASE_VHS_ID))
+					 {
+						 Video ^ myArticle = gcnew Video;
+						myArticle->load(fileID);
+						 if(searchDVD(myArticle,searchString))
+						 {
+							 listArticles[listArticleCount] = searchArray[i];//store article in the DynArray(TM)
+							 listArticleCount++;
+						 }
+					 }
+					 else if((BASE_VHS_ID <= fileID) && (fileID < BASE_DIGITAL_ID))
+					 {
+						 Video ^ myArticle = gcnew Video;
+						myArticle->load(fileID);
+						 if(searchVHS(myArticle,searchString))
+						 {
+							 listArticles[listArticleCount] = searchArray[i];//store article in the DynArray(TM)
+							 listArticleCount++;
+						 }
+					 }
+					 else if((BASE_DIGITAL_ID <= fileID) && (fileID < BASE_MAX_ID))
+					 {
+						 DigitalRes ^ myArticle = gcnew DigitalRes;
+						myArticle->load(fileID);
+						 if(searchDigitalRes(myArticle,searchString))
+						 {
+							 listArticles[listArticleCount] = searchArray[i];//store article in the DynArray(TM)
+							 listArticleCount++;
+						 }
+					 }
+				 }
+
+
+				 updateListBox();//empty listbox and add all articles in the article list to it
 			 }
 	};
 }

@@ -15,6 +15,8 @@ string  charToString(char*);
 String ^ stringToManagedString(string);
 string  managedStringToString(String ^);
 
+//extra functions
+
 void	AddLine( FileStream^ , String^ );
 String^ readData(StreamReader^);
 int		getNumberOfLines(String^);//returns the number of lines that have text in a string
