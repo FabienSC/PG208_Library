@@ -80,7 +80,7 @@ bool User::borrowArticle(int articleID)
 			for(int j = 0; j < RESERVE_LIMIT; j++)//go through list and remove article if it was reserved
 			{
 				if(reservedArticles[j] == articleID)//article was reserved
-					reservedArticles[j] = 0;//un-reserve article
+					reservedArticles[j] = 0;//free reservation on article
 			}
 			return true;//successful
 		}
