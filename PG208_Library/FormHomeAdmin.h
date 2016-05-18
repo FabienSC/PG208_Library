@@ -68,7 +68,8 @@ namespace PG208_Library
 	private: System::Windows::Forms::Button^  buttonDelete;
 	private: System::Windows::Forms::Label^  labelSortBy;
 	private: System::Windows::Forms::ComboBox^  comboBoxSortBy;
-	private: System::Windows::Forms::TextBox^  textBox1;
+	private: System::Windows::Forms::TextBox^  textBoxSearchID;
+
 	private: Microsoft::VisualBasic::PowerPacks::ShapeContainer^  shapeContainer1;
 	private: Microsoft::VisualBasic::PowerPacks::LineShape^  lineShape1;
 	private: System::Windows::Forms::Label^  labelNumberOfItemsLabel;
@@ -102,6 +103,8 @@ namespace PG208_Library
 	private: System::Windows::Forms::CheckBox^  checkBoxVHSs;
 	private: System::Windows::Forms::CheckBox^  checkBoxDigital;
 	private: System::Windows::Forms::Button^  buttonView;
+	private: System::Windows::Forms::Button^  buttonSearchID;
+
 
 
 
@@ -123,7 +126,7 @@ namespace PG208_Library
 				 this->buttonDelete = (gcnew System::Windows::Forms::Button());
 				 this->labelSortBy = (gcnew System::Windows::Forms::Label());
 				 this->comboBoxSortBy = (gcnew System::Windows::Forms::ComboBox());
-				 this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+				 this->textBoxSearchID = (gcnew System::Windows::Forms::TextBox());
 				 this->shapeContainer1 = (gcnew Microsoft::VisualBasic::PowerPacks::ShapeContainer());
 				 this->lineShape1 = (gcnew Microsoft::VisualBasic::PowerPacks::LineShape());
 				 this->labelNumberOfItemsLabel = (gcnew System::Windows::Forms::Label());
@@ -141,6 +144,7 @@ namespace PG208_Library
 				 this->checkBoxVHSs = (gcnew System::Windows::Forms::CheckBox());
 				 this->checkBoxDigital = (gcnew System::Windows::Forms::CheckBox());
 				 this->buttonView = (gcnew System::Windows::Forms::Button());
+				 this->buttonSearchID = (gcnew System::Windows::Forms::Button());
 				 this->SuspendLayout();
 				 // 
 				 // labelWelcome
@@ -234,12 +238,13 @@ namespace PG208_Library
 				 this->comboBoxSortBy->TabIndex = 12;
 				 this->comboBoxSortBy->SelectedIndexChanged += gcnew System::EventHandler(this, &FormHomeAdmin::comboBoxSortBy_SelectedIndexChanged);
 				 // 
-				 // textBox1
+				 // textBoxSearchID
 				 // 
-				 this->textBox1->Location = System::Drawing::Point(501, 133);
-				 this->textBox1->Name = L"textBox1";
-				 this->textBox1->Size = System::Drawing::Size(188, 22);
-				 this->textBox1->TabIndex = 13;
+				 this->textBoxSearchID->Location = System::Drawing::Point(501, 133);
+				 this->textBoxSearchID->Name = L"textBoxSearchID";
+				 this->textBoxSearchID->Size = System::Drawing::Size(92, 22);
+				 this->textBoxSearchID->TabIndex = 13;
+				 this->textBoxSearchID->TextChanged += gcnew System::EventHandler(this, &FormHomeAdmin::textBoxSearchID_TextChanged);
 				 // 
 				 // shapeContainer1
 				 // 
@@ -413,11 +418,22 @@ namespace PG208_Library
 				 this->buttonView->UseVisualStyleBackColor = true;
 				 this->buttonView->Click += gcnew System::EventHandler(this, &FormHomeAdmin::buttonView_Click);
 				 // 
+				 // buttonSearchID
+				 // 
+				 this->buttonSearchID->Location = System::Drawing::Point(608, 133);
+				 this->buttonSearchID->Name = L"buttonSearchID";
+				 this->buttonSearchID->Size = System::Drawing::Size(96, 26);
+				 this->buttonSearchID->TabIndex = 32;
+				 this->buttonSearchID->Text = L"Search";
+				 this->buttonSearchID->UseVisualStyleBackColor = true;
+				 this->buttonSearchID->Click += gcnew System::EventHandler(this, &FormHomeAdmin::buttonSearchID_Click);
+				 // 
 				 // FormHomeAdmin
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->ClientSize = System::Drawing::Size(732, 503);
+				 this->Controls->Add(this->buttonSearchID);
 				 this->Controls->Add(this->buttonView);
 				 this->Controls->Add(this->checkBoxDigital);
 				 this->Controls->Add(this->checkBoxVHSs);
@@ -433,7 +449,7 @@ namespace PG208_Library
 				 this->Controls->Add(this->labelArticleID);
 				 this->Controls->Add(this->labelNumberOfItems);
 				 this->Controls->Add(this->labelNumberOfItemsLabel);
-				 this->Controls->Add(this->textBox1);
+				 this->Controls->Add(this->textBoxSearchID);
 				 this->Controls->Add(this->comboBoxSortBy);
 				 this->Controls->Add(this->labelSortBy);
 				 this->Controls->Add(this->buttonDelete);
@@ -905,6 +921,99 @@ namespace PG208_Library
 
 				 FormNewArticle ^ Fedit = gcnew FormNewArticle(listArticles[selectedIndex]->getID(),false);//view Article
 				 Fedit->ShowDialog();
+			 }
+	private: System::Void buttonSearchID_Click(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 int enteredID = managedStringToInt(this->textBoxSearchID->Text);
+
+				 listArticlesClear();//clear list
+				 //clear checkboxes???
+
+				 if((BASE_BOOK_ID <= enteredID) && (enteredID < BASE_MAGAZINE_ID))	//Book IDs
+				 {
+					 Book ^ myBook = gcnew Book;// = new Book;//create new book
+					 if(myBook->load(enteredID))//load data from file is successful
+					 {
+						 listArticles[listArticleCount] = gcnew Book;
+						 listArticles[listArticleCount] = myBook;//store book in the DynArray(TM)
+						 listArticleCount++;
+					 }
+					 else
+						 delete myBook;
+				 }
+				 else if((BASE_MAGAZINE_ID <= enteredID) && (enteredID < BASE_CD_ID))
+				 {
+					 Magazine ^ myMagazine = gcnew Magazine;// = new Magazine;//create new Magazine
+					 if(myMagazine->load(enteredID))//load data from file is successful
+					 {
+						 listArticles[listArticleCount] = gcnew Magazine;
+						 listArticles[listArticleCount] = myMagazine;//store Magazine in the DynArray(TM)
+						 listArticleCount++;
+					 }
+					 else
+						 delete myMagazine;
+				 }
+				 else if((BASE_CD_ID <= enteredID) && (enteredID < BASE_DVD_ID))
+				 {
+					 CD ^ myCD = gcnew CD;// = new CD;//create new CD
+					 if(myCD->load(enteredID))//load data from file is successful
+					 {
+						 listArticles[listArticleCount] = gcnew CD;
+						 listArticles[listArticleCount] = myCD;//store CD in the DynArray(TM)
+						 listArticleCount++;
+					 }
+					 else
+						 delete myCD;
+				 }
+				 else if((BASE_DVD_ID <= enteredID) && (enteredID < BASE_VHS_ID))
+				 {
+					 Video ^ myDVD = gcnew Video;// = new DVD;//create new DVD
+					 if(myDVD->load(enteredID))//load data from file is successful
+					 {
+						 listArticles[listArticleCount] = gcnew Video;
+						 listArticles[listArticleCount] = myDVD;//store DVD in the DynArray(TM)
+						 listArticleCount++;
+					 }
+					 else
+						 delete myDVD;
+				 }
+				 else if((BASE_VHS_ID <= enteredID) && (enteredID < BASE_DIGITAL_ID))
+				 {
+					 Video ^ myVHS = gcnew Video;// = new VHS;//create new VHS
+					 if(myVHS->load(enteredID))//load data from file is successful
+					 {
+						 listArticles[listArticleCount] = gcnew Video;
+						 listArticles[listArticleCount] = myVHS;//store VHS in the DynArray(TM)
+						 listArticleCount++;
+					 }
+					 else
+						 delete myVHS;
+				 }
+				 else if((BASE_DIGITAL_ID <= enteredID) && (enteredID < BASE_MAX_ID))
+				 {
+					 DigitalRes ^ myDigitalRes = gcnew DigitalRes;// = new DigitalRes;//create new DigitalRes
+					 if(myDigitalRes->load(enteredID))//load data from file is successful
+					 {
+						 listArticles[listArticleCount] = gcnew DigitalRes;
+						 listArticles[listArticleCount] = myDigitalRes;//store DigitalRes in the DynArray(TM)
+						 listArticleCount++;
+					 }
+					 else
+						 delete myDigitalRes;
+				 }
+				 else
+				 {
+					 popup("Ep!c Fai1", "ID format is wrong.");
+					 return;
+				 }
+
+				 if(listArticleCount == 0)
+					 popup("Epic Fail!", "Article not found");
+				 updateListBox();//empty listbox and add all articles in the article list to it
+			 }
+	private: System::Void textBoxSearchID_TextChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 intToManagedString(managedStringToInt(this->textBoxSearchID->Text));//reject non-numbers
 			 }
 	};
 }

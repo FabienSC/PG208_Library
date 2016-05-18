@@ -33,11 +33,13 @@ using namespace System::Text;
 #define FILEPATH_VHS "Library/Articles/VHSs/"
 #define FILEPATH_DIGITAL "Library/Articles/Digital_Resources/"
 
+
+#define FILEPATH_LOGO "Images/Logo.gif"
+#define FILEPATH_LOL "Images/Alex n Fab.gif"
+
 #define BORROW_LIMIT	5	//maximum number of articles a user may borrow
 #define RESERVE_LIMIT	5	//maximum number of articles a user may reserve
 #define REVIEW_LIMIT	10	//Max number of reviews in a magazine
-
-
 
 
 #include <string.h>
