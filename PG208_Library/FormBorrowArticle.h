@@ -19,32 +19,45 @@ namespace PG208_Library {
 		FormEditArticle(int articleID, String^ userName)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
 
 			selectedArticle = gcnew Article;
 
-			if(articleID > BASE_BOOK_ID && articleID < BASE_CD_ID)
+			if(articleID >= BASE_BOOK_ID && articleID < BASE_MAGAZINE_ID) //Book IDs
 			{
 				Book ^ newBook = gcnew Book;
 				newBook->load(articleID);
 				selectedArticle = newBook;
 			}
 
-			else if(articleID > BASE_CD_ID && articleID < BASE_DVD_ID)
+			else if(articleID >= BASE_MAGAZINE_ID && articleID < BASE_CD_ID) //Magazine IDs
+			{
+				Magazine ^ newMagazine = gcnew Magazine;
+				newMagazine->load(articleID);
+				selectedArticle = newMagazine;
+			}
+
+			else if(articleID >= BASE_CD_ID && articleID < BASE_DVD_ID) //CD IDs
 			{
 				CD ^ newCD = gcnew CD;
 				newCD->load(articleID);
 				selectedArticle = newCD;
 			}
 
-			else if(articleID > BASE_DVD_ID && articleID < BASE_DIGITAL_ID)
+			else if(articleID >= BASE_DVD_ID && articleID < BASE_VHS_ID) //DVD IDs
 			{
-				Video ^ newVideo = gcnew Video;
-				newVideo->load(articleID);
-				selectedArticle = newVideo;
+				Video ^ newDVD = gcnew Video;
+				newDVD->load(articleID);
+				selectedArticle = newDVD;
 			}
-			else if(articleID > BASE_DIGITAL_ID && articleID < BASE_MAX_ID)
+
+			else if(articleID >= BASE_VHS_ID && articleID < BASE_DIGITAL_ID)//VHS IDs
+			{
+				Video ^ newVHS = gcnew Video;
+				newVHS->load(articleID);
+				selectedArticle = newVHS;
+			}
+
+			else if(articleID >= BASE_DIGITAL_ID && articleID < BASE_MAX_ID)//digital ressource IDs
 			{
 				DigitalRes ^ newDigitalRes = gcnew DigitalRes;
 				newDigitalRes->load(articleID);
@@ -52,6 +65,7 @@ namespace PG208_Library {
 			}
 			this->textBox2->Text = selectedArticle->getTitle();
 			this->textBox1->Text = userName;
+			user = gcnew User(userName);
 		}
 
 	protected:
@@ -78,6 +92,7 @@ namespace PG208_Library {
 			 /// Required designer variable.
 
 			 Article^ selectedArticle; // for the functions to call
+			 User^ user; // for the functions to call
 			 /// </summary>
 			 System::ComponentModel::Container ^components;
 
@@ -194,6 +209,7 @@ namespace PG208_Library {
 				 this->Controls->Add(this->button1);
 				 this->Name = L"FormEditArticle";
 				 this->Text = L"FormEditArticle";
+				 this->Load += gcnew System::EventHandler(this, &FormEditArticle::FormEditArticle_Load);
 				 this->ResumeLayout(false);
 				 this->PerformLayout();
 
@@ -201,45 +217,37 @@ namespace PG208_Library {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
-				 if(this->radioButton1->Checked == true) 
+				 if(this->radioButton1->Checked == true) //borrow button
 				 {
-					 /*if (selectedArticle->_reservable)
+					selectedArticle->borrowArticle(user->getUsername());
+					popup("borrow succesful", "You are now responsible for this article!");
+					this->Close();
+				 }
+				 else if(this->radioButton2->Checked == true) //return button
+				 {
+					 if (user->canReturn(selectedArticle->getID()))
 					 {
-						 selectedArticle->borrowArticle();
-					 }*/
-
-					 popup("Error", "Functions not yet finished with... SOON NIGGA!");
-					 this->Close();
+						selectedArticle->returnArticle(user->getUsername());
+						popup("return succesful", "You are no longer responsible for this article!");
+						this->Close();
+					 }
+					 else
+					 {
+						popup("WOOPS", "Cannot return this article...");
+					 }
 				 }
-				 else if(this->radioButton2->Checked == true)
-				 {
-					 popup("Error", "Functions not yet finished with... SOON NIGGA!");
-					 this->Close();
-				 }
-				 else
+				 else												// no button selected
 				 {
 					 popup("EPIC FAIL", "Select borrow or return. Otherwise, use cancel to leave");
 				 }
 			 }
-	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) 
+	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) //cancel button
 			 {
 				 this->Close();
 			 }
-	private: System::Void radioButton2_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-				 if(this->radioButton2->Checked == true)//borrow Button Checked
-				 {
-					 //only one of each article per person
-					 //access file
-					 //minus one to quantity
-					 //reserve if none left
-					 //reservation queue limited to 3 users
+	private: System::Void radioButton2_CheckedChanged(System::Object^  sender, System::EventArgs^  e) 
+			 {
 
-
-					 //char *filePath = managedStringToChar(strIDFilePath);//convert string
-
-
-
-				 }
 			 }
 	private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) 
 			 {
@@ -249,5 +257,7 @@ namespace PG208_Library {
 			 {
 
 			 }
-	};
+	private: System::Void FormEditArticle_Load(System::Object^  sender, System::EventArgs^  e) {
+			 }
+};
 }

@@ -53,9 +53,14 @@
     <ClCompile Include="User.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="FormCancelReservations.cpp" />
     <ClCompile Include="search.cpp">
       <Filter>Sources</Filter>
+=======
+    <ClCompile Include="FormCancelReservations.cpp">
+      <Filter>Forms</Filter>
+>>>>>>> Origin/master
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

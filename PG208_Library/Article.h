@@ -20,10 +20,8 @@ public:
 	void		setQtyOwned(int);
 	int			getQtyOwned();
 
+	bool		getAvailability();
 
-
-
-	//String^		getAvailability();
     bool 		borrowArticle(String^ newUser);						// if already borrowed, can't borrow it...
     bool 		returnArticle(String^ newUser);						// if all in library, can't return...
 	bool 		reserveArticle(String^ newUser);					// if need to reserve...

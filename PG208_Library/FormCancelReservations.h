@@ -15,12 +15,13 @@ namespace PG208_Library {
 	public ref class FormCancelReservations : public System::Windows::Forms::Form
 	{
 	public:
-		FormCancelReservations(void)
+		FormCancelReservations(String^ userName)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
+
+			borrower = gcnew User(userName);
+			this->buttonBorrow->Visible = false; //only display this button if borrowing is possible
+			updateBoxAll();
 		}
 
 	protected:
@@ -45,6 +46,11 @@ namespace PG208_Library {
 	private:
 		/// <summary>
 		/// Required designer variable.
+		User^ borrower; // for the functions to call
+		Article^ selectedArticle; // for the functions to call
+		array<int>^ listIDsALL;
+		array<int>^ listIDsBORROWABLE;
+		bool displayAll;
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
@@ -70,6 +76,7 @@ namespace PG208_Library {
 			this->buttonCancelReservation->TabIndex = 0;
 			this->buttonCancelReservation->Text = L"Cancel Reservation";
 			this->buttonCancelReservation->UseVisualStyleBackColor = true;
+			this->buttonCancelReservation->Click += gcnew System::EventHandler(this, &FormCancelReservations::buttonCancelReservation_Click);
 			// 
 			// buttonBack
 			// 
@@ -79,6 +86,7 @@ namespace PG208_Library {
 			this->buttonBack->TabIndex = 1;
 			this->buttonBack->Text = L"Back";
 			this->buttonBack->UseVisualStyleBackColor = true;
+			this->buttonBack->Click += gcnew System::EventHandler(this, &FormCancelReservations::buttonBack_Click);
 			// 
 			// listBoxReservations
 			// 
@@ -88,6 +96,7 @@ namespace PG208_Library {
 			this->listBoxReservations->Name = L"listBoxReservations";
 			this->listBoxReservations->Size = System::Drawing::Size(297, 180);
 			this->listBoxReservations->TabIndex = 2;
+			this->listBoxReservations->SelectedIndexChanged += gcnew System::EventHandler(this, &FormCancelReservations::listBoxReservations_SelectedIndexChanged);
 			// 
 			// checkBoxShowAvailable
 			// 
@@ -108,6 +117,7 @@ namespace PG208_Library {
 			this->buttonBorrow->TabIndex = 5;
 			this->buttonBorrow->Text = L"Borrow";
 			this->buttonBorrow->UseVisualStyleBackColor = true;
+			this->buttonBorrow->Click += gcnew System::EventHandler(this, &FormCancelReservations::buttonBorrow_Click);
 			// 
 			// FormCancelReservations
 			// 
@@ -130,7 +140,182 @@ namespace PG208_Library {
 #pragma endregion
 	private: System::Void checkBoxShowAvailable_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
-				 //checkbox checked
+				 if(this->checkBoxShowAvailable->Checked)//checkbox checked
+				 {
+					 this->buttonBorrow->Visible = true;
+					 updateBoxBorrowables();
+				 }
+				 
+				 else
+				 {
+					 this->buttonBorrow->Visible = false;
+					 updateBoxAll();
+				 }
 			 }
+
+private: System::Void buttonBack_Click(System::Object^  sender, System::EventArgs^  e) 
+		 {
+			 this->Close();
+		 }
+
+private: System::Void buttonCancelReservation_Click(System::Object^  sender, System::EventArgs^  e) 
+		 {
+			 int selectedIndex = this->listBoxReservations->SelectedIndex;
+			 loadArticle(selectedIndex, selectedArticle);
+
+			 if(selectedIndex == -1)
+			 {
+				 popup("EPIC FAIL!", "Actually select an article first...");
+			 }
+			 else
+			 {
+				 if(displayAll)
+				 {
+					 borrower->cancelReservation(listIDsALL[selectedIndex]); // need article ID ...
+					 selectedArticle->cancelReserveArticle(borrower->getUsername());
+				 }
+				 else
+				 {
+					 borrower->cancelReservation(listIDsBORROWABLE[selectedIndex]); // need article ID ...
+					 selectedArticle->cancelReserveArticle(borrower->getUsername());
+				 }
+				 popup("Thank You", "Your reservation cancel was taken in account!");
+			 }			
+		 }
+
+private: System::Void buttonBorrow_Click(System::Object^  sender, System::EventArgs^  e) 
+		 {
+			 int selectedIndex = this->listBoxReservations->SelectedIndex;
+			 loadArticle(selectedIndex, selectedArticle);
+
+			 if(selectedIndex == -1)
+			 {
+				 popup("EPIC FAIL!", "Actually select an Article first...");
+			 }
+			 else
+			 {
+				 if(displayAll)
+				 {
+					 borrower->borrowArticle(listIDsALL[selectedIndex]); // need article ID ...
+					 selectedArticle->borrowArticle(borrower->getUsername());
+				 }
+				 else
+				 {
+					 borrower->borrowArticle(listIDsBORROWABLE[selectedIndex]); // need article ID ...
+					 selectedArticle->borrowArticle(borrower->getUsername());
+				 }
+				 popup("BORROW SUCCESSFUl", "Your reservation led to borrowing!");
+			 }	
+		 }
+
+private: System::Void listBoxReservations_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) 
+		 {
+
+		 }
+		 /////////////////////////////////////////////////////////////
+		 /////////////////////////////////////////////////////////////
+
+		 void updateBoxBorrowables()//empty listbox and add available reserved articles
+		 {
+			 displayAll = 0;
+			 selectedArticle = gcnew Article;
+			 this->listBoxReservations->Items->Clear(); //init text box
+			 int cpt = 0;
+
+			 for(int i = 0; i < RESERVE_LIMIT; i++) //write reservation list to box
+			 {
+				 if(borrower->getReserved(i) != 0)
+				 {
+					 loadArticle(borrower->getReserved(i), selectedArticle); //load article depending on ID in reservation list
+					 if (selectedArticle->getAvailability())
+					 {
+						 this->listBoxReservations->Items->Add(selectedArticle->getTitle()); // write to text box
+						 listIDsBORROWABLE[cpt] = borrower->getReserved(i);
+						 cpt ++;
+					 }
+				 }
+			 }
+
+			 if (cpt ==0)
+			 {
+				 popup("EPIC FAIL!", "None of your reserved articles are available yet...");
+			 }
+		 }
+		 
+		 ///////////////////////////////////////////////////////////// 
+
+		 void updateBoxAll()//empty listbox and add articles that are reserved
+		 {
+			 displayAll = 1;
+			 selectedArticle = gcnew Article;
+			 this->listBoxReservations->Items->Clear(); //init text box
+			 int cpt = 0;
+
+			 for(int i = 0; i < RESERVE_LIMIT; i++) //write reservation list to box
+			 {
+				 listIDsALL[i] = borrower->getReserved(i); 
+				 if(borrower->getReserved(i) != 0)
+				 {
+					 loadArticle(borrower->getReserved(i), selectedArticle); //load article depending on ID in reservation list
+ 
+					 this->listBoxReservations->Items->Add(selectedArticle->getTitle()); // write to text box
+					 cpt ++;
+				 }
+			 }
+
+			 if (cpt ==0)
+			 {
+				 popup("EPIC FAIL!", "You have no reserved articles...");
+			 }
+		 }
+		 	
+		 ///////////////////////////////////////////////////////////// 
+
+		 void loadArticle(int newID, Article^ newArticle)
+		 {
+			 if(newID >= BASE_BOOK_ID && newID < BASE_MAGAZINE_ID) //Book IDs
+			 {
+				 Book ^ newBook = gcnew Book;
+				 newBook->load(newID);
+				 newArticle = newBook;
+			 }
+
+			 else if(newID >= BASE_MAGAZINE_ID && newID < BASE_CD_ID) //Magazine IDs
+			 {
+				 Magazine ^ newMagazine = gcnew Magazine;
+				 newMagazine->load(newID);
+				 newArticle = newMagazine;
+			 }
+
+			 else if(newID >= BASE_CD_ID && newID < BASE_DVD_ID) //CD IDs
+			 {
+				 CD ^ newCD = gcnew CD;
+				 newCD->load(newID);
+				 newArticle = newCD;
+			 }
+
+			 else if(newID >= BASE_DVD_ID && newID < BASE_VHS_ID) //DVD IDs
+			 {
+				 Video ^ newDVD = gcnew Video;
+				 newDVD->load(newID);
+				 newArticle = newDVD;
+			 }
+
+			 else if(newID >= BASE_VHS_ID && newID < BASE_DIGITAL_ID)//VHS IDs
+			 {
+				 Video ^ newVHS = gcnew Video;
+				 newVHS->load(newID);
+				 newArticle = newVHS;
+			 }
+
+			 else if(newID >= BASE_DIGITAL_ID && newID < BASE_MAX_ID)//digital ressource IDs
+			 {
+				 DigitalRes ^ newDigitalRes = gcnew DigitalRes;
+				 newDigitalRes->load(newID);
+				 newArticle = newDigitalRes;
+			 }
+		 }
+
+
 };
 }
