@@ -7,15 +7,20 @@ Article::Article()
 {
 	_ID = 0;//id not set
 	_title = "NA";
-	_qtyLent = 0;
-	_qtyOwned = 0;
 	_releaseDate = 20000101;//default release date = 1st Jan 2000
 
-//	_reservable = 1;
-	_reservation1 = "NA";
-//	_reservation2 = "NA";
-//	_reservation3 = "NA";
-	_isReserved = 0;
+	_quantity = 0;
+	_qtyLent = 0;
+
+	//reset reservation list///////////////////////////
+	_reservationList = gcnew array<String ^> (ARTICLE_RESERVE_LIMIT);
+	for (int i = 0; i < ARTICLE_RESERVE_LIMIT; i++)
+	{
+		_reservationList[i] = "NA";
+	}
+	//////////////////////////////////////////////////
+
+	bool	 _isReservable = 1;
 }
 
 Article::~Article()
@@ -42,76 +47,172 @@ int Article::getReleaseDate()
 void Article::setReleaseDate(int newReleaseDate)
 {_releaseDate = newReleaseDate;}
 
-
+/*
 String^ Article::getAvailability()
 {
 	if(_quantity > 0)
 		return "Available";
 	else
 		return "Unavailable";
+}*/
+
+bool Article::borrowArticle(String^ newUser)
+{
+	User^ borrower = gcnew User(newUser);
+	int reservations = 0;
+	int userReservePriority = -1;
+
+	//check reservation list//////
+	for (int i = 0; i < ARTICLE_RESERVE_LIMIT - 1; i++)
+	{
+		if (_reservationList[i] != "NA") 
+		{
+			reservations++;
+		}
+		if (_reservationList[i] == borrower->getUsername())
+		{
+			userReservePriority = i;
+		}
+	}
+	
+	if(borrower->canBorrow(_ID))
+	{
+		if (userReservePriority == -1) // user has not reserved
+		{
+			if (reservations < _quantity)// enough articles to borrow one
+			{	
+				borrower->borrowArticle(_ID);
+				_quantity --;
+				_qtyLent ++;
+				return 1;
+			}
+			else //more reservations than articles available
+			{
+				popup("Sorry", "The article is not available, accessing reservation list...");
+				reserveArticle(borrower->getUsername());
+				return 0;
+			}
+		}
+		else // user has reserved
+		{
+			if (userReservePriority < _quantity) // user has enough priority to borrow
+			{
+				borrower->borrowArticle(_ID);
+				_quantity--;
+				_qtyLent++;
+				//shift reservation list
+				for (int i = userReservePriority; i < ARTICLE_RESERVE_LIMIT - 2; i++) 
+				{
+					_reservationList[i] = _reservationList[i+1];
+				}
+				_reservationList[ARTICLE_RESERVE_LIMIT - 1] = "NA"; // empty last space in list
+				return 1;
+			}
+			else // not enough articles for user to borrow
+			{
+				popup("Sorry", "You are on reservation list, but low priority. Please wait or kill those ahead of you...");
+				return 0;
+			}
+		}
+	}
+	else
+	{
+		popup("EPIC FAIL", "You can't borrow this article! Sorry... Don't you already have it?");
+		return 0;
+	}
 }
 
-bool Article::borrowArticle(/*user^ newUser*/)//later add char* username as parameter
+bool Article::returnArticle(String^ newUser)//later add char* username as parameter
 {
-	if (_quantity > 0)
+	User^ borrower = gcnew User(newUser);
+	
+	if(borrower->canReturn(_ID))
 	{
-		if (_reservation1 == "NA" || newUser.getName() == _reservation1)
+		borrower->returnArticle(_ID);
+		_quantity++;
+		_qtyLent--;
+		return 1;
+	}
+	else
+	{
+		popup("EPIC FAIL", "You can't return an article you don't have!");
+		return 0;
+	}
+}
+
+bool Article::reserveArticle(String^  newUser)
+{
+	User^ reserver = gcnew User(newUser);
+	int reservations = 0;
+
+	if(reserver->canReserve(_ID)) 
+	{
+		for (int i = 0; i < ARTICLE_RESERVE_LIMIT - 1; i++) //check reservation list
 		{
-			_quantity--;//borrow/lend a book
-			/*newUser.borrowedArticles(getID()); */
-			return 1;//ok
+			if (_reservationList[i] != "NA") 
+			{
+				reservations++;
+			}
+			if (_reservationList[i] == reserver->getUsername())
+			{
+				popup("EPIC FAIL", "You are already on reservation list!");
+				return 0;
+			}
+		}
+
+		if (reservations == (ARTICLE_RESERVE_LIMIT -1)) //list full
+		{
+			popup("EPIC FAIL", "Reservation list is full!");
+			return 0;
 		}
 		else
 		{
-			return 0; //article is reserved, cannot lend
+			_reservationList[reservations] = reserver->getUsername();
+			reserver->reserveArticle(_ID);
+			popup("WELL DONE", "You are now on reservation list! You can cancel reservation if needed.");
+			return 1;
 		}
 	}
-	else//article isn't available
+	else
 	{
-		reserveArticle(/*newUser.getName()*/);
-		return 0;//error, article isn't available
+		popup("EPIC FAIL", "You can't reserve this article! Sorry...");
+		return 0;
 	}
 }
 
-bool Article::returnArticle(User^  newUser)//later add char* username as parameter
+bool Article::cancelReserveArticle(String^  newUser)
 {
-	if (/*newUser.borrowedArticles[0] == getID() || newUser.borrowedArticles[1] == getID || newUser.borrowedArticles[2] == getID*/)
+	User^ reserver = gcnew User(newUser);
+	int userReservePriority = -1;
+	
+	if(reserver->canCancel(_ID))
 	{
-		_quantity++;
-		return 1;//ok
+		reserver->cancelReservation(_ID);
+
+		for (int i = 0; i < ARTICLE_RESERVE_LIMIT - 1; i++) //check reservation list
+		{
+			if (_reservationList[i] == reserver->getUsername()) 
+			{
+				userReservePriority = i;
+			}
+		}
+
+		for (int i = userReservePriority; i < ARTICLE_RESERVE_LIMIT - 2; i++) //update list
+		{
+			_reservationList[i] = _reservationList[i+1];
+		}
+		_reservationList[ARTICLE_RESERVE_LIMIT - 1] = "NA";
+
+		popup("SUCCESSFUL CANCEL", "You are smart and thoughtful, you did the right thing!");
+		return 1;
 	}
-	else 
-		return 0; // user does not have the article, he cannot give it back...
-}
-
-void Article::reserveArticle(String^  newUsername)
-{
-	if(_quantity == 0)
+	else
 	{
-		//if (_reservable)
-		//{
-			if ((_reservation1 == "NA") && (_isReserved == 0))
-			{
-				_reservation1 = newUsername;
-				_isReserved = 1;
-				/*newUsername*/
-			}
-
-	/*		else if (_reservation2 == "NA")
-			{
-				_reservation2 = newUsername;
-				_isReserved = 1;
-			}
-			else if (_reservation3 == "NA")
-			{
-				_reservation3 = newUsername;
-				_isReserved = 1;
-				_reservable = 0;
-			}*/
-
-	//	}
+		popup("EPIC FAIL", "You are not even on the list...");
+		return 0;
 	}
 }
+
 
 
 /*void Article::getData()
@@ -252,13 +353,13 @@ void Article::deleteFile()
 	return false;
 }*/
 
-void Article::setQtyOwned(int newQtyOwned)
+
+
+void Article::setQtyOwned(int newQuantity)
 {
-	if(newQtyOwned >= _qtyLent)//can't own 2 books but have 3 borrowed
-		_qtyOwned = newQtyOwned;
+	if(newQuantity >= _qtyLent) //can't own 2 books but have 3 borrowed
+	_quantity = newQuantity;
 }
 
-int Article::getQtyOwned()
-{
-	return _qtyOwned;
-}
+int	Article::getQtyOwned()
+{return _quantity;}

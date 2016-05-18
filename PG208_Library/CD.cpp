@@ -85,7 +85,7 @@ bool	CD::load(int fileID)
 		{
 			_title = readData(sr);
 			_releaseDate = managedStringToInt(readData(sr));
-			_qtyOwned = managedStringToInt(readData(sr));
+			_quantity = managedStringToInt(readData(sr));
 			_qtyLent = managedStringToInt(readData(sr));
 
 			_artist = readData(sr);
@@ -116,7 +116,7 @@ bool CD::save()
 	{
 		AddLine( fs, _title );								//save title
 		AddLine( fs, intToManagedString(_releaseDate) );	//save release date
-		AddLine( fs, intToManagedString(_qtyOwned) );		//save the cheerleader
+		AddLine( fs, intToManagedString(_quantity) );		//save the cheerleader
 		AddLine( fs, intToManagedString(_qtyLent) );		//save the World
 		AddLine( fs, _artist );
 		AddLine( fs, _recordCompany );

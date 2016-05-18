@@ -207,7 +207,6 @@ bool	User::load(String^ enteredUsername)
 		StreamReader^ sr = File::OpenText( strFilePath );
 		try
 		{
-
 			encryptedPassword = readData(sr);
 			isAdmin = managedStringToInt(readData(sr));
 

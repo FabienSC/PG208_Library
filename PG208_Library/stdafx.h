@@ -35,6 +35,7 @@ using namespace System::Text;
 #define BORROW_LIMIT 5	//maximum number of articles a user may borrow
 #define RESERVE_LIMIT 5	//maximum number of articles a user may reserve
 
+#define ARTICLE_RESERVE_LIMIT 3 //article reervation list limit
 
 
 
