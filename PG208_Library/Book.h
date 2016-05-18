@@ -33,7 +33,7 @@ public:
 
 //title, author, publisher, editor, number of pages
 
-private:
+protected:
     String^		_author;
     String^		_publisher;
     String^		_synopsis;

@@ -10,11 +10,9 @@ public:
 	String^		getEditor();
 	void		setEditor(String^ newEditor);
 
-	int			getReviewNumber();	//returns the number of reviews stored
-	void		addReview(String^);	//add a review to the list
-	void		addReviews(String^);//add a list of reviews
+	int			getReviewNumber();	//updates and returns the number of reviews stored
+	void		setReviews(String^);//add a list of reviews
 	void		deleteReviews();	//delete all reviews
-	String^		getReview(int);		//returns review number X
 	String^		getReviews();		//returns all reviews in a string
 
     //void 		getData();
@@ -23,7 +21,7 @@ public:
 	bool		save();
 
 private:
-	String^			_editor;		//editor
-    array<String^>^ _reviewTitles;	//titles of reviews
-	int				_reviewNum;		//number of reviews
+	String^		_editor;		//editor
+    String^		_reviewTitles;	//titles of reviews
+	int			_reviewNum;		//number of reviews
 };

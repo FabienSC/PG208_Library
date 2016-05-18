@@ -121,6 +121,9 @@ namespace PG208_Library {
 				this->textBoxInt1->Enabled = false;
 				this->textBoxInt2->Enabled = false;
 				this->textBoxInt3->Enabled = false;
+				
+				this->textBoxEditor->Enabled = false;
+				this->textBoxReviewTitles->Enabled = false;
 
 				this->buttonCreate->Visible = false;
 			}
@@ -278,7 +281,7 @@ private: System::Windows::Forms::TextBox^  textBoxNumberOfReviews;
 				 this->buttonCreate->Anchor = System::Windows::Forms::AnchorStyles::Top;
 				 this->buttonCreate->Location = System::Drawing::Point(358, 430);
 				 this->buttonCreate->Name = L"buttonCreate";
-				 this->buttonCreate->Size = System::Drawing::Size(80, 30);
+				 this->buttonCreate->Size = System::Drawing::Size(78, 36);
 				 this->buttonCreate->TabIndex = 2;
 				 this->buttonCreate->Text = L"Create";
 				 this->buttonCreate->UseVisualStyleBackColor = true;
@@ -535,8 +538,9 @@ private: System::Windows::Forms::TextBox^  textBoxNumberOfReviews;
 				 this->textBoxReviewTitles->Location = System::Drawing::Point(537, 119);
 				 this->textBoxReviewTitles->Multiline = true;
 				 this->textBoxReviewTitles->Name = L"textBoxReviewTitles";
-				 this->textBoxReviewTitles->Size = System::Drawing::Size(216, 125);
+				 this->textBoxReviewTitles->Size = System::Drawing::Size(216, 228);
 				 this->textBoxReviewTitles->TabIndex = 33;
+				 this->textBoxReviewTitles->TextChanged += gcnew System::EventHandler(this, &FormNewArticle::textBoxReviewTitles_TextChanged);
 				 // 
 				 // labelEditor
 				 // 
@@ -557,7 +561,7 @@ private: System::Windows::Forms::TextBox^  textBoxNumberOfReviews;
 				 // labelNumberOfReviews
 				 // 
 				 this->labelNumberOfReviews->AutoSize = true;
-				 this->labelNumberOfReviews->Location = System::Drawing::Point(542, 272);
+				 this->labelNumberOfReviews->Location = System::Drawing::Point(536, 373);
 				 this->labelNumberOfReviews->Name = L"labelNumberOfReviews";
 				 this->labelNumberOfReviews->Size = System::Drawing::Size(130, 17);
 				 this->labelNumberOfReviews->TabIndex = 36;
@@ -566,10 +570,11 @@ private: System::Windows::Forms::TextBox^  textBoxNumberOfReviews;
 				 // textBoxNumberOfReviews
 				 // 
 				 this->textBoxNumberOfReviews->Enabled = false;
-				 this->textBoxNumberOfReviews->Location = System::Drawing::Point(678, 270);
+				 this->textBoxNumberOfReviews->Location = System::Drawing::Point(672, 369);
 				 this->textBoxNumberOfReviews->Name = L"textBoxNumberOfReviews";
-				 this->textBoxNumberOfReviews->Size = System::Drawing::Size(75, 22);
+				 this->textBoxNumberOfReviews->Size = System::Drawing::Size(81, 22);
 				 this->textBoxNumberOfReviews->TabIndex = 37;
+				 this->textBoxNumberOfReviews->Text = L"0";
 				 // 
 				 // FormNewArticle
 				 // 
@@ -655,6 +660,9 @@ private: System::Windows::Forms::TextBox^  textBoxNumberOfReviews;
 						 newMagazine->setPages(managedStringToInt(this->textBoxInt1->Text));
 
 						 //??? save extra data
+						 newMagazine->setEditor(this->textBoxEditor->Text);
+						 newMagazine->setReviews(this->textBoxReviewTitles->Text);
+						 newMagazine->getReviewNumber();//update
 
 						 newMagazine->save();
 					 }
@@ -753,14 +761,15 @@ private: System::Windows::Forms::TextBox^  textBoxNumberOfReviews;
 						 struct stat buffer;
 						 if(stat(filePath, &buffer))//if file doesn't exist
 							 loopFlag = 0;//exit loop
-						 if(fileID == BASE_CD_ID)//all available Book IDs have been used
+						 if(fileID == BASE_CD_ID)//all available Magazine IDs have been used
 						 {
-							 popup("Error","All available IDs are in use. Please burn books to free IDs.");
+							 popup("Error","All available IDs are in use. Please burn Magazines to free IDs.");
 							 this->Close();//close form
 						 }
 					 }
 					 this->textBoxID->Text = ""+fileID;//convert int to managed string and write to File ID text box
 				 }
+				 //resize form???
 			 }
 
 	private: System::Void radioButtonCD_CheckedChanged(System::Object^  sender, System::EventArgs^  e)//automatically sets smallest available ID
@@ -963,7 +972,7 @@ private: System::Windows::Forms::TextBox^  textBoxNumberOfReviews;
 			 void formatMagazine()//format Magazine
 			 {
 				 clearSpecialFields();
-
+				 //resize form???
 				 this->labelReviewTitles->Visible = true;
 				 this->textBoxReviewTitles->Visible = true;
 				 this->labelEditor->Visible = true;
@@ -983,6 +992,7 @@ private: System::Windows::Forms::TextBox^  textBoxNumberOfReviews;
 				 clearSpecialFields();
 
 				 this->labelInt2->Visible = true;
+				 this->textBoxInt2->Visible = true;
 
 				 this->labelString1->Text = "Artist:";
 				 this->labelString2->Text = "Record Company:";
@@ -998,6 +1008,8 @@ private: System::Windows::Forms::TextBox^  textBoxNumberOfReviews;
 
 				 this->labelInt2->Visible = true;
 				 this->labelInt3->Visible = true;
+				 this->textBoxInt2->Visible = true;
+				 this->textBoxInt3->Visible = true;
 
 				 this->labelString1->Text = "Director:";
 				 this->labelString2->Text = "Producer:";
@@ -1013,6 +1025,7 @@ private: System::Windows::Forms::TextBox^  textBoxNumberOfReviews;
 				 clearSpecialFields();
 
 				 this->labelInt2->Visible = true;
+				 this->textBoxInt2->Visible = true;
 
 				 this->labelString1->Text = "Director:";
 				 this->labelString2->Text = "Producer:";
@@ -1099,5 +1112,9 @@ private: System::Windows::Forms::TextBox^  textBoxNumberOfReviews;
 			 }
 	private: System::Void textBoxID_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 			 }
+private: System::Void textBoxReviewTitles_TextChanged(System::Object^  sender, System::EventArgs^  e)
+		 {
+			 this->textBoxNumberOfReviews->Text = intToManagedString(getNumberOfLines(this->textBoxReviewTitles->Text));
+		 }
 };
 }

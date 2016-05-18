@@ -82,7 +82,7 @@ bool Book::load(int fileID)
 {
 	String ^ strIDFilePath;
 //	if(fileID < BASE_MAGAZINE_ID)
-		strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
+	strIDFilePath = FILEPATH_BOOK + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
 //	else
 //		strIDFilePath = FILEPATH_MAGAZINE + fileID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
 

@@ -567,7 +567,7 @@ namespace PG208_Library
 			 {
 				 int selectedIndex = this->listBoxDisplay->SelectedIndex;//-1 means nothing is selected
 
- 				 if(selectedIndex == -1)
+				 if(selectedIndex == -1)
 				 {
 					 popup("Epic Fail", "Please choose your article first!");
 					 return;//no selection => do nothing
@@ -591,15 +591,15 @@ namespace PG208_Library
 				 if(index == 0)		//ID Low->High selected
 					 sortByID(1);
 				 else if(index == 1)//ID High->Low selected
-					sortByID(-1);
+					 sortByID(-1);
 				 else if(index == 2)//A->Z selected
-					sortByTitle(1);
+					 sortByTitle(1);
 				 else if(index == 3)//Z->A selected
-					sortByTitle(-1);
+					 sortByTitle(-1);
 				 else if(index == 4)//Release date newest 1st selected
-					sortByReleaseDate(1);
+					 sortByReleaseDate(-1);
 				 else if(index == 5)//Release date oldest 1st selected
-					sortByReleaseDate(-1);
+					 sortByReleaseDate(1);
 				 else
 					 popup("Error", "sorting index error");
 
@@ -648,26 +648,28 @@ namespace PG208_Library
 						 else
 							 delete myBook;
 					 }
-				 }/*
-				  if(this->checkBoxMagazines->Checked || this->checkBoxAll->Checked)
-				  {
-				  int countMagazines = 0;
-				  for(int i = 0; countMagazines < myLibrary.getNumberOfMagazines(); i++)
-				  {
-				  int fileID = BASE_MAGAZINE_ID + i;//update file ID
+				 }
+				 if(this->checkBoxMagazines->Checked || this->checkBoxAll->Checked)
+				 {
+					 int countMagazines = 0;
+					 for(int i = 0; countMagazines < myLibrary.getNumberOfMagazines(); i++)
+					 {
+						 int fileID = BASE_MAGAZINE_ID + i;//update file ID
 
-				  Book * myMag = new Book;//create new magazine
-				  if(myMag->load(fileID))//load data from file is successful
-				  {
-				  listArticles[listArticleCount] = myMag;//store magazine in the DynArray(TM)
+						 Magazine ^ myMag = gcnew Magazine;//create new magazine
+						 if(myMag->load(fileID))//load data from file is successful
+						 {
+							 listArticles[listArticleCount] = myMag;//store magazine in the DynArray(TM)
 
-				  countMagazines++;//to stop when all of the Magazines are found
-				  listArticleCount++;
-				  if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
-				  increaseListArticleSize();//increase Dynamic array size
-				  }
-				  }
-				  }*/
+							 countMagazines++;//to stop when all of the Magazines are found
+							 listArticleCount++;
+							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
+								 increaseListArticleSize();//increase Dynamic array size
+						 }
+						 else
+							 delete myMag;
+					 }
+				 }
 				 if(this->checkBoxCDs->Checked || this->checkBoxAll->Checked)
 				 {
 					 int countCDs = 0;
@@ -821,7 +823,7 @@ namespace PG208_Library
 
 				 bool direction = false;
 				 if(dir == 1)
-					direction = true;
+					 direction = true;
 
 				 for(int i = listArticleCount-1; i > 0; i--)//bubble sort
 				 {
@@ -860,7 +862,7 @@ namespace PG208_Library
 				 }
 			 }
 
-			 
+
 
 			 void sortByReleaseDate(int dir)
 			 {
@@ -872,7 +874,7 @@ namespace PG208_Library
 
 				 bool direction = false;
 				 if(dir == 1)
-					direction = true;
+					 direction = true;
 
 				 for(int i = listArticleCount-1; i > 0; i--)//bubble sort
 				 {
@@ -904,5 +906,5 @@ namespace PG208_Library
 				 FormNewArticle ^ Fedit = gcnew FormNewArticle(listArticles[selectedIndex]->getID(),false);//view Article
 				 Fedit->ShowDialog();
 			 }
-};
+	};
 }
