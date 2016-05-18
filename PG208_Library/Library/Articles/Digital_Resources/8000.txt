@@ -1,4 +1,4 @@
-asasd
+DigRes
 ###
 20160518
 ###
@@ -6,13 +6,11 @@ asasd
 ###
 0
 ###
-
+DigRes
 ###
-
+DigRes
 ###
-
+DigRes
 ###
-0
-###
-0
+21
 ###
