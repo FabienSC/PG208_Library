@@ -36,22 +36,22 @@
       <Filter>Forms</Filter>
     </ClCompile>
     <ClCompile Include="video.cpp">
-      <Filter>Forms</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Forms</Filter>
-    </ClCompile>
-    <ClCompile Include="User.cpp">
-      <Filter>Forms</Filter>
-    </ClCompile>
-    <ClCompile Include="popups.cpp">
-      <Filter>Forms</Filter>
-    </ClCompile>
-    <ClCompile Include="Magazine.cpp">
-      <Filter>Forms</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="Library.cpp">
-      <Filter>Forms</Filter>
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Magazine.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="popups.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -112,12 +112,10 @@
     <None Include="app.ico">
       <Filter>Other</Filter>
     </None>
-    <None Include="ClassDiagram1.cd">
-      <Filter>Other</Filter>
-    </None>
     <None Include="Article.datasource">
       <Filter>Other</Filter>
     </None>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Includes">

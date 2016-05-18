@@ -19,9 +19,9 @@ public:
     int 		getPages();
     void 		setPages(int newPages);
 
-    String^		getIsMagazine();
+  /*  String^		getIsMagazine();
     void 		setIsMagazine(bool);
-	void 		setIsMagazine(String^ newIsMagazine);
+	void 		setIsMagazine(String^ newIsMagazine);*/
 
 	String^		getSummary();
     void 		setSummary(String^ newSummary);
@@ -38,6 +38,6 @@ private:
     String^		_publisher;
     String^		_synopsis;
     int 		_pages;
-protected:
-	bool		_isMagazine;
+/*protected:
+	bool		_isMagazine;*/
 };

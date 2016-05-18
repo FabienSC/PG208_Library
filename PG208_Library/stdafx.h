@@ -14,6 +14,7 @@ using namespace System::Text;
 #define MIN_PASSWORD_SIZE	4		//Minimum
 #define MIN_USERNAME_SIZE	4		//Minimum
 
+
 //ID "0000" is reserved
 #define BASE_MIN_ID			1000	//Min
 #define BASE_BOOK_ID		1000	//1000~2999 reserved for books
@@ -32,8 +33,9 @@ using namespace System::Text;
 #define FILEPATH_VHS "Library/Articles/VHSs/"
 #define FILEPATH_DIGITAL "Library/Articles/Digital_Resources/"
 
-#define BORROW_LIMIT 5	//maximum number of articles a user may borrow
-#define RESERVE_LIMIT 5	//maximum number of articles a user may reserve
+#define BORROW_LIMIT	5	//maximum number of articles a user may borrow
+#define RESERVE_LIMIT	5	//maximum number of articles a user may reserve
+#define REVIEW_LIMIT	10	//Max number of reviews in a magazine
 
 
 

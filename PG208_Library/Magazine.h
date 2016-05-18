@@ -1,26 +1,29 @@
 #pragma once
-
-#include <vector>
 #include "book.h"
 
-class Magazine//:public Book
+ref class Magazine:public Book
 {
 public:
 	Magazine(void);
 	~Magazine(void);
 
-	std::string getEditor();
-	void		setEditor(std::string newEditor);
+	String^		getEditor();
+	void		setEditor(String^ newEditor);
 
-	int			getReviewNumber();
-	void		addReview(std::string newReviewName);
-	void		deleteReview(int reviewIndex);
-	void		getReviewList();
+	int			getReviewNumber();	//returns the number of reviews stored
+	void		addReview(String^);	//add a review to the list
+	void		addReviews(String^);//add a list of reviews
+	void		deleteReviews();	//delete all reviews
+	String^		getReview(int);		//returns review number X
+	String^		getReviews();		//returns all reviews in a string
 
-    void 		getData();
+    //void 		getData();
+	
+	bool		load(int);
+	bool		save();
 
 private:
-	std::string	_editor;
-    vector<std::string> _reviewTitles;
-	int			_reviewNum;
+	String^			_editor;		//editor
+    array<String^>^ _reviewTitles;	//titles of reviews
+	int				_reviewNum;		//number of reviews
 };

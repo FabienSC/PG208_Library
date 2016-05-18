@@ -4,9 +4,10 @@
 
 Magazine::Magazine(void)
 {
-//	_isMagazine = 1;
+	//	_isMagazine = 1;
 	_editor = "NA";
 	_reviewNum;
+	_reviewTitles = gcnew array< String^ >(REVIEW_LIMIT);
 }
 
 Magazine::~Magazine(void)
@@ -14,63 +15,83 @@ Magazine::~Magazine(void)
 }
 
 
-string Magazine::getEditor()
+String^ Magazine::getEditor()
 {return _editor;}
 
-void Magazine::setEditor(string newEditor)
+void Magazine::setEditor(String^ newEditor)
 {_editor = newEditor;}
 
 
 int Magazine::getReviewNumber()
 {return _reviewNum;}
 
-void Magazine::addReview(string newReviewName)
+void Magazine::addReview(String^ newReviewName)
 {
-	if (_reviewNum < 10)
+	if (_reviewNum < REVIEW_LIMIT)
 	{
+		_reviewTitles[_reviewNum] = newReviewName;
 		_reviewNum++;
-		_reviewTitles.push_back(newReviewName);
 	}
 	else
-		popup("Error","10 reviews are enough, delete one first");
+		popup("Error","There are enough reviews are enough, delete one first");
 }
 
-void Magazine::deleteReview(int reviewIndex)
+void Magazine::deleteReviews()
 {
 	if (_reviewNum == 0)
-		popup("Error","There are no reviews");	
+	{
+		popup("Error","There are no reviews");
+		return;
+	}
 	else
 	{
-		if (reviewIndex <= _reviewNum)
-		{
-			for (int i(reviewIndex - 1); i < (reviewIndex - 1); i++)
-			{
-				_reviewTitles[i] = _reviewTitles[i+1];
-				_reviewTitles.pop_back(); 
-				_reviewNum --;
-			}
-		}
-		else
-			popup("Error","Select an existing review");
+		_reviewNum = 0;
+		for (int i = 0 ; i < REVIEW_LIMIT ; i++)
+			_reviewTitles[i] = "";
 	}
 }
 
-void Magazine::getReviewList()
-{
-	cout << "-------Reviews in this Magazine--------" << endl;
-	for (int i(0); i < (_reviewNum - 1); i++)
-		cout << "Review #" << i << ": " << _reviewTitles[i] << endl;
-	cout << "----------------------------------------" << endl;
-}
+String^ Magazine::getReview(int index)
+{return _reviewTitles[index];}
 
 
 /*void Magazine::getData()
 {
-    Book::getData();
-	
-	cout << "\nEditor: " << getEditor() << endl;
-	cout << "Number of reviews: " << getReviewNumber() << endl;
+Book::getData();
 
-	getReviewList();
+cout << "\nEditor: " << getEditor() << endl;
+cout << "Number of reviews: " << getReviewNumber() << endl;
+
+getReviewList();
 }
 */
+
+
+void Magazine::addReviews(String^ newReviews)
+{
+
+}
+	
+String^ Magazine::getReviews()
+{
+	String^ reviews = "";
+	
+	for (int i = 0 ; i < _reviewNum ; i++)
+		reviews = reviews + _reviewTitles[i] + "\n";// \r";
+
+	return reviews;
+}
+
+
+bool Magazine::load(int fileID)
+{
+	popup("Mag", "load");
+	return true;
+}
+
+
+bool Magazine::save()
+{
+	popup("Mag", "save");
+	return true;
+}

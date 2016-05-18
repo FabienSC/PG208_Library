@@ -41,8 +41,8 @@ namespace PG208_Library {
 
 			editMode = 1;
 			formatEdit(fileID);
-
-			if(isBookOrMagazine)
+			
+			if(isBook)
 			{
 				Book ^ newBook = gcnew Book;
 				newBook->load(fileID);
@@ -52,6 +52,21 @@ namespace PG208_Library {
 				this->textBoxString2->Text = newBook->getPublisher();
 				this->textBoxString3->Text = newBook->getSummary();
 				this->textBoxInt1->Text = intToManagedString(newBook->getPages());
+			}
+			else if(isMagazine)
+			{
+				Magazine ^ newMagazine = gcnew Magazine;
+				newMagazine->load(fileID);
+				writeGeneralData(newMagazine);
+
+				this->textBoxString1->Text = newMagazine->getAuthor();//text becomes author
+				this->textBoxString2->Text = newMagazine->getPublisher();
+				this->textBoxString3->Text = newMagazine->getSummary();
+				this->textBoxInt1->Text = intToManagedString(newMagazine->getPages());
+				
+				this->textBoxEditor->Text = newMagazine->getEditor();
+				this->textBoxReviewTitles->Text = newMagazine->getReviews();
+				this->textBoxNumberOfReviews->Text = intToManagedString(newMagazine->getReviewNumber());
 			}
 			else if(isCD)
 			{
@@ -149,8 +164,9 @@ namespace PG208_Library {
 			 /// Required designer variable.
 			 Article ^ newArticle;
 			 bool editMode;
-
-			 bool isBookOrMagazine;
+			 
+			 bool isBook;
+			 bool isMagazine;
 			 bool isCD;
 			 bool isDVDOrVHS;
 			 bool isDigital;
@@ -177,6 +193,14 @@ namespace PG208_Library {
 	private: System::Windows::Forms::RadioButton^  radioButtonDVD;
 	private: System::Windows::Forms::RadioButton^  radioButtonVHS;
 	private: System::Windows::Forms::RadioButton^  radioButtonDigital;
+private: System::Windows::Forms::Label^  labelReviewTitles;
+private: System::Windows::Forms::TextBox^  textBoxReviewTitles;
+
+private: System::Windows::Forms::Label^  labelEditor;
+private: System::Windows::Forms::TextBox^  textBoxEditor;
+
+private: System::Windows::Forms::Label^  labelNumberOfReviews;
+private: System::Windows::Forms::TextBox^  textBoxNumberOfReviews;
 
 
 			 /// </summary>
@@ -218,6 +242,12 @@ namespace PG208_Library {
 				 this->radioButtonDVD = (gcnew System::Windows::Forms::RadioButton());
 				 this->radioButtonVHS = (gcnew System::Windows::Forms::RadioButton());
 				 this->radioButtonDigital = (gcnew System::Windows::Forms::RadioButton());
+				 this->labelReviewTitles = (gcnew System::Windows::Forms::Label());
+				 this->textBoxReviewTitles = (gcnew System::Windows::Forms::TextBox());
+				 this->labelEditor = (gcnew System::Windows::Forms::Label());
+				 this->textBoxEditor = (gcnew System::Windows::Forms::TextBox());
+				 this->labelNumberOfReviews = (gcnew System::Windows::Forms::Label());
+				 this->textBoxNumberOfReviews = (gcnew System::Windows::Forms::TextBox());
 				 this->SuspendLayout();
 				 // 
 				 // radioButtonBook
@@ -245,7 +275,8 @@ namespace PG208_Library {
 				 // 
 				 // buttonCreate
 				 // 
-				 this->buttonCreate->Location = System::Drawing::Point(230, 430);
+				 this->buttonCreate->Anchor = System::Windows::Forms::AnchorStyles::Top;
+				 this->buttonCreate->Location = System::Drawing::Point(358, 430);
 				 this->buttonCreate->Name = L"buttonCreate";
 				 this->buttonCreate->Size = System::Drawing::Size(80, 30);
 				 this->buttonCreate->TabIndex = 2;
@@ -490,11 +521,68 @@ namespace PG208_Library {
 				 this->radioButtonDigital->UseVisualStyleBackColor = true;
 				 this->radioButtonDigital->CheckedChanged += gcnew System::EventHandler(this, &FormNewArticle::radioButtonDigital_CheckedChanged);
 				 // 
+				 // labelReviewTitles
+				 // 
+				 this->labelReviewTitles->AutoSize = true;
+				 this->labelReviewTitles->Location = System::Drawing::Point(597, 99);
+				 this->labelReviewTitles->Name = L"labelReviewTitles";
+				 this->labelReviewTitles->Size = System::Drawing::Size(91, 17);
+				 this->labelReviewTitles->TabIndex = 32;
+				 this->labelReviewTitles->Text = L"Review Titles";
+				 // 
+				 // textBoxReviewTitles
+				 // 
+				 this->textBoxReviewTitles->Location = System::Drawing::Point(537, 119);
+				 this->textBoxReviewTitles->Multiline = true;
+				 this->textBoxReviewTitles->Name = L"textBoxReviewTitles";
+				 this->textBoxReviewTitles->Size = System::Drawing::Size(216, 125);
+				 this->textBoxReviewTitles->TabIndex = 33;
+				 // 
+				 // labelEditor
+				 // 
+				 this->labelEditor->AutoSize = true;
+				 this->labelEditor->Location = System::Drawing::Point(621, 45);
+				 this->labelEditor->Name = L"labelEditor";
+				 this->labelEditor->Size = System::Drawing::Size(45, 17);
+				 this->labelEditor->TabIndex = 34;
+				 this->labelEditor->Text = L"Editor";
+				 // 
+				 // textBoxEditor
+				 // 
+				 this->textBoxEditor->Location = System::Drawing::Point(537, 65);
+				 this->textBoxEditor->Name = L"textBoxEditor";
+				 this->textBoxEditor->Size = System::Drawing::Size(216, 22);
+				 this->textBoxEditor->TabIndex = 35;
+				 // 
+				 // labelNumberOfReviews
+				 // 
+				 this->labelNumberOfReviews->AutoSize = true;
+				 this->labelNumberOfReviews->Location = System::Drawing::Point(542, 272);
+				 this->labelNumberOfReviews->Name = L"labelNumberOfReviews";
+				 this->labelNumberOfReviews->Size = System::Drawing::Size(130, 17);
+				 this->labelNumberOfReviews->TabIndex = 36;
+				 this->labelNumberOfReviews->Text = L"Number of Reviews";
+				 // 
+				 // textBoxNumberOfReviews
+				 // 
+				 this->textBoxNumberOfReviews->Enabled = false;
+				 this->textBoxNumberOfReviews->Location = System::Drawing::Point(678, 270);
+				 this->textBoxNumberOfReviews->Name = L"textBoxNumberOfReviews";
+				 this->textBoxNumberOfReviews->Size = System::Drawing::Size(75, 22);
+				 this->textBoxNumberOfReviews->TabIndex = 37;
+				 // 
 				 // FormNewArticle
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-				 this->ClientSize = System::Drawing::Size(527, 478);
+				 this->AutoSize = true;
+				 this->ClientSize = System::Drawing::Size(782, 478);
+				 this->Controls->Add(this->textBoxNumberOfReviews);
+				 this->Controls->Add(this->labelNumberOfReviews);
+				 this->Controls->Add(this->textBoxEditor);
+				 this->Controls->Add(this->labelEditor);
+				 this->Controls->Add(this->textBoxReviewTitles);
+				 this->Controls->Add(this->labelReviewTitles);
 				 this->Controls->Add(this->radioButtonDigital);
 				 this->Controls->Add(this->radioButtonVHS);
 				 this->Controls->Add(this->radioButtonDVD);
@@ -524,7 +612,7 @@ namespace PG208_Library {
 				 this->Controls->Add(this->buttonCreate);
 				 this->Controls->Add(this->radioButtonCD);
 				 this->Controls->Add(this->radioButtonBook);
-				 this->MaximumSize = System::Drawing::Size(545, 525);
+				 this->MaximumSize = System::Drawing::Size(800, 525);
 				 this->MinimumSize = System::Drawing::Size(545, 525);
 				 this->Name = L"FormNewArticle";
 				 this->Text = L"FormNewArticle";
@@ -541,7 +629,7 @@ namespace PG208_Library {
 				 {
 					 Library myLibrary;
 
-					 if(isBookOrMagazine || ((this->radioButtonBook->Checked || this->radioButtonMagazine->Checked) == true))//new article is a book or Magazine
+					 if(isBook || (this->radioButtonBook->Checked == true))//new article is a book or Magazine
 					 {
 						 Book ^ newBook = gcnew Book;
 						 copyGeneralData(newBook);
@@ -550,12 +638,25 @@ namespace PG208_Library {
 						 newBook->setSummary(this->textBoxString3->Text);
 						 newBook->setPages(managedStringToInt(this->textBoxInt1->Text));
 
-						 if((BASE_BOOK_ID <= newBook->getID()) && (newBook->getID() < BASE_MAGAZINE_ID))	//Book IDs
+						/* if((BASE_BOOK_ID <= newBook->getID()) && (newBook->getID() < BASE_MAGAZINE_ID))	//Book IDs
 							 newBook->setIsMagazine(false);
 						 else
-							 newBook->setIsMagazine(true);
+							 newBook->setIsMagazine(true);*/
 
 						 newBook->save();
+					 }
+					 else if(isMagazine || (this->radioButtonMagazine->Checked == true))//new article is a Magazine
+					 {
+						 Magazine^ newMagazine = gcnew Magazine;
+						 copyGeneralData(newMagazine);
+						 newMagazine->setAuthor(this->textBoxString1->Text);
+						 newMagazine->setPublisher(this->textBoxString2->Text);
+						 newMagazine->setSummary(this->textBoxString3->Text);
+						 newMagazine->setPages(managedStringToInt(this->textBoxInt1->Text));
+
+						 //??? save extra data
+
+						 newMagazine->save();
 					 }
 					 else if(isCD || (this->radioButtonCD->Checked == true))//new article is a CD
 					 {
@@ -638,7 +739,7 @@ namespace PG208_Library {
 				 if(this->radioButtonMagazine->Checked == true)//Radio Button Checked
 				 {
 					 //#form formatting
-					 formatBook();//Magazine is same as book
+					 formatMagazine();//Magazine is same as book
 
 					 //#update the ID field to next available ID
 					 unsigned int fileID;
@@ -797,6 +898,8 @@ namespace PG208_Library {
 			 {
 				 if(managedStringToInt(this->textBoxQty->Text) > 0)//only go down to 0
 					 this->textBoxQty->Text = intToManagedString(managedStringToInt(this->textBoxQty->Text) - 1);
+				 else
+					 popup("LOL Fail","You can't have negative books. FYI you can't have imaginary books either, only positive real numbers.");
 			 }
 	private: System::Void textBoxQty_TextChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
@@ -826,76 +929,97 @@ namespace PG208_Library {
 
 			 void clearSpecialFields()
 			 {
+				 this->textBoxInt2->Visible = false;
+				 this->textBoxInt3->Visible = false;
+				 this->labelInt2->Visible = false;
+				 this->labelInt3->Visible = false;
+
 				 this->textBoxString1->Text = "";
 				 this->textBoxString2->Text = "";
 				 this->textBoxString3->Text = "";
 				 this->textBoxInt1->Text = "0";
 				 this->textBoxInt2->Text = "0";
 				 this->textBoxInt3->Text = "0";
+				 
+				 this->labelReviewTitles->Visible = false;
+				 this->textBoxReviewTitles->Visible = false;
+				 this->labelEditor->Visible = false;
+				 this->textBoxEditor->Visible = false;
+				 this->labelNumberOfReviews->Visible = false;
+				 this->textBoxNumberOfReviews->Visible = false;
 			 }
 
-			 void formatBook()//format Book or Magazine
+			 void formatBook()//format Book
 			 {
 				 clearSpecialFields();
+
 				 this->labelString1->Text = "Author:";
 				 this->labelString2->Text = "Publisher:";
 				 this->labelString3->Text = "Summary:";
 
-				 this->labelInt2->Visible = false;
-				 this->labelInt3->Visible = false;
 				 this->labelInt1->Text = "N° of Pages:";
+			 }
 
-				 this->textBoxInt2->Visible = false;
-				 this->textBoxInt3->Visible = false;
+			 void formatMagazine()//format Magazine
+			 {
+				 clearSpecialFields();
+
+				 this->labelReviewTitles->Visible = true;
+				 this->textBoxReviewTitles->Visible = true;
+				 this->labelEditor->Visible = true;
+				 this->textBoxEditor->Visible = true;
+				 this->labelNumberOfReviews->Visible = true;
+				 this->textBoxNumberOfReviews->Visible = true;
+
+				 this->labelString1->Text = "Author:";
+				 this->labelString2->Text = "Publisher:";
+				 this->labelString3->Text = "Summary:";
+
+				 this->labelInt1->Text = "N° of Pages:";
 			 }
 
 			 void formatCD()
 			 {
 				 clearSpecialFields();
+
+				 this->labelInt2->Visible = true;
+
 				 this->labelString1->Text = "Artist:";
 				 this->labelString2->Text = "Record Company:";
 				 this->labelString3->Text = "Music Style:";
 
-				 this->labelInt2->Visible = true;
-				 this->labelInt3->Visible = false;
 				 this->labelInt1->Text = "Duration (min):";
 				 this->labelInt2->Text = "N° of Tracks:";
-
-				 this->textBoxInt2->Visible = true;
-				 this->textBoxInt3->Visible = false;
 			 }
 
 			 void formatDVD()
 			 {
 				 clearSpecialFields();
+
+				 this->labelInt2->Visible = true;
+				 this->labelInt3->Visible = true;
+
 				 this->labelString1->Text = "Director:";
 				 this->labelString2->Text = "Producer:";
 				 this->labelString3->Text = "Lead Actor:";
 
-				 this->labelInt2->Visible = true;
-				 this->labelInt3->Visible = true;
 				 this->labelInt1->Text = "Duration (min):";
 				 this->labelInt2->Text = "Age Limit:";
 				 this->labelInt3->Text = "N° of Chapters:";
-
-				 this->textBoxInt2->Visible = true;
-				 this->textBoxInt3->Visible = true;
 			 }
 
 			 void formatVHS()
 			 {
 				 clearSpecialFields();
+
+				 this->labelInt2->Visible = true;
+
 				 this->labelString1->Text = "Director:";
 				 this->labelString2->Text = "Producer:";
 				 this->labelString3->Text = "Lead Actor:";
 
-				 this->labelInt2->Visible = true;
-				 this->labelInt3->Visible = false;
 				 this->labelInt1->Text = "Duration (min):";
 				 this->labelInt2->Text = "Age Limit:";
-
-				 this->textBoxInt2->Visible = true;
-				 this->textBoxInt3->Visible = false;
 			 }
 
 			 void formatDigital()
@@ -910,12 +1034,7 @@ namespace PG208_Library {
 				 this->labelString2->Text = "File Type:";
 				 this->labelString3->Text = "URL:";
 
-				 this->labelInt2->Visible = false;
-				 this->labelInt3->Visible = false;
 				 this->labelInt1->Text = "Size (Bytes):";
-
-				 this->textBoxInt2->Visible = false;
-				 this->textBoxInt3->Visible = false;
 			 }
 
 			 void formatEdit(int existingFileID)
@@ -930,12 +1049,12 @@ namespace PG208_Library {
 				 if((BASE_BOOK_ID <= existingFileID) && (existingFileID < BASE_MAGAZINE_ID))	//Book IDs
 				 {
 					 formatBook();
-					 isBookOrMagazine = true;
+					 isBook = true;
 				 }
 				 else if((BASE_MAGAZINE_ID <= existingFileID) && (existingFileID < BASE_CD_ID))
 				 {
-					 formatBook();
-					 isBookOrMagazine = true;
+					 formatMagazine();
+					 isMagazine = true;
 				 }
 				 else if((BASE_CD_ID <= existingFileID) && (existingFileID < BASE_DVD_ID))
 				 {
@@ -980,5 +1099,5 @@ namespace PG208_Library {
 			 }
 	private: System::Void textBoxID_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 			 }
-	};
+};
 }
