@@ -125,7 +125,6 @@ bool Book::load(int fileID)
 
 bool	Book::save()
 {
-	popup("cool","book save");
 	String ^ strIDFilePath;
 	/*if (_isMagazine)
 	strIDFilePath = FILEPATH_MAGAZINE + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt

@@ -40,7 +40,10 @@ namespace PG208_Library
 				this->buttonEdit->Visible = false;
 			}
 			else //admin user
-				this->buttonSelect->Visible = false;
+				{
+					this->buttonSelect->Visible = false;
+					this->buttonManageReservations->Visible = false;
+			}
 			//
 		}
 
@@ -112,6 +115,8 @@ namespace PG208_Library
 	private: System::Windows::Forms::Button^  buttonManageReservations;
 	private: System::Windows::Forms::Button^  buttonInResults;
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
+	private: System::Windows::Forms::Button^  buttonDeleteALL;
+
 
 
 
@@ -158,6 +163,7 @@ namespace PG208_Library
 				 this->buttonManageReservations = (gcnew System::Windows::Forms::Button());
 				 this->buttonInResults = (gcnew System::Windows::Forms::Button());
 				 this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+				 this->buttonDeleteALL = (gcnew System::Windows::Forms::Button());
 				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox1))->BeginInit();
 				 this->SuspendLayout();
 				 // 
@@ -191,7 +197,7 @@ namespace PG208_Library
 				 this->labelUsername->Size = System::Drawing::Size(50, 17);
 				 this->labelUsername->TabIndex = 2;
 				 this->labelUsername->Text = L"USER";
-				  // 
+				 // 
 				 // listBoxDisplay
 				 // 
 				 this->listBoxDisplay->FormattingEnabled = true;
@@ -204,7 +210,7 @@ namespace PG208_Library
 				 // 
 				 // buttonSelect
 				 // 
-				 this->buttonSelect->Location = System::Drawing::Point(397, 265);
+				 this->buttonSelect->Location = System::Drawing::Point(397, 284);
 				 this->buttonSelect->Name = L"buttonSelect";
 				 this->buttonSelect->Size = System::Drawing::Size(136, 47);
 				 this->buttonSelect->TabIndex = 7;
@@ -224,9 +230,9 @@ namespace PG208_Library
 				 // 
 				 // buttonDelete
 				 // 
-				 this->buttonDelete->Location = System::Drawing::Point(488, 320);
+				 this->buttonDelete->Location = System::Drawing::Point(397, 339);
 				 this->buttonDelete->Name = L"buttonDelete";
-				 this->buttonDelete->Size = System::Drawing::Size(105, 47);
+				 this->buttonDelete->Size = System::Drawing::Size(136, 47);
 				 this->buttonDelete->TabIndex = 9;
 				 this->buttonDelete->Text = L"Delete";
 				 this->buttonDelete->UseVisualStyleBackColor = true;
@@ -309,7 +315,7 @@ namespace PG208_Library
 				 // 
 				 // buttonEdit
 				 // 
-				 this->buttonEdit->Location = System::Drawing::Point(488, 373);
+				 this->buttonEdit->Location = System::Drawing::Point(488, 392);
 				 this->buttonEdit->Name = L"buttonEdit";
 				 this->buttonEdit->Size = System::Drawing::Size(105, 47);
 				 this->buttonEdit->TabIndex = 21;
@@ -425,7 +431,7 @@ namespace PG208_Library
 				 // 
 				 // buttonView
 				 // 
-				 this->buttonView->Location = System::Drawing::Point(488, 216);
+				 this->buttonView->Location = System::Drawing::Point(488, 235);
 				 this->buttonView->Name = L"buttonView";
 				 this->buttonView->Size = System::Drawing::Size(105, 43);
 				 this->buttonView->TabIndex = 31;
@@ -445,7 +451,7 @@ namespace PG208_Library
 				 // 
 				 // buttonManageReservations
 				 // 
-				 this->buttonManageReservations->Location = System::Drawing::Point(548, 265);
+				 this->buttonManageReservations->Location = System::Drawing::Point(548, 284);
 				 this->buttonManageReservations->Name = L"buttonManageReservations";
 				 this->buttonManageReservations->Size = System::Drawing::Size(128, 47);
 				 this->buttonManageReservations->TabIndex = 33;
@@ -473,11 +479,22 @@ namespace PG208_Library
 				 this->pictureBox1->TabStop = false;
 				 this->pictureBox1->Click += gcnew System::EventHandler(this, &FormHomeAdmin::pictureBox1_Click);
 				 // 
+				 // buttonDeleteALL
+				 // 
+				 this->buttonDeleteALL->Location = System::Drawing::Point(548, 339);
+				 this->buttonDeleteALL->Name = L"buttonDeleteALL";
+				 this->buttonDeleteALL->Size = System::Drawing::Size(128, 47);
+				 this->buttonDeleteALL->TabIndex = 36;
+				 this->buttonDeleteALL->Text = L"DELETE ALL";
+				 this->buttonDeleteALL->UseVisualStyleBackColor = true;
+				 this->buttonDeleteALL->Click += gcnew System::EventHandler(this, &FormHomeAdmin::buttonDeleteALL_Click);
+				 // 
 				 // FormHomeAdmin
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->ClientSize = System::Drawing::Size(732, 503);
+				 this->Controls->Add(this->buttonDeleteALL);
 				 this->Controls->Add(this->pictureBox1);
 				 this->Controls->Add(this->buttonInResults);
 				 this->Controls->Add(this->buttonManageReservations);
@@ -631,17 +648,24 @@ namespace PG208_Library
 	private: System::Void buttonSelect_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 int selectedIndex = this->listBoxDisplay->SelectedIndex;//-1 means nothing is selected
-
 				 if(selectedIndex == -1)
 				 {
 					 popup("Epic Fail", "Please choose your article first!");
 					 return;//no selection => do nothing
 				 }
 
+				 int fileID = listArticles[selectedIndex]->getID();
+
+				 if((fileID >= BASE_DIGITAL_ID) && (fileID < BASE_MAX_ID))//digital ressource IDs
+				 {
+					 popup("Epicest of the Fails", "You can't borrow a .jpg LOL!");
+					 return;//do nothing
+				 }
+
 				 popup("Borrowing Programme", "Welcome! What do you want to do?");
 				 this->Hide();
 
-				 FormEditArticle ^ FBorrowArticle = gcnew FormEditArticle(listArticles[selectedIndex]->getID(), this->labelUsername->Text); //FormEditArticle defined in FormBorrowArticle.h
+				 FormEditArticle ^ FBorrowArticle = gcnew FormEditArticle(fileID, this->labelUsername->Text); //FormEditArticle defined in FormBorrowArticle.h
 				 FBorrowArticle->ShowDialog();
 				 this->Show();
 			 }
@@ -727,7 +751,7 @@ namespace PG208_Library
 							 countMagazines++;//to stop when all of the Magazines are found
 							 listArticleCount++;
 							 if(listArticleCount >= listArticleSize)//if Dynamic Array is too small
-								listArticles = increaseListArticleSize();//increase Dynamic array size
+								 listArticles = increaseListArticleSize();//increase Dynamic array size
 						 }
 						 else
 							 delete myMag;
@@ -1136,7 +1160,7 @@ namespace PG208_Library
 					 if((BASE_BOOK_ID <= fileID) && (fileID < BASE_MAGAZINE_ID))	//Book IDs
 					 {
 						 Book ^ myArticle = gcnew Book;// = new Book;//create new book
-						myArticle->load(fileID);
+						 myArticle->load(fileID);
 						 if(searchBook(myArticle,searchString))
 						 {
 							 listArticles[listArticleCount] = searchArray[i];//store article in the DynArray(TM)
@@ -1146,7 +1170,7 @@ namespace PG208_Library
 					 else if((BASE_MAGAZINE_ID <= fileID) && (fileID < BASE_CD_ID))
 					 {
 						 Magazine ^ myArticle = gcnew Magazine;
-						myArticle->load(fileID);
+						 myArticle->load(fileID);
 						 if(searchMagazine(myArticle,searchString))
 						 {
 							 listArticles[listArticleCount] = searchArray[i];//store article in the DynArray(TM)
@@ -1156,7 +1180,7 @@ namespace PG208_Library
 					 else if((BASE_CD_ID <= fileID) && (fileID < BASE_DVD_ID))
 					 {
 						 CD ^ myArticle = gcnew CD;
-						myArticle->load(fileID);
+						 myArticle->load(fileID);
 						 if(searchCD(myArticle,searchString))
 						 {
 							 listArticles[listArticleCount] = searchArray[i];//store article in the DynArray(TM)
@@ -1166,7 +1190,7 @@ namespace PG208_Library
 					 else if((BASE_DVD_ID <= fileID) && (fileID < BASE_VHS_ID))
 					 {
 						 Video ^ myArticle = gcnew Video;
-						myArticle->load(fileID);
+						 myArticle->load(fileID);
 						 if(searchDVD(myArticle,searchString))
 						 {
 							 listArticles[listArticleCount] = searchArray[i];//store article in the DynArray(TM)
@@ -1176,7 +1200,7 @@ namespace PG208_Library
 					 else if((BASE_VHS_ID <= fileID) && (fileID < BASE_DIGITAL_ID))
 					 {
 						 Video ^ myArticle = gcnew Video;
-						myArticle->load(fileID);
+						 myArticle->load(fileID);
 						 if(searchVHS(myArticle,searchString))
 						 {
 							 listArticles[listArticleCount] = searchArray[i];//store article in the DynArray(TM)
@@ -1186,7 +1210,7 @@ namespace PG208_Library
 					 else if((BASE_DIGITAL_ID <= fileID) && (fileID < BASE_MAX_ID))
 					 {
 						 DigitalRes ^ myArticle = gcnew DigitalRes;
-						myArticle->load(fileID);
+						 myArticle->load(fileID);
 						 if(searchDigitalRes(myArticle,searchString))
 						 {
 							 listArticles[listArticleCount] = searchArray[i];//store article in the DynArray(TM)
@@ -1195,19 +1219,102 @@ namespace PG208_Library
 					 }
 				 }
 
-
 				 updateListBox();//empty listbox and add all articles in the article list to it
 			 }
 	private: System::Void buttonManageReservations_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
-				 popup("Reservation Programme", "Welcome!");
 				 this->Hide();
 
 				 FormCancelReservations ^ FReservations = gcnew FormCancelReservations(this->labelUsername->Text); //FormEditArticle defined in FormBorrowArticle.h
 				 FReservations->ShowDialog();
 				 this->Show();
-			 
-				 
+			 }
+	private: System::Void buttonDeleteALL_Click(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 listArticlesClear();//clear list
+
+				 Library myLibrary;//get number of books, CDs...
+
+				 int fileID = 0;
+				 int count = 0;
+				 for(int i = 0; count < myLibrary.getNumberOfBooks(); i++)//myLibrary.getNumberOfBooks()
+				 {
+					 fileID = BASE_BOOK_ID + i;//update file ID
+					 Book ^ myArticle = gcnew Book;// = new Book;//create new book
+					 if(myArticle->load(fileID))//load data from file is successful
+					 {
+						myArticle->deleteFile();
+						 count++;
+					 }
+					 else
+						 delete myArticle;
+				 }
+				 count = 0;//reset count
+				 for(int i = 0; count < myLibrary.getNumberOfMagazines(); i++)
+				 {
+					 fileID = BASE_MAGAZINE_ID + i;//update file ID
+					 Magazine ^ myArticle = gcnew Magazine;
+					 if(myArticle->load(fileID))//load data from file is successful
+					 {
+						myArticle->deleteFile();
+						 count++;
+					 }
+					 else
+						 delete myArticle;
+				 }
+				 count = 0;//reset count
+				 for(int i = 0; count < myLibrary.getNumberOfCDs(); i++)
+				 {
+					 fileID = BASE_CD_ID + i;//update file ID
+					 CD ^ myArticle = gcnew CD;
+					 if(myArticle->load(fileID))//load data from file is successful
+					 {
+						myArticle->deleteFile();
+						 count++;
+					 }
+					 else
+						 delete myArticle;
+				 }
+				 count = 0;//reset count
+				 for(int i = 0; count < myLibrary.getNumberOfDVDs(); i++)
+				 {
+					 fileID = BASE_DVD_ID + i;//update file ID
+					 Video ^ myArticle = gcnew Video;
+					 if(myArticle->load(fileID))//load data from file is successful
+					 {
+						myArticle->deleteFile();
+						 count++;
+					 }
+					 else
+						 delete myArticle;
+				 }
+				 count = 0;//reset count
+				 for(int i = 0; count < myLibrary.getNumberOfVHSs(); i++)
+				 {
+					 fileID = BASE_VHS_ID + i;//update file ID
+					 Video ^ myArticle = gcnew Video;
+					 if(myArticle->load(fileID))//load data from file is successful
+					 {
+						myArticle->deleteFile();
+						 count++;
+					 }
+					 else
+						 delete myArticle;
+				 }
+				 count = 0;//reset count
+				 for(int i = 0; count < myLibrary.getNumberOfDigitalResources(); i++)
+				 {
+					 fileID = BASE_DIGITAL_ID + i;//update file ID
+					 DigitalRes ^ myArticle = gcnew DigitalRes;
+					 if(myArticle->load(fileID))//load data from file is successful
+					 {
+						myArticle->deleteFile();
+						 count++;
+					 }
+					 else
+						 delete myArticle;
+				 }
+				 updateListBox();//empty listbox and add all articles in the article list to it
 			 }
 };
 }

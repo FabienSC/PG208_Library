@@ -8,13 +8,13 @@ public:
     Article();
     ~Article();
 
-	void 		setID(int newID);								//1 to 1000 for books, 1001 to 2000 for CDs ...
+	void 		setID(int);								//1 to 1000 for books, 1001 to 2000 for CDs ...
     int 		getID();
 	
-	void 		setTitle(String^ newTitle);
+	void 		setTitle(String^);
     String^		getTitle();
     
-	void 		setReleaseDate(int newReleaseDate);
+	void 		setReleaseDate(int);
     int 		getReleaseDate();
     
 	void		setQtyOwned(int);
@@ -22,10 +22,10 @@ public:
 
 	bool		getAvailability();
 
-    bool 		borrowArticle(String^ newUser);						// if already borrowed, can't borrow it...
-    bool 		returnArticle(String^ newUser);						// if all in library, can't return...
-	bool 		reserveArticle(String^ newUser);					// if need to reserve...
-	bool		cancelReserveArticle(String^  newUsername);
+    bool 		borrowArticle(String^);						// if already borrowed, can't borrow it...
+    bool 		returnArticle(String^);						// if all in library, can't return...
+	bool 		reserveArticle(String^);					// if need to reserve...
+	bool		cancelReserveArticle(String^);
 
 	//	void 		getData();
 	
@@ -37,6 +37,7 @@ public:
 //	bool		saveToFile(const char* fileName);
 
 	virtual bool	save();//
+	bool		canBorrow(String^);
 
 protected:
     int		 _ID;

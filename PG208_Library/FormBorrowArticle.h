@@ -220,8 +220,6 @@ namespace PG208_Library {
 				 if(this->radioButton1->Checked == true) //borrow button
 				 {
 					 int fileID = selectedArticle->getID();
-					 //newBook->borrowArticle(user->getUsername());
-					 //selectedArticle->save();
 
 					 if(fileID >= BASE_BOOK_ID && fileID < BASE_MAGAZINE_ID) //Book IDs
 					 {
@@ -234,42 +232,75 @@ namespace PG208_Library {
 					 {
 						 Magazine ^ newMagazine = gcnew Magazine;
 						 newMagazine->load(fileID);
-						 
+						 newMagazine->borrowArticle(user->getUsername());
+						 newMagazine->save();
 					 }
 					 else if(fileID >= BASE_CD_ID && fileID < BASE_DVD_ID) //CD IDs
 					 {
 						 CD ^ newCD = gcnew CD;
 						 newCD->load(fileID);
-						 
+						 newCD->borrowArticle(user->getUsername());
+						 newCD->save();
 					 }
 					 else if(fileID >= BASE_DVD_ID && fileID < BASE_VHS_ID) //DVD IDs
 					 {
 						 Video ^ newDVD = gcnew Video;
 						 newDVD->load(fileID);
-						
+						 newDVD->borrowArticle(user->getUsername());
+						 newDVD->save();
 					 }
 					 else if(fileID >= BASE_VHS_ID && fileID < BASE_DIGITAL_ID)//VHS IDs
 					 {
 						 Video ^ newVHS = gcnew Video;
 						 newVHS->load(fileID);
-						 
-					 }
-					 else if(fileID >= BASE_DIGITAL_ID && fileID < BASE_MAX_ID)//digital ressource IDs
-					 {
-						 DigitalRes ^ newDigitalRes = gcnew DigitalRes;
-						 newDigitalRes->load(fileID);
-
+						 newVHS->borrowArticle(user->getUsername());
+						 newVHS->save();
 					 }
 
-					 popup("borrow succesful", "You are now responsible for this article!");
 					 this->Close();
 				 }
 				 else if(this->radioButton2->Checked == true) //return button
 				 {
 					 if (user->canReturn(selectedArticle->getID()))
 					 {
-						 selectedArticle->returnArticle(user->getUsername());
-						 popup("return succesful", "You are no longer responsible for this article!");
+						 int fileID = selectedArticle->getID();
+
+						 if(fileID >= BASE_BOOK_ID && fileID < BASE_MAGAZINE_ID) //Book IDs
+						 {
+							 Book ^ newBook = gcnew Book;
+							 newBook->load(fileID);
+							 newBook->returnArticle(user->getUsername());
+							 newBook->save();
+						 }
+						 else if(fileID >= BASE_MAGAZINE_ID && fileID < BASE_CD_ID) //Magazine IDs
+						 {
+							 Magazine ^ newMagazine = gcnew Magazine;
+							 newMagazine->load(fileID);
+							 newMagazine->returnArticle(user->getUsername());
+							 newMagazine->save();
+						 }
+						 else if(fileID >= BASE_CD_ID && fileID < BASE_DVD_ID) //CD IDs
+						 {
+							 CD ^ newCD = gcnew CD;
+							 newCD->load(fileID);
+							 newCD->returnArticle(user->getUsername());
+							 newCD->save();
+						 }
+						 else if(fileID >= BASE_DVD_ID && fileID < BASE_VHS_ID) //DVD IDs
+						 {
+							 Video ^ newDVD = gcnew Video;
+							 newDVD->load(fileID);
+							 newDVD->returnArticle(user->getUsername());
+							 newDVD->save();
+						 }
+						 else if(fileID >= BASE_VHS_ID && fileID < BASE_DIGITAL_ID)//VHS IDs
+						 {
+							 Video ^ newVHS = gcnew Video;
+							 newVHS->load(fileID);
+							 newVHS->returnArticle(user->getUsername());
+							 newVHS->save();
+						 }
+
 						 this->Close();
 					 }
 					 else

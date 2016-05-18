@@ -18,11 +18,13 @@ namespace PG208_Library {
 		FormCancelReservations(String^ userName)
 		{
 			InitializeComponent();
-			
-			 listIDsALL = gcnew array< int >(RESERVE_LIMIT);
+
+			listIDs = gcnew array< int >(RESERVE_LIMIT);
 			borrower = gcnew User(userName);
+			selectedArticle = gcnew Article;
+
 			this->buttonBorrow->Visible = false; //only display this button if borrowing is possible
-			updateBoxAll();
+			updateBox();
 		}
 
 	protected:
@@ -49,8 +51,7 @@ namespace PG208_Library {
 		/// Required designer variable.
 		User^ borrower; // for the functions to call
 		Article^ selectedArticle; // for the functions to call
-		array<int>^ listIDsALL;
-		array<int>^ listIDsBORROWABLE;
+		array<int>^ listIDs;
 		bool displayAll;
 		/// </summary>
 		System::ComponentModel::Container ^components;
@@ -97,7 +98,6 @@ namespace PG208_Library {
 			this->listBoxReservations->Name = L"listBoxReservations";
 			this->listBoxReservations->Size = System::Drawing::Size(297, 180);
 			this->listBoxReservations->TabIndex = 2;
-			this->listBoxReservations->SelectedIndexChanged += gcnew System::EventHandler(this, &FormCancelReservations::listBoxReservations_SelectedIndexChanged);
 			// 
 			// checkBoxShowAvailable
 			// 
@@ -142,182 +142,189 @@ namespace PG208_Library {
 	private: System::Void checkBoxShowAvailable_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 if(this->checkBoxShowAvailable->Checked)//checkbox checked
-				 {
 					 this->buttonBorrow->Visible = true;
-					 updateBoxBorrowables();
-				 }
-				 
 				 else
-				 {
 					 this->buttonBorrow->Visible = false;
-					 updateBoxAll();
-				 }
+
+				 updateBox();
 			 }
 
-private: System::Void buttonBack_Click(System::Object^  sender, System::EventArgs^  e) 
-		 {
-			 this->Close();
-		 }
-
-private: System::Void buttonCancelReservation_Click(System::Object^  sender, System::EventArgs^  e) 
-		 {
-			 int selectedIndex = this->listBoxReservations->SelectedIndex;
-			 loadArticle(selectedIndex, selectedArticle);
-
-			 if(selectedIndex == -1)
+	private: System::Void buttonBack_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
-				 popup("EPIC FAIL!", "Actually select an article first...");
+				 this->Close();
 			 }
-			 else
+
+	private: System::Void buttonCancelReservation_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
-				 if(displayAll)
+				 int selectedIndex = this->listBoxReservations->SelectedIndex;
+
+				 if(selectedIndex == -1)
 				 {
-					 borrower->cancelReservation(listIDsALL[selectedIndex]); // need article ID ...
-					 selectedArticle->cancelReserveArticle(borrower->getUsername());
+					 popup("EPIC FAIL!", "Actually select an article first...");
 				 }
 				 else
 				 {
-					 borrower->cancelReservation(listIDsBORROWABLE[selectedIndex]); // need article ID ...
-					 selectedArticle->cancelReserveArticle(borrower->getUsername());
-				 }
-				 popup("Thank You", "Your reservation cancel was taken in account!");
-			 }			
-		 }
+					 int fileID = listIDs[selectedIndex];
 
-private: System::Void buttonBorrow_Click(System::Object^  sender, System::EventArgs^  e) 
-		 {
-			 int selectedIndex = this->listBoxReservations->SelectedIndex;
-			 loadArticle(selectedIndex, selectedArticle);
-
-			 if(selectedIndex == -1)
-			 {
-				 popup("EPIC FAIL!", "Actually select an Article first...");
-			 }
-			 else
-			 {
-				 if(displayAll)
-				 {
-					 borrower->borrowArticle(listIDsALL[selectedIndex]); // need article ID ...
-					 selectedArticle->borrowArticle(borrower->getUsername());
-				 }
-				 else
-				 {
-					 borrower->borrowArticle(listIDsBORROWABLE[selectedIndex]); // need article ID ...
-					 selectedArticle->borrowArticle(borrower->getUsername());
-				 }
-				 popup("BORROW SUCCESSFUl", "Your reservation led to borrowing!");
-			 }	
-		 }
-
-private: System::Void listBoxReservations_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) 
-		 {
-
-		 }
-		 /////////////////////////////////////////////////////////////
-		 /////////////////////////////////////////////////////////////
-
-		 void updateBoxBorrowables()//empty listbox and add available reserved articles
-		 {
-			 displayAll = 0;
-			 selectedArticle = gcnew Article;
-			 this->listBoxReservations->Items->Clear(); //init text box
-			 int cpt = 0;
-
-			 for(int i = 0; i < RESERVE_LIMIT; i++) //write reservation list to box
-			 {
-				 if(borrower->getReserved(i) != 0)
-				 {
-					 loadArticle(borrower->getReserved(i), selectedArticle); //load article depending on ID in reservation list
-					 if (selectedArticle->getAvailability())
+					 if(fileID >= BASE_BOOK_ID && fileID < BASE_MAGAZINE_ID) //Book IDs
 					 {
-						 this->listBoxReservations->Items->Add(selectedArticle->getTitle()); // write to text box
-						 listIDsBORROWABLE[cpt] = borrower->getReserved(i);
-						 cpt ++;
+						 Book ^ newBook = gcnew Book;
+						 newBook->load(fileID);
+						 newBook->cancelReserveArticle(borrower->getUsername());
+						 newBook->save();
+					 }
+					 else if(fileID >= BASE_MAGAZINE_ID && fileID < BASE_CD_ID) //Magazine IDs
+					 {
+						 Magazine ^ newMagazine = gcnew Magazine;
+						 newMagazine->load(fileID);
+						 newMagazine->cancelReserveArticle(borrower->getUsername());
+						 newMagazine->save();
+					 }
+					 else if(fileID >= BASE_CD_ID && fileID < BASE_DVD_ID) //CD IDs
+					 {
+						 CD ^ newCD = gcnew CD;
+						 newCD->load(fileID);
+						 newCD->cancelReserveArticle(borrower->getUsername());
+						 newCD->save();
+					 }
+					 else if(fileID >= BASE_DVD_ID && fileID < BASE_VHS_ID) //DVD IDs
+					 {
+						 Video ^ newDVD = gcnew Video;
+						 newDVD->load(fileID);
+						 newDVD->cancelReserveArticle(borrower->getUsername());
+						 newDVD->save();
+					 }
+					 else if(fileID >= BASE_VHS_ID && fileID < BASE_DIGITAL_ID)//VHS IDs
+					 {
+						 Video ^ newVHS = gcnew Video;
+						 newVHS->load(fileID);
+						 newVHS->cancelReserveArticle(borrower->getUsername());
+						 newVHS->save();
+					 }
+					 updateBox();
+				 }
+			 }
+
+	private: System::Void buttonBorrow_Click(System::Object^  sender, System::EventArgs^  e) 
+			 {
+				 int selectedIndex = this->listBoxReservations->SelectedIndex;
+
+				 if(selectedIndex == -1)
+				 {
+					 popup("EPIC FAIL!", "Actually select an Article first...");
+				 }
+				 else
+				 {
+					 int fileID = listIDs[selectedIndex];
+
+					 if(fileID >= BASE_BOOK_ID && fileID < BASE_MAGAZINE_ID) //Book IDs
+					 {
+						 Book ^ newBook = gcnew Book;
+						 newBook->load(fileID);
+						 newBook->borrowArticle(borrower->getUsername());
+						 newBook->save();
+					 }
+					 else if(fileID >= BASE_MAGAZINE_ID && fileID < BASE_CD_ID) //Magazine IDs
+					 {
+						 Magazine ^ newMagazine = gcnew Magazine;
+						 newMagazine->load(fileID);
+						 newMagazine->borrowArticle(borrower->getUsername());
+						 newMagazine->save();
+					 }
+					 else if(fileID >= BASE_CD_ID && fileID < BASE_DVD_ID) //CD IDs
+					 {
+						 CD ^ newCD = gcnew CD;
+						 newCD->load(fileID);
+						 newCD->borrowArticle(borrower->getUsername());
+						 newCD->save();
+					 }
+					 else if(fileID >= BASE_DVD_ID && fileID < BASE_VHS_ID) //DVD IDs
+					 {
+						 Video ^ newDVD = gcnew Video;
+						 newDVD->load(fileID);
+						 newDVD->borrowArticle(borrower->getUsername());
+						 newDVD->save();
+					 }
+					 else if(fileID >= BASE_VHS_ID && fileID < BASE_DIGITAL_ID)//VHS IDs
+					 {
+						 Video ^ newVHS = gcnew Video;
+						 newVHS->load(fileID);
+						 newVHS->borrowArticle(borrower->getUsername());
+						 newVHS->save();
+					 }
+					 updateBox();
+				 }
+			 }
+
+			 ///////////////////////////////////////////////////////////// 
+
+			 void updateBox()//empty listbox and add articles that are reserved
+			 {
+				 this->listBoxReservations->Items->Clear();
+				 borrower->load(borrower->getUsername());//reload
+				 int cpt = 0;
+
+				 for(int i = 0; i < RESERVE_LIMIT; i++) //write reservation list to box
+				 {
+					 if(borrower->getReserved(i) != 0)//an ID is stored
+					 {
+						loadArticle(borrower->getReserved(i));//load article to selectedArticle
+
+						 if((this->checkBoxShowAvailable->Checked == false) || selectedArticle->canBorrow(borrower->getUsername()))
+						 {
+							 this->listBoxReservations->Items->Add(selectedArticle->getTitle()); // write to text box
+							 listIDs[cpt] = selectedArticle->getID();
+							 cpt ++;
+						 }
 					 }
 				 }
-			 }
 
-			 if (cpt ==0)
-			 {
-				 popup("EPIC FAIL!", "None of your reserved articles are available yet...");
-			 }
-		 }
-		 
-		 ///////////////////////////////////////////////////////////// 
-
-		 void updateBoxAll()//empty listbox and add articles that are reserved
-		 {
-			 displayAll = 1;
-			 selectedArticle = gcnew Article;
-			 this->listBoxReservations->Items->Clear(); //init text box
-			 int cpt = 0;
-
-
-			 for(int i = 0; i < RESERVE_LIMIT; i++) //write reservation list to box
-			 {
-				 listIDsALL[i] = borrower->getReserved(i); 
-				 if(borrower->getReserved(i) != 0)
+				 if (cpt == 0)
 				 {
-					 loadArticle(borrower->getReserved(i), selectedArticle); //load article depending on ID in reservation list
- 
-					 this->listBoxReservations->Items->Add(selectedArticle->getTitle()); // write to text box
-					 cpt ++;
+					 popup("EPIC FAIL!", "List is empty.");
 				 }
 			 }
 
-			 if (cpt ==0)
-			 {
-				 popup("EPIC FAIL!", "You have no reserved articles...");
-			 }
-		 }
-		 	
-		 ///////////////////////////////////////////////////////////// 
+			 ///////////////////////////////////////////////////////////// 
 
-		 void loadArticle(int newID, Article^ newArticle)
-		 {
-			 if(newID >= BASE_BOOK_ID && newID < BASE_MAGAZINE_ID) //Book IDs
+			 void loadArticle(int newID)
 			 {
-				 Book ^ newBook = gcnew Book;
-				 newBook->load(newID);
-				 newArticle = newBook;
-			 }
+				 if(newID >= BASE_BOOK_ID && newID < BASE_MAGAZINE_ID) //Book IDs
+				 {
+					 Book ^ newBook = gcnew Book;
+					 newBook->load(newID);
+					 selectedArticle = newBook;
+				 }
 
-			 else if(newID >= BASE_MAGAZINE_ID && newID < BASE_CD_ID) //Magazine IDs
-			 {
-				 Magazine ^ newMagazine = gcnew Magazine;
-				 newMagazine->load(newID);
-				 newArticle = newMagazine;
-			 }
+				 else if(newID >= BASE_MAGAZINE_ID && newID < BASE_CD_ID) //Magazine IDs
+				 {
+					 Magazine ^ newMagazine = gcnew Magazine;
+					 newMagazine->load(newID);
+					 selectedArticle = newMagazine;
+				 }
 
-			 else if(newID >= BASE_CD_ID && newID < BASE_DVD_ID) //CD IDs
-			 {
-				 CD ^ newCD = gcnew CD;
-				 newCD->load(newID);
-				 newArticle = newCD;
-			 }
+				 else if(newID >= BASE_CD_ID && newID < BASE_DVD_ID) //CD IDs
+				 {
+					 CD ^ newCD = gcnew CD;
+					 newCD->load(newID);
+					 selectedArticle = newCD;
+				 }
 
-			 else if(newID >= BASE_DVD_ID && newID < BASE_VHS_ID) //DVD IDs
-			 {
-				 Video ^ newDVD = gcnew Video;
-				 newDVD->load(newID);
-				 newArticle = newDVD;
-			 }
+				 else if(newID >= BASE_DVD_ID && newID < BASE_VHS_ID) //DVD IDs
+				 {
+					 Video ^ newDVD = gcnew Video;
+					 newDVD->load(newID);
+					 selectedArticle = newDVD;
+				 }
 
-			 else if(newID >= BASE_VHS_ID && newID < BASE_DIGITAL_ID)//VHS IDs
-			 {
-				 Video ^ newVHS = gcnew Video;
-				 newVHS->load(newID);
-				 newArticle = newVHS;
+				 else if(newID >= BASE_VHS_ID && newID < BASE_DIGITAL_ID)//VHS IDs
+				 {
+					 Video ^ newVHS = gcnew Video;
+					 newVHS->load(newID);
+					 selectedArticle = newVHS;
+				 }
 			 }
 
-			 else if(newID >= BASE_DIGITAL_ID && newID < BASE_MAX_ID)//digital ressource IDs
-			 {
-				 DigitalRes ^ newDigitalRes = gcnew DigitalRes;
-				 newDigitalRes->load(newID);
-				 newArticle = newDigitalRes;
-			 }
-		 }
 
-
-};
+	};
 }

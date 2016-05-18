@@ -77,6 +77,11 @@ bool Magazine::load(int fileID)
 			_editor = readData(sr);
 			_reviewTitles = readData(sr);
 			_reviewNum = managedStringToInt(readData(sr));
+
+			for (int i = 0; i < ARTICLE_RESERVE_LIMIT; i++)
+			{
+				_reservationList[i] = readData(sr);
+			}
 		}
 		finally//make sure to close file
 		{
@@ -93,7 +98,6 @@ bool Magazine::load(int fileID)
 
 bool Magazine::save()
 {
-	popup("cool","mag save");
 	String ^ strIDFilePath;
 
 	strIDFilePath = FILEPATH_MAGAZINE + _ID + ".txt";//update filepath ex: Library/Articles/Books/1234.txt
@@ -112,6 +116,10 @@ bool Magazine::save()
 		AddLine( fs, _editor );
 		AddLine( fs, _reviewTitles );
 		AddLine( fs, intToManagedString(_reviewNum) );
+		for (int i = 0; i < ARTICLE_RESERVE_LIMIT; i++)
+		{
+			AddLine( fs, _reservationList[i] );
+		}
 	}
 	finally//make sure to close file
 	{

@@ -92,7 +92,7 @@ namespace PG208_Library {
 				 this->buttonRegister->Location = System::Drawing::Point(108, 312);
 				 this->buttonRegister->Name = L"buttonRegister";
 				 this->buttonRegister->Size = System::Drawing::Size(75, 29);
-				 this->buttonRegister->TabIndex = 0;
+				 this->buttonRegister->TabIndex = 4;
 				 this->buttonRegister->Text = L"Log on";
 				 this->buttonRegister->UseVisualStyleBackColor = false;
 				 this->buttonRegister->Click += gcnew System::EventHandler(this, &FormLogOn::buttonRegister_Click);

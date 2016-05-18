@@ -93,6 +93,11 @@ bool	CD::load(int fileID)
 			_musicStyle = readData(sr);
 			_duration = managedStringToInt(readData(sr));
 			_tracks = managedStringToInt(readData(sr));
+
+			for (int i = 0; i < ARTICLE_RESERVE_LIMIT; i++)
+			{
+				_reservationList[i] = readData(sr);
+			}
 		}
 		finally//make sure to close file
 		{
@@ -123,6 +128,10 @@ bool CD::save()
 		AddLine( fs, _musicStyle );
 		AddLine( fs, intToManagedString(_duration) );
 		AddLine( fs, intToManagedString(_tracks) );
+		for (int i = 0; i < ARTICLE_RESERVE_LIMIT; i++)
+		{
+			AddLine( fs, _reservationList[i] );
+		}
 	}
 	finally//make sure to close file
 	{

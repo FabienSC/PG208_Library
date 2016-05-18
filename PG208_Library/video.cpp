@@ -134,6 +134,11 @@ bool Video::load(int fileID)
 			_ageLimit = managedStringToInt(readData(sr));
 			if(_isDVD)
 				_chapters = managedStringToInt(readData(sr));
+
+			for (int i = 0; i < ARTICLE_RESERVE_LIMIT; i++)
+			{
+				_reservationList[i] = readData(sr);
+			}
 		}
 		finally//make sure to close file
 		{
@@ -172,6 +177,11 @@ bool	Video::save()
 
 		if(_isDVD)
 			AddLine( fs, intToManagedString(_chapters) );
+		
+		for (int i = 0; i < ARTICLE_RESERVE_LIMIT; i++)
+		{
+			AddLine( fs, _reservationList[i] );
+		}
 	}
 	finally//make sure to close file
 	{

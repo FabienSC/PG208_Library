@@ -27,14 +27,14 @@ public:
 	bool	load(String^ username);
 	bool	save();
 
-	int		getBorrowed(int newIndex);
-	int		getReserved(int newIndex);
+	int		getBorrowed(int);
+	int		getReserved(int);
 
 	
 private:
-	String^ username;
-	String^ encryptedPassword;
-	bool	isAdmin;//true if user is an admin
+	String^		username;
+	String^		encryptedPassword;
+	bool		isAdmin;//true if user is an admin
 	array<int>^ borrowedArticles;//array of article IDs
 	array<int>^ reservedArticles;//array of article IDs
 };
