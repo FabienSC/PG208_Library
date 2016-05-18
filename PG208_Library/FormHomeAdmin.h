@@ -104,6 +104,8 @@ namespace PG208_Library
 	private: System::Windows::Forms::CheckBox^  checkBoxDigital;
 	private: System::Windows::Forms::Button^  buttonView;
 	private: System::Windows::Forms::Button^  buttonSearchID;
+	private: System::Windows::Forms::Button^  buttonManageReservations;
+
 
 
 
@@ -145,6 +147,7 @@ namespace PG208_Library
 				 this->checkBoxDigital = (gcnew System::Windows::Forms::CheckBox());
 				 this->buttonView = (gcnew System::Windows::Forms::Button());
 				 this->buttonSearchID = (gcnew System::Windows::Forms::Button());
+				 this->buttonManageReservations = (gcnew System::Windows::Forms::Button());
 				 this->SuspendLayout();
 				 // 
 				 // labelWelcome
@@ -190,7 +193,7 @@ namespace PG208_Library
 				 // 
 				 // buttonSelect
 				 // 
-				 this->buttonSelect->Location = System::Drawing::Point(469, 267);
+				 this->buttonSelect->Location = System::Drawing::Point(397, 265);
 				 this->buttonSelect->Name = L"buttonSelect";
 				 this->buttonSelect->Size = System::Drawing::Size(136, 47);
 				 this->buttonSelect->TabIndex = 7;
@@ -428,11 +431,21 @@ namespace PG208_Library
 				 this->buttonSearchID->UseVisualStyleBackColor = true;
 				 this->buttonSearchID->Click += gcnew System::EventHandler(this, &FormHomeAdmin::buttonSearchID_Click);
 				 // 
+				 // buttonManageReservations
+				 // 
+				 this->buttonManageReservations->Location = System::Drawing::Point(548, 265);
+				 this->buttonManageReservations->Name = L"buttonManageReservations";
+				 this->buttonManageReservations->Size = System::Drawing::Size(128, 47);
+				 this->buttonManageReservations->TabIndex = 33;
+				 this->buttonManageReservations->Text = L"Manage Reservations";
+				 this->buttonManageReservations->UseVisualStyleBackColor = true;
+				 // 
 				 // FormHomeAdmin
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->ClientSize = System::Drawing::Size(732, 503);
+				 this->Controls->Add(this->buttonManageReservations);
 				 this->Controls->Add(this->buttonSearchID);
 				 this->Controls->Add(this->buttonView);
 				 this->Controls->Add(this->checkBoxDigital);
