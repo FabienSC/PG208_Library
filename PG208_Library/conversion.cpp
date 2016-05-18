@@ -108,9 +108,6 @@ int getNumberOfLines(String^ str)
 	char* charsInStr = managedStringToChar(str);
 	bool validLine = false;
 
-	/*if(numberOfElements > 0)
-	numLines++;*/
-
 	for(int i = 0; i < numberOfElements; i++)
 	{
 		char c = charsInStr[i];

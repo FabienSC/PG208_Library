@@ -53,6 +53,7 @@
     <ClCompile Include="User.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="FormCancelReservations.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FormBorrowArticle.h" />
@@ -99,6 +100,7 @@
     <ClInclude Include="resource.h">
       <Filter>Other</Filter>
     </ClInclude>
+    <ClInclude Include="FormCancelReservations.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormBorrowArticle.resx" />
