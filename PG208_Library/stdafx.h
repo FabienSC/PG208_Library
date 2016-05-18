@@ -41,6 +41,7 @@ using namespace System::Text;
 #define RESERVE_LIMIT	5	//maximum number of articles a user may reserve
 #define REVIEW_LIMIT	10	//Max number of reviews in a magazine
 
+#define ARTICLE_RESERVE_LIMIT 3 //article reervation list limit
 
 #include <string.h>
 #include <iostream>

@@ -20,14 +20,16 @@ public:
 	void		setQtyOwned(int);
 	int			getQtyOwned();
 
-	String^		getAvailability();
-    bool 		borrowArticle();						// if already borrowed, can't borrow it...
-    bool 		returnArticle();						// if all in library, can't return...
-	
-	void		reserveArticle(String^  newUsername);
 
 
-		//	void 		getData();
+
+	//String^		getAvailability();
+    bool 		borrowArticle(String^ newUser);						// if already borrowed, can't borrow it...
+    bool 		returnArticle(String^ newUser);						// if all in library, can't return...
+	bool 		reserveArticle(String^ newUser);					// if need to reserve...
+	bool		cancelReserveArticle(String^  newUsername);
+
+	//	void 		getData();
 	
 	void		deleteFile();//delete file
 
@@ -41,13 +43,10 @@ protected:
     int		 _ID;
     String ^ _title;
     int		 _releaseDate;//YYYYMMDD
-    int		 _qtyOwned;//quantity owned
-    int		 _qtyLent;//quantity available
-	//String ^ _reservationList[3];				can't do it in array... ?
-	String ^ _reservation1;
-//	String ^ _reservation2;
-//	String ^ _reservation3;
-//	bool	 _reservable;
-	bool	 _isReserved;
-	//??? add users reserved
+  //  int		 _quantity;//quantity owned
+  //  int		 _qtyLent;//quantity available
+	int		 _quantity;
+	int		 _qtyLent;
+	array<String ^> ^ _reservationList;
+	bool	 _isReservable;
 };
