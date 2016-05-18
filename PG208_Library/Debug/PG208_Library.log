@@ -1,4 +1,4 @@
-﻿Build started 18/05/2016 15:01:23.
+﻿Build started 18/05/2016 15:09:12.
      1>Project "C:\projetC++biblio\git_alex\PG208_Library\PG208_Library.vcxproj" on node 2 (rebuild target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\PG208_Library.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -71,4 +71,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.73
+Time Elapsed 00:00:04.91
