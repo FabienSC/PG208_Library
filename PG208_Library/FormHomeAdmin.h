@@ -380,7 +380,7 @@ namespace PG208_Library
 				 // checkBoxDVDs
 				 // 
 				 this->checkBoxDVDs->AutoSize = true;
-				 this->checkBoxDVDs->Location = System::Drawing::Point(15, 314);
+				 this->checkBoxDVDs->Location = System::Drawing::Point(16, 314);
 				 this->checkBoxDVDs->Name = L"checkBoxDVDs";
 				 this->checkBoxDVDs->Size = System::Drawing::Size(66, 21);
 				 this->checkBoxDVDs->TabIndex = 26;
@@ -411,7 +411,7 @@ namespace PG208_Library
 				 // checkBoxVHSs
 				 // 
 				 this->checkBoxVHSs->AutoSize = true;
-				 this->checkBoxVHSs->Location = System::Drawing::Point(15, 341);
+				 this->checkBoxVHSs->Location = System::Drawing::Point(16, 341);
 				 this->checkBoxVHSs->Name = L"checkBoxVHSs";
 				 this->checkBoxVHSs->Size = System::Drawing::Size(65, 21);
 				 this->checkBoxVHSs->TabIndex = 29;
@@ -422,7 +422,7 @@ namespace PG208_Library
 				 // checkBoxDigital
 				 // 
 				 this->checkBoxDigital->AutoSize = true;
-				 this->checkBoxDigital->Location = System::Drawing::Point(15, 369);
+				 this->checkBoxDigital->Location = System::Drawing::Point(16, 368);
 				 this->checkBoxDigital->Name = L"checkBoxDigital";
 				 this->checkBoxDigital->Size = System::Drawing::Size(102, 21);
 				 this->checkBoxDigital->TabIndex = 30;
