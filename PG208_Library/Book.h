@@ -19,25 +19,16 @@ public:
     int 		getPages();
     void 		setPages(int newPages);
 
-  /*  String^		getIsMagazine();
-    void 		setIsMagazine(bool);
-	void 		setIsMagazine(String^ newIsMagazine);*/
-
 	String^		getSummary();
     void 		setSummary(String^ newSummary);
-
-//    void 		getData();
 
 	bool		load(int);
 	virtual bool		save() new;
 
-//title, author, publisher, editor, number of pages
 
 protected:
     String^		_author;
     String^		_publisher;
     String^		_synopsis;
     int 		_pages;
-/*protected:
-	bool		_isMagazine;*/
 };

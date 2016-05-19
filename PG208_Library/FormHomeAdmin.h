@@ -38,6 +38,7 @@ namespace PG208_Library
 				this->buttonAddUser->Visible = false;
 				this->buttonDelete->Visible = false;
 				this->buttonEdit->Visible = false;
+				this->buttonDeleteALL->Visible = false;
 			}
 			else //admin user
 				{
@@ -1231,89 +1232,10 @@ namespace PG208_Library
 			 }
 	private: System::Void buttonDeleteALL_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
+				 FormDeleteAll ^ FDelete = gcnew FormDeleteAll();
+				 FDelete->ShowDialog();
+				 
 				 listArticlesClear();//clear list
-
-				 Library myLibrary;//get number of books, CDs...
-
-				 int fileID = 0;
-				 int count = 0;
-				 for(int i = 0; count < myLibrary.getNumberOfBooks(); i++)//myLibrary.getNumberOfBooks()
-				 {
-					 fileID = BASE_BOOK_ID + i;//update file ID
-					 Book ^ myArticle = gcnew Book;// = new Book;//create new book
-					 if(myArticle->load(fileID))//load data from file is successful
-					 {
-						myArticle->deleteFile();
-						 count++;
-					 }
-					 else
-						 delete myArticle;
-				 }
-				 count = 0;//reset count
-				 for(int i = 0; count < myLibrary.getNumberOfMagazines(); i++)
-				 {
-					 fileID = BASE_MAGAZINE_ID + i;//update file ID
-					 Magazine ^ myArticle = gcnew Magazine;
-					 if(myArticle->load(fileID))//load data from file is successful
-					 {
-						myArticle->deleteFile();
-						 count++;
-					 }
-					 else
-						 delete myArticle;
-				 }
-				 count = 0;//reset count
-				 for(int i = 0; count < myLibrary.getNumberOfCDs(); i++)
-				 {
-					 fileID = BASE_CD_ID + i;//update file ID
-					 CD ^ myArticle = gcnew CD;
-					 if(myArticle->load(fileID))//load data from file is successful
-					 {
-						myArticle->deleteFile();
-						 count++;
-					 }
-					 else
-						 delete myArticle;
-				 }
-				 count = 0;//reset count
-				 for(int i = 0; count < myLibrary.getNumberOfDVDs(); i++)
-				 {
-					 fileID = BASE_DVD_ID + i;//update file ID
-					 Video ^ myArticle = gcnew Video;
-					 if(myArticle->load(fileID))//load data from file is successful
-					 {
-						myArticle->deleteFile();
-						 count++;
-					 }
-					 else
-						 delete myArticle;
-				 }
-				 count = 0;//reset count
-				 for(int i = 0; count < myLibrary.getNumberOfVHSs(); i++)
-				 {
-					 fileID = BASE_VHS_ID + i;//update file ID
-					 Video ^ myArticle = gcnew Video;
-					 if(myArticle->load(fileID))//load data from file is successful
-					 {
-						myArticle->deleteFile();
-						 count++;
-					 }
-					 else
-						 delete myArticle;
-				 }
-				 count = 0;//reset count
-				 for(int i = 0; count < myLibrary.getNumberOfDigitalResources(); i++)
-				 {
-					 fileID = BASE_DIGITAL_ID + i;//update file ID
-					 DigitalRes ^ myArticle = gcnew DigitalRes;
-					 if(myArticle->load(fileID))//load data from file is successful
-					 {
-						myArticle->deleteFile();
-						 count++;
-					 }
-					 else
-						 delete myArticle;
-				 }
 				 updateListBox();//empty listbox and add all articles in the article list to it
 			 }
 };

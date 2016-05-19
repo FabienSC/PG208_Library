@@ -14,8 +14,6 @@ public:
 	void		setReviews(String^);//add a list of reviews
 	void		deleteReviews();	//delete all reviews
 	String^		getReviews();		//returns all reviews in a string
-
-    //void 		getData();
 	
 	bool		load(int);
 	virtual bool	save() new;

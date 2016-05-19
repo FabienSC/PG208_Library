@@ -105,7 +105,6 @@ namespace PG208_Library {
 				 this->textBoxUsername->Name = L"textBoxUsername";
 				 this->textBoxUsername->Size = System::Drawing::Size(192, 22);
 				 this->textBoxUsername->TabIndex = 1;
-				 this->textBoxUsername->Text = L"Mr.Fab";
 				 this->textBoxUsername->TextChanged += gcnew System::EventHandler(this, &FormLogOn::textBoxUsername_TextChanged);
 				 // 
 				 // labelUsername
@@ -136,7 +135,6 @@ namespace PG208_Library {
 				 this->textBoxPassword->Name = L"textBoxPassword";
 				 this->textBoxPassword->Size = System::Drawing::Size(192, 22);
 				 this->textBoxPassword->TabIndex = 3;
-				 this->textBoxPassword->Text = L"1234";
 				 this->textBoxPassword->UseSystemPasswordChar = true;
 				 // 
 				 // linkLabelNewUser
@@ -229,7 +227,7 @@ namespace PG208_Library {
 
 				 if((strcmp(enteredPassword,decryptedPassword) == 0) && (strPassword->Length >= MIN_PASSWORD_SIZE))//if username and password match AND password on file is longer than 3
 				 {
-					 //	 popup("Login Successful", "Welcome!");
+					 popup("Login Successful", "Welcome!");
 					 this->Hide();
 
 					 FormHomeAdmin ^ FHomeAdmin = gcnew FormHomeAdmin(strUsername, newUser->getAdminStatus()); //FormHomeAdmin defined in FormHomeAdmin.h

@@ -97,6 +97,7 @@
     <ClCompile Include="Article.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="conversion.cpp" />
+    <ClCompile Include="Delete All.cpp" />
     <ClCompile Include="FormCancelReservations.cpp" />
     <ClCompile Include="FormEditArticle.cpp" />
     <ClCompile Include="Magazine.cpp" />
@@ -121,6 +122,9 @@
   <ItemGroup>
     <ClInclude Include="Article.h" />
     <ClInclude Include="conversion.h" />
+    <ClInclude Include="FormDeleteAll.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="FormBorrowArticle.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -156,6 +160,9 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormDeleteAll.resx">
+      <DependentUpon>FormDeleteAll.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormBorrowArticle.resx">
       <DependentUpon>FormBorrowArticle.h</DependentUpon>
       <SubType>Designer</SubType>

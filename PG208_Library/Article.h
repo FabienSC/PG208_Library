@@ -27,14 +27,8 @@ public:
 	bool 		reserveArticle(String^);					// if need to reserve...
 	bool		cancelReserveArticle(String^);
 
-	//	void 		getData();
 	
 	void		deleteFile();//delete file
-
-
-//	bool		loadFromFile(const char* fileName);
-//	bool		saveToFile(const char* fileName, Article myArticle);	
-//	bool		saveToFile(const char* fileName);
 
 	virtual bool	save();//
 	bool		canBorrow(String^);
@@ -43,9 +37,7 @@ protected:
     int		 _ID;
     String ^ _title;
     int		 _releaseDate;//YYYYMMDD
-  //  int		 _quantity;//quantity owned
-  //  int		 _qtyLent;//quantity available
-	int		 _quantity;
+	int		 _quantity;//quantity on hand
 	int		 _qtyLent;
 	array<String ^> ^ _reservationList;
 	bool	 _isReservable;

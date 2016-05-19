@@ -21,12 +21,9 @@ ref class CD : public Article
 
     int 		getTracks();
     void 		setTracks(int newTracks);
-
-   // void 		getData();
 	
 	bool		load(int fileID);
 	virtual bool		save() new;
-//title, artist, duration, record company, music style
 
 private:
     String^		_artist;

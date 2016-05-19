@@ -67,6 +67,8 @@ using namespace System::Text;
 #include "FormBorrowArticle.h"
 #include "FormNewArticle.h"
 #include "FormCancelReservations.h"
+#include "FormDeleteAll.h"
 #include "FormHomeAdmin.h"//must be last
+
 
 

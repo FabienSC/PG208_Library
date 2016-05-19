@@ -31,7 +31,6 @@ public:
 	int			getChapters();
     void 		setChapters(int newChapters);
 
-   // void 		getData();
 	bool		load(int);
 	virtual bool		save() new;
 
