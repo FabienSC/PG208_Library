@@ -714,6 +714,7 @@ namespace PG208_Library
 			 {
 				 listArticlesClear();
 				 Library myLibrary;//get number of books, CDs...
+				 
 
 				 if(this->checkBoxBooks->Checked || this->checkBoxAll->Checked)
 				 {

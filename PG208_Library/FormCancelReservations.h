@@ -281,7 +281,7 @@ namespace PG208_Library {
 
 				 if (cpt == 0)
 				 {
-					 popup("EPIC FAIL!", "List is empty.");
+					 popup("Info", "Your reservation list is empty");
 				 }
 			 }
 

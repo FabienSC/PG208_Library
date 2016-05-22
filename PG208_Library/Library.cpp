@@ -71,7 +71,7 @@ Library::Library(void)//go through all folders to count the number of articles (
 			_numberOfDigitalResources++;//file is valid => count it as a book
 	}
 
-	//saveData();//save data to data.txt needed? jst for reference?
+	saveData();//save data to data.txt needed? jst for reference?
 }
 
 int Library::getNumberOfAll()

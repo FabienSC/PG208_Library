@@ -32,6 +32,7 @@ using namespace System::Text;
 #define FILEPATH_DVD "Library/Articles/DVDs/"
 #define FILEPATH_VHS "Library/Articles/VHSs/"
 #define FILEPATH_DIGITAL "Library/Articles/Digital_Resources/"
+#define SAVEPATH "save.fab"
 
 
 #define FILEPATH_LOGO "Images/Logo.gif"
@@ -42,6 +43,10 @@ using namespace System::Text;
 #define REVIEW_LIMIT	10	//Max number of reviews in a magazine
 
 #define ARTICLE_RESERVE_LIMIT 3 //article reservation list limit
+
+#include <stdio.h>      /* printf, scanf, puts, NULL */
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
 
 #include <string.h>
 #include <iostream>
